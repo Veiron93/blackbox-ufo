@@ -129,4 +129,29 @@ $(document).ready(function(){
 	}
 
 	viewProductList();
+
+	// КАТАЛОГ - ФИЛЬТРЫ
+	function viewFilterList(){
+		let filterList = document.querySelector('.catalog-filter-list');
+
+		if(filterList){
+			let filters = filterList.querySelectorAll('.filter');
+
+			filters.forEach(function(filter){
+				filter.querySelector('.filter-head').addEventListener('click', function(){
+					filter.classList.toggle('active');
+				})
+
+				let filterAttributes = filter.querySelectorAll('.filter-list .list-attribites > *');
+
+				filterAttributes.forEach(function(attribute){
+
+					console.log(attribute);
+				})
+				
+			})
+		}
+	}
+
+	viewFilterList();
 });

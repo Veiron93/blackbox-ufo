@@ -13,21 +13,7 @@
 			<?php $this->renderPartial('categories_list', ['categories' => $categories]) ?>
 		<?php else: ?>
 			<div class="catalog-category-wrapper">
-				<div class="catalog-category-filter">
-					<?php foreach ($category->filters as $key => $value): ?>
-						<p><?//=traceLog($value)?></p>
-						<p><?=$value->name ?></p>
-						<p><?=$value->data_type ?></p>
-						
-						<? $pieces = explode("\n", $value->value_template); ?>
-
-						<?php foreach ($pieces as $val): ?>
-							<p><?= $val ?></p>
-						<?php endforeach; ?>
-						
-					<?php endforeach; ?>
-					
-				</div>
+				<?php $this->renderPartial('filters') ?>
 
 				<div class="catalog-category-list-wrapper">
 					<div class="catalog-category-list-sorting">
