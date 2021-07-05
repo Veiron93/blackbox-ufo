@@ -1,0 +1,28 @@
+<?
+	if (!isset($max_level)) $max_level = 1;
+	if (!isset($level)) $level = 1;
+	if ($level > $max_level) return;
+	if (!isset($current_item)) {
+		$current_item = null;
+		$default_menu = 'main';
+		$menu = Admin_Menu::get_current_menu();
+		if (!$menu) $menu = Admin_Menu::create()->find_by_code($default_menu);
+		if ($menu) $current_item = Admin_MenuItem::find_current_item($menu);
+	}
+?>
+<? if ($current_item): ?>
+	<? $children = $current_item->list_children('sort_order')->except(true, 'is_hidden_in_menu')->except(true, 'is_hidden'); ?>
+	<? if ($children->count): ?>
+	<ul>
+		<? foreach ($children as $item): ?>
+			<? if ($item->is_hidden_in_menu || $item->is_hidden) continue; ?>
+			<li>
+				<a href="<?= $item->get_url() ?>"><?= $item->title ?></a>
+				<? if ($level <= $max_level): ?>
+					<? $this->renderLayout('_dynamic_children_list', array('current_item'=>$item, 'level'=>$level+1, 'max_level'=>$max_level)) ?>
+				<? endif ?>
+			</li>
+		<? endforeach ?>
+	</ul>
+	<? endif; ?>
+<? endif; ?>

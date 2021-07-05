@@ -1,0 +1,32 @@
+/* TEAM */
+
+	Art-director: Mikhail Belyaev
+	Site: rinamika.ru
+	Twitter: belyaev
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+
+	Backend programmer: Mark Vaisman
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+
+	Frontend programmer: Konstantin Pak
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+
+	Frontend programmer: Dmitry Yudin
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+
+	Designer: Inessa Lebedeva
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+	
+	Designer: Ksenia Dolganova
+	Site: smallboxofbuttons.blogspot.com
+	Twitter: AsamiDesigner
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+
+	Cleaner: Svetlana Anatolevna
+	Location: Yuzhno-Sakhalinsk, Russian Federation
+
+/* SITE */
+
+	Last update: 2020/03/17
+	Standards: HTML5, CSS3
+	Components: jQuery

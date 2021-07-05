@@ -1,0 +1,46 @@
+<?
+	$default_menu = 'main';
+	$parents = array();
+	
+	if (!isset($current_item)) {
+		$current_item = null;
+		$menu = Admin_Menu::get_current_menu();
+
+		if (!$menu)  {
+			$menu = Admin_Menu::create()->find_by_code($default_menu);
+		}
+		if ($menu) {
+			$current_item = Admin_MenuItem::find_current_item($menu);
+		}
+	} else {
+		$menu = $current_item->menu;
+	}
+
+	if ($current_item) {
+		while ($parent = $current_item->get_parent()) {
+			$current_item = $parent;
+
+			if ($parent->is_hidden_in_menu)
+				continue;
+			if ($parent->dont_show_in_breadcrumbs)
+				continue;
+
+			$parents[] = $parent;
+		}
+		$parents = array_reverse($parents);
+	}
+?>
+
+<? if ($parents): ?>
+	<div class="breadcrumbs">
+		<ul>
+			<? if ($menu->use_code_in_links): ?>
+				<li><a href="/<?= $menu->code ?>/"><?= h($menu->name) ?></a></li>
+			<? endif; ?>
+
+			<? foreach ($parents as $parent): ?>
+				<li><a href="<?= $parent->get_url() ?>"><?= h($parent->title) ?></a></li>
+			<? endforeach; ?>
+		</ul>
+	</div>
+<? endif; ?>

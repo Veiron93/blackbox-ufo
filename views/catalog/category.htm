@@ -1,0 +1,95 @@
+<div class="container catalog-category">
+	<?php if (isset($category) && $category): ?>
+
+		<?php $this->renderPartial('breadcrumbs') ?>
+
+		<div class="heading-page">
+			<h1><?= $category->name?></h1>
+		</div>
+
+		<?php $categories = $category->list_children(); ?>
+
+		<?php if(count($categories)): ?>
+			<?php $this->renderPartial('categories_list', ['categories' => $categories]) ?>
+		<?php else: ?>
+			<div class="catalog-category-wrapper">
+				<div class="catalog-category-filter">
+					<?php foreach ($category->filters as $key => $value): ?>
+						<p><?//=traceLog($value)?></p>
+						<p><?=$value->name ?></p>
+						<p><?=$value->data_type ?></p>
+						
+						<? $pieces = explode("\n", $value->value_template); ?>
+
+						<?php foreach ($pieces as $val): ?>
+							<p><?= $val ?></p>
+						<?php endforeach; ?>
+						
+					<?php endforeach; ?>
+					
+				</div>
+
+				<div class="catalog-category-list-wrapper">
+					<div class="catalog-category-list-sorting">
+						<div class="sorting-product-list">
+							<div class="sorting-product-list-title">Сортировать:</div>
+
+							<?php 
+								$sorting = null;
+								$partsURI = parse_url($_SERVER['REQUEST_URI']);
+
+								if(isset($partsURI['query'])){
+									parse_str($partsURI['query'], $query);
+
+									if($query['sort'] == 'new' || $query['sort'] == 'price' || $query['sort'] == '-price'){
+										$sorting = $query['sort'];
+									}
+								}
+							?>
+
+							<div class="sorting-product-list-items">
+								<div class="item <?= !$sorting ? 'active':''?>">
+									<a href="/catalog/<?= $category->id?>">По наименованию</a>
+								</div>
+								<div class="item <?= $sorting == 'new'? 'active':''?>">
+									<a href="/catalog/<?= $category->id?>/?sort=new">Сначала новые</a>
+								</div>
+								<div class="item <?= $sorting == 'price'? 'active':''?>">
+									<a href="/catalog/<?= $category->id?>/?sort=price">По возростанию цены</a>
+								</div>
+								<div class="item <?= $sorting == '-price'? 'active':''?>">
+									<a href="/catalog/<?= $category->id?>/?sort=-price">По убыванию цены</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="view-product-list">
+							<?php 
+								$viewProductList = isset($_COOKIE['viewProductList']) && $_COOKIE['viewProductList'] == "list" ? "list" : "grid";
+							?> 
+
+							<div class="item <?= $viewProductList == 'grid' ?'active':''?>" data-type="grid">
+								<img src="/resources/images/icons/grid.svg" alt="grid">
+							</div>
+							<div class="item <?= $viewProductList == 'list' ?'active':''?>" data-type="list">
+								<img src="/resources/images/icons/listing.svg" alt="list">
+							</div>
+						</div>
+						
+					</div>
+
+					<?php $this->renderPartial('category_listing', ['viewProductList'=>$viewProductList]) ?>
+				</div>
+			</div>
+		<?php endif; ?>
+		
+
+		<?php /** @var $pagination Phpr_Pagination*/ ?>
+		<?php if (isset($pagination)): ?>
+			<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("catalog_category", [$category->id]) . "%d/") ?>
+		<?php endif; ?>
+
+	<?php else: ?>
+		<h2>Категория не найдена</h2>
+	<?php endif; ?>
+</div>

@@ -1,0 +1,37 @@
+<div class="attributes-wrapper">
+	<? if ($product && $product->type && $product->type->attributes): ?>
+		<h4 class="title">Общие характеристики</h4>
+		<table class="attributes-table">
+			<? foreach ($product->type->attributes as $attribute): ?>
+				<? if ($value = $product->getAttributeValue($attribute)) : ?>
+					<tr>
+					<? $nameArr = explode('#', $attribute->name); ?>
+					<td data-attr-id="<?= $attribute->id ?>"><?= $nameArr[count($nameArr) - 1] ?></td>
+					<td>
+						<? if ($attribute->data_type == Catalog_Attribute::typeBool): ?>
+							<?= $value ? "Да" : "Нет" ?>
+						<? else: ?>
+							<? if ($attribute->data_type == Catalog_Attribute::typeCheckboxList): ?>
+								<? $field = "attr_{$attribute->id}";
+									$values = $product->getCheckboxAttributeValue($field);
+								?>
+								<? foreach ($values as $val): ?>
+									<a href=# class="set" data-attr-value="<?= $val ?>">
+										<?= $attribute->prefix ?>
+										<?= $val ?>
+										<?= $attribute->suffix ?>
+									</a>
+								<? endforeach; ?>
+							<? endif; ?>
+							<?= $attribute->prefix ?>
+							<?= $value ?>
+							<?= $attribute->suffix ?>
+						<? endif; ?>
+					</td>
+				<? endif; ?>
+				</tr>
+
+			<? endforeach; ?>
+		</table>
+	<? endif; ?>
+</div>

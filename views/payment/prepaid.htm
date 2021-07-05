@@ -1,0 +1,33 @@
+<? /** @var Payment_Backend $backend */ ?>
+<? /** @var Payment_Payment $payment */ ?>
+<? /** @var Payment $this */ ?>
+
+<style>
+	#payment-container {
+		display: none;
+	}
+</style>
+
+<noscript>
+	Для просмотра этой страницы необходима поддержка JavaScript!
+	Включите JavaScript в настройках вашего браузера и обновите эту страницу.
+</noscript>
+<div class="payment prepaid" id="payment-container">
+	<? if (!isset($error)): ?>
+		<h1>Подождите...</h1>
+		<p class="notice">Произвозится переадресация на страницу платежной системы...</p>
+		<?= Phpr_Form::openTag(array('id' => 'payment-form', 'action' => $backend->getPaymentSystemAction(), 'onsubmit' => null)) ?>
+			<? foreach ($formData as $name => $value): ?>
+				<input type="hidden" name="<?= h($name) ?>" value="<?= h($value) ?>" />
+			<? endforeach ?>
+		</form>
+		<script type="text/javascript">
+			document.getElementById('payment-container').style.display = "block";
+			window.onload = function () {
+				document.getElementById('payment-form').submit();
+			}
+		</script>
+	<? else: ?>
+		<p class="error"><?= $error ?></p>
+	<? endif ?>
+</div>

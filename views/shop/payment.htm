@@ -1,0 +1,25 @@
+<?
+/**
+ * @var $order Shop_Order
+ */
+?>
+<div class="shop payment">
+    <h1>Оплата заказа №<?= $order->id?> на сумму <?= Phpr::$lang->num($order->amount) ?><span class="rouble">p</span></h1>
+    <p><?= Admin_ModuleSettings::get_module_parameter("shop", "payment_page_text"); ?></p>
+    <p>Способ оплаты:</p>
+    <?= Phpr_Form::openTag(["id" => "shop-payment", "method" => "post"]) ?>
+        <? foreach ($backends as $backend): ?>
+            <label class="radio">
+                <input type="radio" name="payment_backend" value="<?= $backend->getId() ?>" <?= Phpr_Form::radioState(h(post('payment_backend', Payment_Helper::getDefaultBackendId())), $backend->getId()) ?> />
+                <?= $backend->getName() ?>
+                <? if ($description = $backend->getDescription()): ?>
+                    <div class="description">
+                        <?= $description ?>
+                    </div>
+                <? endif ?>
+            </label>
+        <? endforeach ?>
+        <input type="hidden" name="pay" value="yes">
+        <a class="button" href="#" id="shop-payment-pay" data-handler="payment" data-alert-errors="yes">Оплатить</a>
+    <? Phpr_Form::closeTag();?>
+</div>

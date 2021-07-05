@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="index-top-section">
+		<?php $catalogCategories = Catalog_Category::create()->list_root_children(); ?>
+
+		<?php if(isset($catalogCategories) && count($catalogCategories)): ?>
+			<div class="catalog-menu">
+				<ul>
+					<?php foreach ($catalogCategories as $category): ?>
+						<li>
+							<a href="/catalog/<?= $category->id ?>">
+								<img src="<?= $category->image->getPath()?>" alt="<?= $category->name?>" />
+								<span><?= $category->name ?></span>
+							</a>
+
+							<?php $hotCategories = App_Helper::getHotCatalogCategories($category->id); ?>
+
+							<?php if($hotCategories):?>
+								<div class="hot-categories">
+									<?php foreach($hotCategories as $hotCategory): ?>
+										<a href="/catalog/<?= $hotCategory->id?>"><?= $hotCategory->name?></a>
+									<?php endforeach ?>	
+								</div>
+							<?php endif ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endif;?>
+
+		<? $mainSlider = App_Helper::getBanners('main_slider') ?>
+
+		<?php if(isset($mainSlider) && count($mainSlider)): ?>
+			<div class="main-slider">
+				<?php foreach ($mainSlider as $banner): ?>
+					<?php $imgBanner = $banner->image->getThumb(880, 260, Phpr_ImageManipulator::fitAndCrop); ?>
+
+					<?php if($imgBanner): ?>
+						<?php if($banner->link): ?>
+							<a href="<?= $banner->link ?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>>
+						<?php endif;?>
+
+							<img src="<?= $imgBanner ?>" alt="<?= $banner->name ?>">
+
+						<?php if($banner->link): ?>
+							</a>
+						<?php endif;?>		
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</div>
+		<?php endif;?>
+	</div>
+	
+	<?php if($bestsellers && count($bestsellers)): ?>
+		<div class="bestsellers">
+			<div class="bestsellers-title">Хиты продаж</div>
+
+			<div class="list-products" data-view-list="grid">
+				<?php foreach($bestsellers as $product): ?>
+					<?php $this->renderPartial($this->getViewsDir() . "/catalog/product_card.htm", ['product'=>$product]);?>
+				<? endforeach ?>
+			</div>
+		</div>
+	<?php endif ?>
+
+	<?php if($newProducts && count($newProducts)): ?>
+		<div class="new-products">
+			<div class="new-products-title">Новинки</div>
+
+			<div class="new-products-slider">
+				<?php foreach($newProducts as $product): ?>
+					<?php $this->renderPartial($this->getViewsDir() . "/catalog/product_card.htm", ['product'=>$product]);?>
+				<? endforeach ?>
+			</div>
+		</div>
+	<?php endif ?>
+</div>
+

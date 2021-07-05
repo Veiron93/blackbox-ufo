@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<? $this->renderLayout('_head') ?>
+	</head>
+	<body>
+		<? $this->renderLayout('_for_old_browsers') ?>
+		
+		<div class='wrapper'>
+			<? $this->renderLayout('_header') ?>
+			
+			<div class="content">
+				<?= Phpr_View::block('view') ?>		
+			</div>
+
+			<? $this->renderLayout('_footer') ?>
+		</div>
+
+		<? $this->renderLayout("_footer_scripts"); ?>
+	</body>
+</html>

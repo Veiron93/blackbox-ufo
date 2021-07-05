@@ -1,0 +1,65 @@
+<div class="filter">
+	<h3>Выбор по параметрам</h3>
+	<?= Phpr_Form::openTag(array('onsubmit' => null, 'id' => 'filter-form', 'method' => 'get')) ?>
+	<? if ($category->filters->count): ?>
+		<? foreach ($category->filters as $filter): ?>
+			<?/** @var $filter Catalog_Attribute */ ?>
+			<div class="attribute-collapse-wrapper">
+				<? if ($filter->data_type == Catalog_Attribute::typeBool): ?>
+					<h4 class="<?= $this->isFilteredBy($filter) ? "expand" : "collapse" ?>"><?= $filter->name ?></h4>
+					<div class="attribute-collapse flat">
+						<ul class="radio">
+							<li>
+								<input type="radio" class="hidden" id="filter-<?= $filter->id ?>-yes" name="prop[<?= $filter->id ?>]" value="yes" <?= Phpr_Form::radioState("yes", Phpr::$request->getFromArray("prop.{$filter->id}")) ?> />
+								<label for="filter-<?= $filter->id ?>-yes">Да</label>
+							</li>
+							<li>
+								<input type="radio" class="hidden" id="filter-<?= $filter->id ?>-no" name="prop[<?= $filter->id ?>]" value="no" <?= Phpr_Form::radioState("no", Phpr::$request->getFromArray("prop.{$filter->id}")) ?> />
+								<label for="filter-<?= $filter->id ?>-no">Нет</label>
+							</li>
+							<li>
+								<input type="radio" class="hidden" id="filter-<?= $filter->id ?>-any" name="prop[<?= $filter->id ?>]" value="any" <?= Phpr_Form::radioState("any", Phpr::$request->getFromArray("prop.{$filter->id}")) ?>/>
+								<label for="filter-<?= $filter->id ?>-any">Неважно</label>
+							</li>
+						</ul>
+					</div>
+				<? elseif ($filter->data_type == Catalog_Attribute::typeCheckboxList): ?>
+					<? $values = $filter->getCheckboxListValues(); ?>
+					<h4 class="<?= $this->isFilteredBy($filter) ? "expand" : "collapse" ?>"><?= $filter->name ?></h4>
+					<div class="attribute-collapse <?= count($values) < 6 ? "flat" : "" ?>">
+						<ul>
+							<? foreach ($values as $value): ?>
+								<li>
+									<label>
+										<input type="checkbox"
+											   class="hidden"
+											   name="prop[<?= $filter->id ?>][]"
+											   value="<?= h($value) ?>"
+											<?= Phpr_Form::checkboxState($this->safeInArray($value, "prop.{$filter->id}")) ?> />
+										<?= $value ?>
+									</label>
+								</li>
+							<? endforeach; ?>
+						</ul>
+					</div>
+				<? elseif (in_array($filter->data_type, array(Catalog_Attribute::typeNumber, Catalog_Attribute::typeFloat))): ?>
+					<?
+					list($min, $max) = $this->getAttributeMinMax($filter, $category);
+					?>
+					<h4 class="<?= $this->isFilteredBy($filter) ? "expand" : "collapse" ?>"><?= $filter->name ?></h4>
+					<div class="attribute-collapse">
+						<label for="filter-<?= $filter->id ?>-from">от</label>
+						<input type="text" id="filter-<?= $filter->id ?>-from" name="prop[<?= $filter->id ?>][from]" value="<?= (float) h(Phpr::$request->getFromArray("prop.{$filter->id}.from", $min)) ?>"/>
+						<label for="filter-<?= $filter->id ?>-to">до</label>
+						<input type="text" id="filter-<?= $filter->id ?>-to" name="prop[<?= $filter->id ?>][to]" value="<?= (float) h(Phpr::$request->getFromArray("prop.{$filter->id}.to", $max)) ?>" />
+						<?= $filter->suffix ?>
+					</div>
+
+				<? endif; ?>
+			</div>
+		<? endforeach; ?>
+	<? endif; ?>
+	<input type="hidden" name="filter" value="1" />
+	<input type="submit" value="Показать" />
+	<? Phpr_Form::closeTag() ?>
+</div>

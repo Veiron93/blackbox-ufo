@@ -1,0 +1,89 @@
+<?php $catalogCategoriesMenu = Catalog_Category::create()->list_root_children(); ?>
+
+<div class="menu-catalog">
+
+	<div class="menu-catalog-btn">
+		<img src="/resources/images/icons/menu.svg" alt="Меню" />
+		<a href="/catalog">Каталог товаров</a>
+	</div>
+
+	<div class="menu-catalog-categories">
+
+		<div class="categories-list">
+
+			<?php foreach($catalogCategoriesMenu as $category): ?>
+
+				<div class="category">
+					
+					<div class="icon">
+						<?php if($category->image): ?>
+							<img src="<?= $category->image->getPath()?>" alt="<?= $category->name?>" />
+						<?php endif ?>
+					</div>
+
+					<div>
+						<a href="/catalog/<?= $category->id?>"><?= $category->name?></a>
+
+						<?php $hotCategories = App_Helper::getHotCatalogCategories($category->id); ?>
+
+						<?php if($hotCategories):?>
+							<div class="hot-categories">
+								<?php foreach($hotCategories as $hotCategory): ?>
+									<a href="/catalog/<?= $hotCategory->id?>"><?= $hotCategory->name?></a>
+								<?php endforeach ?>	
+							</div>
+						<?php endif ?>
+					</div>
+
+					<!-- дочерние категории-->
+
+					<div class="categories-level-2">
+
+						<?php if ($categories_level_2 = $category->list_children()): ?>
+								
+							<div class="categories-level-2-list">
+								<?php foreach($categories_level_2 as $category): ?>
+
+									<div class="categories-level-2-list-category">		
+										<div class="category-level-2">
+											<div class="icon">
+												<?php if($category->image): ?>
+													<img src="<?= $category->image->getPath()?>" alt="<?= $category->name?>" />
+												<?php endif ?>
+											</div>
+
+											<a href="/catalog/<?= $category->id?>"><?= $category->name?></a>
+										</div>
+
+										<?php if ($categories_level_3 = $category->list_children()): ?>
+											<?php $i = 0 ?>
+											<div class="categories-level-3">
+												<?php foreach($categories_level_3 as $category): ?>
+													<?php if($i < 6): ?>
+														<a href="/catalog/<?= $category->id?>"><?= $category->name?></a>
+														<?php $i++ ?>
+													<?php else: ?>
+														<a href="">Все категории <span>></span></a>
+														<?php break ?>
+													<?php endif ?>
+												<?php endforeach ?>	
+											</div>
+										<?php endif ?>
+									</div>
+								<?php endforeach ?>	
+							</div>
+						<?php endif ?>
+
+						<div class="categories-ads">
+							<div class="item">
+								<a href="">
+									<img src alt />
+								</a>
+							</div>
+						</div>
+					</div>	
+				</div>
+			<?php endforeach ?>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<? /** @var Shop_Cart $cart */ ?>
+<?
+	if (!isset($cart) || !$cart) {
+		$cart = Shop_Cart::getCart();
+	}
+
+	$items = $cart->getItemsCount();
+	$price = $cart->getTotalPrice();
+?>
+
+<div id="mini-cart" class="mini-cart">
+	<a href="<?= u('shop_cart', []) ?>">
+		<div class="icon">
+			<img src="/resources/images/icons/white-box.svg" alt="">
+		</div>
+
+		<div class="count">
+			<?= $items ?>	
+		</div>
+
+		<div class="price">
+			<?= Core_Number::formatNumber($price) ?>
+			<span>&#8381;</span>
+		</div>
+	</a>
+</div>

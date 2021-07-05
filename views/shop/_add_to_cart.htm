@@ -1,0 +1,33 @@
+<?
+/** @var string $idPrefix */
+/** @var bool $withQuantity */
+?>
+<div class="btn-buy" id="<?= $idPrefix ?>-wrapper">
+
+	<? if (Phpr::$config->get('SHOP_ENABLE_LEFTOVERS') && $item->leftover < 1): ?>
+		<p class="info">Нет в наличии</p>
+	<? else: ?>
+
+		<?/*
+
+		<? if (Phpr::$config->get('SHOP_ENABLE_LEFTOVERS') && $item->leftover <= Admin_ModuleSettings::get_module_parameter('shop', 'few_left_threshold')): ?>
+			<p>Осталось мало!</p>
+		<? endif ?>
+
+		<? if ($withQuantity): ?>
+			<input type="number" min="1" name="quantity" value="<?= $initialQuantity ?>" id="<?= $idPrefix ?>-quantity" />
+		<? endif ?>
+
+		*/?>
+
+		<a href="#" class="add-to-cart-btn" <? if ($withQuantity): ?>data-quantity="#<?= $idPrefix ?>-quantity"<? endif ?>
+		   data-extra="<?= extra(["id" => $item->id, "type" => $type]) ?>"
+		   id="<?= $idPrefix ?>-btn">
+
+		   <img src="/resources/images/icons/white-box.svg" alt="Добавить">
+		   <span>Добавить в коробку</span>
+		</a>
+	<? endif ?>
+</div>
+						
+	

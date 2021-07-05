@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>dddd</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="97.173%" cy="-2.13861498%" fx="97.173%" fy="-2.13861498%" r="111.507%" gradientTransform="translate(0.971730,-0.021386),scale(1.000000,0.999810),translate(-0.971730,0.021386)" id="radialGradient-1">
+            <stop stop-color="#00FFFE" offset="0%"></stop>
+            <stop stop-color="#00FFFE" offset="22.81%"></stop>
+            <stop stop-color="#11F3FE" offset="30.467%"></stop>
+            <stop stop-color="#3ED3FE" offset="45.691%"></stop>
+            <stop stop-color="#87A0FF" offset="67.056%"></stop>
+            <stop stop-color="#E95AFF" offset="93.521%"></stop>
+            <stop stop-color="#F055FF" offset="95.314%"></stop>
+            <stop stop-color="#F055FF" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="85.1318918%" cy="8.46%" fx="85.1318918%" fy="8.46%" r="133.020855%" gradientTransform="translate(0.851319,0.084600),scale(0.492397,1.000000),translate(-0.851319,-0.084600)" id="radialGradient-2">
+            <stop stop-color="#053BF2" offset="0%"></stop>
+            <stop stop-color="#0F3CF3" stop-opacity="0.958" offset="8.886%"></stop>
+            <stop stop-color="#2A3FF4" stop-opacity="0.844" offset="24.144%"></stop>
+            <stop stop-color="#5544F6" stop-opacity="0.658" offset="43.934%"></stop>
+            <stop stop-color="#924BFA" stop-opacity="0.402" offset="67.492%"></stop>
+            <stop stop-color="#DE53FE" stop-opacity="0.078" offset="93.951%"></stop>
+            <stop stop-color="#F055FF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dddd" fill-rule="nonzero">
+            <path d="M16.626,31.008 C18.8534749,24.2028552 24.1905453,18.8665277 30.996,16.64 C31.3539978,16.5182803 31.5947589,16.1821245 31.5947589,15.804 C31.5947589,15.4258755 31.3539978,15.0897197 30.996,14.968 C24.1905453,12.7414723 18.8534749,7.40514478 16.626,0.6 C16.5048184,0.241731669 16.1687079,0.000601751587 15.7905,0.000601751587 C15.4122921,0.000601751587 15.0761816,0.241731669 14.955,0.6 C12.7305808,7.40173713 7.39972081,12.7374248 0.6,14.968 C0.242002191,15.0897197 0.00124109485,15.4258755 0.00124109485,15.804 C0.00124109485,16.1821245 0.242002191,16.5182803 0.6,16.64 C7.40163213,18.8692265 12.734562,24.2051274 14.96,31.008 C15.0833754,31.3625223 15.4176234,31.6001121 15.793,31.6001121 C16.1683766,31.6001121 16.5026246,31.3625223 16.626,31.008 L16.626,31.008 Z" id="Path" fill="url(#radialGradient-1)"></path>
+            <path d="M0.6,16.64 C7.40163213,18.8692265 12.734562,24.2051274 14.96,31.008 C15.0811816,31.3662683 15.4172921,31.6073982 15.7955,31.6073982 C16.1737079,31.6073982 16.5098184,31.3662683 16.631,31.008 C18.8574566,24.2039915 24.1924566,18.8678773 30.996,16.64 C27.771,17.692 22.32,18.532 15.799,18.532 C9.279,18.532 3.824,17.692 0.599,16.64 L0.6,16.64 Z" id="Path" fill="url(#radialGradient-2)" opacity="0.8"></path>
+        </g>
+    </g>
+</svg>

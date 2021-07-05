@@ -1,0 +1,60 @@
+<div class="product-card">
+	<div class="product-card-photo">
+		<a href="<?= $product->getUrl() ?>">
+			<?
+				$getMainPhoto = $product->findMainPhoto();
+				$mainPhoto = $getMainPhoto ? $getMainPhoto->getThumb(320, 320, Phpr_ImageManipulator::fitAndCrop) : '/resources/images/icons/no-image.svg';
+			?>
+
+			<img src="<?= $mainPhoto ?>" alt="<?= $product->name ?>" />
+		</a>
+	</div>
+
+	<div class="product-card-info">
+
+		<div class="product-card-description">
+			<div class="name">
+				<a href="<?= $product->getUrl() ?>"><?= $product->name ?></a>
+			</div>
+
+			<div class="short-description"><?= $product->description ?></div>
+		</div>
+
+		<div class="product-card-buy">
+			<div class="price">
+				<?php if($product->old_price): ?>
+					<div class="old-price"><?= Phpr::$lang->num($product->old_price) ?></div>
+				<?php endif ?>
+				<p><?= Phpr::$lang->num($product->price) ?><span>pуб.</span></p>
+			</div>
+
+			<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+				<?php 
+					$viewData = [
+						'withQuantity' => true,
+						'initialQuantity' => 1,
+						'item' => $product,
+						'type' => 'product',
+						'idPrefix' => "atc-product-{$product->id}"
+					];
+				?>
+
+				<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
+			<? Phpr_Form::closeTag(); ?>
+
+			<!-- <div class="btn-buy"></div> -->
+				<!-- <a href="" class="to-cart">
+					<img src="/resources/images/icons/white-box-close.svg" alt="">
+					<span>В коробке</span>
+				</a> -->
+
+				<!-- <a href="" class="add-product">
+					<img src="/resources/images/icons/white-box.svg" alt="">
+					<span>Добавить <br> в коробку</span>
+				</a> -->
+
+
+			
+		</div>
+	</div>
+</div>

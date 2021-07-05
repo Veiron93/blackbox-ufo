@@ -1,0 +1,69 @@
+<header>
+	<div class="header-top-section">
+		<div class="header-wrapper">
+			<div class="header-logo">
+				<a href="/">
+					<img src="/resources/images/logo.svg" alt="BlackBox">
+					<span>BlackBox</span>
+				<a>
+			</div>
+
+			<div class="header-description">
+				Интернет магазин аксессуаров г. Южно-Сахалинск
+			</div>
+
+			<div class="header-socials">
+				<a href="https://market.sakh.com/s/veiron93" target="_blank" title="Sakh.com">
+					<img src="/resources/images/icons/social/sakh-com.svg" alt="Sakh.com">
+				</a>
+				<a href="https://youla.ru/user/5b6a33d9d677505aed0896f2" target="_blank" title="Юла">
+					<img src="/resources/images/icons/social/yula.svg" alt="Юла">
+				</a>
+				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="Инстаграм">
+					<img src="/resources/images/icons/social/instagram.svg" alt="Инстаграм">
+				</a>
+				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="WhatsApp">
+					<img src="/resources/images/icons/social/whatsapp.svg" alt="WhatsApp">
+				</a>
+				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="Viber">
+					<img src="/resources/images/icons/social/viber.svg" alt="Viber">
+				</a>
+				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="Telegram">
+					<img src="/resources/images/icons/social/telegram.svg" alt="Telegram">
+				</a>
+			</div>
+
+			<nav>
+				<? $this->renderLayout('_dynamic_menu') ?>
+			</nav>
+		</div>
+	</div>
+
+	<div class="header-bottom-section">
+		<div class="header-wrapper">
+
+			<? $this->renderLayout('_dynamic_menu_catalog') ?>
+
+			<div class="other-menu">
+				<ul>
+					<li>
+						<a href="https://www.instagram.com/blackboxsakh/" target="_blank">
+							<img src="/resources/images/icons/social/instagram-white.svg" alt="Поиск">
+							<span>Скидка 5% за подписку на Instagram</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="header-search">
+				<input type="text" placeholder="Поиск по каталогу">
+				<button title="Найти">
+					<img src="/resources/images/icons/loupe.svg" alt="Поиск">
+				</button>
+			</div>
+
+			<? Shop_Helper::renderMiniCart($this) ?>
+		</div>
+	</div>
+</header>
+

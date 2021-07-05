@@ -1,0 +1,16 @@
+<? $backends = Payment_Helper::listBackends() ?>
+
+<? foreach ($backends as $backend): ?>
+	<div class="form-item-radio">
+		<label>
+			<input type="radio" name="payment_backend" value="<?= $backend->getId() ?>" <?= Phpr_Form::radioState(h(post('payment_backend', Payment_Helper::getDefaultBackendId())), $backend->getId())?> />
+			<span><?= $backend->getName() ?></span>
+		</label>
+		
+		<? if ($description = $backend->getDescription()): ?>
+			<div class="form-item-radio-description">
+				<?= $description ?>
+			</div>
+		<? endif ?>
+	</div>
+<? endforeach ?>

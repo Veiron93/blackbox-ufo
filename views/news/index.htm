@@ -1,0 +1,49 @@
+<? /** @var News $this */ ?>
+<? /** @var News_Category[]|Db_DataCollection $categories
+ *@var News_Post[]|Db_DataCollection $news */ ?>
+<section class="news" id="article">
+	<h2>Новости</h2>
+	<? if (isset($categories)): ?>
+		<? if ($categories && $categories->count): ?>
+			<? foreach ($categories as $entry): ?>
+				<article>
+					<figure>
+						<? if ($entry->image && $img = $entry->image->getThumb(275, 275, Phpr_ImageManipulator::fitAndCrop)): ?>
+							<a href="<?= u('news_category', array($entry->id)) ?>"><img src="<?= $img ?>" alt="<?= h($entry->title_no_typo) ?>" /></a>
+						<? endif ?>
+					</figure>
+					<section>
+						<header><h3><a href="<?= u('news_category', array($entry->id)) ?>"><?= $entry->name ?></a></h3></header>
+						<?= $entry->description ?>
+					</section>
+				</article>
+			<? endforeach ?>
+		<? else: ?>
+			<p>Категорий новостей нет.</p>
+		<? endif; ?>
+	<? else: ?>
+		<? if (isset($important) && $important): ?>
+			<h3><a href="<?= u('news_post', array($important->id)) ?>"><?= $important->title ?></a></h3>
+			<?= $important->description ?>
+		<? endif; ?>
+		<? if (isset($news) && $news && $news->count): ?>
+			<? foreach ($news as $entry): ?>
+				<h3><a href="<?= u('news_post', array($entry->id)) ?>"><?= $entry->title ?></a></h3>
+				<?= $entry->description ?>
+			<? endforeach; ?>
+		<? else: ?>
+			<p>Новостей нет.</p>
+		<? endif; ?>
+	<? endif; ?>
+	<? if (isset($pagination)): ?>
+		<div class="pagination-block">
+			<? if ($pagination && !$pagination->isFirstPage()): ?>
+				<a class="prev" href="<?=  u("news_index", []) . ($page - 1) ?>"/></a>
+			<? endif; ?>
+			<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("news_index", []) . "%d/") ?>
+			<? if ($pagination && !$pagination->isLastPage()): ?>
+				<a class="next" href="<?=  u("news_index", []) . ($page + 1) ?>"></a>
+			<? endif; ?>
+		</div>
+	<? endif; ?>
+</section>

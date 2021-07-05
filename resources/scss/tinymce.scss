@@ -1,0 +1,161 @@
+#tinymce, *[data-formatted-text]{
+    h1, h2, h3, h4 {
+        font-weight: normal;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 1.5em;
+    }
+
+    h1 { font-size: 32px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 22px; }
+    h4 { font-size: 17px; }
+    h5 { font-size: 15px; }
+    h6 { font-size: 13px; }
+
+    p {
+        margin-bottom: 1.2em;
+    }
+
+    a{
+        text-decoration: underline;
+    }
+
+    .darkred{
+        color: darkred;
+    }
+
+    table {
+        font-size: 13px;
+        border-collapse: collapse;
+    }
+
+    table{
+        thead td, th{
+            background-color: #ddd;
+        }
+        td,th{
+            vertical-align: top !important;
+            border: 1px dashed #ddd; 
+            padding: 3px 6px;
+        }
+        caption{
+            font-size: 19px;
+        }
+        p{
+            margin: 0;
+        }
+
+        .left {
+            float: none !important;
+            text-align: left;
+        }
+        
+        .right {
+            float: none !important;
+            text-align: right;
+        }
+        
+        .extra {
+            background-color: #e3e3e3;
+        }
+    }
+
+
+    img.center {
+        display: block;
+        margin: 0 auto 1.2em auto;
+    }
+    img.right {
+        float: right;
+        margin: 0 0 1.2em 1.2em;
+    }
+
+    img.left {
+        float: left;
+        margin: 0 1.2em 1.2em 0;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #999;
+        height: 0;
+        margin-bottom: 1.2em;
+    }
+
+    ul>li{
+            
+    }
+
+    ol>li{
+
+    }
+
+    .nobr {
+        white-space: nowrap;
+    }
+
+    blockquote {
+        padding: 0;
+        margin: 8px 8px 14px 40px;
+        font-style: italic;
+    }
+
+
+    // иконки ссылок на файлы
+    a[href$=".mp3"],
+    a[href$=".ogg"],
+    a[href$=".wav"],
+    a[href$=".aac"],
+    a[href$=".flac"],
+    a[href$=".wma"],
+    a[href$=".pdf"],
+    a[href$=".xls"],
+    a[href$=".xlsx"],
+    a[href$=".ppt"],
+    a[href$=".txt"],
+    a[href$=".rtf"],
+    a[href$=".doc"],
+    a[href$=".docx"],
+    a[href$=".zip"],
+    a[href$=".rar"]
+    {
+        padding-left: 3em;
+        &::before{
+            position: absolute;
+            text-transform: uppercase;
+            font-family: 'Verdana','Tahoma',sans-serif;
+            color: #fff;
+            background: #777777;
+            padding: 0.175em 0.25em;
+            border-radius: 0.25em;
+            margin: -0.175em 0 0 -3em;
+        }
+    }
+
+    a[href$="docx"], a[href$="xlsx"],a[href$='flac']{
+        padding-left: 3.75em;
+        &::before{
+            margin-left: -3.75em;
+        }
+        
+    }
+
+    a[href$=".mp3"]::before{content: 'mp3';}
+    a[href$=".ogg"]::before{content: 'ogg';}
+    a[href$=".wav"]::before{content:'wav';}
+    a[href$=".aac"]::before{content: 'aac';}
+    a[href$=".flac"]::before{content:'flac';}
+    a[href$=".wma"]::before{content: 'wma';}
+    a[href$=".pdf"]::before{content:'pdf'; background: #ea4c3a;}
+    a[href$=".xls"]::before{content:'xls'; background: #107c10;}
+    a[href$=".xlsx"]::before{content:'xlsx'; background: #107c10;}
+    a[href$=".ppt"]::before{content: 'ppt';}
+    a[href$=".txt"]::before{content:'txt';}
+    a[href$=".rtf"]::before{content:'rtf';}
+    a[href$=".doc"]::before{content: 'doc';background: #2b579a;}
+    a[href$=".docx"]::before{content: 'docx'; background: #2b579a;}
+    a[href$=".zip"]::before{content:'zip';}
+    a[href$=".rar"]::before{content:'rar';} 
+}

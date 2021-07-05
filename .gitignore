@@ -1,0 +1,17 @@
+config/config.php
+logs/*
+uploaded/*
+uploaded/thumbnails/*
+temp/*
+nbproject
+.DS_Store
+.idea
+vendor/*
+composer.lock
+node_modules
+custom-gulpfile.js
+package-lock.json
+modules/*
+phproad
+scripts
+cache/*

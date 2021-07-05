@@ -1,0 +1,52 @@
+<?php
+
+if (!defined('PATH_APP'))
+	return;
+
+$CONFIG['SITE_ENVIRONMENT'] = 'development';
+
+/*
+ * Tracing and error logging features
+ */
+
+$CONFIG['ERROR_LOG'] = true;
+$CONFIG['ERROR_REPORTING'] = E_ALL | E_STRICT;
+$CONFIG['ERROR_IGNORE'] = array('Phpr_ApplicationException');
+
+$CONFIG['TRACE_LOG']['INFO'] = PATH_APP . '/logs/info.txt';
+//$CONFIG['TRACE_LOG']['SQL'] = PATH_APP.'/logs/sql.txt';
+
+/*
+ * Files
+ */
+
+$CONFIG['FILESYSTEM_CODEPAGE'] = 'utf-8';
+
+/*
+ * Language
+ */
+
+$CONFIG['LANGUAGE'] = 'ru_ru';
+
+/*
+ * Database connection
+ */
+
+$CONFIG['DB_CONNECTION'] = array(
+	'host' => 'localhost',
+	'database' => 'example',
+	'username' => 'root',
+	'password' => '',
+	'locale' => 'utf8mb4'
+);
+
+/*
+ * System time zone
+ */
+
+$CONFIG['TIMEZONE'] = 'Asia/Sakhalin';
+
+/*
+ * Backend URL prefix
+ */
+$CONFIG['BACKEND_URL'] = '/admin';

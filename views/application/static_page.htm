@@ -1,0 +1,31 @@
+<? /** @var Application $this */ ?>
+<? Phpr_View::beginBlock("head") ?>
+<? Phpr_View::endBlock()?>
+
+<? Phpr_View::beginBlock("view") ?>
+<?
+	$menus = Admin_Menu::create()->find_all();
+	$menu = null;
+	$item = null;
+	$uri = Phpr::$request->getCurrentUri();
+	foreach($menus as &$cmenu) {
+		$item = Admin_MenuItem::find_current_item($cmenu, $uri);
+		if($item && $item->text_block_id) {
+			$menu = $cmenu;
+			break;
+		}
+	} 
+?>
+
+<div class="header">
+	<? $this->renderLayout('_breadcrumbs', ['current_item' => $item]) ?>
+	<h1><?= $block->title ?></h1>
+</div>
+
+<div data-formatted-text>
+	<?= $block->get_filtered_text() ?>
+</div>
+
+<? $this->renderLayout('_dynamic_children_list', ["current_item" => $item]); ?>
+
+<? Phpr_View::endBlock()?>

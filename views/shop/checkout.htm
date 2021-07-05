@@ -1,0 +1,51 @@
+<div class="shop-checkout">
+	<div class="formFlash"></div>
+
+	<?= Phpr_Form::openTag(["id" => "checkout-form"]) ?>
+
+		<div class="form-section">
+			<label for="customer-phone">Телефон:</label>
+			<input type="tel" name="customer-phone" id="customer-phone" />
+		</div>
+
+		<div class="form-section">
+			<label for="customer-address">Адрес:</label>
+			<textarea name="customer-address" id="customer-address"></textarea>
+		</div>
+
+		<div class="form-section">
+			<label for="comment">Комментарий:</label>
+			<textarea name="comment" id="comment" placeholder="Например: Желательно доставку после 18:00"></textarea>
+		</div>
+
+		<div class="form-section">
+			<? $this->renderPartial($this->getViewsDir() . 'payment/_payment_backends.htm', null, true, true) ?>
+		</div>
+
+		<div class="total-price-section">
+			<div class="total-price-section-title">Итого</div>
+
+			<div class="devivery-price">
+				<div>Доставка:</div>
+				<div>
+					<span></span>
+					<span>руб.</span>
+				</div>
+			</div>
+
+			<div class="total-price">
+				<div>Всего к оплате:</div>
+				<div>
+					<span><?= Core_Number::formatNumber($cart->getTotalPrice()) ?></span> 
+					<span>руб.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="bnt-order-buy">
+			<input type="hidden" name="customer-name" id="customer-name" />
+			<input type="hidden" name="customer-email" id="customer-email" />
+			<a href="#" data-handler="onPlaceOrder">Оформить заказ</a>
+		</div>
+	<? Phpr_Form::closeTag() ?>
+</div>

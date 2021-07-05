@@ -1,0 +1,85 @@
+<?
+/** @var Shop_Cart */
+?>
+<div class="cart">
+	<div class="container">
+		<div class="heading-page">
+			<h1>Коробка</h1>
+		</div>
+
+		<? if (!$cart->getItemsCount()): ?>
+			<div class="cart-empty">
+				<img src="" alt="">
+				<p>Ваша коробка пуста</p>
+			</div>
+		<? else: ?>
+			<div class="cart-wrapper">
+				<div class="cart-list-products">
+					<?= Phpr_Form::openTag(["id" => "cart-form"]) ?>
+		
+						<? foreach ($cart->getItems() as $item): ?>
+							
+							<? if ($sku = $item->getSku()): ?>
+								<td>
+									<? if ($photo = $sku->product->findMainPhoto()): ?>
+										<img src="<?= $photo->getThumb(100, Phpr_ImageManipulator::auto) ?>" alt=""/>
+									<? endif ?>
+								</td>
+								<td>
+									<?= $sku->product->name ?> <?= sprintf('(%s)', $sku->name ? $sku->name : $sku->sku) ?>
+								</td>
+								<td><?= Core_Number::formatNumber($sku->price) ?> ₽ ×</td>
+								<td>
+									<input type="number" min="0" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
+									<a href="#" data-handler="onUpdateQuantity" data-extra="<?= extra(["id" => $item->getId()]) ?>">Обновить</a>
+								</td>
+								<td><?= $item->getTotalPrice() ?> ₽</td>
+								<td><a href="#" data-handler="onDeleteItem" data-confirm="Удалить товар из корзины?" data-extra="<?= extra(["id" => $item->getId()]) ?>" title="Удалить">×</a></td>
+
+							<? elseif ($product = $item->getProduct()): ?>
+								<div class="cart-list-products-item">
+
+									<? if ($photo = $product->findMainPhoto()): ?>
+										<div class="photo">
+											<a href="<?= $product->getUrl() ?>">
+												<img src="<?= $photo->getThumb(70, 70,  Phpr_ImageManipulator::fitAndCrop) ?>" alt=""/>
+											</a>
+										</div>
+									<? endif ?>
+									
+									<div class="name">
+										<a href="<?= $product->getUrl() ?>"><?= $product->name ?></a>
+										<p>Код товара: <span><?= $product->id ?></span></p>
+									</div>
+
+									<div class="count">
+										<button class="btn-quantity-cart btn-quantity-minus">-</button>
+										<input type="number" min="0" class="quantity-num" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
+										<button class="btn-quantity-cart btn-quantity-plus">+</button>
+									</div>
+
+									<div class="price">
+										<p class="price-tovar"><span><?= Phpr::$lang->num($product->price) ?></span> руб.</p>
+										<p class="summa"><span><?= $item->getQuantity() ?></span> шт. × <span><?= $item->getTotalPrice() ?></span> руб.</p>
+									</div>
+
+									<div class="del">
+										<a href="#" data-handler="onDeleteItem" data-confirm="Удалить товар из корзины?" data-extra="<?= extra(["id" => $item->getId()]) ?>" title="Удалить">
+											<img src="/resources/images/icons/delete.svg" alt="Удалить">
+										</a>
+									</div>
+								</div>
+									
+							<? else: ?>
+								<? $cart->deleteItem($item) ?>
+							<? endif ?>
+						
+						<? endforeach ?>
+					<? Phpr_Form::closeTag() ?>
+				</div>
+
+				<? $this->renderLayout($this->getViewsDir() . 'shop/checkout.htm', ['paidDelivery'=> isset($paidDelivery)]); ?>
+			</div>
+		<? endif ?>
+	</div>
+</div>

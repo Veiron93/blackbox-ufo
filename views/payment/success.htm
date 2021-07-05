@@ -1,0 +1,22 @@
+<? /** @var Payment_Backend $backend */ ?>
+<? /** @var Payment_Payment $payment */ ?>
+<? /** @var Payment $this */ ?>
+<div class="payment success-paid">
+	<? if (isset($error)): ?>
+		<p class="error"><?= $error ?></p>
+	<? else: ?>
+		<? if ($backend instanceof Payment_InvoiceBackend): ?>
+			<h1>Распечатайте платежное поручение</h1>
+			<iframe src="<?= $backend->getInvoiceUrl($payment) ?>" style="width:100%; height:220mm;"></iframe>
+			<a href="<?= $backend->getInvoiceUrl($payment) ?>?print=true" target="_blank">Открыть для печати</a>
+		<? else: ?>
+			<h1>Оплата произведена успешно</h1>
+			<p>
+				Способ оплаты: <?= $backend->getId() ?> (<?= $backend->getName() ?>)<br />
+				Сумма: <?= $payment->amount ?> <br />
+				Статус: <?= $payment->status ?> <br />
+				Доп. информация: <?= var_export($payment->extra, true) ?>
+			</p>
+		<? endif ?>
+	<? endif ?>
+</div>

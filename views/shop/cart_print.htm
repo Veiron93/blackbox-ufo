@@ -1,0 +1,76 @@
+<?
+/** @var Shop_Cart */
+?>
+<div class="shop cart print">
+	<h1>Корзина</h1>
+
+	<? if (!$cart->getItemsCount()): ?>
+		<p class="info">Ваша корзина пуста.</p>
+	<? else: ?>
+		<?= Phpr_Form::openTag(["id" => "cart-form"]) ?>
+		<table>
+			<thead>
+			<tr>
+				<th></th>
+				<th>Название</th>
+				<th>Цена</th>
+				<th>Количество</th>
+				<th>Стоимость</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			<? foreach ($cart->getItems() as $item): ?>
+				<tr>
+					<? if ($sku = $item->getSku()): ?>
+						<td>
+							<? if ($photo = $sku->product->findMainPhoto()): ?>
+								<img src="<?= $photo->getThumb(100, Phpr_ImageManipulator::auto) ?>" alt=""/>
+							<? endif ?>
+						</td>
+						<td>
+							<?= $sku->product->name ?> <?= sprintf('(%s)', $sku->name ? $sku->name : $sku->sku) ?>
+						</td>
+						<td><?= Core_Number::formatNumber($sku->price) ?> ₽ ×</td>
+						<td>
+							<input type="number" min="0" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
+							<a href="#" data-handler="onUpdateQuantity" data-extra="<?= extra(["id" => $item->getId()]) ?>">Обновить</a>
+						</td>
+						<td><?= $item->getTotalPrice() ?> ₽</td>
+						<td><a href="#" data-handler="onDeleteItem" data-confirm="Удалить товар из корзины?" data-extra="<?= extra(["id" => $item->getId()]) ?>" title="Удалить">×</a></td>
+					<? elseif ($product = $item->getProduct()): ?>
+						<td>
+							<? if ($photo = $product->findMainPhoto()): ?>
+								<img src="<?= $photo->getThumb(100, Phpr_ImageManipulator::auto) ?>" alt=""/>
+							<? endif ?>
+						</td>
+						<td>
+							<?= $product->name ?>
+						</td>
+						<td><?= Core_Number::formatNumber($product->price) ?> ₽ ×</td>
+						<td>
+							<input type="number" min="0" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
+							<a href="#" data-handler="onUpdateQuantity" data-extra="<?= extra(["id" => $item->getId()]) ?>">Обновить</a>
+						</td>
+						<td><?= $item->getTotalPrice() ?> ₽</td>
+						<td><a href="#" data-handler="onDeleteItem" data-confirm="Удалить товар из корзины?" data-extra="<?= extra(["id" => $item->getId()]) ?>" title="Удалить">×</a></td>
+					<? else: ?>
+						<? $cart->deleteItem($item) ?>
+					<? endif ?>
+				</tr>
+			<? endforeach ?>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="4">
+				</td>
+				<td colspan="2" style="text-align: right">
+					Итог: <?= Core_Number::formatNumber($cart->getTotalPrice()) ?> ₽<br />
+					<a href="<?= u("shop_checkout", []) ?>">Оформить заказ</a>
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+		<? Phpr_Form::closeTag() ?>
+	<? endif ?>
+</div>

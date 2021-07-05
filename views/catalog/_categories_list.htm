@@ -1,0 +1,49 @@
+<div class="catalog-categories-list">
+	<?php foreach ($categories as $category): ?>
+
+		<div class="catalog-category">
+
+			<div class="category-name">
+				<?php if($image = $category->image->getPath()): ?>
+					<div class="icon">
+						<img src="<?= $image ?>" alt="<?= $category->name?>" />
+					</div>
+				<?php endif ?>
+
+				<a href="<?= $category->getUrl() ?>"><?= $category->name ?></a>
+			</div>
+
+			<?php if ($categories_level_2 = $category->list_children()): ?>
+				<?php if(count($categories_level_2)): ?>
+					<div class="categories-level-2">
+
+						<?php foreach($categories_level_2 as $category): ?>
+
+							<div class="category-level-2">
+								<div class="category-level-2-name">
+									<?php if($image = $category->image->getPath()): ?>
+										<div class="category-level-2-name-icon">
+											<img src="<?= $image ?>" alt="<?= $category->name?>" />
+										</div>
+									<?php endif ?>
+
+									<a href="<?= $category->getUrl() ?>"><?= $category->name?></a>
+								</div>
+
+								<?php if ($categories_level_3 = $category->list_children()): ?>
+									<?php if(count($categories_level_3)): ?>
+										<div class="categories-level-3">
+											<?php foreach($categories_level_3 as $category): ?>
+												<a href="<?= $category->getUrl() ?>"><?= $category->name?></a>
+											<?php endforeach ?>	
+										</div>
+									<?php endif ?>	
+								<?php endif ?>						
+							</div>	
+						<?php endforeach ?>							
+					</div>	
+				<?php endif ?>	
+			<?php endif ?>				
+		</div>	
+	<?php endforeach; ?>
+</div>
