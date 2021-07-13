@@ -132,24 +132,62 @@ $(document).ready(function(){
 
 	// КАТАЛОГ - ФИЛЬТРЫ
 	function viewFilterList(){
-		let filterList = document.querySelector('.catalog-filter-list');
+		let filterList = document.querySelector('.catalog-filters-wrapper');
 
 		if(filterList){
-			let filters = filterList.querySelectorAll('.filter');
+			let filters = filterList.querySelectorAll('.filter'),
+				btnSubmit = filterList.querySelector('.btn-submit'),
+				btnReset = filterList.querySelector('.btn-reset');
 
 			filters.forEach(function(filter){
 				filter.querySelector('.filter-head').addEventListener('click', function(){
 					filter.classList.toggle('active');
 				})
 
-				let filterAttributes = filter.querySelectorAll('.filter-list .list-attribites > *');
+				let filterAttributes = filter.querySelectorAll('.filter-list .list-attribites > *'),
+					filterBtnClear = filter.querySelector('.filter-clear'),
+					countSelectAttributesFilter = 0;
 
 				filterAttributes.forEach(function(attribute){
+					attribute.querySelector('input').addEventListener("click", function(){
+						// количество выбранных атрибутов у фильтра
+						this.checked ? countSelectAttributesFilter++ : countSelectAttributesFilter--
+						// статус кнопки сбросить
+						countSelectAttributesFilter > 0 ? filterBtnClear.style.display = "block" : filterBtnClear.style.display = "none";
+					})
+				})
 
-					console.log(attribute);
+				// сбросить фильтр
+				filterBtnClear.addEventListener('click', function(){
+
+					filterAttributes.forEach(function(attribute){
+						attribute.querySelector('input').checked = false;
+					})
+
+					filterBtnClear.style.display = "none";
+					countSelectAttributesFilter = 0;
 				})
 				
 			})
+
+
+			// сбросить все фильтры
+			function clearFiltres(filters){
+				filters.forEach(function(filter){
+					let filterAttributes = filter.querySelectorAll('.filter-list .list-attribites > *');
+
+					filterAttributes.forEach(function(attribute){
+						attribute.querySelector('input').checked = false;
+					})
+				})
+			}
+
+
+			btnReset.addEventListener('click', function(){
+				clearFiltres(filters);
+			})
+
+			// применить фильтры
 		}
 	}
 

@@ -1,39 +1,47 @@
 <?php if($category->filters):?>
-	<div class="catalog-filter-list">
-		<?php foreach ($category->filters as $filter): ?>
+	<div class="catalog-filters-wrapper">
 
-			<?//=$value->data_type ?>
-			<?//=traceLog($value)?>
+		<div class="filtres-list">
+			<?php foreach ($category->filters as $filter): ?>
 
-			<?php if($filter->value_template): ?>
-				<div class="filter">
-					<div class="filter-head">
-						<?=$filter->name ?>
-					</div>
+				<?//=$value->data_type ?>
+				<?//=traceLog($value)?>
 
-					<div class="filter-list">
-						<?php if($filter->data_type == "checkbox_list"): ?>
-							
-							<? $checkboxes = explode("\n", $filter->value_template); ?>
+				<?php if($filter->value_template): ?>
+					<div class="filter active">
+						<div class="filter-head">
+							<?=$filter->name ?>
+						</div>
 
-							<?php if($checkboxes): ?>
-								<div class="list-attribites checbox-list">
-									<?php foreach ($checkboxes as $checkbox): ?>
-										<div class="checkbox">
-											<label>
-												<input type="checkbox" name="filter-<?= $filter->id ?>" value="<?= $filter->id ?>">
-												<span><?= $checkbox ?></span>
-											</label>
-										</div>
-									<?php endforeach; ?>
-								</div>
+						<div class="filter-list">
+							<?php if($filter->data_type == "checkbox_list"): ?>
+								
+								<? $checkboxes = explode("\n", $filter->value_template); ?>
+
+								<?php if($checkboxes): ?>
+									<div class="list-attribites checbox-list">
+										<?php foreach ($checkboxes as $checkbox): ?>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" name="filter-<?= $filter->id ?>" value="<?= $filter->id ?>">
+													<span><?= $checkbox ?></span>
+												</label>
+											</div>
+										<?php endforeach; ?>
+									</div>
+								<?php endif; ?>
 							<?php endif; ?>
-						<?php endif; ?>
-					</div>
+						</div>
 
-					<div class="filter-clear">Сбросить</div>
-				</div>
-			<?php endif; ?>
-		<?php endforeach; ?>
+						<div class="filter-clear">Сбросить</div>
+					</div>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</div>
+
+		<div class="filtres-btns">
+			<button class="btn-submit">Применить</button>
+			<button class="btn-reset">Сбросить</button>
+		</div>
 	</div>
 <?php endif; ?>
