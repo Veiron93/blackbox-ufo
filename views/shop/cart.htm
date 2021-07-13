@@ -9,8 +9,10 @@
 
 		<? if (!$cart->getItemsCount()): ?>
 			<div class="cart-empty">
-				<img src="" alt="">
-				<p>Ваша коробка пуста</p>
+				<a href="/catalog/">
+					<img src="/resources/images/icons/tree.svg" alt="Дерево">
+				</a>
+				<p>Пока тут только дерево</p>
 			</div>
 		<? else: ?>
 			<div class="cart-wrapper">
