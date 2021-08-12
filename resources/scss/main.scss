@@ -1886,90 +1886,128 @@ form{
 		display: flex;
 		//border: 1px solid red;
 
-		.catalog-filter-list{
+		.catalog-filters-wrapper{
 			width: 250px;
 			margin-right: 20px;
 			padding-top: 10px;
+			padding-bottom: 25px;
 			flex: none;
 			@include style-block;
 
-			.filter{
+			.filtres-list{
+				.filter{
 
-				&.active{
-					.filter-head{
-						background: #e7ebf9;
+					&.active{
+						.filter-head{
+							&:after{
+								transform: rotate(180deg);
+							}
+						}
+
+						.filter-list{
+							display: block;
+						}
+					}
+
+
+					&:not(:last-child){
+						margin-bottom: 5px;
+					}
+
+					&-head{
+						display: flex;
+						align-items: center;
+						cursor: pointer;
+						padding: 8px 15px;
+						transition: background .2s;
+						font-weight: 500;
+						user-select: none;
+
+						// &:hover{
+						// 	background: #e7ebf9;
+						// }
+
 						&:after{
-							transform: rotate(180deg);
+							content: '';
+							display: block;
+							height: 16px;
+							width: 16px;
+							background: url(/resources/images/icons/arrow-bottom-black.svg) no-repeat;
+							background-size: 70%;
+							background-position: center;
+							margin-left: auto;
+							transition: transform .2s;
 						}
 					}
 
-					.filter-list{
-						display: block;
-					}
-				}
+					&-list{
+						padding: 8px 15px;
+						display: none;
 
+						// список чекбоксов
+						.checbox-list{
+							.checkbox{
+								&:not(:last-child){
+									margin-bottom: 10px;
+								}
 
-				&:not(:last-child){
-					margin-bottom: 5px;
-				}
-
-				&-head{
-					display: flex;
-					align-items: center;
-					cursor: pointer;
-					padding: 8px 15px;
-					transition: background .2s;
-					font-weight: 500;
-					user-select: none;
-
-					&:hover{
-						background: #e7ebf9;
+								label{
+									user-select: none;
+								}
+							}
+						}
 					}
 
-					&:after{
-						content: '';
-						display: block;
-						height: 16px;
-						width: 16px;
-						background: url(/resources/images/icons/arrow-bottom-black.svg) no-repeat;
-						background-size: 70%;
-						background-position: center;
+					&-clear{
+						display: none;
+						width: 74px;
+						font-size: 13px;
 						margin-left: auto;
-						transition: transform .2s;
-					}
-				}
+						cursor: pointer;
+						padding: 4px 0;
+						border-radius: 4px;
+						background: #f1f1f1;
+						text-align: center;
+						margin-right: 10px;
 
-				&-list{
-					padding: 8px 15px;
-					display: none;
-
-					// список чекбоксов
-					.checbox-list{
-						.checkbox{
-							&:not(:last-child){
-								margin-bottom: 10px;
-							}
-
-							label{
-								user-select: none;
-							}
+						&:hover{
+							background: #e7ebf9;
 						}
 					}
 				}
+			}
 
-				&-clear{
-					display: none;
-					width: 74px;
-					font-size: 13px;
-					margin-left: auto;
+			.filtres-btns{
+				margin-top: 30px;
+
+				> *{
+					height: 40px;
+					width: 80%;
+					border-radius: 10px;
+					margin: 0 auto;
+					display: block;
+					font-size: 12px;
+					border: none;
 					cursor: pointer;
-					padding: 4px 0;
-					border-radius: 4px;
-					background: #f1f1f1;
-					text-align: center;
+					background: #EFEFEF;
+					text-transform: uppercase;
+					letter-spacing: 1px;
+					transition: background .3s, color .3s;
+				}
 
+				.btn-submit{
+					margin-bottom: 15px;
+					background: $accent;
+					color: #fff;
 					&:hover{
-						background: #e7ebf9;
+						background: $accentHover;
+					}
+				}
+
+				.btn-reset{
+					&:hover{
+						background: $accentHover;
+						color: #fff;
 					}
 				}
 			}
