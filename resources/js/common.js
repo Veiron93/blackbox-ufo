@@ -103,10 +103,6 @@ $(document).ready(function(){
 
 			switches.forEach(function(e){
 
-				// if(e.getAttribute('data-type') == typeProductList){
-				// 	e.classList.add('active')
-				// }
-
 				e.addEventListener('click', function(){
 					
 					if(this.getAttribute('data-type') == 'grid' || this.getAttribute('data-type') == 'list'){
@@ -154,4 +150,12 @@ $(document).ready(function(){
 	}
 
 	viewFilterList();
+
+	function search(){
+		let headerSearch = document.querySelector('.header-search');
+
+		if(headerSearch){
+
+		}
+	}
 });
