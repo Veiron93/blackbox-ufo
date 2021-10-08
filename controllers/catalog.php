@@ -25,8 +25,6 @@ class Catalog extends App_Controller {
 		$this->setTitle("Каталог");
 	}
 
-
-
 	public function category($categoryId, $pageIndex = 1) {
 		try {
 			/* @var $category Catalog_Category */
@@ -38,13 +36,13 @@ class Catalog extends App_Controller {
 
 			//СОРТРОВКА 
 			$sorting = null;
-			$partsURI = parse_url($_SERVER['REQUEST_URI']); 
+			$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
 			if(isset($partsURI['query'])){
 				parse_str($partsURI['query'], $query);
 
-				if($query['sort'] ){
-					switch($query['sort']){
+				if(isset($query['order'])){
+					switch($query['order']){
 						case 'new':
 							$sorting = 'id desc';
 						break;
@@ -64,6 +62,11 @@ class Catalog extends App_Controller {
 				}
 			}
 
+			// фильтры
+			if($_POST){
+				self::filters($_POST);
+			}
+
 			$pagination = new Phpr_Pagination(self::productsPerPage);
 			$this->viewData['category'] = $category;
 			$this->viewData['products'] = $category->list_products(false, $pagination, $pageIndex - 1, $sorting);
@@ -75,11 +78,6 @@ class Catalog extends App_Controller {
 			$this->viewData['error'] = $ex->getMessage();
 		}
 	}
-
-
-
-
-
 
 
 	public function product($productId) {
@@ -97,6 +95,45 @@ class Catalog extends App_Controller {
 			$this->viewData['error'] = $ex->getMessage();
 		}
 	}
+
+
+
+	private function filters($filters){
+		$filtersId = [];
+		$where = '';
+
+		foreach($filters as $key => $filter){
+			array_push($filtersId, $key);
+
+			//traceLog($filter);
+			$where = $where . " and cav.value = 1";
+		}
+
+		$products = Db_DbHelper::objectArray("SELECT *
+			FROM catalog_attribute_values as cav 
+			WHERE cav.attribute_id in (?)", [$filtersId]);
+
+
+		traceLog($where);
+
+		
+
+		foreach($products as $product){
+
+			foreach($filters as $key => $filter){
+				//array_push($filtersId, $key);
+			}
+			//$product
+		}
+	}
+
+
+
+
+
+
+
+
 
 	private function applyBaseFilter(Catalog_Product $stmt, Catalog_Category $from) {
 		$filtersCount = 0;

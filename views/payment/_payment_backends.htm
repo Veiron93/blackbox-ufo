@@ -2,10 +2,9 @@
 
 <? foreach ($backends as $backend): ?>
 	<div class="form-item-radio">
-		<label>
-			<input type="radio" name="payment_backend" value="<?= $backend->getId() ?>" <?= Phpr_Form::radioState(h(post('payment_backend', Payment_Helper::getDefaultBackendId())), $backend->getId())?> />
-			<span><?= $backend->getName() ?></span>
-		</label>
+		<label for="cart-form-input-<?= $backend->getId() ?>"><?= $backend->getName() ?></label>
+		<input type="radio" name="payment_backend" id="cart-form-input-<?= $backend->getId() ?>" value="<?= $backend->getId() ?>" <?= Phpr_Form::radioState(h(post('payment_backend', Payment_Helper::getDefaultBackendId())), $backend->getId())?> />
+		
 		
 		<? if ($description = $backend->getDescription()): ?>
 			<div class="form-item-radio-description">

@@ -1,9 +1,9 @@
 <div class="catalog-categories-list">
 	<?php foreach ($categories as $category): ?>
-
+		
 		<div class="catalog-category">
 
-			<div class="category-name">
+			<div class="catalog-category-name">
 				<?php if($image = $category->image->getPath()): ?>
 					<div class="icon">
 						<img src="<?= $image ?>" alt="<?= $category->name?>" />

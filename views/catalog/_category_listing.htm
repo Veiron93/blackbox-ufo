@@ -1,6 +1,6 @@
 <? /* @var $products Catalog_Product[] */ ?>
 <? if (isset($products)): ?>
-	<? if ( $products->count ): ?>
+	<? if ($products->count): ?>
 		<div class="list-products" data-view-list='<?= $viewProductList ?>'>
 			<? foreach ($products as $product): ?>
 				<?php $this->renderPartial($this->getViewsDir() . "/catalog/product_card.htm", ['product'=>$product]);?>

@@ -1,17 +1,28 @@
 <div class="container catalog-category">
+
 	<?php if (isset($category) && $category): ?>
 
 		<?php $this->renderPartial('breadcrumbs') ?>
 
-		<div class="heading-page">
-			<h1><?= $category->name?></h1>
-		</div>
-
 		<?php $categories = $category->list_children(); ?>
 
 		<?php if(count($categories)): ?>
-			<?php $this->renderPartial('categories_list', ['categories' => $categories]) ?>
+
+			<?/*
+			<div class="catalog-category-name">
+				<h1><?=$category->name?></h1>
+			</div>
+			*/?>
+
+			<?php foreach ($categories as $category): ?>
+				<?php $this->renderPartial($this->getViewsDir() . "/catalog/_category_item.htm", ['category'=>$category]);?>
+			<?php endforeach; ?>
 		<?php else: ?>
+
+			<div class="heading-page">
+				<h1><?= $category->name?></h1>
+			</div>
+
 			<div class="catalog-category-wrapper">
 				<?php $this->renderPartial('filters') ?>
 
@@ -27,8 +38,10 @@
 								if(isset($partsURI['query'])){
 									parse_str($partsURI['query'], $query);
 
-									if($query['sort'] == 'new' || $query['sort'] == 'price' || $query['sort'] == '-price'){
-										$sorting = $query['sort'];
+									if(isset($query['order'])){
+										if($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price'){
+											$sorting = $query['order'];
+										}
 									}
 								}
 							?>
@@ -38,13 +51,13 @@
 									<a href="/catalog/<?= $category->id?>">По наименованию</a>
 								</div>
 								<div class="item <?= $sorting == 'new'? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>/?sort=new">Сначала новые</a>
+									<a href="/catalog/<?= $category->id?>/?order=new">Сначала новые</a>
 								</div>
 								<div class="item <?= $sorting == 'price'? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>/?sort=price">По возростанию цены</a>
+									<a href="/catalog/<?= $category->id?>/?order=price">По возростанию цены</a>
 								</div>
 								<div class="item <?= $sorting == '-price'? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>/?sort=-price">По убыванию цены</a>
+									<a href="/catalog/<?= $category->id?>/?order=-price">По убыванию цены</a>
 								</div>
 							</div>
 						</div>
@@ -61,7 +74,6 @@
 								<img src="/resources/images/icons/listing.svg" alt="list">
 							</div>
 						</div>
-						
 					</div>
 
 					<?php $this->renderPartial('category_listing', ['viewProductList'=>$viewProductList]) ?>

@@ -141,35 +141,46 @@ class Shop extends App_Controller
     {
         try {
             $cart = Shop_Cart::getCart();
+
             if ($cart->getItemsCount() == 0) {
                 throw new Phpr_ApplicationException("Ваша корзина пуста. Оформление заказа невозможно.");
             }
-            $this->validation->add("customer-name", "ФИО")->required("Заполните поле «ФИО»");
-            $this->validation->add("customer-phone", "Телефон")->required("Укажите телефон");
-            $this->validation->add("customer-email", "Эл. почта")->email(false, "Укажите корректный адрес эл. почты");
-            $this->validation->add("customer-address", "Адрес")->required("Укажите адрес");
-            $this->validation->add("comment", "Комментарий")->fn("trim");
+
+            traceLog(123);
+
+            $this->validation->add("name", "Имя")->required("Заполните поле «Имя»");
+            // $this->validation->add("phone", "Телефон")->required("Укажите телефон");
+            // $this->validation->add("customer-email", "Эл. почта")->email(false, "Укажите корректный адрес эл. почты");
+            // //$this->validation->add("customer-address", "Адрес")->required("Укажите адрес");
+            // $this->validation->add("comment", "Комментарий")->fn("trim");
+            
             if (!$this->validation->validate($_POST)) {
                 $this->validation->throwException();
             }
-            $order = Shop_Order::create();
-            $values = $this->validation->fieldValues;
-            $order->customer_name = $values['customer-name'];
-            $order->customer_phone = $values['customer-phone'];
-            $order->customer_email = $values['customer-email'];
-            $order->customer_address = $values['customer-address'];
-            $order->comment = $values['comment'];
-            $order->cart_id = $cart->cart_id;
-            $order->save();
-            foreach ($cart->getItems() as $item) {
-                $orderItem = Shop_OrderItem::createFromCartItem($item);
-                $orderItem->order_id = $order->id;
-                $orderItem->save();
-            }
-            $order->recalculate();
-            $order->markAsCompiled();
-            $cart->delete();
-            Phpr::$response->redirect("/shop/success");
+
+
+
+            // $order = Shop_Order::create();
+            // $values = $this->validation->fieldValues;
+            // $order->customer_name = $values['customer-name'];
+            // $order->customer_phone = $values['customer-phone'];
+            // $order->customer_email = $values['customer-email'];
+            // $order->customer_address = $values['customer-address'];
+            // $order->comment = $values['comment'];
+            // $order->cart_id = $cart->cart_id;
+            // $order->save();
+            
+            // foreach ($cart->getItems() as $item) {
+            //     $orderItem = Shop_OrderItem::createFromCartItem($item);
+            //     $orderItem->order_id = $order->id;
+            //     $orderItem->save();
+            // }
+
+            // $order->recalculate();
+            // $order->markAsCompiled();
+            // $cart->delete();
+            // Phpr::$response->redirect("/shop/success");
+
         } catch (\Exception $ex) {
             $this->ajaxError($ex);
         }

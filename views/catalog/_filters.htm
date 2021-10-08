@@ -1,47 +1,107 @@
 <?php if($category->filters):?>
 	<div class="catalog-filters-wrapper">
 
-		<div class="filtres-list">
-			<?php foreach ($category->filters as $filter): ?>
+		<?/*
+		<div class="active-filters">
+			<button class="btn-reset">Сбросить фильтры</button>
 
-				<?//=$value->data_type ?>
-				<?//=traceLog($value)?>
+			<div class="active-filters-list">
+				<div class="item">3D</div>
+				<div class="item">4D</div>
+				<div class="item">12 ГБ</div>
+				<div class="item">18 ГБ</div>
+				<div class="item">18 ГБ</div>
+				<div class="item">18 ГБ</div>
+			</div>
+		</div>
+		*/?>
 
-				<?php if($filter->value_template): ?>
-					<div class="filter active">
-						<div class="filter-head">
-							<?=$filter->name ?>
-						</div>
+		<?= Phpr_Form::openTag(["id" => "filter-form", "onsubmit" => true]) ?>
 
-						<div class="filter-list">
-							<?php if($filter->data_type == "checkbox_list"): ?>
-								
-								<? $checkboxes = explode("\n", $filter->value_template); ?>
+			<div class="filters-list">
+				<?php 
+					$sorting = null;
+					$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
-								<?php if($checkboxes): ?>
-									<div class="list-attribites checbox-list">
-										<?php foreach ($checkboxes as $checkbox): ?>
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="filter-<?= $filter->id ?>" value="<?= $filter->id ?>">
-													<span><?= $checkbox ?></span>
-												</label>
-											</div>
-										<?php endforeach; ?>
-									</div>
+					if(isset($partsURI['query'])){
+						parse_str($partsURI['query'], $query);
+
+						if(isset($query['f'])){
+							$activeFilters =  explode(";",trim($query['f'], '[]'));
+						}
+					}
+				?>
+
+				<?php foreach ($category->filters as $filter): ?>
+
+					<?php if($filter->value_template): ?>
+
+						<div class="filter active" data-filter-id="<?= $filter->id ?>">
+							<?php 
+								if(isset($activeFilters)){
+									$activeFilterAttributes = [];
+
+									foreach ($activeFilters as $activeFilter){
+
+										$activeFilterId = explode('=', $activeFilter)[0];
+
+										if($activeFilterId == $filter->id){						
+											$activeFilterAttributes = explode(',', explode('=', $activeFilter)[1]);
+										}
+									}
+								}
+							?>
+
+							<div class="filter-head">
+								<?=$filter->name ?>
+							</div>
+
+							<div class="filter-list">
+
+								<?php if($filter->data_type == "checkbox_list"): ?>
+									
+									<? $checkboxes = explode("\n", $filter->value_template); ?>
+
+									<?php if($checkboxes): ?>
+										<div class="list-attribites checbox-list">
+
+											<?php foreach ($checkboxes as $key => $checkbox): ?>
+												<div class="checkbox">
+													<label>
+
+														<?php
+															$checked = false;
+
+															if(isset($activeFilters)){
+																foreach($activeFilterAttributes as $activeAttribute){
+																	if($activeAttribute == $key){
+																		$checked = true;
+																	}
+																}
+															}
+														?>
+
+														<input type="checkbox" name="<?= $filter->id ?>[]" value="<?= $checkbox ?>" <?= $checked ? "checked":""?>>
+														<span><?= $checkbox ?></span>
+													</label>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									<?php endif; ?>
 								<?php endif; ?>
-							<?php endif; ?>
+							</div>
+
+							<div class="filter-clear">Сбросить</div>
 						</div>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</div>
 
-						<div class="filter-clear">Сбросить</div>
-					</div>
-				<?php endif; ?>
-			<?php endforeach; ?>
-		</div>
+			<div class="filters-btns">
+				<button type="submit" class="btn-submit">Применить</button>
+				<button class="btn-reset">Сбросить</button>
+			</div>
 
-		<div class="filtres-btns">
-			<button class="btn-submit">Применить</button>
-			<button class="btn-reset">Сбросить</button>
-		</div>
+		<? Phpr_Form::closeTag() ?>
 	</div>
 <?php endif; ?>

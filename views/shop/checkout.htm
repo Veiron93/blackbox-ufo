@@ -4,47 +4,80 @@
 	<?= Phpr_Form::openTag(["id" => "checkout-form"]) ?>
 
 		<div class="form-section">
-			<label for="customer-phone">Телефон:</label>
-			<input type="tel" name="customer-phone" id="customer-phone" />
+			<label for="name">Имя</label>
+			<input type="text" name="name" id="name" value="<?= h(post('name'))?>">
 		</div>
 
 		<div class="form-section">
-			<label for="customer-address">Адрес:</label>
-			<textarea name="customer-address" id="customer-address"></textarea>
+			<label for="phone">Телефон</label>
+			<input type="tel" name="phone" id="phone" value="<?= h(post('phone'))?>">
 		</div>
 
 		<div class="form-section">
-			<label for="comment">Комментарий:</label>
-			<textarea name="comment" id="comment" placeholder="Например: Желательно доставку после 18:00"></textarea>
+			<label for="comment">Комментарий</label>
+			<textarea name="comment" id="comment" placeholder="Например: Желательно доставку после 18:00"><?= h(post('comment'))?></textarea>
 		</div>
 
 		<div class="form-section">
+			<div class="form-section-title">Доставка</div>
+
+			<?php foreach (Phpr::$config->get('DELIVERY') as $id => $value) : ?>
+				<div class="form-item-radio">
+					<label for="cart-form-input-<?=$id?>">
+						<?= $value['name'] ?>
+						- <span><?= $value['price'] == 0 ? 'бесплатно': $value['price']?></span>
+					</label>
+
+					<input type="radio" name="delivery" value="<?=$value['price']?>" id="cart-form-input-<?=$id?>" <?= isset($value['checked']) ? 'checked':''?> data-code="<?=$value['code']?>">
+							
+					<?php if(isset($value['description'])): ?>
+						<div class="form-item-radio-description">
+							<?=$value['description']?>
+						</div>
+					<?php endif; ?>
+				</div>
+			<?php endforeach ?>
+		</div>
+
+		<div class="form-section section-address">
+			<label for="customer-address">Адрес</label>
+			<textarea name="customer-address" id="customer-address" placeholder="Укажите точный адрес доставки"></textarea>
+		</div>
+
+		<div class="form-section">
+			<div class="form-section-title">Способ оплаты</div>
 			<? $this->renderPartial($this->getViewsDir() . 'payment/_payment_backends.htm', null, true, true) ?>
 		</div>
 
 		<div class="total-price-section">
 			<div class="total-price-section-title">Итого</div>
 
-			<div class="devivery-price">
+			<?php $totalPrice = Core_Number::formatNumber($cart->getTotalPrice()); ?>
+
+			<div class="item-price devivery-price">
 				<div>Доставка:</div>
 				<div>
-					<span></span>
-					<span>руб.</span>
+					<span>0</span>
 				</div>
 			</div>
 
-			<div class="total-price">
+			<div class="item-price goods-price">
+				<div>Товары:</div>
+				<div>
+					<span data-summ="<?=$cart->getTotalPrice()?>"><?= $totalPrice ?></span>
+				</div>
+			</div>
+
+			<div class="item-price total-price">
 				<div>Всего к оплате:</div>
 				<div>
-					<span><?= Core_Number::formatNumber($cart->getTotalPrice()) ?></span> 
-					<span>руб.</span>
+					<span><?= $totalPrice ?></span>
 				</div>
 			</div>
 		</div>
 
 		<div class="bnt-order-buy">
-			<input type="hidden" name="customer-name" id="customer-name" />
-			<input type="hidden" name="customer-email" id="customer-email" />
+			<input type="hidden" name="customer-email">
 			<a href="#" data-handler="onPlaceOrder">Оформить заказ</a>
 		</div>
 	<? Phpr_Form::closeTag() ?>
