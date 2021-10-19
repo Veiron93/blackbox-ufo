@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// fancybox
 
-	// $('[data-fancybox]').fancybox({
-	// 	protect: true,
-	// 	buttons : [
-	// 		'zoom',
-	// 		'thumbs',
-	// 		'close'
-	// 	]
-	// });
+	$('[data-fancybox]').fancybox({
+		protect: true,
+		buttons : [
+			'zoom',
+			'thumbs',
+			'close'
+		]
+	});
 
 	// SLIDERS
 
@@ -45,6 +45,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		slidesToShow: 5,
 		slidesToScroll: 5,
 		asNavFor: '.product-info-slider-for',
+		arrows: true,
+	});
+
+	// фирменная упаковка в корзине
+	$('.branded-packaging_slider').not('.slick-initialized').slick({
+		slidesToShow: 5,
+		slidesToScroll: 5,
 		arrows: true,
 	});
 

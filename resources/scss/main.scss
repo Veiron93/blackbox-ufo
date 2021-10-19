@@ -1332,6 +1332,17 @@ footer{
 			transition: box-shadow .2s;
 			@include style-block;
 
+			&--regular-photo{
+				.product-card-photo{
+					a{
+						padding: 0;
+						img{
+							object-fit: cover;
+						}	
+					}
+				}
+			}
+
 			&:hover{
 				box-shadow: 0 1px 5px 0 rgba(0,0,0,0.2);
 			}
@@ -1341,21 +1352,24 @@ footer{
 			}
 			
 			&-photo{
-				height: 180px;
 				flex: none;
+				margin-bottom: 5px;
 				
 				a{
-					padding: 10px;
+					height: 180px;
+					width: 100%;
+					overflow: hidden;
+
 					display: flex;
 					align-items: center;
-					justify-content: center;	
+					justify-content: center;
+					padding: 20px 15px 10px;
 
 					img{
-						height: 160px;
-						width: 160px;
-						display: block;
-					}	
+						object-fit: cover;
+					}
 				}
+				
 			}
 			
 			&-info{
@@ -1733,6 +1747,69 @@ footer{
 						
 					}
 				}
+			}
+		}
+
+		.branded-packaging{
+			//border: 1px solid red;
+			margin-top: 40px;
+
+			&_title{
+				font-weight: 500;
+				font-size: 20px;
+				margin-bottom: 14px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: $accent;
+			}
+
+			&_slider{
+				width: 767px;
+				//border: 1px solid red;
+
+				.slick-slide {
+				    margin: 0 8px;
+
+				    img{
+				    	border-radius: 14px;
+				    }
+				}
+
+				.slick-list {
+				    margin: 0 -8px;
+				}
+
+				.slick-prev{
+					right: 34px;
+					background: url(/resources/images/icons/left-arrow.svg);
+				}
+
+				.slick-next{
+					right: 0;
+					background: url(/resources/images/icons/right-arrow.svg);
+				}
+
+				.slick-arrow{
+					font-size: 0;
+					height: 30px;
+					width: 30px;
+					position: absolute;
+					top: 0;
+					margin-top: -41px;
+					background-size: 60%;
+					background-repeat: no-repeat;
+					background-position: center;
+					cursor: pointer;
+					transition: background-color .2s;
+					border-radius: 8px;
+					border: none;
+
+					&:hover{
+						background-color: rgba(82,97,148,.2);
+					}
+				}
+
+
 			}
 		}
 
