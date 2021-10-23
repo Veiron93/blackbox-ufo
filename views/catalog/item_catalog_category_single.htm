@@ -1,0 +1,9 @@
+<div class="item-catalog-category-single">
+	<a href="<?= $category->getUrl() ?>">
+		<?php
+			$image = count($category->image) ? $category->image->getThumb(240, 150, Phpr_ImageManipulator::fit) : '/resources/images/icons/no-image.svg';
+		?>
+		<img src="<?= $image ?>" alt="<?= $category->name?>" />
+		<span><?= $category->name?></span>
+	</a>								
+</div>

@@ -1,0 +1,77 @@
+<?php $categories_level_2 = $category->list_children(); ?>
+
+<div class="item-catalog-category-multi">
+
+	<div class="category_name">
+		<a href="<?= $category->getUrl() ?>"><?= $category->name ?></a>
+	</div>
+
+	<div class="category_list-level-2">
+		<?php foreach($categories_level_2 as $category_level_2): ?>
+
+			<?php $categories_level_3 = $category_level_2->list_children(); ?>
+
+			<?php if(count($categories_level_3)): ?>
+				<div class="item-level-2">
+					<div class="item-level-2_name">
+
+						<?php if($image = $category_level_2->image->getPath()): ?>
+							<div class="item-level-2_icon">
+								<img src="<?= $image ?>" alt="<?= $category_level_2->name?>" />
+							</div>
+						<?php endif ?>
+
+						<a href="<?= $category_level_2->getUrl() ?>"><?= $category_level_2->name?></a>
+					</div>
+
+					<div class="categories-level-3">
+						<?php foreach($categories_level_3 as $category_level_3): ?>
+							<a href="<?= $category_level_3->getUrl() ?>"><?= $category_level_3->name?></a>
+						<?php endforeach ?>	
+					</div>
+				</div>
+			<?php else: ?>
+				<?php $this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_single.htm", ['category'=>$category_level_2]); ?>
+			<?php endif;?>
+
+
+
+			<?/*
+
+			<div class="item <?= count($categories_level_3) ? 'category-level-2': 'category-single'?>">
+
+				<?php if(count($categories_level_3)): ?>
+					<div class="category-level-2-name">
+
+						<?php if($image = $category->image->getPath()): ?>
+							<div class="category-level-2-name-icon">
+								<img src="<?= $image ?>" alt="<?= $category->name?>" />
+							</div>
+						<?php endif ?>
+
+						<a href="<?= $category->getUrl() ?>"><?= $category->name?></a>
+					</div>
+
+					<div class="categories-level-3">
+						<?php foreach($categories_level_3 as $category): ?>
+							<a href="<?= $category->getUrl() ?>"><?= $category->name?></a>
+						<?php endforeach ?>	
+					</div>
+				<?php else: ?>
+					<a href="<?= $category->getUrl() ?>">
+						<?php if($image = $category->image->getThumb(240, 150, Phpr_ImageManipulator::fit)): ?>
+							<img src="<?= $image ?>" alt="<?= $category->name?>" />
+						<?php endif ?>
+
+						<span><?= $category->name?></span>
+					</a>
+				<?php endif ?>						
+			</div>	
+
+			*/?>
+
+
+
+		<?php endforeach ?>							
+	</div>	
+</div>

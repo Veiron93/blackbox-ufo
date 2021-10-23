@@ -1,0 +1,46 @@
+<div class="catalog-products-sorting">
+
+	<div class="sorting-mode">
+
+		<div class="sorting-mode_title">Сортировать:</div>
+
+		<?php 
+			$sorting = null;
+			$partsURI = parse_url($_SERVER['REQUEST_URI']);
+
+			if(isset($partsURI['query'])){
+				parse_str($partsURI['query'], $query);
+
+				if(isset($query['order'])){
+					if($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price'){
+						$sorting = $query['order'];
+					}
+				}
+			}
+		?>
+
+		<div class="sorting-mode_list">
+			<div class="item <?= !$sorting ? 'active':''?>">
+				<a href="/catalog/<?= $category->id?>">По наименованию</a>
+			</div>
+			<div class="item <?= $sorting == 'new'? 'active':''?>">
+				<a href="/catalog/<?= $category->id?>/?order=new">Сначала новые</a>
+			</div>
+			<div class="item <?= $sorting == 'price'? 'active':''?>">
+				<a href="/catalog/<?= $category->id?>/?order=price">По возростанию цены</a>
+			</div>
+			<div class="item <?= $sorting == '-price'? 'active':''?>">
+				<a href="/catalog/<?= $category->id?>/?order=-price">По убыванию цены</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="view-mode">
+		<div class="item <?= $viewModeProductsList == 'grid' ?'active':''?>" data-type="grid">
+			<img src="/resources/images/icons/grid.svg" alt="grid">
+		</div>
+		<div class="item <?= $viewModeProductsList == 'list' ?'active':''?>" data-type="list">
+			<img src="/resources/images/icons/listing.svg" alt="list">
+		</div>
+	</div>
+</div>

@@ -1,93 +1,72 @@
-<div class="container catalog-category">
+<?php if (isset($category) && $category): ?>
 
-	<?php if (isset($category) && $category): ?>
+	<?php $subCategories = $category->list_children() ?>
 
+	<div class="container <?= $subCategories ? 'catalog-categories': 'catalog-products'?>">
 		<?php $this->renderPartial('breadcrumbs') ?>
 
-		<?php $categories = $category->list_children(); ?>
+		<?php if(count($subCategories)): ?>
 
-		<?php if(count($categories)): ?>
+			<?/* --- КАТЕГОРИИ --- */?>
 
-			<?/*
-			<div class="catalog-category-name">
-				<h1><?=$category->name?></h1>
-			</div>
-			*/?>
+			<div class="catalog-categories-title"><?= $category->name; ?></div>
 
-			<?php foreach ($categories as $category): ?>
-				<?php $this->renderPartial($this->getViewsDir() . "/catalog/_category_item.htm", ['category'=>$category]);?>
-			<?php endforeach; ?>
+			<div class="catalog-categories-list">
+				<?php
+					foreach ($subCategories as $subCategory){
+						$typeItem = count($subCategory->list_children()) ? 'multi': 'single';
+
+						$this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_".$typeItem.".htm", ['category'=>$subCategory]);
+					}
+				?>
+			</div>	
+
 		<?php else: ?>
+
+			<?/* --- ТОВАРЫ ---	 */?>
 
 			<div class="heading-page">
 				<h1><?= $category->name?></h1>
 			</div>
 
-			<div class="catalog-category-wrapper">
+			<div class="catalog-products_wrapper">
+
 				<?php $this->renderPartial('filters') ?>
 
-				<div class="catalog-category-list-wrapper">
-					<div class="catalog-category-list-sorting">
-						<div class="sorting-product-list">
-							<div class="sorting-product-list-title">Сортировать:</div>
+				<div class="catalog-products_list">
+					<?php 
+						$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
 
-							<?php 
-								$sorting = null;
-								$partsURI = parse_url($_SERVER['REQUEST_URI']);
+						$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList]);
+					?>
 
-								if(isset($partsURI['query'])){
-									parse_str($partsURI['query'], $query);
-
-									if(isset($query['order'])){
-										if($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price'){
-											$sorting = $query['order'];
-										}
-									}
-								}
-							?>
-
-							<div class="sorting-product-list-items">
-								<div class="item <?= !$sorting ? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>">По наименованию</a>
-								</div>
-								<div class="item <?= $sorting == 'new'? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>/?order=new">Сначала новые</a>
-								</div>
-								<div class="item <?= $sorting == 'price'? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>/?order=price">По возростанию цены</a>
-								</div>
-								<div class="item <?= $sorting == '-price'? 'active':''?>">
-									<a href="/catalog/<?= $category->id?>/?order=-price">По убыванию цены</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="view-product-list">
-							<?php 
-								$viewProductList = isset($_COOKIE['viewProductList']) && $_COOKIE['viewProductList'] == "list" ? "list" : "grid";
-							?> 
-
-							<div class="item <?= $viewProductList == 'grid' ?'active':''?>" data-type="grid">
-								<img src="/resources/images/icons/grid.svg" alt="grid">
-							</div>
-							<div class="item <?= $viewProductList == 'list' ?'active':''?>" data-type="list">
-								<img src="/resources/images/icons/listing.svg" alt="list">
-							</div>
-						</div>
-					</div>
-
-					<?php $this->renderPartial('category_listing', ['viewProductList'=>$viewProductList]) ?>
+					<div class="list-products" data-view-list='<?= $viewModeProductsList ?>'>
+						<?php if (isset($products) && $products->count): ?>
+							<?php foreach ($products as $product): ?>
+								<?php $this->renderPartial("product_card", ['product'=>$product]);?>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<p>В данной категории товаров нет</p>
+						<?php endif; ?>
+					</div>			
 				</div>
 			</div>
-		<?php endif; ?>
+		<?php endif;?>		
+	</div>
+<?php else: ?>
+	<h2>Категория не найдена</h2>
+<?php endif; ?>
+		
+	
 		
 
-		<?php /** @var $pagination Phpr_Pagination*/ ?>
-		<?php if (isset($pagination)): ?>
-			<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("catalog_category", [$category->id]) . "%d/") ?>
-		<?php endif; ?>
+<?php /** @var $pagination Phpr_Pagination*/ ?>
+<?/*
+<?php if (isset($pagination)): ?>
+	<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("catalog_category", [$category->id]) . "%d/") ?>
+<?php endif; ?>
+*/?>
+	
 
-	<?php else: ?>
-		<h2>Категория не найдена</h2>
-	<?php endif; ?>
-</div>
+
+
