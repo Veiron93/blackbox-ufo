@@ -133,16 +133,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// ВИД СПИСКА ТОВАРОВ
 	function viewProductList(){
-		let viewProductListBlock = document.querySelector('.view-product-list');
+		let viewProductListBlock = document.querySelector('.catalog-products-sorting .view-mode');
 
 		if(viewProductListBlock){
 
-			if(!getCookie('viewProductList')){
-				setCookie('viewProductList', 'grid');
+			if(!getCookie('viewModeProductsList')){
+				setCookie('viewModeProductsList', 'grid');
 			}
 
 			let switches = viewProductListBlock.querySelectorAll('.item'),
-				typeProductList = getCookie('viewProductList');
+				typeProductList = getCookie('viewModeProductsList');
 
 			switches.forEach(function(e){
 
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					}
 
 					document.querySelector('.list-products').setAttribute('data-view-list', typeProductList);
-					setCookie('viewProductList', typeProductList);
+					setCookie('viewModeProductsList', typeProductList);
 
 					switches.forEach(function(item){
 						item.classList.remove('active');

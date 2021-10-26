@@ -2,7 +2,7 @@
 /** @var string $idPrefix */
 /** @var bool $withQuantity */
 ?>
-<div class="btn-buy" id="<?= $idPrefix ?>-wrapper">
+<div class="btn-buy" id="<?= $idPrefix ?>-wrapper" title="Добавить в коробку">
 
 	<? if (Phpr::$config->get('SHOP_ENABLE_LEFTOVERS') && $item->leftover < 1): ?>
 		<p class="info">Нет в наличии</p>
@@ -23,9 +23,6 @@
 		<a href="#" class="add-to-cart-btn" <? if ($withQuantity): ?>data-quantity="#<?= $idPrefix ?>-quantity"<? endif ?>
 		   data-extra="<?= extra(["id" => $item->id, "type" => $type]) ?>"
 		   id="<?= $idPrefix ?>-btn">
-
-		   <img src="/resources/images/icons/white-box.svg" alt="Добавить">
-		   <span>Добавить в коробку</span>
 		</a>
 	<? endif ?>
 </div>

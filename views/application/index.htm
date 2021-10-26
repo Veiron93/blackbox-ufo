@@ -56,7 +56,7 @@
 
 			<div class="list-products" data-view-list="grid">
 				<?php foreach($bestsellers as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "/catalog/product_card.htm", ['product'=>$product]);?>
+					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
 				<? endforeach ?>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 
 			<div class="new-products-slider">
 				<?php foreach($newProducts as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "/catalog/product_card.htm", ['product'=>$product]);?>
+					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
 				<? endforeach ?>
 			</div>
 		</div>

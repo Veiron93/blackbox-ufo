@@ -1,0 +1,26 @@
+<? /* @var $products Catalog_Product[] */ ?>
+<? if (isset($products)): ?>
+
+	<? if ( $products->count ): ?>
+		<ul class="goods">
+			<? foreach ($products as $product): ?>
+				<li>
+					<? if ($product->discount): ?>
+						<span class="discount">-<?= (int)$product->discount ?>%</span>
+					<? endif; ?>
+					<? if (!is_null($product->price)): ?>
+						<span class="price"><?= Phpr::$lang->num($product->price) ?> Р</span>
+					<? endif ?>
+					<a href="<?= $product->getUrl() ?>">
+						<? if ( ($image = $product->findMainPhoto()) && ($src = $image->getThumb(150, Phpr_ImageManipulator::auto))): ?>
+							<img src="<?= $src ?>" alt="" />
+						<? endif ?>
+						<?= $product->name ?>
+					</a>
+				</li>
+			<? endforeach; ?>
+		</ul>
+	<? else: ?>
+		<p>Категория пуста</p>
+	<? endif ?>
+<? endif; ?>

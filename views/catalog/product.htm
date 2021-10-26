@@ -1,73 +1,69 @@
 <?php Phpr_View::beginBlock("view") ?>
-	<div class="catalog-product-show container">
+	<div class="catalog-product container">
 		<? $this->renderPartial('breadcrumbs', array('category' => $product->category, 'product' => $product)) ?>
 
 		<?php if (isset($product) and $product): ?>
-			<div class="product-wrapper">
-				<div class="product-info">
-					
-					<div class="product-info-header">
-						<h1><?= $product->name ?></h1>
-						<p>Код товара: <span><?= $product->id ?></span></p>
+			<div class="catalog-product_name">
+				<h1><?= $product->name ?></h1>
+			</div>
+			
+
+			<div class="catalog-product_wrapper">
+
+				<div class="catalog-product_details">
+
+					<div class="photos">
+						<?php if ( $product->photos->count > 1 ): ?>
+								
+							<div class="product-info-slider-for">
+								<? foreach ( $product->photos as $photo ): ?>
+									<a data-fancybox="product-photos" href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
+										<img src="<?= $photo->getThumb(1000, 600, Phpr_ImageManipulator::fit) ?>" alt="" />
+									</a>
+								<? endforeach; ?>
+							</div>
+
+							<div class="product-info-slider-nav">
+								<? foreach ( $product->photos as $photo ): ?>
+									<div>
+										<img src="<?= $photo->getThumb(60, 60, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
+									</div>
+								<? endforeach; ?>
+							</div>
+
+						<?php else: ?>
+							<?
+								$mainPhoto = $product->findMainPhoto();
+
+								if ($mainPhoto) {
+									$mainPhoto = $mainPhoto->getThumb(400, 400);
+								} else {
+									$mainPhoto = '/resources/images/no-image.png';
+								}
+							?>
+
+							<div class="image">
+								<a href="<?= $mainPhoto ?>" data-fancybox>
+									<img src="<?= $mainPhoto ?>" alt="" />
+								</a>
+							</div>
+						<?php endif; ?>
 					</div>
 
-					<div class="product-info-body">
-						<div class="photos">
-
-							<?php if ( $product->photos->count > 1 ): ?>
-								
-								<div class="product-info-slider-for">
-									<? foreach ( $product->photos as $photo ): ?>
-										<a data-fancybox="product-photos" href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
-											<img src="<?= $photo->getThumb(1000, 600, Phpr_ImageManipulator::fit) ?>" alt="" />
-										</a>
-									<? endforeach; ?>
-								</div>
-
-								<div class="product-info-slider-nav">
-									<? foreach ( $product->photos as $photo ): ?>
-										<div>
-											<img src="<?= $photo->getThumb(60, 60, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
-										</div>
-									<? endforeach; ?>
-								</div>
-
-							<?php else: ?>
-								<?
-									$mainPhoto = $product->findMainPhoto();
-
-									if ($mainPhoto) {
-										$mainPhoto = $mainPhoto->getThumb(400, 400);
-									} else {
-										$mainPhoto = '/resources/images/no-image.png';
-									}
-								?>
-
-								<div class="image">
-									<a href="<?= $mainPhoto ?>" data-fancybox>
-										<img src="<?= $mainPhoto ?>" alt="" />
-									</a>
-								</div>
-							<?php endif; ?>
-						</div>
-
-						<div class="details">
-							<div class="description">
-								<?= $product->description ?>
-							</div>
-						</div>
+					<div class="description">
+						<?= $product->description ?>
 					</div>
 				</div>
 
-				<div class="block-buy">
+				<div class="catalog-product_buy">
 					<? if ($product->price): ?>
-						<div class="price">
-							<p><?= Phpr::$lang->num($product->price) ?></p>
-							<p>Рублей</p>
+						<div class="catalog-product_buy-price">
+							<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
+							<div class="actual"><?= Phpr::$lang->num($product->price) ?></div>
 						</div>
 					<? endif ?>
 
-					<!-- <div class="promo">
+					<!-- <div class="catalog-product_buy-promo">
 						<div class="promo-title">Товар участвует в акциях</div>
 
 						<div class="promo-list">
@@ -90,7 +86,7 @@
 						<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
 					<? Phpr_Form::closeTag(); ?>
 
-					
+					<div class="article">Код товара: <?= $product->id ?></div>
 				</div>
 			</div>
 		<? else: ?>
