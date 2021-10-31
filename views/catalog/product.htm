@@ -11,44 +11,50 @@
 			<div class="catalog-product_wrapper">
 
 				<div class="catalog-product_details">
+					<?php if ($product->photos->count > 1): ?>
 
-					<div class="photos">
-						<?php if ( $product->photos->count > 1 ): ?>
-								
-							<div class="product-info-slider-for">
-								<? foreach ( $product->photos as $photo ): ?>
-									<a data-fancybox="product-photos" href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
-										<img src="<?= $photo->getThumb(1000, 600, Phpr_ImageManipulator::fit) ?>" alt="" />
-									</a>
-								<? endforeach; ?>
+						<div class="catalog-product-slider">
+							<div class="button-prev"></div>
+							<div class="button-next"></div>
+
+							<div class="mySwiper2 swiper">
+								<div class="swiper-wrapper">
+								  	<? foreach ($product->photos as $photo): ?>
+								  		<div class="swiper-slide">
+								  			<a data-fancybox="product-photos" href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
+												<img src="<?= $photo->getThumb(450, 360, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
+											</a>
+								  		</div>
+										
+									<? endforeach; ?>
+								</div>
 							</div>
 
-							<div class="product-info-slider-nav">
-								<? foreach ( $product->photos as $photo ): ?>
-									<div>
-										<img src="<?= $photo->getThumb(60, 60, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
-									</div>
-								<? endforeach; ?>
+							<div class="mySwiper swiper">
+								<div class="swiper-wrapper">
+								  	<? foreach ( $product->photos as $photo ): ?>
+								  		<div class="swiper-slide">
+								  			<img src="<?= $photo->getThumb(66, 66, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
+								  		</div>
+										
+									<? endforeach; ?>
+								</div>
 							</div>
+						</div>
 
-						<?php else: ?>
-							<?
-								$mainPhoto = $product->findMainPhoto();
+					<?php else: ?>
+						<?
+							$mainPhoto = $product->findMainPhoto();
+							$img = $mainPhoto ? $mainPhoto->getThumb(450, 'auto'): '/resources/images/no-image.png';
+						?>
 
-								if ($mainPhoto) {
-									$mainPhoto = $mainPhoto->getThumb(400, 400);
-								} else {
-									$mainPhoto = '/resources/images/no-image.png';
-								}
-							?>
-
-							<div class="image">
-								<a href="<?= $mainPhoto ?>" data-fancybox>
-									<img src="<?= $mainPhoto ?>" alt="" />
-								</a>
-							</div>
-						<?php endif; ?>
-					</div>
+						<div class="catalog-product_photo">
+							<a href="<?= $img ?>" data-fancybox>
+								<img src="<?= $img ?>" alt="">
+							</a>
+						</div>
+					<?php endif; ?>
+					
 
 					<div class="description">
 						<?= $product->description ?>
@@ -58,7 +64,10 @@
 				<div class="catalog-product_buy">
 					<? if ($product->price): ?>
 						<div class="catalog-product_buy-price">
-							<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
+							<?php if($product->old_price): ?>
+								<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
+							<?php endif; ?>
+							
 							<div class="actual"><?= Phpr::$lang->num($product->price) ?></div>
 						</div>
 					<? endif ?>

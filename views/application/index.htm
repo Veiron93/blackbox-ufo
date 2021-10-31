@@ -30,22 +30,30 @@
 		<?php $mainSlider = App_Helper::getBanners('main_slider') ?>
 
 		<?php if(isset($mainSlider) && count($mainSlider)): ?>
-			<div class="main-slider">
-				<?php foreach ($mainSlider as $banner): ?>
-					<?php $imgBanner = $banner->image->getThumb(880, 260, Phpr_ImageManipulator::fitAndCrop); ?>
+			<div class="main-slider swiper">
+				<div class="button-prev"></div>
+				<div class="button-next"></div>
 
-					<?php if($imgBanner): ?>
-						<?php if($banner->link): ?>
-							<a href="<?= $banner->link ?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>>
-						<?php endif;?>
+				<div class="swiper-wrapper">
+					<?php foreach ($mainSlider as $banner): ?>
 
-							<img src="<?= $imgBanner ?>" alt="<?= $banner->name ?>">
+						<?php $imgBanner = $banner->image->getThumb(880, 260, Phpr_ImageManipulator::fitAndCrop); ?>
 
-						<?php if($banner->link): ?>
-							</a>
-						<?php endif;?>		
-					<?php endif; ?>
-				<?php endforeach; ?>
+						<?php if($imgBanner): ?>
+							<div class="swiper-slide">
+								<?php if($banner->link): ?>
+									<a href="<?= $banner->link ?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>>
+								<?php endif;?>
+
+									<img src="<?= $imgBanner ?>" alt="<?= $banner->name ?>">
+
+								<?php if($banner->link): ?>
+									</a>
+								<?php endif;?>
+							</div>		
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
 			</div>
 		<?php endif;?>
 	</div>
@@ -54,7 +62,7 @@
 		<div class="bestsellers">
 			<div class="bestsellers-title">Хиты продаж</div>
 
-			<div class="list-products" data-view-list="grid">
+			<div class="list-products lg-5 md-4 sm-2" data-view-list="grid">
 				<?php foreach($bestsellers as $product): ?>
 					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
 				<? endforeach ?>
@@ -66,12 +74,18 @@
 		<div class="new-products">
 			<div class="new-products-title">Новинки</div>
 
-			<div class="new-products-slider">
-				<?php foreach($newProducts as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
-				<? endforeach ?>
+			<div class="list-products-slider swiper" data-view-list="grid">
+				<div class="button-prev"></div>
+				<div class="button-next"></div>
+				
+				<div class="swiper-wrapper">
+					<?php foreach($newProducts as $product): ?>
+						<div class="swiper-slide">
+							<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
+						</div>
+					<? endforeach ?>
+				</div>
 			</div>
 		</div>
 	<?php endif ?>
 </div>
-

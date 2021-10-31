@@ -11,51 +11,56 @@ document.addEventListener("DOMContentLoaded", function() {
 		]
 	});
 
-	// SLIDERS
+///////////// SLIDERS /////////////
 
 	// слайдер на главной
-	$('.main-slider').not('.slick-initialized').slick({
-		infinite: true,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrows: true,
-		autoplay: true,
-  		autoplaySpeed: 2000,
-		dots: true
-	});
+	new Swiper(".main-slider", {
+        loop: true,
+        navigation: {
+          nextEl: ".main-slider .button-next",
+          prevEl: ".main-slider .button-prev",
+        }
+    });
 
 	// новые продукты слайер
-	$('.new-products-slider').not('.slick-initialized').slick({
-		infinite: true,
-		slidesToShow: 6,
-		slidesToScroll: 6,
-		dots: true
+	new Swiper(".new-products .list-products-slider", {
+        spaceBetween: 20,
+        slidesPerView: 6,
+        navigation: {
+          nextEl: ".new-products .list-products-slider .button-next",
+          prevEl: ".new-products .list-products-slider .button-prev",
+        }
+    });
+
+	// слайдер в просмотре продукта
+	let swiper = new Swiper(".catalog-product-slider .mySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 6,
+        freeMode: true,
+        watchSlidesProgress: true,
 	});
 
-	// сллайдер в просмотре продукта
-	$('.product-info-slider-for').not('.slick-initialized').slick({
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrows: true,
-		fade: true,
-		asNavFor: '.product-info-slider-nav'
+    new Swiper(".catalog-product-slider .mySwiper2", {
+        loop: true,
+        navigation: {
+          nextEl: ".button-next",
+          prevEl: ".button-prev",
+        },
+        thumbs: {
+          swiper: swiper,
+        },
 	});
 	
-	$('.product-info-slider-nav').not('.slick-initialized').slick({
-		slidesToShow: 5,
-		slidesToScroll: 5,
-		asNavFor: '.product-info-slider-for',
-		arrows: true,
-	});
 
 	// фирменная упаковка в корзине
-	$('.branded-packaging_slider').not('.slick-initialized').slick({
-		slidesToShow: 5,
-		slidesToScroll: 5,
-		arrows: true,
-	});
+	// $('.branded-packaging_slider').not('.slick-initialized').slick({
+	// 	slidesToShow: 5,
+	// 	slidesToScroll: 5,
+	// 	arrows: true,
+	// });
 
-	// КОРЗИНА
+///////////// КОРЗИНА /////////////
+
 	function quantityCart(){
 
     	function quantityMinus(quantityNum) {
@@ -131,7 +136,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	cartDelivery()
 
 
-	// ВИД СПИСКА ТОВАРОВ
+///////////// ВИД СПИСКА ТОВАРОВ /////////////
+
 	function viewProductList(){
 		let viewProductListBlock = document.querySelector('.catalog-products-sorting .view-mode');
 

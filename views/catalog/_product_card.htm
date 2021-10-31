@@ -2,14 +2,13 @@
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		<a href="<?= $product->getUrl() ?>">
 			<?php
-				$image = $product->findMainPhoto() ? $product->findMainPhoto()->getThumb(320, 320, Phpr_ImageManipulator::fitAndCrop) : '/resources/images/icons/no-image.svg';
+				$image = $product->findMainPhoto() ? $product->findMainPhoto()->getThumb(300, 300) : '/resources/images/icons/no-image.svg';
 			?>
 			<img src="<?= $image ?>" alt="<?= $product->name?>" />
 		</a>
 	</div>
 
 	<div class="product-card_info">
-
 		<div class="product-card_info-description">
 			<div class="name">
 				<a href="<?= $product->getUrl() ?>"><?= $product->name ?></a>
