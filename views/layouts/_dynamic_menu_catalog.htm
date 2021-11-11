@@ -46,12 +46,6 @@
 
 									<div class="categories-level-2-list-category">		
 										<div class="category-level-2">
-											<div class="icon">
-												<?php if($category->image): ?>
-													<img src="<?= $category->image->getPath()?>" alt="<?= $category->name?>" />
-												<?php endif ?>
-											</div>
-
 											<a href="/catalog/<?= $category->id?>"><?= $category->name?></a>
 										</div>
 

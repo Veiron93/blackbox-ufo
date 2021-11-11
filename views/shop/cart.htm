@@ -3,18 +3,29 @@
 ?>
 <div class="cart">
 	<div class="container">
-		<div class="heading-page">
+		<div class="cart-heading">
 			<h1>Коробка</h1>
+			<?php if ($cart->getItemsCount()): ?>
+				<form>
+					<a href="#" 
+						data-handler="onClearCart"
+						data-confirm="Очистить корзину?"
+					>
+						<img src="/resources/images/icons/delete.svg" alt="Удалить">
+						<span>Очистить корзину</span>
+					</a>
+				</form>
+			<?php endif ?>
 		</div>
 
-		<? if (!$cart->getItemsCount()): ?>
+		<?php if (!$cart->getItemsCount()): ?>
 			<div class="cart-empty">
 				<a href="/catalog/">
 					<img src="/resources/images/icons/tree.svg" alt="Дерево">
 				</a>
 				<p>Пока тут только дерево</p>
 			</div>
-		<? else: ?>
+		<?php else: ?>
 			<div class="cart-wrapper">
 				<div class="cart-section">
 					<div class="cart-list-products">
@@ -116,6 +127,6 @@
 
 				<? $this->renderLayout($this->getViewsDir() . 'shop/checkout.htm', ['paidDelivery'=> isset($paidDelivery)]); ?>
 			</div>
-		<? endif ?>
+		<?php endif ?>
 	</div>
 </div>

@@ -92,66 +92,14 @@ footer{
 }
 
 .heading-page{
-	margin-bottom: 20px;
+	margin-bottom: 15px;
+
 	>*{
 		font-weight: normal;
 		margin: 0;
 		font-size: 34px;
 	}
 }
-
-.heading-page-label{
-	display: inline-block;
-	padding: 10px 15px;
-	border-radius: 14px;
-	background: $gradient;
-
-	p{
-		font-size: 14px;
-		color: #fff;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-	}
-}
-
-.slick-dots{
-	position: absolute;
-	z-index: 2;
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-	justify-content: center;
-	padding: 0;
-	width: 100%;
-
-	li{
-		&:not(:last-child){
-			margin-right: 10px;
-		}
-
-		button{
-			font-size: 0;
-			height: 10px !important;
-			width: 10px !important;
-			border-radius: 50%;
-			display: block;
-			flex: none;
-			border: none;
-			padding: 0;
-			cursor: pointer;
-			background: #fff;
-		}
-
-		&.slick-active{
-			button{
-				background: $accentHover;
-			}
-		}
-	}	
-}
-
-
-
 
 footer{
 	//border-top: 1px solid $gray;
@@ -296,7 +244,32 @@ footer{
 	}
 }
 
+.sale{
+	margin-top: 60px;
 
+	&-title{
+		margin-bottom: 15px;
+
+		a{
+			display: flex;
+			align-items: center;
+			//border: 1px solid red;
+			width: 160px;
+
+			.flame{
+				height: 28px;
+				//display: block;
+				margin-left: -6px;
+			}
+	
+			span{
+				font-size: 22px;
+				font-weight: 500;
+				line-height: 1em;
+			}
+		}
+	}
+}
 
 .bestsellers, .new-products{
 	margin-top: 60px;
@@ -309,14 +282,9 @@ footer{
 	}
 }
 
-.bestsellers{
-	.list-products{
-		
-	}
-}
-
 .new-products{
 	.list-products-slider{
+		padding-bottom: 10px;
 
 		.product-card{
 			width: 100%;
@@ -324,8 +292,54 @@ footer{
 	}
 }
 
+.bestsellers{
+	.list-products{
+		
+	}
+}
+
+
+
 
 .cart{
+
+	&-heading{
+		width: calc(70% - 30px);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 10px;
+		
+		h1{
+			font-weight: normal;
+			margin: 0;
+			font-size: 34px;
+		}
+
+		form{
+			a{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 7px 10px;
+				border-radius: 10px;
+				transition: background .2s;
+
+				&:hover{
+					background: rgba($accentHover, .1);
+				}
+				
+				img{
+					height: 14px;
+					margin-right: 5px;
+				}
+
+				span{
+					font-size: 14px;
+				}
+			}
+		}
+	}
 
 	.cart-empty{
 		display: flex;
@@ -458,7 +472,6 @@ footer{
 								color: #808080;
 							}
 						}
-						
 					}
 
 					.del{
@@ -807,6 +820,26 @@ form{
 				border-color: $accent;
 			}
 		}					
+	}
+}
+
+.order-success{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 100px;
+
+	img{
+		height: 100px;
+	}
+
+	h1{
+		margin-bottom: 5px;
+	}
+
+	p{
+		width: 370px;
+		text-align: center;
 	}
 }
 

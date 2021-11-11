@@ -102,7 +102,7 @@
 					margin-right: 10px;
 
 					img{
-						height: 20px;
+						height: 25px;
 					}
 				}
 
@@ -189,6 +189,36 @@
 
 			.product-card{
 				margin-top: 20px;
+			}
+		}
+
+		.catalog-no-products{
+			margin-top: 200px;
+			width: 100%;
+
+			&_text{
+				text-align: center;
+				font-size: 18px;
+				span{
+					font-weight: 500;
+				}
+			}
+
+			&_btn{
+				border-radius: 14px;
+				background: $accentHover;
+				width: 200px;
+				margin: 0 auto;
+				margin-top: 20px;
+				
+				a{
+					display: block;
+					padding: 10px 20px;
+					color: #fff;
+					font-size: 14px;
+					text-align: center;
+
+				}
 			}
 		}
 	}
@@ -533,6 +563,32 @@
 						}
 					}
 				}
+
+				.product-card_flags{
+					//border: 1px solid red;
+					position: absolute;
+					top: 0;
+					left: 0;
+					margin-top: 6px;
+					margin-left: 6px;
+
+					> div{
+						opacity: .7;
+						padding: 4px 8px;
+						border-radius: 10px;
+						font-size: 12px;
+						user-select: none;
+
+						&:hover{
+							opacity: 1;
+						}
+					}
+
+					.discount-percentage{
+						background: #ff0000;
+						color: #fff;
+					}
+				}
 			}
 
 			&_info{
@@ -548,7 +604,7 @@
 					.name{
 						height: 54px;
 						overflow: hidden;
-						//border: 1px solid red;
+						border: 1px solid red;
 
 						a{
 							font-size: 14px;
@@ -876,6 +932,23 @@
 
 		&-price{
 			text-align: center;
+
+			//border: 1px solid red;
+
+			// &.sale{
+			// 	height: 200px;
+			// 	background: url(/resources/images/icons/flame.svg);
+			// 	background-size: 250px;
+			// 	background-repeat: no-repeat;
+			// 	background-position: center;
+
+			// 	.actual{
+			// 		margin-top: 100px;
+			// 		color: #fff;
+			// 	}
+
+			// }
+
 
 			.old{
 				font-size: 20px;

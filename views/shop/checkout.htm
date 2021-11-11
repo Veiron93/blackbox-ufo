@@ -28,7 +28,7 @@
 						- <span><?= $value['price'] == 0 ? 'бесплатно': $value['price']?></span>
 					</label>
 
-					<input type="radio" name="delivery" value="<?=$value['price']?>" id="cart-form-input-<?=$id?>" <?= isset($value['checked']) ? 'checked':''?> data-code="<?=$value['code']?>">
+					<input type="radio" name="delivery" value="<?=$id?>" id="cart-form-input-<?=$id?>" <?= isset($value['checked']) ? 'checked':''?> data-price="<?=$value['price']?>" data-code="<?=$value['code']?>">
 							
 					<?php if(isset($value['description'])): ?>
 						<div class="form-item-radio-description">
@@ -57,7 +57,7 @@
 			<div class="item-price devivery-price">
 				<div>Доставка:</div>
 				<div>
-					<span>0</span>
+					<span></span>
 				</div>
 			</div>
 
@@ -77,7 +77,7 @@
 		</div>
 
 		<div class="bnt-order-buy">
-			<input type="hidden" name="customer-email">
+			<input type="hidden" name="customer-email" value="user@bb65.ru">
 			<a href="#" data-handler="onPlaceOrder">Оформить заказ</a>
 		</div>
 	<? Phpr_Form::closeTag() ?>

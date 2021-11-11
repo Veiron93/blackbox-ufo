@@ -63,7 +63,7 @@
 
 				<div class="catalog-product_buy">
 					<? if ($product->price): ?>
-						<div class="catalog-product_buy-price">
+						<div class="catalog-product_buy-price <?=$product->old_price ? 'sale':''?>">
 							<?php if($product->old_price): ?>
 								<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
 							<?php endif; ?>

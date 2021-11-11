@@ -8,6 +8,7 @@
 	$menu = null;
 	$item = null;
 	$uri = Phpr::$request->getCurrentUri();
+	
 	foreach($menus as &$cmenu) {
 		$item = Admin_MenuItem::find_current_item($cmenu, $uri);
 		if($item && $item->text_block_id) {
@@ -17,15 +18,16 @@
 	} 
 ?>
 
-<div class="header">
-	<? $this->renderLayout('_breadcrumbs', ['current_item' => $item]) ?>
-	<h1><?= $block->title ?></h1>
+<div class="container static-page">
+	<div class="heading-page">
+		<h1><?= $block->title ?></h1>
+	</div>
+	<div data-formatted-text>
+		<?= $block->get_filtered_text() ?>
+	</div>
 </div>
 
-<div data-formatted-text>
-	<?= $block->get_filtered_text() ?>
-</div>
-
-<? $this->renderLayout('_dynamic_children_list', ["current_item" => $item]); ?>
+<? //$this->renderLayout('_breadcrumbs', ['current_item' => $item]) ?>
+<? //$this->renderLayout('_dynamic_children_list', ["current_item" => $item]); ?>
 
 <? Phpr_View::endBlock()?>

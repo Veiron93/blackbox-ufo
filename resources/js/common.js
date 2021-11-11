@@ -111,23 +111,32 @@ document.addEventListener("DOMContentLoaded", function() {
 		let cart = document.querySelector('.cart');
 
 		if(cart){
+
 			let deliveryItems = cart.querySelectorAll('input[name="delivery"]'),
 				address = cart.querySelector('.section-address'),
 				deviveryPrice = cart.querySelector('.devivery-price').querySelector('span'),
 				goodsPrice = cart.querySelector('.goods-price').querySelector('span'),
 				totalPrice = cart.querySelector('.total-price').querySelector('span');
 
+			function setTotalPriceDelivery(e){
+				if(e.getAttribute('data-price') == 0 && e.getAttribute('data-code') == 'pickup'){
+					deviveryPrice.textContent = "Самовывоз"
+				}else if(e.getAttribute('data-price') == 0 && e.getAttribute('data-code') != 'pickup'){
+					deviveryPrice.textContent = "Бесплатно"
+				}else{
+					deviveryPrice.textContent = e.getAttribute('data-price')
+				}
+			}
+			
 			deliveryItems.forEach(function(e){
+
+				if(e.checked) setTotalPriceDelivery(e);
+				
+				// изменение способа доставки
 				e.addEventListener('change', function(){
-
-					if(e.getAttribute('data-code') != 'pickup'){
-						address.classList.add('active');
-					}else{
-						address.classList.remove('active');
-					}
-
-					deviveryPrice.textContent = e.value;
-					totalPrice.textContent = Number(e.value) + Number(goodsPrice.getAttribute('data-summ'));
+					setTotalPriceDelivery(e)
+					address.classList.toggle('active')
+					totalPrice.textContent = Number(e.getAttribute('data-price')) + Number(goodsPrice.getAttribute('data-summ'));
 				})
 			})
 		}

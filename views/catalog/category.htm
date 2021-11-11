@@ -31,30 +31,34 @@
 
 			<div class="catalog-products_wrapper">
 
-				<?php $this->renderPartial('filters') ?>
+				<?php //$this->renderPartial('filters') ?>
 
-				<div class="catalog-products_list">
-					<?php 
-						$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
+				<?php if (isset($products) && $products->count): ?>
+					<div class="catalog-products_list">
+						<?php 
+							$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
+							$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList]);
+						?>
 
-						$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList]);
-					?>
-
-					<div class="list-products lg-4 md-3 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
-						<?php if (isset($products) && $products->count): ?>
+						<div class="list-products lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
 							<?php foreach ($products as $product): ?>
 								<?php $this->renderPartial("product_card", ['product'=>$product]);?>
 							<?php endforeach; ?>
-						<?php else: ?>
-							<p>В данной категории товаров нет</p>
-						<?php endif; ?>
-					</div>			
-				</div>
+						</div>	
+					</div>
+				<?php else: ?>
+					<div class="catalog-no-products">
+						<div class="catalog-no-products_text">В категории <span>«<?= $category->name?>»</span> весь товар закончился</div>
+						<div class="catalog-no-products_btn">
+							<a href="/catalog">Посмотреть другие крутые товары</a>
+						</div>
+					</div>
+				<?php endif; ?>	
 			</div>
 		<?php endif;?>		
 	</div>
 <?php else: ?>
-	<h2>Категория не найдена</h2>
+	<div class="catalog-no-category">Категория не найдена</div>
 <?php endif; ?>
 		
 	

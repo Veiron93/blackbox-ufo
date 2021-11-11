@@ -3,13 +3,7 @@
 <?php if ($items !== null): ?>
 	<?php foreach ($items as $idx => $item): ?>
 		<?php if (!$item->is_hidden_in_menu): ?>
-			<a href="<?= $item->getUrl() ?>">
-				<?php if($item->image): ?>
-					<img src="<?= $item->image->getPath() ?>" alt="">
-				<?php endif ?>
-				
-				<span><?= $item->title ?></span>
-			</a>
+			<a href="<?= $item->getUrl() ?>"><?= $item->title ?></a>
 		<?php endif; ?>
 	<?php endforeach; ?>
 <? endif; ?>

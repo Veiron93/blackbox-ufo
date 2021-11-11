@@ -57,8 +57,25 @@
 			</div>
 		<?php endif;?>
 	</div>
+
+	<?php if(isset($sale) && count($sale)): ?>
+		<div class="sale">
+			<div class="sale-title">
+				<a href="/sale/">
+					<img src="/resources/images/icons/flame.svg" class="flame" alt="">
+					<span>Распродажа</span>
+				</a>
+			</div>
+
+			<div class="list-products lg-5 md-4 sm-2" data-view-list="grid">
+				<?php foreach($sale as $product): ?>
+					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
+				<? endforeach ?>
+			</div>
+		</div>
+	<?php endif ?>
 	
-	<?php if($bestsellers && count($bestsellers)): ?>
+	<?php if(isset($bestsellers) && count($bestsellers)): ?>
 		<div class="bestsellers">
 			<div class="bestsellers-title">Хиты продаж</div>
 
@@ -70,7 +87,7 @@
 		</div>
 	<?php endif ?>
 
-	<?php if($newProducts && count($newProducts)): ?>
+	<?php if(isset($newProducts) && count($newProducts)): ?>
 		<div class="new-products">
 			<div class="new-products-title">Новинки</div>
 

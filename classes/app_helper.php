@@ -38,4 +38,9 @@ class App_Helper{
 		WHERE c.hidden is null and c.deleted is null and c.hot is not null and c.parent_id = $id
 		ORDER BY c.sort_order asc");
 	}
+
+
+	public static function getDiscountPercentage($oldPrice, $price){
+		return round(100 - ($price*100/$oldPrice));
+	}
 }
