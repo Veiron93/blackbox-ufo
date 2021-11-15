@@ -1,8 +1,14 @@
 <div class="product-card">
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
-		<a href="<?= $product->getUrl() ?>">
+		<a href="/catalog/product/<?= $product->id ?>>">
 			<?php
-				$image = $product->findMainPhoto() ? $product->findMainPhoto()->getThumb(300, 300) : '/resources/images/icons/no-image.svg';
+				if(isset($product->photos) && count($product->photos)){
+					$image = (new LWImageManipulator($product->photos[0]->id, $product->photos[0]->disk_name))->getThumb(300, 300, Phpr_ImageManipulator::fitAndCrop);
+				}else if($product->findMainPhoto()){
+					$image = $product->findMainPhoto()->getThumb(300, 300);
+				}else{
+					$image = '/resources/images/icons/no-image.svg';
+				}
 			?>
 			<img src="<?= $image ?>" alt="<?= $product->name?>" />
 		</a>
@@ -11,7 +17,7 @@
 			<div class="product-card_flags">
 				<?php if($product->old_price): ?>
 					<div class="discount-percentage">
-						Скидка <?= App_Helper::getDiscountPercentage($product->old_price, $product->price);?>%
+						- <?= App_Helper::getDiscountPercentage($product->old_price, $product->price);?>%
 					</div>
 				<?php endif; ?>
 			</div>
@@ -21,7 +27,7 @@
 	<div class="product-card_info">
 		<div class="product-card_info-description">
 			<div class="name">
-				<a href="<?= $product->getUrl() ?>"><?= $product->name ?></a>
+				<a href="/catalog/product/<?= $product->id ?>"><?= $product->name ?></a>
 			</div>
 
 			<div class="short-description"><?= $product->description ?></div>

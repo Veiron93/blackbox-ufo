@@ -21,16 +21,16 @@
 
 		<div class="sorting-mode_list">
 			<div class="item <?= !$sorting ? 'active':''?>">
-				<a href="/catalog/<?= $category->id?>">По наименованию</a>
+				<a href="/<?=$url?>">По наименованию</a>
 			</div>
 			<div class="item <?= $sorting == 'new'? 'active':''?>">
-				<a href="/catalog/<?= $category->id?>/?order=new">Сначала новые</a>
+				<a href="/<?=$url?>/?order=new">Сначала новые</a>
 			</div>
 			<div class="item <?= $sorting == 'price'? 'active':''?>">
-				<a href="/catalog/<?= $category->id?>/?order=price">По возростанию цены</a>
+				<a href="/<?=$url?>/?order=price">По возростанию цены</a>
 			</div>
 			<div class="item <?= $sorting == '-price'? 'active':''?>">
-				<a href="/catalog/<?= $category->id?>/?order=-price">По убыванию цены</a>
+				<a href="/<?=$url?>/?order=-price">По убыванию цены</a>
 			</div>
 		</div>
 	</div>

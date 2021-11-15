@@ -244,22 +244,21 @@ footer{
 	}
 }
 
-.sale{
+.sale-index{
 	margin-top: 60px;
 
-	&-title{
+	&_title{
 		margin-bottom: 15px;
 
 		a{
 			display: flex;
 			align-items: center;
 			//border: 1px solid red;
-			width: 160px;
+			width: 230px;
 
 			.flame{
-				height: 28px;
-				//display: block;
 				margin-left: -6px;
+				height: 28px;
 			}
 	
 			span{
@@ -267,6 +266,11 @@ footer{
 				font-weight: 500;
 				line-height: 1em;
 			}
+		}
+
+		>div{
+			font-size: 14px;
+			margin-left: 25px;
 		}
 	}
 }

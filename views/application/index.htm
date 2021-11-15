@@ -59,17 +59,17 @@
 	</div>
 
 	<?php if(isset($sale) && count($sale)): ?>
-		<div class="sale">
-			<div class="sale-title">
+		<div class="sale-index">
+			<div class="sale-index_title">
 				<a href="/sale/">
 					<img src="/resources/images/icons/flame.svg" class="flame" alt="">
-					<span>Распродажа</span>
+					<span>Товары со скидкой</span>
 				</a>
 			</div>
 
 			<div class="list-products lg-5 md-4 sm-2" data-view-list="grid">
 				<?php foreach($sale as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
+					<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product]);?>
 				<? endforeach ?>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 
 			<div class="list-products lg-5 md-4 sm-2" data-view-list="grid">
 				<?php foreach($bestsellers as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
+					<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product]);?>
 				<? endforeach ?>
 			</div>
 		</div>

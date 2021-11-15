@@ -37,7 +37,7 @@
 					<div class="catalog-products_list">
 						<?php 
 							$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
-							$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList]);
+							$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList, 'url'=>'catalog/'.$category->id]);
 						?>
 
 						<div class="list-products lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>

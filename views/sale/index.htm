@@ -1,0 +1,32 @@
+<div class="container sale">
+	<div class="heading-page">
+		<h1>Товары со скидкой</h1>
+	</div>
+
+	<div class="catalog-products_wrapper">
+		<?php if (isset($products) && count($products)): ?>
+			<div class="catalog-products_list">
+				<?php 
+					$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
+					$this->renderPartial($this->getViewsDir() . 'catalog/_sorting.htm', ['viewModeProductsList'=>$viewModeProductsList, 'url'=>'sale']);
+				?>
+
+				<div class="list-products lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
+					<?php foreach ($products as $product): ?>
+						<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product]);?>
+					<?php endforeach; ?>
+				</div>	
+			</div>
+		<?php else: ?>
+			<div class="catalog-no-products">
+				<div class="catalog-no-products_text">В категории <span>«<?//= $category->name?>»</span> весь товар закончился</div>
+				<div class="catalog-no-products_btn">
+					<a href="/catalog">Посмотреть другие крутые товары</a>
+				</div>
+			</div>
+		<?php endif; ?>	
+	</div>
+</div>
+
+
+
