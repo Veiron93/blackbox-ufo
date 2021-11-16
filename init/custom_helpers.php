@@ -128,3 +128,16 @@ function u($name) {
 	}
 	return Phpr::$router->url($name, $passedArgs);
 }
+
+
+function checkProductCart(){
+	$cart = Shop_Cart::getCart();
+	$productCartItems = $cart->getItems();
+	$idsProductsCart = [];
+
+	foreach($productCartItems as $productCart){
+		array_push($idsProductsCart, $productCart->productId);
+	}
+
+	return $idsProductsCart;
+}

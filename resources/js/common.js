@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			quantityNum.value = +quantityNum.value + 1;
 		}
 
-		let cart = document.querySelector('.cart');
+		let cart = document.querySelector('.cart-wrapper');
 
 		if(cart){
 			let quantityBtns = cart.querySelectorAll('.btn-quantity-cart'),
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	function cartDelivery(){
 
-		let cart = document.querySelector('.cart');
+		let cart = document.querySelector('.cart-wrapper');
 
 		if(cart){
 
@@ -385,4 +385,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		}
 	}
+
+
+
+///////////// КНОПКА ДОБАВИТЬ В КОРЗИНУ /////////////
+	
+	function productAddToCart(){
+		let btns = document.querySelectorAll('.btn-buy');
+
+		if(btns){
+			btns.forEach(btn=>{
+				btn.querySelector('a').addEventListener('click', function(){
+					this.parentElement.setAttribute('data-added', true)
+				})
+			})
+		}
+	}
+
+	productAddToCart();
 });

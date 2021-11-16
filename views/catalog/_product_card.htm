@@ -47,13 +47,15 @@
 				</div>
 
 				<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+					
 					<?php 
 						$viewData = [
 							'withQuantity' => true,
 							'initialQuantity' => 1,
 							'item' => $product,
 							'type' => 'product',
-							'idPrefix' => "atc-product-{$product->id}"
+							'idPrefix' => "atc-product-{$product->id}",
+							'idsProductsCart' => $idsProductsCart
 						];
 					?>
 

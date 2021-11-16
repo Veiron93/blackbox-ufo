@@ -416,7 +416,15 @@ header {
 				position: relative;
 				flex: none;
 
-				a {
+				border: 1px solid red;
+
+				&:hover{
+					.mini-cart-list{
+						display: block;
+					}	
+				}
+
+				> a {
 					display: flex;
 					align-items: center;
 
@@ -455,6 +463,47 @@ header {
 						span {
 							font-size: 12px;
 							color: #fff;
+						}
+					}
+				}
+
+				.mini-cart-dropdown{
+					border: 1px solid red;
+					position: absolute;
+					right: 0;
+					top: 0;
+					width: 400px;
+					margin-top: 26px;
+					height: auto;
+					padding: 20px;
+					z-index: 10;
+					background: #fff;
+					border-radius: 14px;
+					//display: none;
+
+					&_title{
+						font-size: 22px;
+						font-weight: 500;
+						margin-bottom: 10px;
+					}
+
+					&_list{
+						margin-bottom: 20px;
+					}
+
+					&_footer{
+						display: flex;
+						align-items: flex-end;
+						justify-content: space-between;
+
+						.price{
+							font-weight: bold;
+							font-size: 30px;
+						}
+
+						.btn{
+							@include btn();
+							//border: 1px solid red;
 						}
 					}
 				}

@@ -125,13 +125,17 @@ class Shop extends App_Controller
         try {
             $cart = Shop_Cart::getCart();
             $id = post('id');
+
             if (!$id) {
                 throw new Phpr_ApplicationException("Illegal request");
             }
+
             $item = $cart->getItem($id);
+
             if ($item) {
                 $cart->deleteItem($item);
             }
+
             Phpr::$response->redirect(u('shop_cart', []));
         } catch (\Exception $ex) {
             $this->ajaxError($ex);

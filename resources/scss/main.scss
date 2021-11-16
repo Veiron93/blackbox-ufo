@@ -1,5 +1,5 @@
 #mysqlLoggerWrapper{
-	display: none;
+	//display: none;
 }
 
 *{
@@ -308,7 +308,7 @@ footer{
 .cart{
 
 	&-heading{
-		width: calc(70% - 30px);
+		width: calc(100% - 350px);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -362,10 +362,14 @@ footer{
 	.cart-wrapper{
 		display: flex;
 
+		.cart-section{
+			width: 100%;
+		}
+
 		.cart-list-products{
 			@include style-block;
 			align-self: flex-start;
-
+			
 			form{
 				.cart-list-products-item{
 					display: flex;
@@ -374,7 +378,6 @@ footer{
 					&:not(:last-child){
 						border-bottom: 1px solid #ececec;
 					}
-					
 
 					.photo{
 						width: 70px;
@@ -382,6 +385,7 @@ footer{
 						margin-right: 30px;
 						border-radius: 10px;
 						overflow: hidden;
+						flex: none;
 						a{
 							img{
 								max-width: 100%;
@@ -391,8 +395,8 @@ footer{
 					}
 
 					.name{
-						width: 350px;
-						margin-right: 30px;
+						width: 100%;
+						margin-right: 25px;
 						//border: 1px solid red;
 
 						a{
@@ -411,10 +415,11 @@ footer{
 					}
 
 					.count{
-						width: 120px;
+						width: 90px;
 						//border: 1px solid red;
-						margin-right: 30px;
+						margin-right: 25px;
 						display: flex;
+						flex: none;
 
 						button, input{
 							outline: none;
@@ -459,6 +464,9 @@ footer{
 
 					.price{
 						//border: 1px solid red;
+						flex: none;
+						margin-right: 20px;
+						width: 105px;
 
 						.price-tovar{
 							font-size: 20px;
@@ -471,9 +479,11 @@ footer{
 							font-size: 14px;
 							color: #808080;
 							line-height: 1em;
+							//border: 1px solid red;
 
 							span{
 								color: #808080;
+								white-space: nowrap;
 							}
 						}
 					}
@@ -487,6 +497,7 @@ footer{
 						width: 30px;
 						border-radius: 8px;
 						transition: background .2s;
+						flex: none;
 
 						&:hover{
 							background: rgba($accentHover, .2);
@@ -575,7 +586,8 @@ footer{
 			margin-left: 30px;
 			@include style-block;
 			padding: 15px 15px 0;
-			width: 30%;
+			width: 320px;
+			flex: none;
 
 			form{
 				.section-address{

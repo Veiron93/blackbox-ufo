@@ -2,28 +2,49 @@
 
 // кнопка добавить в корзину
 .btn-buy{
+	//border: 1px solid red;
+	width: 40px;
+	height: 40px;
 	overflow: hidden;
-	a{
-		width: 40px;
-		height: 40px;
-		display: block;
-		background-color: #e9e9e9;
-
-		background-image: url('/resources/images/icons/black-box.svg');
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: 24px;
-
-		transition: background .2s;
-	}
+	transition: background .2s;
+	background-color: #e9e9e9;
+	background-image: url('/resources/images/icons/black-box.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 24px;
 
 	&:hover{
-		a{
+		background-color: #526194;
+		background-image: url('/resources/images/icons/white-box.svg');
+	}
+
+	a{
+		display: block;
+		height: 100%;
+	}
+
+	&[data-added='true']{
+		background-color: rgba(#526194, 0.4);
+		background-image: url('/resources/images/icons/check-white-2.svg');
+
+		&:hover{
 			background-color: #526194;
-			background-image: url('/resources/images/icons/white-box.svg');
+		}
+
+		.add-to-cart-btn{
+			display: none;
+		}
+
+		.to-cart-btn{
+			display: block;
 		}
 	}
+
+	.to-cart-btn{
+		display: none;
+	}
 }
+
 
 // главная страница
 .catalog-categories-index{
@@ -573,7 +594,7 @@
 					margin-left: 6px;
 
 					> div{
-						opacity: .7;
+						opacity: .5;
 						padding: 4px 8px;
 						border-radius: 10px;
 						font-size: 12px;
@@ -983,11 +1004,14 @@
 				border-radius: 14px;
 				width: 160px;
 				margin: 0 auto;
+				background-color: #e1e1e1;
 
-				a{
-					width: 100%;
-					background-color: #e1e1e1;
+				&:hover{
+					background-color: #526194;
+				}
 
+				&[data-added='true']{
+					background-color: rgba(#526194, 0.4);
 					&:hover{
 						background-color: #526194;
 					}
