@@ -12,6 +12,7 @@ class Shop extends App_Controller
         $this->globalHandlers[] = 'onDeleteItem';
         $this->globalHandlers[] = 'onPlaceOrder';
         $this->globalHandlers[] = 'onClearCart';
+        $this->globalHandlers[] = 'onDeleteProductCart';
     }
 
     public function index()
@@ -158,6 +159,28 @@ class Shop extends App_Controller
             }
 
             Phpr::$response->redirect(u('shop_cart', []));
+        } catch (\Exception $ex) {
+            $this->ajaxError($ex);
+        }
+    }
+
+    protected function onDeleteProductCart()
+    {
+        try {
+            $cart = Shop_Cart::getCart();
+            $id = post('id');
+
+            if (!$id) {
+                throw new Phpr_ApplicationException("Illegal request");
+            }
+
+            $item = $cart->getItem($id);
+
+            if ($item) {
+                $cart->deleteItem($item);
+            }
+
+            Phpr::$response->redirect($_POST['page']);
         } catch (\Exception $ex) {
             $this->ajaxError($ex);
         }

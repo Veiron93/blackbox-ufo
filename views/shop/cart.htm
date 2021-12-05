@@ -42,7 +42,7 @@
 									<td>
 										<?= $sku->product->name ?> <?= sprintf('(%s)', $sku->name ? $sku->name : $sku->sku) ?>
 									</td>
-									<td><?= Core_Number::formatNumber($sku->price) ?> ₽ ×</td>
+									<td><?= Core_Number::formatNumber($sku->price) ?> ₽ &#215;</td>
 									<td>
 										<input type="number" min="0" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
 										<a href="#" data-handler="onUpdateQuantity" data-extra="<?= extra(["id" => $item->getId()]) ?>">Обновить</a>
@@ -74,7 +74,7 @@
 
 										<div class="price">
 											<p class="price-tovar"><span><?= Core_Number::formatNumber($item->getTotalPrice()) ?></span></p>
-											<p class="summa"><span><?= $item->getQuantity() ?></span> шт. × <span><?= Core_Number::formatNumber($product->price) ?></span></p>
+											<p class="summa"><span><?= $item->getQuantity() ?></span> шт. &#215; <span><?= Core_Number::formatNumber($product->price) ?></span></p>
 										</div>
 
 										<div class="del">

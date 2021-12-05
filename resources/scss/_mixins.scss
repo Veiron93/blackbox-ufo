@@ -34,8 +34,6 @@
 	}
 }
 
-
-
 @mixin screen_md_down{
 	@media screen and (max-width: 991px){
 		@content;
@@ -54,7 +52,6 @@
 	}
 }
 
-
 @mixin style-block{
     background: #fff;
 	border-radius: 14px;
@@ -62,10 +59,16 @@
 	overflow: hidden;
 }
 
-@mixin btn{
+@mixin btn($bg: $accent, $bgHover: $accentHover, $color: #fff){
 	border-radius: 14px;
 	height: 40px;
-	border: 1px solid red;
+	background: $accent;
+	background: $bg;
+	transition: background .2s;
+
+	&:hover{
+		background: $accentHover;
+	}
 
 	a{
 		display: flex;
@@ -73,6 +76,7 @@
 		justify-content: center;
 		height: 100%;
 		padding: 0px 15px;
+		color: $color;
 	}
 }
 	
