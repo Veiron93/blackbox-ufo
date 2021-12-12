@@ -1,3 +1,5 @@
+<?php $phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content; ?>
+
 <header>
 	<div class="header-top-section">
 		<div class="header-wrapper">
@@ -13,9 +15,9 @@
 			</div>
 
 			<div class="header-phone">
-				<a href="tel:89621112114">
+				<a href="tel:<?= $phone ?>">
 					<img src="/resources/images/icons/phone.svg" alt="">
-					<span>89621112114</span>
+					<span><?= $phone?></span>
 				</a>
 			</div>
 
@@ -37,14 +39,26 @@
 	<div class="header-bottom-section">
 		<div class="header-wrapper">
 
-			<? $this->renderLayout('_dynamic_menu_catalog') ?>
+			<?php 
+				$catalogCategoriesMenu = Catalog_Category::create()->list_root_children();
+
+				if($catalogCategoriesMenu){
+					$this->renderLayout('_dynamic_menu_catalog', ['catalogCategoriesMenu' => $catalogCategoriesMenu]);
+					$this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);
+				}
+			?>
+
+			<div class="btn-catalog-menu-mobile">
+				<img src="/resources/images/icons/menu.svg" alt="Меню" />
+				<span>Каталог</span>
+			</div>
 
 			<div class="other-menu">
 				<ul>
 					<li>
 						<a href="https://www.instagram.com/blackboxsakh/" target="_blank">
 							<img src="/resources/images/icons/social/instagram-white.svg" alt="Поиск">
-							<span>Скидка 5% за подписку на Instagram</span>
+							<span>Скидка 5% <span>за подписку на Instagram</span></span>
 						</a>
 					</li>
 				</ul>

@@ -1,0 +1,120 @@
+<div class="mobile-menu-catalog">
+
+	<div class="mobile-menu-catalog__header">
+		<div class="logo">
+			<a href="/">
+				<img src="/resources/images/logo.svg" alt="BlackBox">
+				<span>BlackBox</span>
+			</a>
+		</div>
+
+		<div class="btn-catalog-menu-mobile">
+			<img src="/resources/images/icons/close.svg" alt="Закрыть каталог">
+		</div>
+	</div>
+
+	<div class="mobile-menu-catalog__categories">
+
+		<?php foreach($catalogCategoriesMenu as $mainCategory): ?>
+
+			<div class="main-category">	
+
+				<?php 
+					$mainCategoryId = $mainCategory->id;
+					$mainCategoryName = $mainCategory->name;
+					$mainCategoryImg = '/resources/images/icons/box-2.svg';
+					
+					if(count($mainCategory->image)){
+						$mainCategoryImg = $mainCategory->image->getPath();
+					}
+
+					$categories_level_2 = $mainCategory->list_children()->except(true, 'hidden');
+				?>
+
+				<?php if (count($categories_level_2)): ?>
+
+					<div class="main-category_wrapper">
+						<div class="main-category_icon">
+							<img src="<?= $mainCategoryImg ?>" />
+						</div>
+
+						<div class="main-category_name">
+							<?= $mainCategoryName ?>
+						</div>
+
+						<div class="main-category_arrow">
+							<img src="/resources/images/icons/right-arrow.svg" alt="">
+						</div>
+					</div>
+
+					<div class="categories-level-2">
+
+						<div class="categories-level-2_header">
+							<div class="link-back">
+								<img src="/resources/images/icons/left-arrow.svg" alt="">
+								<span><?= $mainCategoryName ?></span>
+							</div>
+
+							<div class="btn-catalog-menu-mobile">
+								<img src="/resources/images/icons/close.svg" alt="Закрыть каталог">
+							</div>
+						</div>
+
+						<div class="categories-level-2_list">
+							<?php foreach($categories_level_2 as $category_level_2): ?>
+
+								<?php 
+									$category_level_2_name = $category_level_2->name;
+									$categories_level_3 = $category_level_2->list_children()->except(true, 'hidden'); 
+								?>
+
+								<?php if(count($categories_level_3)): ?>
+									<div class="category-level-2">
+										<div class="category-level-2_name">
+											<?= $category_level_2_name ?>
+										</div>
+
+										<div class="category-level-2_arrow">
+											<img src="/resources/images/icons/arrow-bottom-black.svg" alt="">
+										</div>
+
+										<div class="categories-level-3_list">
+											<?php foreach($categories_level_3 as $category_level_3): ?>
+												<div class="category-level-3">
+													<a href="<?= $category_level_3->id ?>"><?= $category_level_3->name ?></a>
+												</div>
+											<?php endforeach ?>	
+										</div>
+									</div>
+								<?php else: ?>
+									<a class="category-level-2--link">
+										<div class="category-level-2_name">
+											<?= $category_level_2_name ?>
+										</div>
+									</a>
+								<?php endif ?>
+							<?php endforeach ?>	
+						</div>	
+					</div>
+
+				<?php else: ?>
+					<a href="/catalog/<?= $mainCategoryId ?>" class="main-category_wrapper-link">
+						<div class="main-category_icon">
+							<img src="<?= $mainCategoryImg ?>" />
+						</div>
+
+						<div class="main-category_name">
+							<?= $mainCategoryName ?>
+						</div>
+					</a>
+				<?php endif ?>
+			</div>
+		<?php endforeach ?>
+	</div>
+
+	<div class="mobile-menu-catalog__footer">
+		<a href="tel:<?= $phone ?>">
+			<?= $phone?>
+		</a>
+	</div>
+</div>

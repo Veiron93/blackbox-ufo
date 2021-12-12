@@ -3,8 +3,11 @@
 <title><?= h(site_title($title)) ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<link rel="shortcut icon" type="image/ico" href="/resources/images/favicon.ico">
-<link rel="icon" type="image/png" href="/resources/images/favicon.png" />
+<!-- <link rel="shortcut icon" type="image/ico" href="/resources/images/favicon.ico">
+<link rel="icon" type="image/png" href="/resources/images/favicon.png" /> -->
+
+<link rel="icon" href="/resources/images/favicon.svg" />
+
 <!--
 <meta name="msapplication-TileColor" content="">
 <meta name="theme-color" content="">
@@ -14,6 +17,17 @@
 <meta name="keywords" content="<?= site_keywords() ?>" />
 <?= site_metatags($this) ?>
 <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
+
+<meta name="yandex-verification" content="ac10f210c4c80b28" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-49KB07Q11J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-49KB07Q11J');
+</script>
 
 <!--[if lte IE 10]>
 <?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
@@ -25,7 +39,6 @@
 
 <? $this->unshiftJavaScript(
 	$this->getAsset('js/jquery.min.js'),
-	$this->getAsset('js/slick.min.js'),
 	$this->getAsset('js/jquery.fancybox.min.js'),
 	'/phproad/resources/javascript/ufo.ajax.common.js',
     '/phproad/resources/javascript/ufo.ajax.js',

@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	// слайдер на главной
 	new Swiper(".main-slider", {
         loop: true,
+		autoplay: {
+			delay: 4000,
+			disableOnInteraction: false,
+		},
         navigation: {
           nextEl: ".main-slider .button-next",
           prevEl: ".main-slider .button-prev",
@@ -58,6 +62,77 @@ document.addEventListener("DOMContentLoaded", function() {
 	// 	slidesToScroll: 5,
 	// 	arrows: true,
 	// });
+
+///////////// КАТАЛОГ МЕНЮ (МОБИЛЬНАЯ ВЕРСИЯ) /////////////
+function mobileCatalogMenu(){
+	
+	function stateCatalogMenu(){
+		document.body.classList.toggle('no-scroll');
+		catalogMenu.classList.toggle('active');
+		closeSubCategories()
+	}
+
+	function stateCategoriesLevel_2(){
+
+		activeCategoriesLevel_2 = this.nextElementSibling;
+
+		if (activeCategoriesLevel_2){
+			activeCategoriesLevel_2.classList.add('active');
+
+			let categoriesLevel_2 = activeCategoriesLevel_2.querySelectorAll('.category-level-2');
+
+			categoriesLevel_2.forEach(categoryLevel_2 => {
+				categoryLevel_2.addEventListener('click', stateCategoriesLevel_3)
+			})
+		} 
+	}
+
+	function stateCategoriesLevel_3(){
+		activeCategoriesLevel_3.push(this);
+
+		if (activeCategoriesLevel_3){
+			this.classList.toggle('active');
+		}
+	}
+
+	function closeSubCategories(){
+		if(activeCategoriesLevel_2){
+			activeCategoriesLevel_2.classList.remove('active');
+			activeCategoriesLevel_2 = null;
+		}
+
+		if(activeCategoriesLevel_3){
+
+			activeCategoriesLevel_3.forEach(categoryLevel_3 => {
+				categoryLevel_3.classList.remove('active');
+			})
+			
+			activeCategoriesLevel_3.length = 0;
+		}
+	}
+
+	let btnsCatalogMenu = document.querySelectorAll('.btn-catalog-menu-mobile');
+	let catalogMenu = document.querySelector('.mobile-menu-catalog');
+	let mainCategories = catalogMenu.querySelectorAll('.main-category_wrapper');
+	let activeCategoriesLevel_2 = null;
+	let activeCategoriesLevel_3 = [];
+	let linksBackMainCategories = catalogMenu.querySelectorAll('.link-back');
+
+	btnsCatalogMenu.forEach(btn => {
+		btn.addEventListener('click', stateCatalogMenu)
+	})
+
+	mainCategories.forEach(mainCategory => {
+		mainCategory.addEventListener('click', stateCategoriesLevel_2)
+	})
+
+	linksBackMainCategories.forEach(link => {
+		link.addEventListener('click', closeSubCategories)
+	})
+}
+
+mobileCatalogMenu();
+
 
 ///////////// КОРЗИНА /////////////
 
