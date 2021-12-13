@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	// слайдер на главной
 	new Swiper(".main-slider", {
         loop: true,
-		autoplay: {
-			delay: 4000,
-			disableOnInteraction: false,
-		},
+		// autoplay: {
+		// 	delay: 4000,
+		// 	disableOnInteraction: false,
+		// },
         navigation: {
           nextEl: ".main-slider .button-next",
           prevEl: ".main-slider .button-prev",
