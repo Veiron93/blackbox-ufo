@@ -1,0 +1,49 @@
+<div class="mobile-bottom-navigation">
+	<div class="item">
+		<a href="/">
+			<img src="/resources/images/icons/home.svg" alt="Главная">
+			<span>Главная</span>
+		</a>
+	</div>
+
+	<div class="item btn-catalog-menu-mobile">
+		<img src="/resources/images/icons/list.svg" alt="Каталог">
+		<span>Каталог</span>
+	</div>
+
+	<div class="item item-cart">
+
+		<?php
+			if (!isset($cart) || !$cart) {
+				$cart = Shop_Cart::getCart();
+			}
+
+			$countProductsMiniCart = $cart->getItemsCount();
+			$totalPriceMiniCart = $cart->getTotalPrice();
+		?>
+
+		<a href="<?= u('shop_cart', []) ?>">
+			<img src="/resources/images/icons/black-box.svg" alt="Корзина">
+
+			<?php if($countProductsMiniCart): ?>
+				<div class="count">
+					<?= $countProductsMiniCart ?>	
+				</div>
+			<?php endif; ?>
+
+			<span>Коробка</span>
+		</a>
+	</div>
+
+	<!-- <div class="item">
+		<a href="/">
+			<img src="/resources/images/icons/user.svg" alt="Кабинет">
+			<span>Кабинет</span>
+		</a>
+	</div> -->
+
+	<div class="item">
+		<img src="/resources/images/icons/menu-black.svg" alt="Меню">
+		<span>Меню</span>
+	</div>
+</div>

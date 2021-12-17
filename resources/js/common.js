@@ -13,27 +13,58 @@ document.addEventListener("DOMContentLoaded", function() {
 
 ///////////// SLIDERS /////////////
 
-	// слайдер на главной
+	// главный слайдер
 	new Swiper(".main-slider", {
         loop: true,
-		// autoplay: {
-		// 	delay: 4000,
-		// 	disableOnInteraction: false,
-		// },
+		autoplay: {
+			delay: 4000,
+			disableOnInteraction: false,
+		},
         navigation: {
           nextEl: ".main-slider .button-next",
           prevEl: ".main-slider .button-prev",
         }
     });
 
+	// главный слайдер - мобильная версия
+	new Swiper(".main-slider-mobile", {
+        loop: true,
+		autoplay: {
+			delay: 4000,
+			disableOnInteraction: false,
+		},
+		pagination: {
+			el: document.querySelector('.main-slider-mobile-pagination'),
+		},
+    });
+
 	// новые продукты слайер
 	new Swiper(".new-products .list-products-slider", {
-        spaceBetween: 20,
-        slidesPerView: 6,
+		
         navigation: {
           nextEl: ".new-products .list-products-slider .button-next",
           prevEl: ".new-products .list-products-slider .button-prev",
-        }
+        },
+		breakpoints: {
+			0:{
+				slidesPerView: 2,
+				spaceBetween: 10,
+				centeredSlides: true,
+				loop: true,
+			},
+			768: {
+			  slidesPerView: 4,
+			  spaceBetween: 20,
+			},
+			991: {
+			  slidesPerView: 5,
+			  spaceBetween: 20,
+			},
+			1200: {
+				slidesPerView: 6,
+				spaceBetween: 20,
+			}
+		},
     });
 
 	// слайдер в просмотре продукта

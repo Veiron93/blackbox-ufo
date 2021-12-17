@@ -1,4 +1,7 @@
-<?php $phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content; ?>
+<?php 
+	$catalogCategoriesMenu = Catalog_Category::create()->list_root_children();
+	$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content; 
+?>
 
 <header>
 	<div class="header-top-section">
@@ -40,18 +43,8 @@
 		<div class="header-wrapper">
 
 			<?php 
-				$catalogCategoriesMenu = Catalog_Category::create()->list_root_children();
-
-				if($catalogCategoriesMenu){
-					$this->renderLayout('_dynamic_menu_catalog', ['catalogCategoriesMenu' => $catalogCategoriesMenu]);
-					$this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);
-				}
+				if($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog', ['catalogCategoriesMenu' => $catalogCategoriesMenu]);
 			?>
-
-			<div class="btn-catalog-menu-mobile">
-				<img src="/resources/images/icons/menu.svg" alt="Меню" />
-				<span>Каталог</span>
-			</div>
 
 			<div class="other-menu">
 				<ul>
@@ -92,4 +85,8 @@
 		</div>
 	</div>
 </header>
+
+<?php
+	if($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);
+?>
 

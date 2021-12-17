@@ -24,10 +24,17 @@
 						</li>
 					<?php endforeach; ?>
 				</ul>
+
+				<div class="all-catalog">
+					<a href="/catalog/">Весь каталог аксессуаров</a>
+				</div>
 			</div>
 		<?php endif;?>
 
-		<?php $mainSlider = App_Helper::getBanners('main_slider') ?>
+		<?php 
+			$mainSlider = App_Helper::getBanners('main_slider');
+			$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
+		?>
 
 		<?php if(isset($mainSlider) && count($mainSlider)): ?>
 			<div class="main-slider swiper">
@@ -55,6 +62,32 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
+		<?php endif;?>
+
+		<?php if(isset($mainSliderMobile) && count($mainSliderMobile)): ?>
+			<div class="main-slider-mobile swiper">
+				<div class="swiper-wrapper">
+					<?php foreach ($mainSliderMobile as $bannerMobile): ?>
+
+						<?php $imgBanner = $bannerMobile->image->getThumb(880, 260, Phpr_ImageManipulator::fitAndCrop); ?>
+
+						<?php if($imgBanner): ?>
+							<div class="swiper-slide">
+								<?php if($bannerMobile->link): ?>
+									<a href="<?= $bannerMobile->link ?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>>
+								<?php endif;?>
+
+									<img src="<?= $imgBanner ?>" alt="<?= $bannerMobile->name ?>">
+
+								<?php if($bannerMobile->link): ?>
+									</a>
+								<?php endif;?>
+							</div>		
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+			<div class="main-slider-mobile-pagination"></div>
 		<?php endif;?>
 	</div>
 
