@@ -1,5 +1,6 @@
 <?php Phpr_View::beginBlock("view") ?>
 	<div class="catalog-product container">
+
 		<? $this->renderPartial('breadcrumbs', array('category' => $product->category, 'product' => $product)) ?>
 
 		<?php if (isset($product) and $product): ?>
@@ -7,25 +8,24 @@
 				<h1><?= $product->name ?></h1>
 			</div>
 			
-
 			<div class="catalog-product_wrapper">
 
 				<div class="catalog-product_details">
 					<?php if ($product->photos->count > 1): ?>
 
 						<div class="catalog-product-slider">
+
 							<div class="button-prev"></div>
 							<div class="button-next"></div>
 
 							<div class="mySwiper2 swiper">
-								<div class="swiper-wrapper">
+								<div class="swiper-wrapper" >
 								  	<? foreach ($product->photos as $photo): ?>
 								  		<div class="swiper-slide">
-								  			<a data-fancybox="product-photos" href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
+								  			<a href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
 												<img src="<?= $photo->getThumb(450, 360, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
 											</a>
 								  		</div>
-										
 									<? endforeach; ?>
 								</div>
 							</div>
@@ -36,7 +36,6 @@
 								  		<div class="swiper-slide">
 								  			<img src="<?= $photo->getThumb(66, 66, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
 								  		</div>
-										
 									<? endforeach; ?>
 								</div>
 							</div>
@@ -48,14 +47,13 @@
 							$img = $mainPhoto ? $mainPhoto->getThumb(450, 'auto'): '/resources/images/no-image.png';
 						?>
 
-						<div class="catalog-product_photo">
-							<a href="<?= $img ?>" data-fancybox>
+						<div class="catalog-product_photo" class="pswp">
+							<a href="<?= $img ?>">
 								<img src="<?= $img ?>" alt="">
 							</a>
 						</div>
 					<?php endif; ?>
 					
-
 					<div class="description">
 						<?= $product->description ?>
 					</div>
