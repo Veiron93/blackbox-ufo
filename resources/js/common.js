@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() { 
-
-	let pswpElement = document.querySelector('.pswp');
-	let gallery = new PhotoSwipe(pswpElement);
-	gallery.init();
-
-
-	// lightGallery(document.getElementById('lightgallery'), {
-    //     //plugins: [lgZoom, lgThumbnail],
-    //     speed: 500,
-	// 	mode: 'fade',
-    // })
-
 	// fancybox
 
 	// $('[data-fancybox]').fancybox({

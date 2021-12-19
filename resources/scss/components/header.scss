@@ -281,6 +281,10 @@ header {
 			.header-wrapper {
 				padding-left: 197px;
 
+				.btn-catalog-menu-mobile{
+					display: none;
+				}
+
 				.menu-catalog {
 					position: absolute;
 					top: 0;
