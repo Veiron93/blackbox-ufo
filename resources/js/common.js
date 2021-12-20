@@ -1,3 +1,5 @@
+'use strict'
+
 document.addEventListener("DOMContentLoaded", function() { 
 	// fancybox
 
@@ -508,4 +510,28 @@ mobileCatalogMenu();
 	}
 
 	productAddToCart();
+
+
+///////////// КНОПКА ВВЕРХ /////////////
+	{
+		function trackScroll(){
+			let scrolled = window.pageYOffset,
+    			coords = document.documentElement.clientHeight;
+
+			if(scrolled > coords) {
+				btns.forEach(btn => btn.classList.add('active'))
+			}else{
+				btns.forEach(btn => btn.classList.remove('active'))
+			}
+		}
+
+		function backToTop() {
+			if (window.pageYOffset > 0) window.scrollBy(0, - window.pageYOffset);
+		}
+
+		window.addEventListener('scroll', trackScroll);
+
+		let btns = document.querySelectorAll('.btn-up-page');
+		btns.forEach(btn=> btn.addEventListener('click', backToTop))
+	}
 });

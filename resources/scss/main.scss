@@ -1309,6 +1309,24 @@ form{
 		}
 	}
 
+	.btn-up-page{
+		width: 36px;
+		height: 36px;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		border-radius: 8px;
+		background: rgba($accentHover, .1);
+
+		&.active{
+			display: flex;
+		}
+
+		img{
+			height: 26px;
+		}
+	}
+
 	@include screen_sm_down{
 		display: flex;
 	}

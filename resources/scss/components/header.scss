@@ -798,6 +798,28 @@ header {
 			display: none;
 		}
 	}
+
+	@include screen_xs{
+		.header-top-section {
+			.header-wrapper {
+				.header-logo {
+					margin-right: 5px;
+				}
+
+				.header-phone {
+					a {
+						padding: 3px;
+						img{
+							display: none;
+						}
+						span {
+							font-size: 14px;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 
@@ -931,7 +953,7 @@ header {
 						//border: 1px solid red;
 						display: flex;
 						align-items: center;
-						background: $gray;
+						background: #000;
 
 						.link-back{
 							display: flex;
@@ -946,6 +968,7 @@ header {
 							span{
 								font-weight: 500;
 								font-size: 20px;
+								color: #fff;
 							}
 						}
 

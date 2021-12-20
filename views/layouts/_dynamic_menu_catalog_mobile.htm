@@ -51,12 +51,12 @@
 
 						<div class="categories-level-2_header">
 							<div class="link-back">
-								<img src="/resources/images/icons/left-arrow.svg" alt="">
+								<img src="/resources/images/icons/slider-arrow-left.svg" alt="">
 								<span><?= $mainCategoryName ?></span>
 							</div>
 
 							<div class="btn-catalog-menu-mobile">
-								<img src="/resources/images/icons/close.svg" alt="Закрыть каталог">
+								<img src="/resources/images/icons/close-white.svg" alt="Закрыть каталог">
 							</div>
 						</div>
 
@@ -81,7 +81,7 @@
 										<div class="categories-level-3_list">
 											<?php foreach($categories_level_3 as $category_level_3): ?>
 												<div class="category-level-3">
-													<a href="<?= $category_level_3->id ?>"><?= $category_level_3->name ?></a>
+													<a href="/catalog/<?= $category_level_3->id ?>"><?= $category_level_3->name ?></a>
 												</div>
 											<?php endforeach ?>	
 										</div>
