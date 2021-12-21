@@ -77,6 +77,10 @@ footer{
 
 			&:last-child{
 				color: #848484;
+
+				a{
+					color: #848484;
+				}
 			}
 
 			&:not(:last-child){
@@ -90,6 +94,36 @@ footer{
 			}
 		}
 	}
+
+	@include screen_sm_down{
+		margin-bottom: 8px;
+		
+		ul{
+			overflow-x: auto;
+			li{
+				flex: none;
+				font-size: 14px;
+				//border: 1px solid red;
+				//border-radius: 10px;
+				padding: 5px 10px;
+
+				@include style-block();
+
+				&:after{
+					display: none;
+				}
+
+				&:last-child{
+					background: $accentHover;
+					color: #fff;
+
+					a{
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
 }
 
 .heading-page{
@@ -99,6 +133,14 @@ footer{
 		font-weight: normal;
 		margin: 0;
 		font-size: 34px;
+	}
+
+	@include screen_sm_down{
+		margin-bottom: 10px;
+
+		>*{
+			font-size: 26px;
+		}
 	}
 }
 

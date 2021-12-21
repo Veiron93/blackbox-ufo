@@ -99,6 +99,10 @@
 			font-size: 22px;
 			margin-bottom: 7px;
 		}
+
+		&-list{
+			column-gap: 10px;
+		}
 	}
 }
 
@@ -403,6 +407,81 @@
 				opacity: .3;
 				transition: opacity .2s;
 				height: 18px;
+			}
+		}
+	}
+
+	@include screen_md{
+		.sorting-mode{
+			font-size: 13px;
+
+			&_list{
+				.item{
+					a{
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+
+	@include screen_sm_down{
+		background: none;
+		border-radius: none;
+		box-shadow: none;
+		height: auto;
+		padding: 0;
+
+		.sorting-mode{
+			display: flex;
+			align-items: center;
+			font-size: 14px;
+			@include style-block;
+			height: 40px;
+			padding: 0 10px;
+
+			&_title{
+				display: none;
+			}
+
+			&_list{
+				overflow-x: auto;
+
+				.item{
+					flex: none;
+					a{
+						font-size: 12px;
+					}
+				}
+			}
+		}
+
+		.view-mode{
+			margin-left: auto;
+			display: flex;
+			column-gap: 8px;
+			margin-left: 12px;
+
+			.item{
+				height: 26px;
+				width: 26px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				user-select: none;
+
+				&:hover, &.active{
+					img{
+						opacity: .7;
+					}
+				}
+
+				img{
+					opacity: .3;
+					transition: opacity .2s;
+					height: 18px;
+				}
 			}
 		}
 	}
@@ -934,7 +1013,6 @@
 		.catalog-product-slider{
 			//border: 1px solid red;
 			width: 450px;
-			height: 385px;
 			flex: none;
 			position: relative;
 
@@ -970,46 +1048,49 @@
 	      	.mySwiper2 {
 	      		width: 370px;
 	      		height: 320px;
-				//border: 1px solid red;	
+				//border: 1px solid red;
 
 				.swiper-wrapper{
 					.swiper-slide{
-
 						a{
-							img{
-								width: 370px;
-	      						height: 320px;
-								object-fit: cover;
-							}
+							height: 100%;
+							display: flex;
+							align-items: center;
+							justify-content: center;
 						}
 					}
 				}	
 			}
 
 			.mySwiper {
-				margin-top: 10px;
-				height: 70px;
+				margin-top: 30px;
 				width: 370px;
-				//border: 1px solid red;	
+				//border: 1px solid red;
 
-				.swiper-slide {
-					opacity: 0.5;
-					height: 53px;
+				.swiper-wrapper{
 					display: flex;
-					cursor: pointer;
-					border-radius: 10px;
-					overflow: hidden;
+					align-items: center;
 
-					img{
-						width: 53px;
-						height: 53px;
-						object-fit: cover;
+					.swiper-slide {
+						opacity: 0.5;
+						cursor: pointer;
+						//border: 1px solid red;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						height: 66px;
+	
+						img{
+							display: block;
+						}
+					}
+	
+					.swiper-slide-thumb-active {
+						opacity: 1;
 					}
 				}
-
-				.swiper-slide-thumb-active {
-					opacity: 1;
-				}
+	
+				
 			}
 		} 
 
@@ -1033,9 +1114,9 @@
 			font-size: 15px;
 			line-height: 1.5em;
 
-			>*{
-				&:not(:last-child){
-					margin-bottom: 8px;
+			p{
+				&:last-child{
+					margin-bottom: 0;
 				}
 			}
 		}
@@ -1152,5 +1233,102 @@
 		// 		}
 		// 	}
 		// }
+	}
+
+	@include screen_md{
+		&_name{
+			h1{
+				font-size: 24px;
+			}
+		}
+	
+		&_details{
+			display: block;
+			padding: 20px;
+	
+			.catalog-product-slider, .catalog-product_photo{
+				margin: 0 auto;
+			}
+
+			.catalog-product_photo{
+				margin: 0 auto;
+			}
+	
+			.description{
+				margin-top: 30px;
+				padding-left: 10px;
+			}
+		}
+	}
+
+	@include screen_sm_down{
+		&_name{
+			margin-bottom: 10px;
+	
+			h1{
+				font-size: 22px;
+			}
+		}
+	
+		&_wrapper{
+			display: block;
+		}
+	
+		&_details{
+			padding: 10px 5px;
+			display: block;
+	
+			.catalog-product-slider{
+				
+				width: 100%;
+				margin: 0 auto;
+	
+				.button-prev, .button-next{
+					margin-top: 115px;
+				}
+	
+				.mySwiper2 {
+					width: 100%;
+					height: 260px;
+
+					.swiper-wrapper{
+						.swiper-slide{
+							a{
+								padding: 0px 40px;
+
+								img{
+									max-width: 100%;
+									max-height: 100%;
+								}
+							}
+						}
+					}	
+				}
+	
+				.mySwiper {
+					margin-top: 30px;
+					width: 100%;
+				}
+			} 
+	
+			.catalog-product_photo{
+				width: 100%;
+				margin: 0 auto;
+				a{
+					padding: 10px;
+				}
+			}
+	
+			.description{
+				margin-top: 15px;
+				line-height: 1.45em;
+				font-size: 14px;
+				padding: 0px 8px;
+			}
+		}
+	
+		&_buy{
+			margin: 25px auto;
+		}
 	}
 }

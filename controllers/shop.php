@@ -72,7 +72,8 @@ class Shop extends App_Controller
                 }
             }
             $this->renderMultiple([
-                "#mini-cart" => "@_mini_cart"
+                "#mini-cart" => "@_mini_cart",
+                "#mini-cart-mobile" => "@_mini_cart_mobile",
             ]);
         } catch (\Exception $ex) {
             $this->ajaxError($ex);

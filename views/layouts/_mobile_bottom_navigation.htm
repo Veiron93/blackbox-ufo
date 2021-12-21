@@ -11,29 +11,7 @@
 		<span>Каталог</span>
 	</div>
 
-	<div class="item item-cart">
-
-		<?php
-			if (!isset($cart) || !$cart) {
-				$cart = Shop_Cart::getCart();
-			}
-
-			$countProductsMiniCart = $cart->getItemsCount();
-			$totalPriceMiniCart = $cart->getTotalPrice();
-		?>
-
-		<a href="<?= u('shop_cart', []) ?>">
-			<img src="/resources/images/icons/black-box.svg" alt="Корзина">
-
-			<?php if($countProductsMiniCart): ?>
-				<div class="count">
-					<?= $countProductsMiniCart ?>	
-				</div>
-			<?php endif; ?>
-
-			<span>Коробка</span>
-		</a>
-	</div>
+	<? $this->renderLayout($this->getViewsDir() . "shop/_mini_cart_mobile.htm") ?>
 
 	<!-- <div class="item">
 		<a href="/">

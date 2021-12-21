@@ -23,7 +23,7 @@
 								  	<? foreach ($product->photos as $photo): ?>
 								  		<div class="swiper-slide">
 								  			<a href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
-												<img src="<?= $photo->getThumb(450, 360, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
+												<img src="<?= $photo->getThumb(370, 320, Phpr_ImageManipulator::keepRatio) ?>" alt="" />
 											</a>
 								  		</div>
 									<? endforeach; ?>
@@ -34,7 +34,7 @@
 								<div class="swiper-wrapper">
 								  	<? foreach ( $product->photos as $photo ): ?>
 								  		<div class="swiper-slide">
-								  			<img src="<?= $photo->getThumb(66, 66, Phpr_ImageManipulator::fitAndCrop) ?>" alt="" />
+								  			<img src="<?= $photo->getThumb(66, 66, Phpr_ImageManipulator::keepRatio) ?>" alt="" />
 								  		</div>
 									<? endforeach; ?>
 								</div>
@@ -54,7 +54,7 @@
 						</div>
 					<?php endif; ?>
 					
-					<div class="description">
+					<div class="description" data-formatted-text>
 						<?= $product->description ?>
 					</div>
 				</div>
