@@ -35,7 +35,7 @@ class App_Helper{
 	public static function getHotCatalogCategories($id){
 		return Db_DbHelper::objectArray("SELECT c.id, c.name
 		FROM catalog_categories as c
-		WHERE c.hidden is null and c.deleted is null and c.hot is not null and c.parent_id = $id
+		WHERE c.hidden is null and c.deleted is null and c.hot is not null and c.path LIKE '%$id%'
 		ORDER BY c.sort_order asc");
 	}
 
