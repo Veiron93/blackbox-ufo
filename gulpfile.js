@@ -190,6 +190,7 @@ gulp.task('build', ()=>{
 		'gulpfile.js',
 		'package-lock.json',
 		'package.json',
+		'ftp.example'
 	]
 
 	return gulp.src(['.*','*', '*/**'], { base: './', ignore: ignoredFiles})
