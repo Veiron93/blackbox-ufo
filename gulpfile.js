@@ -57,7 +57,6 @@ let gulp = require('gulp'),
 	notify = require("gulp-notify"),
 	csso = require('gulp-csso'),
 	ftp = require( 'vinyl-ftp' ),
-	gutil = require('gulp-util'),
 	zip = require('gulp-zip');
 
 
