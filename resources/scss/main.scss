@@ -250,6 +250,7 @@ footer{
 		.all-catalog{
 			margin-top: 8px;
 			@include btn($gray);
+			user-select: none;
 			a{
 				color: #626262;
 			}
