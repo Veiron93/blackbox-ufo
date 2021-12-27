@@ -15,3 +15,4 @@ modules/*
 phproad
 scripts
 cache/*
+ftp.js

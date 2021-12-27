@@ -63,7 +63,7 @@ footer{
 
 .breadcrumbs{
 	//border: 1px solid red;
-	margin-bottom: 20px;
+	margin-bottom: 12px;
 	
 	ul{
 		display: flex;
@@ -100,11 +100,10 @@ footer{
 		
 		ul{
 			overflow-x: auto;
+			padding-bottom: 2px;
 			li{
 				flex: none;
 				font-size: 14px;
-				//border: 1px solid red;
-				//border-radius: 10px;
 				padding: 5px 10px;
 
 				@include style-block();
@@ -1331,6 +1330,7 @@ form{
 			font-size: 12px;
 			text-align: center;
 			line-height: 1em;
+			font-weight: 500;
 		}
 
 		&-cart{
@@ -1366,6 +1366,26 @@ form{
 
 		img{
 			height: 26px;
+		}
+	}
+
+	.btn-mobile-nav{
+		.open{
+
+		}
+
+		.close{
+			display: none;
+		}
+
+		&.active{
+			.open{
+				display: none;
+			}
+	
+			.close{
+				display: block;
+			}
 		}
 	}
 

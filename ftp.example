@@ -1,0 +1,8 @@
+module.exports = {
+    host: '',
+    user: '',
+    pass: '',
+    parallel: '1',
+    idleTimeout: '1000',
+    log: gutil.log
+};

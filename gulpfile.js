@@ -42,7 +42,7 @@ var nameProject = 'blackbox-ufo';
 // Экспорт модулей
 const fs = require('fs');
 
-var gulp = require('gulp'),
+let gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 	watch = require('gulp-watch'),
 	sass = require('gulp-sass')(require('sass')),
@@ -55,7 +55,10 @@ var gulp = require('gulp'),
 	plumber = require('gulp-plumber'),
 	touch = require('gulp-touch-cmd'),
 	notify = require("gulp-notify"),
-	csso = require('gulp-csso');
+	csso = require('gulp-csso'),
+	ftp = require( 'vinyl-ftp' ),
+	gutil = require('gulp-util'),
+	zip = require('gulp-zip');
 
 
 
@@ -161,3 +164,62 @@ gulp.task('custom-gulpfile', function(done){
 gulp.task('default', gulp.parallel('browser-sync-start', 'style'), function(){
 	return true;
 }); 
+
+
+
+
+////////////////// DEPLOY //////////////////
+
+// BUILD
+gulp.task('build', ()=>{
+
+	const ignoredFiles = [
+		'.DS_Store',
+		'ftp.js',
+		'.git',
+		'config/**',
+		'dist/**',
+		'logs/**',
+		'node_modules/**',
+		'resources/scss/**',
+		'temp/**',
+		'uploaded/**',
+		'.gitignore',
+		'composer.json',
+		'composer.lock',
+		'custom-gulpfile.js',
+		'gulpfile.js',
+		'package-lock.json',
+		'package.json',
+	]
+
+	return gulp.src(['.*','*', '*/**'], { base: './', ignore: ignoredFiles})
+		.pipe(zip('build.zip'))
+		.pipe(gulp.dest('./dist'))
+		.on('end', ()=>console.log('👌 Проект собран'));
+}); 
+
+
+// FTP
+gulp.task('ftp', ()=>{
+
+	let ftpConfig = require('./ftp.js')
+
+	function getConn(){
+		console.log("🌍 Подключение к серверу");
+		return ftp.create({...ftpConfig});
+	}
+
+	const conn = getConn()
+
+	return gulp.src(['./dist/build.zip'], {buffer:false, dot:true})
+		.pipe(conn.dest('./www/bb65.ru/'))
+		.on('end', ()=>console.log('👌 Файлы загружены на сервер'));
+}); 
+
+// RUN DEPLOY
+gulp.task('deploy', gulp.series('build', 'ftp'), function(){
+	return true;
+})
+
+

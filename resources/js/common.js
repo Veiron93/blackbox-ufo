@@ -177,6 +177,23 @@ function mobileCatalogMenu(){
 mobileCatalogMenu();
 
 
+///////////// НАВИГАЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ) /////////////
+function mobileNavigation(){
+	
+	function statusNav(){
+		document.body.classList.toggle('no-scroll');
+		nav.classList.toggle('active');
+		btnMobileNav.classList.toggle('active');
+	}
+
+	let nav = document.querySelector('header').querySelector('nav');
+	let btnMobileNav = document.querySelector('.btn-mobile-nav');
+	btnMobileNav.addEventListener('click', statusNav)
+}
+
+mobileNavigation();
+
+
 ///////////// КОРЗИНА /////////////
 
 	function quantityCart(){

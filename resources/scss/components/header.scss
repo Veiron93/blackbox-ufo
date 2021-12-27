@@ -769,7 +769,7 @@ header {
 
 			.header-wrapper {
 
-				.header-description, nav {
+				.header-description{
 					display: none;
 				}
 
@@ -789,6 +789,37 @@ header {
 							font-size: 12px;
 						}
 					}
+				}
+
+				nav {
+					position: fixed;
+					background: #fff;
+
+					top: 0;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					width: 100%;
+					z-index: 99;
+
+					flex-direction: column;
+					justify-content: center;
+
+					display: none;
+
+					&.active{
+						display: flex;
+					}
+
+					a{
+						font-size: 18px;
+						font-weight: 500;
+
+						&:not(:last-child){
+							margin-bottom: 20px;
+						}
+					}
+
 				}
 			}
 		}
