@@ -56,6 +56,11 @@
 				<?php endif; ?>	
 			</div>
 		<?php endif;?>		
+
+		<?php /** @var $pagination Phpr_Pagination*/ ?>
+		<?php if (isset($pagination)): ?>
+			<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("catalog_category", [$category->id]) . "%d/") ?>
+		<?php endif; ?>
 	</div>
 <?php else: ?>
 	<div class="catalog-no-category">Категория не найдена</div>
@@ -64,13 +69,8 @@
 	
 		
 
-<?php /** @var $pagination Phpr_Pagination*/ ?>
-<?/*
-<?php if (isset($pagination)): ?>
-	<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("catalog_category", [$category->id]) . "%d/") ?>
-<?php endif; ?>
-*/?>
-	
+
+
 
 
 

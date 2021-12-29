@@ -18,7 +18,7 @@
  */
 class Catalog extends App_Controller {
 
-	const productsPerPage = 40;
+	const productsPerPage = 1;
 
 	public function index() {
 		$this->viewData['categories'] = Catalog_Category::create()->list_root_children();
