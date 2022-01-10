@@ -189,7 +189,6 @@ footer{
 .index-top-section{
 	display: flex;
 	column-gap: 30px;
-	//border: 1px solid red;
 
 	.catalog-menu{
 		width: 260px;
@@ -266,9 +265,9 @@ footer{
 	.main-slider{
 		overflow: hidden;
 		border-radius: 20px;
-
 		display: flex;
 		align-items: center;
+		height: 100%;
 
 		.swiper-slide{
 			img{
