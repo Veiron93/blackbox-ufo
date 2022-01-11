@@ -1,6 +1,6 @@
-// #mysqlLoggerWrapper{
-// 	display: none;
-// }
+#mysqlLoggerWrapper{
+	display: none;
+}
 
 *{
 	margin: 0;
@@ -101,6 +101,11 @@ footer{
 		ul{
 			overflow-x: auto;
 			padding-bottom: 2px;
+			
+			&::-webkit-scrollbar {
+				display: none;
+			}
+
 			li{
 				flex: none;
 				font-size: 14px;
@@ -161,6 +166,7 @@ footer{
 
 	@include screen_sm_down{
 		padding: 10px;
+		padding-bottom: 75px;
 		margin-top: 20px;
 	}
 }
@@ -433,6 +439,10 @@ footer{
 				li{
 					margin-bottom: 7px;
 					@include style-block();
+
+					&:hover{
+						background: #fff;
+					}
 
 					> a{
 						padding-bottom: 7px;
@@ -731,6 +741,7 @@ footer{
 							border-right: none;
 							border-left: none;
 							font-size: 14px;
+							border-radius: none;
 						}
 
 						input::-webkit-outer-spin-button,
@@ -1085,7 +1096,6 @@ footer{
 				}
 			}
 
-	
 			.shop-checkout{
 				margin-left: 0;
 				width: 100%;
@@ -1096,6 +1106,12 @@ footer{
 					margin-bottom: 10px;
 					display: block;
 					font-size: 18px;
+				}
+
+				.form-section{
+					.form-item-radio{
+						margin-bottom: 13px;
+					}
 				}
 			}
 		}
@@ -1352,13 +1368,15 @@ form{
 				top: 0;
 				right: 0;
 				margin-top: -5px;
-				margin-right: 4px;
+				margin-right: 5px;
 				position: absolute;
 				background: $accentHover;
 				color: #fff;
 				font-size: 11px;
-				padding: 3px 5px;
+				padding: 2px 5px;
 				border-radius: 4px;
+				min-width: 16px;
+				text-align: center;
 			}
 		}
 	}

@@ -70,7 +70,7 @@
 				<div class="swiper-wrapper">
 					<?php foreach ($mainSliderMobile as $bannerMobile): ?>
 
-						<?php $imgBanner = $bannerMobile->image->getThumb(767, 350, Phpr_ImageManipulator::fit); ?>
+						<?php $imgBanner = $bannerMobile->image->getThumb(767, 350, Phpr_ImageManipulator::fitAndCrop); ?>
 
 						<?php if($imgBanner): ?>
 							<div class="swiper-slide">

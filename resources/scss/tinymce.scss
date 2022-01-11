@@ -1,10 +1,11 @@
 #tinymce, *[data-formatted-text]{
     h1, h2, h3, h4 {
-        font-weight: normal;
+        //font-weight: normal;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        margin-bottom: 1.5em;
+        margin-bottom: 5px;
+        line-height: 1.3em;
     }
 
     h1 { font-size: 32px; }
@@ -15,7 +16,7 @@
     h6 { font-size: 13px; }
 
     p {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 
     a{
@@ -92,14 +93,6 @@
                 margin-bottom: 5px;
             }
         }
-    }
-
-    ul>li{
-            
-    }
-
-    ol>li{
-
     }
 
     .nobr {
