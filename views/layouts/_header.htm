@@ -28,7 +28,7 @@
 				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="Инстаграм">
 					<img src="/resources/images/icons/social/instagram.svg" alt="Инстаграм">
 				</a>
-				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="WhatsApp">
+				<a href="https://api.whatsapp.com/send?phone=79624192078" target="_blank" title="WhatsApp">
 					<img src="/resources/images/icons/social/whatsapp.svg" alt="WhatsApp">
 				</a>
 			</div>
@@ -42,9 +42,7 @@
 	<div class="header-bottom-section">
 		<div class="header-wrapper">
 
-			<?php 
-				if($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog', ['catalogCategoriesMenu' => $catalogCategoriesMenu]);
-			?>
+			<?php if($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog', ['catalogCategoriesMenu' => $catalogCategoriesMenu]); ?>
 
 			<div class="btn-catalog-menu-mobile">
 				<img src="/resources/images/icons/menu.svg" alt="Меню" />

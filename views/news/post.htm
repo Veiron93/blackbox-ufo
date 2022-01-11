@@ -6,13 +6,13 @@
 	<? if ($entry->image && $entry->image->count): ?>
 	    <meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $entry->image->getThumb(480, 'auto') ?>" />
 	<? endif ?>
-    <meta property="og:title" content="<?= h($entry->title_no_typo) ?>" />
-    <meta property="og:description" content="<?= h($entry->description_no_typo) ?>" />
+    <meta property="og:title" content="<?= h($entry->title) ?>" />
+    <meta property="og:description" content="<?= h($entry->description) ?>" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-    <meta name="twitter:title" content="<?= h($entry->title_no_typo) ?>" />
-    <meta name="twitter:description" content="<?= h($entry->description_no_typo) ?>" />
+    <meta name="twitter:title" content="<?= h($entry->title) ?>" />
+    <meta name="twitter:description" content="<?= h($entry->description) ?>" />
 	<? if ($entry->image && $entry->image->count): ?>
 	    <meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $entry->image->getThumb(480, 'auto') ?>" />
 	<? endif ?>

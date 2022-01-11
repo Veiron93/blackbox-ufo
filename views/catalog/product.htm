@@ -1,9 +1,37 @@
+<? Phpr_View::beginBlock("head") ?>
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+    <meta property="og:site_name" content="<?= h(site_title()) ?>" />
+	
+	<? if (isset($product) && $product): ?>
+		<?php
+			$metaTitle = h(strip_tags($product->name));
+			$metaDescription = h(strip_tags($product->description));
+		?>
+
+		<meta property="og:title" content="<?= $metaTitle ?>" />
+		<meta property="og:description" content="<?= $metaDescription ?>" />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+		<meta name="twitter:title" content="<?= $metaTitle ?>" />
+		<meta name="twitter:description" content="<?= $metaDescription ?>" />
+		
+		<? if ($product->photos->count): ?>
+			<?php $imgMeta = $product->photos[0]->getThumb(480, 'auto'); ?>
+			<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $imgMeta ?>">
+			<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $imgMeta ?>">
+		<? endif ?>
+	<? endif ?>
+
+<? Phpr_View::endBlock(true) ?>
+
 <?php Phpr_View::beginBlock("view") ?>
 	<div class="catalog-product container">
 
 		<? $this->renderPartial('breadcrumbs', array('category' => $product->category, 'product' => $product)) ?>
 
-		<?php if (isset($product) and $product): ?>
+		<?php if (isset($product) && $product): ?>
 			<div class="catalog-product_name">
 				<h1><?= $product->name ?></h1>
 			</div>
@@ -92,6 +120,18 @@
 
 						<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
 					<? Phpr_Form::closeTag(); ?>
+
+					<?php 
+						$urlWhatsApp = Phpr::$config->get('TEXT_WHATSAPP_QUESTION_PRODUCT');
+						$urlWhatsApp .= $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+					?>
+
+					<div class="btn-question">
+						<a href="<?=$urlWhatsApp?>" target="_blank">
+							<img src="/resources/images/icons/social/whatsapp.svg" alt="whatsapp">
+							<span>Задать вопрос по данному товару</span>
+						</a>
+					</div>
 
 					<div class="article">Код товара: <?= $product->id ?></div>
 				</div>
