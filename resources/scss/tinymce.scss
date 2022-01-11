@@ -84,6 +84,16 @@
         margin-bottom: 1.2em;
     }
 
+    ul, ol{
+        margin-bottom: 12px;
+
+        li{
+            &:not(:last-child){
+                margin-bottom: 5px;
+            }
+        }
+    }
+
     ul>li{
             
     }

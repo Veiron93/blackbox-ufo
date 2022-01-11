@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	new Swiper(".main-slider", {
         loop: true,
 		autoplay: {
-			delay: 4000,
+			delay: 5000,
 			disableOnInteraction: false,
 		},
         navigation: {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	new Swiper(".main-slider-mobile", {
         loop: true,
 		autoplay: {
-			delay: 4000,
+			delay: 5000,
 			disableOnInteraction: false,
 		},
 		pagination: {

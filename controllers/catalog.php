@@ -18,7 +18,7 @@
  */
 class Catalog extends App_Controller {
 
-	const productsPerPage = 1;
+	const productsPerPage = 40;
 
 	public function index() {
 		$this->viewData['categories'] = Catalog_Category::create()->list_root_children();
@@ -63,9 +63,9 @@ class Catalog extends App_Controller {
 			}
 
 			// фильтры
-			if($_POST){
-				self::filters($_POST);
-			}
+			// if($_POST){
+			// 	self::filters($_POST);
+			// }
 
 			$pagination = new Phpr_Pagination(self::productsPerPage);
 			$this->viewData['category'] = $category;
