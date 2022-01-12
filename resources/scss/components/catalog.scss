@@ -1417,13 +1417,22 @@
 			}
 		}
 
-		.article {
+		.product-other-info{
 			margin: 20px auto 0;
-			font-size: 14px;
-			color: #777;
-			white-space: nowrap;
-			text-align: center;
+
+			> div {
+				font-size: 14px;
+				color: #777;
+				white-space: nowrap;
+				text-align: center;
+
+				&:not(:last-child){
+					margin-bottom: 7px;
+				}
+			}
 		}
+
+		
 
 
 

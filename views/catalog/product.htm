@@ -133,7 +133,10 @@
 						</a>
 					</div>
 
-					<div class="article">Код товара: <?= $product->id ?></div>
+					<div class="product-other-info">
+						<div>Код товара: <?= $product->id ?></div>
+						<div>В наличии: <?= $product->leftover ?></div>
+					</div>
 				</div>
 			</div>
 		<? else: ?>
