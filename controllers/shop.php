@@ -106,14 +106,22 @@ class Shop extends App_Controller
 
             foreach ($cartItems as $item) {
                 if (array_key_exists($item->getId(), $quantity)) {
+
+                    $leftoverProduct = Db_DbHelper::scalar("SELECT leftover FROM catalog_products
+                        WHERE id = ?", [$item->productId]);
+
                     $newQuantity = (int)$quantity[$item->getId()];
-                    if ($newQuantity < 1) {
-                        $cart->deleteItem($item);
-                    } else {
+
+                    if($newQuantity <= $leftoverProduct){ 
                         $item->setQuantity((int)$quantity[$item->getId()]);
-                    }
+                    }elseif($newQuantity > $leftoverProduct){
+                        $item->setQuantity($leftoverProduct);
+                    }else if($newQuantity < 1){
+                        $cart->deleteItem($item);
+                    }         
                 }
             }
+
             $cart->notifyCartUpdated();
 
             Phpr::$response->redirect(u('shop_cart', []));
@@ -202,7 +210,7 @@ class Shop extends App_Controller
                 $delivery = Phpr::$config->get('DELIVERY')[0];
             }
 
-            $this->validation->add("name", "Имя")->required("Как к Вам обращаться ?");
+            $this->validation->add("name", "Имя")->required("Укажите имя");
             $this->validation->add("phone", "Телефон")->required("Укажите свой номер телефон");
             $this->validation->add("comment", "Комментарий")->fn("trim");
 
@@ -228,6 +236,8 @@ class Shop extends App_Controller
 
             if($delivery['code'] != 'pickup'){
                 $order->customer_address = $deliveryDescription . PHP_EOL . "Адрес: " . $values['customer-address'];
+            }else{
+                $order->customer_address = $deliveryDescription;
             }
             
             $order->comment = $values['comment'];

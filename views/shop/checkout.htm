@@ -1,6 +1,4 @@
 <div class="shop-checkout">
-	<div class="formFlash"></div>
-
 	<?= Phpr_Form::openTag(["id" => "checkout-form"]) ?>
 
 		<div class="form-section">
@@ -76,9 +74,11 @@
 			</div>
 		</div>
 
+		<div class="formFlash"></div>
+
 		<div class="bnt-order-buy">
 			<input type="hidden" name="customer-email" value="user@bb65.ru">
 			<a href="#" data-handler="onPlaceOrder">Купить</a>
-		</div>
+		</div>	
 	<? Phpr_Form::closeTag() ?>
 </div>

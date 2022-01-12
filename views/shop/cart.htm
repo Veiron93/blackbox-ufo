@@ -63,12 +63,16 @@
 										
 										<div class="name">
 											<a href="<?= $product->getUrl() ?>"><?= $product->name ?></a>
-											<p>Код товара: <span><?= $product->id ?></span></p>
+
+											<div class="product-other-info">
+												<p>Код товара: <?= $product->id ?></p>
+												<p>В наличии: <?= $product->leftover ?></p>
+											</div>									
 										</div>
 
 										<div class="count">
 											<button class="btn-quantity-cart btn-quantity-minus">-</button>
-											<input type="number" min="0" class="quantity-num" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
+											<input type="number" min="0" max="<?= $product->leftover ?>" class="quantity-num" value="<?= $item->getQuantity()?>" name="quantity[<?= $item->getId() ?>]" />
 											<button class="btn-quantity-cart btn-quantity-plus">+</button>
 										</div>
 

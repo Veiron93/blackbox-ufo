@@ -219,13 +219,15 @@ mobileNavigation();
 				e.addEventListener('click', function(){
 					let quantityNum = e.parentElement.querySelector('.quantity-num');
 
-					if(e.classList.contains('btn-quantity-minus')){
-						quantityMinus(quantityNum);
-					}else{
-						quantityPlus(quantityNum);
+					if(e.classList.contains('btn-quantity-minus') || quantityNum.value < quantityNum.getAttribute("max")){
+						if(e.classList.contains('btn-quantity-minus')){
+							quantityMinus(quantityNum);
+						}else{
+							quantityPlus(quantityNum);
+						}
+	
+						$('#cart-form').sendForm('onUpdateQuantity', {});
 					}
-
-					$('#cart-form').sendForm('onUpdateQuantity', {});
 				})
 			})
 
