@@ -249,31 +249,47 @@ mobileNavigation();
 
 		if(cart){
 
-			let deliveryItems = cart.querySelectorAll('input[name="delivery"]'),
-				address = cart.querySelector('.section-address'),
-				deviveryPrice = cart.querySelector('.devivery-price').querySelector('span'),
-				goodsPrice = cart.querySelector('.goods-price').querySelector('span'),
-				totalPrice = cart.querySelector('.total-price').querySelector('span');
+			// стоимость доставки
+			function setTotalPriceDelivery(deliveryItem){
 
-			function setTotalPriceDelivery(e){
-				if(e.getAttribute('data-price') == 0 && e.getAttribute('data-code') == 'pickup'){
-					deviveryPrice.textContent = "Самовывоз"
-				}else if(e.getAttribute('data-price') == 0 && e.getAttribute('data-code') != 'pickup'){
-					deviveryPrice.textContent = "Бесплатно"
+				let deviveryPriceBlock = cart.querySelector('.devivery-price').querySelector('span'),
+					deliveryPrice = deliveryItem.getAttribute('data-price'),
+					deliveryCode = deliveryItem.getAttribute('data-code');
+
+				if(deliveryPrice == 0){
+					deviveryPriceBlock.textContent = deliveryCode == 'pickup' ? 'Самовывоз':'Бесплатно';
 				}else{
-					deviveryPrice.textContent = e.getAttribute('data-price')
+					deviveryPriceBlock.textContent = deliveryPrice;
 				}
 			}
-			
-			deliveryItems.forEach(function(e){
 
-				if(e.checked) setTotalPriceDelivery(e);
-				
+			// общая сумма заказа
+			function setTotalPrice(deliveryItem){
+				let totalPriceBlock = cart.querySelector('.total-price').querySelector('span'),
+					goodsPrice = cart.querySelector('.goods-price').querySelector('span');
+
+				totalPriceBlock.textContent = Number(deliveryItem.getAttribute('data-price')) + Number(goodsPrice.getAttribute('data-summ'));
+			}
+
+			function statusSectionAddress(deliveryItem){
+				let address = cart.querySelector('.section-address');
+
+				if(deliveryItem.getAttribute('data-code') != 'pickup' && !address.classList.contains('active')){
+					address.classList.add('active')
+				}else if(deliveryItem.getAttribute('data-code') == 'pickup'){
+					address.classList.remove('active')
+				}
+			}
+
+			let deliveryItems = cart.querySelectorAll('input[name="delivery"]');
+			
+			deliveryItems.forEach(function(deliveryItem){
+		
 				// изменение способа доставки
-				e.addEventListener('change', function(){
-					setTotalPriceDelivery(e)
-					address.classList.toggle('active')
-					totalPrice.textContent = Number(e.getAttribute('data-price')) + Number(goodsPrice.getAttribute('data-summ'));
+				deliveryItem.addEventListener('change', function(){
+					setTotalPriceDelivery(deliveryItem);
+					setTotalPrice(deliveryItem);
+					statusSectionAddress(deliveryItem);
 				})
 			})
 		}
@@ -533,7 +549,11 @@ mobileNavigation();
 		if(btns){
 			btns.forEach(btn=>{
 				btn.querySelector('a').addEventListener('click', function(){
-					this.parentElement.setAttribute('data-added', true)
+
+					let id = this.parentElement.getAttribute('id')
+					let products = document.querySelectorAll('#' + id)
+
+					products.forEach(product => product.setAttribute('data-added', true))
 				})
 			})
 		}

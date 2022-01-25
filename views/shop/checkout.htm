@@ -2,12 +2,12 @@
 	<?= Phpr_Form::openTag(["id" => "checkout-form"]) ?>
 
 		<div class="form-section">
-			<label for="name">Имя</label>
+			<label for="name">Имя <span class="require">*</span></label>
 			<input type="text" name="name" id="name" value="<?= h(post('name'))?>">
 		</div>
 
 		<div class="form-section">
-			<label for="phone">Телефон</label>
+			<label for="phone">Телефон <span class="require">*</span></label>
 			<input type="tel" name="phone" id="phone" value="<?= h(post('phone'))?>">
 		</div>
 
@@ -78,7 +78,8 @@
 
 		<div class="bnt-order-buy">
 			<input type="hidden" name="customer-email" value="user@bb65.ru">
-			<a href="#" data-handler="onPlaceOrder">Купить</a>
+			<a href="#" data-handler="onRecalculationCart">Купить</a>
+			<!-- <a href="#" data-handler="onPlaceOrder">Купить</a> -->
 		</div>	
 	<? Phpr_Form::closeTag() ?>
 </div>

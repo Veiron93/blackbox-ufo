@@ -869,8 +869,6 @@ footer{
 						background-color: rgba(82,97,148,.2);
 					}
 				}
-
-
 			}
 		}
 
@@ -1147,6 +1145,10 @@ form{
 			font-size: 14px;
 			margin-bottom: 5px;
 			display: block;
+
+			.require{
+				color: #ff0202;
+			}
 		}
 
 		input[type='text'], input[type='tel'], input[type='email'], select, textarea{

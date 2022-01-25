@@ -3,6 +3,8 @@
 class Shop extends App_Controller
 {
 
+    const COOKIE_DATA = 'blackbox_catalog_user_cookie';
+
     public function __construct()
     {
         parent::__construct();
@@ -10,7 +12,8 @@ class Shop extends App_Controller
         $this->globalHandlers[] = 'onAddToCart';
         $this->globalHandlers[] = 'onUpdateQuantity';
         $this->globalHandlers[] = 'onDeleteItem';
-        $this->globalHandlers[] = 'onPlaceOrder';
+        $this->globalHandlers[] = 'onRecalculationCart';
+        //$this->globalHandlers[] = 'onPlaceOrder';
         $this->globalHandlers[] = 'onClearCart';
         $this->globalHandlers[] = 'onDeleteProductCart';
     }
@@ -195,6 +198,20 @@ class Shop extends App_Controller
         }
     }
 
+    protected function onRecalculationCart(){
+        try{  
+                
+            if(App_Controller::$statusUpdateCart){
+                throw new Phpr_ApplicationException("Упс... Обновите корзину, у некоторых товаров изменилась цена или количество в наличии меньше чем Вы выбрали");
+            }else{
+                $this->onPlaceOrder();
+            }
+
+        }catch (\Exception $ex) {
+            $this->ajaxError($ex);
+        }
+    }
+
     protected function onPlaceOrder()
     {
         try {
@@ -304,4 +321,17 @@ class Shop extends App_Controller
         }
     }
 
+    public static function getSavedCustomerField($field) {
+        $values = Phpr::$request->cookie(self::COOKIE_DATA);
+        
+        if (!$values) return null;
+
+        $values = unserialize($values);
+
+        if (isset($values[$field])) return $values[$field];
+
+        if ($field == 'save_order_info' && count($values)) return true;
+    
+        return null;
+    }
 }

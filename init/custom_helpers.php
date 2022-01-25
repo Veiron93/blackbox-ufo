@@ -130,7 +130,53 @@ function u($name) {
 }
 
 
-function checkProductCart(){
+function checkActualProductsCart(){
+	$cart = Shop_Cart::getCart();
+	$productCartItems = $cart->getItems();
+	$idsProductsCart = [];
+	$statusUpdateCart = false;
+
+	foreach($productCartItems as $productCart){
+		array_push($idsProductsCart, $productCart->productId);
+	}
+
+	if(count($idsProductsCart)){
+		// проверка товара на количество в наличии и актуальные цены
+		$actualProducts = Db_DbHelper::objectArray("SELECT id, leftover, price FROM catalog_products
+		WHERE id IN (" . implode(',', $idsProductsCart) . ")");
+
+		foreach($productCartItems as $productCart){
+
+			foreach($actualProducts as $actualProduct){
+
+				if($productCart->productId == $actualProduct->id){
+
+					// если актульная стоимость отличается от стоимости товара добавленно ранее в корзину, то меняем на актуальную
+					if($productCart->price != $actualProduct->price){
+						$productCart->setPrice($actualProduct->price);
+						$cart->notifyCartUpdated();
+
+						if(!$statusUpdateCart) $statusUpdateCart = true;
+					}
+
+					// если товара в наличии меньше чем добавлено в корзине, то устанавливается знаечие из остатка
+					if($productCart->quantity > $actualProduct->leftover){
+						$productCart->setQuantity($actualProduct->leftover);
+						$cart->notifyCartUpdated();
+
+						if(!$statusUpdateCart) $statusUpdateCart = true;
+					}
+					
+					break;
+				}
+			}
+		}
+	}
+
+	return $statusUpdateCart;
+}
+
+function getProductsAddedCart(){
 	$cart = Shop_Cart::getCart();
 	$productCartItems = $cart->getItems();
 	$idsProductsCart = [];
