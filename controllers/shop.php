@@ -269,6 +269,7 @@ class Shop extends App_Controller
 
             $order->recalculate();
             $order->markAsCompiled();
+            $this->setSalesProducts($cart->getItems());
             $cart->delete();
             Phpr::$response->redirect("/shop/success");
 
@@ -276,6 +277,17 @@ class Shop extends App_Controller
             $this->ajaxError($ex);
         }
     }
+
+    protected function setSalesProducts($products)
+    {
+        $productsId = [];
+
+        foreach ($products as $product) {
+            array_push($productsId, $product->productId);
+        }
+
+        Db_DbHelper::objectArray("UPDATE catalog_products SET sales = sales + 1 WHERE id IN (" . implode(',', $productsId) . ")");
+	}
 
     public function success()
     {

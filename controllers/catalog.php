@@ -111,12 +111,7 @@ class Catalog extends App_Controller {
 
 		$products = Db_DbHelper::objectArray("SELECT *
 			FROM catalog_attribute_values as cav 
-			WHERE cav.attribute_id in (?)", [$filtersId]);
-
-
-		traceLog($where);
-
-		
+			WHERE cav.attribute_id in (?)", [$filtersId]);	
 
 		foreach($products as $product){
 
