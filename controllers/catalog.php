@@ -44,7 +44,7 @@ class Catalog extends App_Controller {
 				if(isset($query['order'])){
 					switch($query['order']){
 						case 'name':
-							$sorting = 'name desc';
+							$sorting = 'name';
 						break;
 
 						case 'new':
