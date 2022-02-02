@@ -1,3 +1,4 @@
 #1 add hot in catalog_categories
 #2 add regular_photo in catalog_products
 #3 add is_sale in catalog_products
+#4 add sales in catalog_products

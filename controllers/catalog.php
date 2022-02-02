@@ -35,7 +35,7 @@ class Catalog extends App_Controller {
 			}
 
 			//СОРТРОВКА 
-			$sorting = null;
+			$sorting = 'sales desc';
 			$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
 			if(isset($partsURI['query'])){
@@ -43,6 +43,10 @@ class Catalog extends App_Controller {
 
 				if(isset($query['order'])){
 					switch($query['order']){
+						case 'name':
+							$sorting = 'name desc';
+						break;
+
 						case 'new':
 							$sorting = 'id desc';
 						break;
@@ -53,10 +57,6 @@ class Catalog extends App_Controller {
 
 						case 'price':
 							$sorting = 'price asc';
-						break;
-
-						default:
-							$sorting = 'name';
 						break;
 					}
 				}

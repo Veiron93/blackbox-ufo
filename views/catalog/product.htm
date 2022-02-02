@@ -121,6 +121,15 @@
 						<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
 					<? Phpr_Form::closeTag(); ?>
 
+					<div class="product-other-info">
+						<div>Код товара: <?= $product->id ?></div>
+						<div>В наличии: <?= $product->leftover ?></div>
+
+						<?php if($product->sales): ?>
+							<div>Купили: <?= $product->sales ?></div>
+						<?php endif;?>
+					</div>
+
 					<?php 
 						$urlWhatsApp = Phpr::$config->get('TEXT_WHATSAPP_QUESTION_PRODUCT');
 						$urlWhatsApp .= $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -131,11 +140,6 @@
 							<img src="/resources/images/icons/social/whatsapp.svg" alt="whatsapp">
 							<span>Задать вопрос по данному товару</span>
 						</a>
-					</div>
-
-					<div class="product-other-info">
-						<div>Код товара: <?= $product->id ?></div>
-						<div>В наличии: <?= $product->leftover ?></div>
 					</div>
 				</div>
 			</div>

@@ -557,10 +557,11 @@ footer{
 	}
 
 	@include screen_sm_down{
+		margin-top: 30px;
+
 		&-title{
 			text-align: center;
 		}
-		margin-top: 30px;
 	}
 }
 
@@ -574,24 +575,25 @@ footer{
 	}
 
 	@include screen_sm_down{
+		margin-left: -10px;
+		margin-right: -10px;
+
 		&-title{
 			padding: 0 10px;
 			text-align: center;
 		}
-
-		margin-left: -10px;
-		margin-right: -10px;
 	}
 }
 
-// .bestsellers{
-// 	.list-products{
-		
-// 	}
-// }
-
-
-
+.bestsellers{
+	@include screen_sm_down{
+		.list-products{
+			.product-card{
+				margin-bottom: 15px;
+			}
+		}
+	}
+}
 
 .cart{
 
@@ -674,6 +676,7 @@ footer{
 						border-radius: 10px;
 						overflow: hidden;
 						flex: none;
+						
 						a{
 							img{
 								max-width: 100%;

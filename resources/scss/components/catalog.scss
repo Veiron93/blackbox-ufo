@@ -1388,6 +1388,23 @@
 			}
 		}
 
+		.product-other-info{
+			width: 160px;
+			margin: 30px auto 0;
+			@include style-block;
+			padding: 10px;
+
+			> div {
+				font-size: 14px;
+				color: #777;
+				white-space: nowrap;
+
+				&:not(:last-child){
+					margin-bottom: 7px;
+				}
+			}
+		}
+
 		.btn-question{
 			width: 160px;
 			margin: 10px auto;
@@ -1417,20 +1434,7 @@
 			}
 		}
 
-		.product-other-info{
-			margin: 20px auto 0;
-
-			> div {
-				font-size: 14px;
-				color: #777;
-				white-space: nowrap;
-				text-align: center;
-
-				&:not(:last-child){
-					margin-bottom: 7px;
-				}
-			}
-		}
+		
 
 		
 
