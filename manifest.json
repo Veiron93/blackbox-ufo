@@ -1,0 +1,11 @@
+{
+    "name": "BLACKBOX",
+    "short_name": "BB",
+    "icons": [{
+        "src": "/resources/images/favicon.svg",
+        "sizes": "512x512"
+    }],
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "display": "fullscreen"
+}
