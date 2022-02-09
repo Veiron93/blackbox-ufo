@@ -284,6 +284,12 @@ mobileNavigation();
 			let deliveryItems = cart.querySelectorAll('input[name="delivery"]');
 			
 			deliveryItems.forEach(function(deliveryItem){
+
+				if(deliveryItem.hasAttribute('checked')){
+					setTotalPriceDelivery(deliveryItem);
+					setTotalPrice(deliveryItem);
+					statusSectionAddress(deliveryItem);
+				}
 		
 				// изменение способа доставки
 				deliveryItem.addEventListener('change', function(){

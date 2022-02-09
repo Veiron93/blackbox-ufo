@@ -1,0 +1,16 @@
+<? Phpr_View::beginBlock("view") ?>
+	<?
+		$items = $this->menuItems->getRootItemsInMenu('main');
+		$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
+	?>
+
+	<div class="free-delivery container">
+		<div class="heading-page">
+			<h1><?= $block->title ?></h1>
+		</div>
+
+		<div data-formatted-text>
+			<?= $block->get_filtered_text() ?>
+		</div>
+	</div>
+<? Phpr_View::endBlock()?>

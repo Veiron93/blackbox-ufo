@@ -14,7 +14,11 @@
 			</div>
 
 			<div class="header-description">
-				Аксессуары и гаджеты г. Южно-Сахалинск
+				<?php if(Phpr::$request->getCurrentUri() === '/'): ?>
+					<h1>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</h1>
+				<?php else: ?>
+					Аксессуары и гаджеты, а так же товары для авто, дома, отдыха
+				<?php endif; ?>
 			</div>
 
 			<div class="header-phone">
@@ -49,6 +53,7 @@
 				<span>Каталог</span>
 			</div>
 
+			
 			<div class="other-menu">
 				<ul>
 					<li>
@@ -60,8 +65,8 @@
 				</ul>
 			</div>
 
+			
 			<?/*
-
 			<div class="header-search">
 				
 				<div class="search-form">

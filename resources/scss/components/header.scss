@@ -42,7 +42,13 @@ header {
 			}
 
 			.header-description {
+
 				font-size: 13px;
+
+				h1{
+					font-size: 13px;
+					font-weight: normal;
+				}
 			}
 
 			.header-phone {
@@ -659,6 +665,10 @@ header {
 				.header-description {
 					font-size: 12px;
 					width: 180px;
+
+					h1{
+						font-size: 12px;
+					}
 				}
 
 				.header-phone {

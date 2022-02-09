@@ -97,9 +97,23 @@
 						<? Phpr_Form::closeTag() ?>
 					</div>
 
-					<?php $packaging = App_Helper::getBanners('packaging') ?>
+					<?php 
+						$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
+						$totalPrice = $cart->getTotalPrice();
+					?>
+
+					<?php if($freeDelivery && $freeDelivery > $totalPrice): ?>
+						<div class="free-delivery-cart">
+							Для бесплатной доставки по городу, добавьте ещё товаров на <?= $freeDelivery - $totalPrice ?> руб.
+						</div>
+					<?php endif; ?>	
+
+
 
 					<?/*
+					<?php $packaging = App_Helper::getBanners('packaging') ?>
+
+					
 					<?php if(isset($packaging) && count($packaging)): ?>
 
 						<div class="branded-packaging">
