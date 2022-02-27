@@ -450,6 +450,7 @@
 	@include screen_md {
 		.sorting-mode {
 			font-size: 13px;
+			
 
 			&_list {
 				.item {
@@ -467,6 +468,7 @@
 		box-shadow: none;
 		height: auto;
 		padding: 0;
+		padding-bottom: 2px;
 
 		.sorting-mode {
 			display: flex;
@@ -1187,7 +1189,7 @@
 
 	&_wrapper {
 		display: flex;
-		column-gap: 20px;
+		column-gap: 30px;
 	}
 
 	&_details {
@@ -1198,7 +1200,6 @@
 		column-gap: 20px;
 
 		.catalog-product-slider {
-			//border: 1px solid red;
 			width: 450px;
 			flex: none;
 			position: relative;
@@ -1313,7 +1314,7 @@
 
 	&_buy {
 		margin-top: 20px;
-		width: 200px;
+		width: 160px;
 		flex: none;
 		align-self: flex-start;
 

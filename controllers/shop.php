@@ -233,6 +233,13 @@ class Shop extends App_Controller
 
             if($delivery['code'] != 'pickup'){
                 $this->validation->add("customer-address", "Адрес")->required("Укажите адрес");
+
+				$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
+
+                if($freeDelivery && $delivery['code'] === 'ys' && $freeDelivery <= $cart->getTotalPrice()){
+                    $delivery['price'] = 'Бесплатно';
+                }
+
                 $deliveryDescription = "Район: " . $delivery['name'] . PHP_EOL . "Стоимость доставки: " . $delivery['price'];
             }else{
                 $deliveryDescription = "Самовывоз";

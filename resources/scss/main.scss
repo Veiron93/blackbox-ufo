@@ -742,12 +742,16 @@ footer{
 						input{
 							width: 30px;
 							height: 30px;
-							-moz-appearance: textfield;
+							
 							text-align: center;
 							border-right: none;
 							border-left: none;
 							font-size: 14px;
-							border-radius: none;
+
+							-webkit-appearance: none;
+							-webkit-border-radius: 0px;
+							-moz-appearance: textfield;
+							border-radius:0;
 						}
 
 						input::-webkit-outer-spin-button,
@@ -883,10 +887,11 @@ footer{
 		}
 
 		.shop-checkout{
+			width: 320px;
+			height: 100%;
 			margin-left: 30px;
 			@include style-block;
 			padding: 15px 15px 0;
-			width: 320px;
 			flex: none;
 
 			form{
@@ -1130,10 +1135,34 @@ footer{
 				}
 
 				.form-section{
+					&-title{
+						margin-bottom: 7px;
+					}
+
+					input[type='text'], input[type='tel'], input[type='email'], select{
+						height: 42px;
+						font-size: 16px;
+					}
+
+					textarea{
+						font-size: 16px;
+						min-height: 80px;
+					}
+
 					.form-item-radio{
 						margin-bottom: 13px;
+
+						label{
+							font-size: 15px;
+						}
 					}
 				}
+
+				form{
+					.bnt-order-buy{
+						height: 46px;
+					}
+				}	
 			}
 		}
 	}
@@ -1180,8 +1209,9 @@ form{
 			}
 		}
 
-		input, select{
+		input[type='text'], input[type='tel'], input[type='email'], select{
 			height: 34px;
+			
 		}
 
 		textarea{

@@ -26,7 +26,7 @@
 			<?php foreach (Phpr::$config->get('DELIVERY') as $id => $value) : ?>
 				
 				<?php 
-					if($freeDelivery && $value['code'] == 'ys' && $freeDelivery <= $cart->getTotalPrice()){
+					if($freeDelivery && $value['code'] === 'ys' && $freeDelivery <= $cart->getTotalPrice()){
 						$value['price'] = 0;
 					}
 				?>
