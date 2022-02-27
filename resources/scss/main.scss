@@ -819,10 +819,28 @@ footer{
 		}
 
 		.free-delivery-cart{
-			margin-top: 40px;
-			text-align: center;
-			font-weight: 500;
-			font-size: 18px;
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+			margin-top: 20px;
+			background: $accentHover;
+			padding: 10px 15px;
+			border-radius: 14px;
+
+			img{
+				height: 44px;
+			}
+
+			.text{
+				color: #fff;
+				font-size: 18px;
+				line-height: 1.4em;
+
+				span{
+					font-size: 20px;
+					font-weight: 500;
+				}
+			}
 		}
 
 		.branded-packaging{
@@ -1121,6 +1139,23 @@ footer{
 					}
 				}
 			}
+
+			.free-delivery-cart{
+				display: block;
+				padding: 10px 10px 15px;
+				text-align: center;
+
+				.text{
+					font-size: 14px;
+	
+					span{
+						margin-top: 8px;
+						font-size: 24px;
+						display: block;
+					}
+				}
+			}
+
 
 			.shop-checkout{
 				margin-left: 0;
