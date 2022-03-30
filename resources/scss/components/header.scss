@@ -28,15 +28,16 @@ header {
 					justify-content: center;
 
 					img {
-						height: 36px;
+						height: 28px;
 						display: block;
-						margin-right: 10px;
+						margin-right: 6px;
 					}
 
 					span {
 						font-weight: bold;
 						text-transform: uppercase;
 						font-size: 14px;
+						color: #000;
 					}
 				}
 			}
@@ -143,12 +144,11 @@ header {
 							}
 
 							img {
-								height: 15px;
+								height: 18px;
 								margin-right: 7px;
 							}
 
 							span {
-								text-transform: uppercase;
 								color: #fff;
 								font-size: 12px;
 								letter-spacing: 0.5px;
