@@ -17,7 +17,7 @@ class Blackbox_Module extends Core_ModuleBase
 
             if ($model instanceof Catalog_Product) {
                 $model->defineColumn("regular_photo", "Обычное фото");
-                $model->defineColumn("is_sale", "Распродажа");
+                $model->defineColumn("is_sale", "Добавить в блок Товары со скидкой");
                 $model->defineColumn("sales", "Продано");
             }
         });

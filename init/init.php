@@ -116,6 +116,7 @@ $APP_CONF['TINYMCE_HTML_CONTENT_STYLES'] = "/resources/css/tinymce.css";
 /*$APP_CONF['STATIC_TEMPLATES_NAME_ASSOCIATIONS'] = [
     'static_page' => 'По умолчанию'
 ];*/
+
 $APP_CONF['DEFAULT_FILE_CATEGORY_NAME'] = 'Документы';
 $APP_CONF['THUMBNAIL_SAVE_ORIGINAL_PATH'] = true;
 
@@ -130,4 +131,6 @@ $APP_CONF['DELIVERY'] = [
     ['name' => 'Ново-Александровск', 'code' => 'sector-3','price' => '250']
 ];
 
-$APP_CONF['TEXT_WHATSAPP_QUESTION_PRODUCT'] = "https://clck.bar/Le8f65";
+$APP_CONF['PHONE'] = $phone = "79624192078";
+
+$APP_CONF['TEXT_WHATSAPP_QUESTION_PRODUCT'] = "whatsapp://wa.me/send?phone=$phone&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC%D1%83%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%83%20";

@@ -1,6 +1,14 @@
 <div class="container">
 	<?php if (isset($allProducts) && $allProducts): ?>
 		<div class="all-products">
+			<div class="heading-page">
+				<h1>Все товары</h1>
+			</div>
+
+			<div class="count-products">
+				Товаров в наличии: <?= count($allProducts) ?>
+			</div>
+
 			<div class="list-products lg-5 md-4 sm-2" data-view-list='grid'>
 				<?php foreach ($allProducts as $product): ?>
 					<?php $this->renderPartial("product_card", ['product'=>$product]);?>
