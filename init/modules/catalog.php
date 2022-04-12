@@ -8,6 +8,8 @@ Phpr::$router->addPrefix("catalog-prefix", "catalog");
 $route = Phpr::$router->addRule('$catalog-prefix/product/:product_id', "catalog_product")->controller('catalog')->action('product');
 $route = Phpr::$router->addRule('$catalog-prefix', "catalog_index")->controller('catalog')->action('index');
 
+$route = Phpr::$router->addRule('$catalog-prefix/all-products', "catalog_all_products")->controller('catalog')->action('all_products');
+
 $route = Phpr::$router->addRule('$catalog-prefix/:category_id/:page_index', "catalog_category");
 $route->check('page_index', '/^[0-9]+$/');
 $route->def('page_index', null);

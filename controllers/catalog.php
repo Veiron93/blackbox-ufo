@@ -97,6 +97,10 @@ class Catalog extends App_Controller {
 	}
 
 
+	public function all_products(){
+		$this->viewData['allProducts'] = Catalog_Product::create()->where('catalog_products.leftover > 0 && catalog_products.deleted is null && catalog_products.hidden is null')->order('id desc')->find_all();
+	}
+
 
 	private function filters($filters){
 		$filtersId = [];

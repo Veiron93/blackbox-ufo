@@ -1,0 +1,23 @@
+<div class="container">
+	<?php if (isset($allProducts) && $allProducts): ?>
+		<div class="all-products">
+			<div class="list-products lg-5 md-4 sm-2" data-view-list='grid'>
+				<?php foreach ($allProducts as $product): ?>
+					<?php $this->renderPartial("product_card", ['product'=>$product]);?>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	<?php else: ?>
+		<div class="catalog-no-category">Нет товаров</div>
+	<?php endif; ?>
+</div>
+
+		
+	
+		
+
+
+
+
+
+

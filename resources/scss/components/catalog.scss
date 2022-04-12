@@ -1176,6 +1176,15 @@
 	}
 }
 
+// все товары
+.all-products{
+	@include screen_md_down{
+		.list-products{
+			row-gap: 20px;
+		}
+	}
+}
+
 // страница просмотра товара
 .catalog-product {
 
