@@ -1,0 +1,41 @@
+<div class="search-page container">
+
+	<? if (!isset($error)): ?>
+
+		<? if (isset($products) || isset($categories)): ?>
+
+			<div class="search-query">
+				Результаты поиска по запросу <span>«<?= h(Phpr::$request->getField('q')) ?>»</span>
+			</div>
+
+				<?php if(count($categories)): ?>
+					<?php $this->renderPartial($this->getViewsDir() . "catalog/_categories_list.htm");?>
+				<?php endif; ?>
+
+				<? if (count($products)): ?>
+					<div class="list-products">
+						<? foreach ($products as $product): ?>
+							<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product, 'typePage'=>'search']);?>
+						<? endforeach; ?>
+					</div>
+				<? endif ?>
+
+				<?php if(!count($categories) && !count($products)): ?>
+					<div class="search-no-products">
+						К сожалению, по вашему запросу ничего не найдено. <br> Проверьте правильность ввода или попробуйте изменить запрос.
+					</div>
+				<?php endif;?>
+
+				<? /** @var $pagination Phpr_Pagination */ ?>
+				<? if (isset($pagination)): ?>
+					<div class="pagination-block">
+						<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("search_page", array()) . "%d/" . str_replace("%", "%%", $query)) ?>
+					</div>
+				<? endif; ?>
+		
+		<? endif; ?>
+		
+	<? else: ?>
+		<p class="error"><?= $error ?></p>
+	<? endif; ?>
+</div>
