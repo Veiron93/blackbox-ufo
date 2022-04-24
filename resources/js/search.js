@@ -52,46 +52,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // отправка запроса
     function onSendSearch(){
-        axios.get('/search/widget/')
-            .then(function (response) {
+        axios.post('/search/widget/', {
+            query: searchInput.value
+        })
+        .then(function (response) {
 
-                let categories = response.data.response.categories,
-                    products = response.data.response.products;
+            let categories = response.data.response.categories,
+                products = response.data.response.products;
 
-                //console.log(response.data.response);
+            //console.log(response.data.response);
 
-                if(categories) renderCategories(categories);
-                //if(products) renderCategories(products);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            if(categories) renderCategories(categories);
+            //if(products) renderCategories(products);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     // рендер категорий в список результата поиска
     function renderCategories(categoriesResult){
 
-        console.log(categoriesResult)
-
         let categories = '',
             words = ['товар', 'товара', 'товаров'];
 
         categoriesResult.forEach(category => {
-            categories += `<a href='/catalog/${category.id}'><span>${category.name}</span> <span>${category.parent_name}</span> <span>12 ${endingWord(words, 14)}</span></a>`;
+            if(category.products_count > 0){
+                categories += `<div data-href='/catalog/${category.id}'><span>${category.name}</span> <span>${category.parent_name}</span> <span>${category.products_count} ${endingWord(words, 14)}</span></div>`;
+            }
         })    
 
         categoriesList.innerHTML = categories;
         sectionCategories.classList.add('active');
         statusSearchResultWrapper();
+        clickResultSearch();
     }
-
 
 
 
     // слежение за полем поиска
     let sendFormSearch = null;
 
-    searchInput.addEventListener('input', function () {
+    searchInput.addEventListener('input', function () {   
 
         // отправка запроса если есть изменения в поле поиска
         if(this.value.length > 0){
@@ -108,5 +110,48 @@ document.addEventListener("DOMContentLoaded", function () {
             onStatusBtnClearSearch();
         }
     });
+
+
+
+    // HISTORY SEARCH
+    function clickResultSearch(){
+
+        let categories = categoriesList.querySelectorAll('div');
+
+        categories.forEach(result => {
+
+            result.addEventListener('click', ()=>{
+
+                let href = result.getAttribute('data-href'),
+                    name = result.getAttribute('data-href'),
+                    resultData = {name: name, href: href};
+
+                addHistorySearch(resultData);
+
+                //window.location = href;
+            })
+        }) 
+    }
+
+    function addHistorySearch(value){
+
+        let localStorageName = 'search-history',
+            historySearch = localStorage.getItem(localStorageName);
+
+        if(historySearch){
+            let add = true;
+            
+            historySearch = JSON.parse(historySearch);
+    
+            historySearch.forEach(result =>{
+                if (result.href == value.href) add = false
+            })
+
+            add && localStorage.setItem(localStorageName, JSON.stringify([...historySearch, value]));
+            
+        }else{
+            localStorage.setItem(localStorageName, JSON.stringify([value]));
+        }
+    }
 
 });

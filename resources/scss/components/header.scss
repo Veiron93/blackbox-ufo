@@ -295,11 +295,12 @@ header {
 							display: flex;
 							flex-direction: column;
 
-							a{
+							>div{
 								display: flex;
 								align-items: center;
 								padding: 7px 15px;
 								transition: background .2s;
+								cursor: pointer;
 
 								&:hover{
 									background: rgba($accentHover, .1);

@@ -11,28 +11,35 @@ class Search extends App_Controller
 
     public function widget()
     {
-        $query = "Защитные стёкла";
+        try {
+            $inputJSON = file_get_contents('php://input');
+            $query = json_decode( $inputJSON, TRUE ); 
 
-        $categories = Db_DbHelper::objectArray("SELECT c.id, c.name, pc.name as parent_name
-                FROM catalog_categories as c
-                left join 
-                    catalog_categories pc on pc.id = c.parent_id
-                where
-                    lower(c.name) like '%{$query}%' and (c.hidden is null or c.hidden <> 1)
-                group by c.id") ?: [];
+            $query = mysqli_real_escape_string(Db::$connection, strip_tags($query["query"]));
+            $query = mb_strtolower($query);
+            $query = trim($query);
+
+            if (!$query || mb_strlen($query) < 2) {
+                return false;
+            }
+
+            // CATEGORIES
+
+            $categories = Db_DbHelper::objectArray("SELECT c.id, c.name, pc.name AS parent_name, COUNT(cp.id) AS products_count
+                FROM 
+                    catalog_categories AS c
+                LEFT JOIN 
+                    catalog_categories pc ON pc.id = c.parent_id
+                LEFT JOIN  
+                    catalog_products cp ON cp.category_id = c.id
+                WHERE
+                    lower(c.name) LIKE '%{$query}%' AND c.hidden IS NULL AND c.deleted IS NULL AND cp.hidden IS NULL AND cp.deleted IS NULL
+                GROUP BY c.id") ?: [];
 
 
+            // PRODUCTS
 
-
-
-
-
-
-
-
-
-
-        $products = Db_DbHelper::objectArray("
+            $products = Db_DbHelper::objectArray("
                 select p.id, p.name, p.price, df.id as image_id, df.disk_name as image_path 
                 from 
                     catalog_products as p
@@ -44,7 +51,12 @@ class Search extends App_Controller
                 ") ?: [];
 
 
-        $this->ajaxResponse(["categories" => $categories, "products" => $products]);
+            $this->ajaxResponse(["categories" => $categories, "products" => $products]);
+
+        }  catch (Exception $exception) {
+            Phpr::$response->setHttpStatus(Phpr_Response::httpInternalServerError);
+            Phpr::$errorLog->logException($exception);
+        }
     }
 
 
