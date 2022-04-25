@@ -153,5 +153,4 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem(localStorageName, JSON.stringify([value]));
         }
     }
-
 });
