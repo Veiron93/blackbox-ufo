@@ -9,7 +9,7 @@
 				Товаров в наличии: <?= count($allProducts) ?>
 			</div>
 
-			<div class="list-products lg-5 md-4 sm-2" data-view-list='grid'>
+			<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list='grid'>
 				<?php foreach ($allProducts as $product): ?>
 					<?php $this->renderPartial("product_card", ['product'=>$product]);?>
 				<?php endforeach; ?>

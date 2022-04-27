@@ -99,51 +99,10 @@
 		<?php endif;?>
 	</div>
 
-	<?php if(isset($sale) && count($sale)): ?>
-		<div class="sale-index">
-			<div class="sale-index_title">
-				<a href="/sale/">
-					<img src="/resources/images/icons/flame.svg" class="flame" alt="">
-					<span>Товары со скидкой</span>
-				</a>
-			</div>
-
-			<div class="list-products lg-5 md-4 sm-2" data-view-list="grid">
-				<?php foreach($sale as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product]);?>
-				<? endforeach ?>
-			</div>
-		</div>
-	<?php endif ?>
-	
-	<?php if(isset($bestsellers) && count($bestsellers)): ?>
-		<div class="bestsellers">
-			<div class="bestsellers-title">Хиты продаж</div>
-
-			<div class="list-products lg-5 md-4 sm-2" data-view-list="grid">
-				<?php foreach($bestsellers as $product): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product]);?>
-				<? endforeach ?>
-			</div>
-		</div>
-	<?php endif ?>
-
-	<?php if(isset($newProducts) && count($newProducts)): ?>
-		<div class="new-products">
-			<div class="new-products-title">Новинки</div>
-
-			<div class="list-products-slider swiper" data-view-list="grid">
-				<div class="button-prev"></div>
-				<div class="button-next"></div>
-				
-				<div class="swiper-wrapper">
-					<?php foreach($newProducts as $product): ?>
-						<div class="swiper-slide">
-							<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product'=>$product]);?>
-						</div>
-					<? endforeach ?>
-				</div>
-			</div>
-		</div>
-	<?php endif ?>
+	<?php 
+		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $sale, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
+		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $bestsellers, 'title' => 'Топ продаж', 'view_type' => 'list']);
+		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_slider.htm", ['products' => $newProducts, 'title' => 'Новинки']);
+		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_slider.htm", ['products' => $newProducts, 'title' => 'Автомобилистам', 'view_type' => 'list']);
+	?>
 </div>

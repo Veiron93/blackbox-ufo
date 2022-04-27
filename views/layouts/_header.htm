@@ -29,12 +29,6 @@
 			</div>
 
 			<div class="header-socials">
-				<?/*
-				<a href="https://www.instagram.com/blackboxsakh/" target="_blank" title="Инстаграм">
-					<img src="/resources/images/icons/social/instagram.svg" alt="Инстаграм">
-				</a>
-				whatsapp
-				*/?>
 				<a href="whatsapp://api.whatsapp.com/send?phone=<?=Phpr::$config->get('PHONE')?>" target="_blank" title="WhatsApp">
 					<img src="/resources/images/icons/social/whatsapp.svg" alt="WhatsApp">
 				</a>
@@ -56,81 +50,22 @@
 				<span>Каталог</span>
 			</div>
 
-			
 			<div class="other-menu">
 				<ul>
-					<?/*
-					<li>
-						<a href="https://www.instagram.com/blackboxsakh/" target="_blank">
-							<img src="/resources/images/icons/social/instagram-white.svg" alt="Поиск">
-							<span>Скидка 5% <span>за подписку на Instagram</span></span>
-						</a>
-					</li>
-					*/?>
-
 					<li>
 						<a href="/free-delivery/">
-							<img src="/resources/images/icons/happy_smile.svg" alt="бесплатная доставка">
+							<img src="/resources/images/icons/smiles/happy_smile.svg" alt="бесплатная доставка">
 							<span>бесплатная доставка *</span>
 						</a>
 					</li>
 				</ul>
 			</div>
 			
-			<?/*
-			<div class="header-search">
-				
-				<div class="search-form">
-					<input type="text" class="search-input" placeholder="Поиск по каталогу">
-
-					<div class="search-form_btns">
-						<button class="btn-clear">
-							<img src="/resources/images/icons/close.svg" alt="Очистить">
-						</button>
-
-						<button class="btn-search">
-							<img src="/resources/images/icons/search.svg" alt="Поиск">
-						</button>
-					</div>
-				</div>	
-				
-				<div class="header-search-results">
-				
-					<!-- <div class="header-search-results_words-list">
-						<div class="item">стекло 12</div>
-						<div class="item">стекло 3D</div>
-					</div> -->
-					
-
-					<div class="header-search-results_categories">
-						<div class="header-search-results_categories-title">Категории</div>
-						<div class="header-search-results_categories-list"></div>
-					</div>
-
-					<div class="header-search-results_products">
-
-						<div class="header-search-results_products-title">Товары</div>
-
-						<div class="header-search-results_products-list">
-							<a href="">стекло</a>
-							<a href="">стекло</a>
-							<a href="">стекло</a>
-							<a href="">стекло</a>
-						</div>
-					</div>
-				</div>
-			</div>	
-
-			*/?>
-
-			
-
-			<? Shop_Helper::renderMiniCart($this) ?>
+			<?php //$this->renderLayout('_widget_search'); ?>
+			<?php Shop_Helper::renderMiniCart($this) ?>
 		</div>
 	</div>
 </header>
 
-<?php
-	if($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);
-?>
+<?php if ($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);?>
 

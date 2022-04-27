@@ -2,44 +2,44 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    let search = document.querySelector('.header-search'),
-        searchInput = search.querySelector('.search-input'),
-        searchResultsWrapper = search.querySelector('.header-search-results'),
-        sectionCategories = searchResultsWrapper.querySelector('.header-search-results_categories'),
-        categoriesList = sectionCategories.querySelector('.header-search-results_categories-list');
+    let widgetSearch = document.querySelector('.widget-search'),
+        searchInput = widgetSearch.querySelector('.search-input'),
+        searchResultsWrapper = widgetSearch.querySelector('.widget-search-results');
+    
+    // категории
+    let sectionCategories = searchResultsWrapper.querySelector('.widget-search-results_categories'),
+        categoriesList = sectionCategories.querySelector('.widget-search-results_categories-list');
 
-    // clear search input
-    let btnClear = search.querySelector('.btn-clear'),
+    // товары
+    let sectionProducts = searchResultsWrapper.querySelector('.widget-search-results_products'),
+        productsList = sectionProducts.querySelector('.widget-search-results_products-list');
+
+    
+    //////// ОЧИСТИТЬ ПОИСК ////////
+    let btnClear = widgetSearch.querySelector('.btn-clear'),
         btnClearStatus = false;
 
-    function onClearSearch() {
+    function clearSearch() {
         searchInput.value = "";
-        onStatusBtnClearSearch();
+
+        if(sectionCategories.classList.contains('active')){
+            sectionCategories.classList.remove('active');
+            categoriesList.innerHTML = '';
+        }
+
+        if(sectionProducts.classList.contains('active')){
+            sectionProducts.classList.remove('active');
+            productsList.innerHTML = '';
+        }
+
+        statusBtnClearSearch();
     }
 
-    function onStatusBtnClearSearch() {
+    function statusBtnClearSearch() {
         btnClearStatus = btnClearStatus ? false : true;
         btnClear.classList.toggle('active');
     }
 
-    btnClear.addEventListener('click', () => {
-        onClearSearch();
-        clearResults();
-    });
-
-
-    // clear results
-    function clearResults(){
-        sectionCategories.classList.remove('active');
-        categoriesList.innerHTML = '';
-    }
-
-
-    // redirect search page
-    let btnSearch = search.querySelector('.btn-search');
-    btnSearch.addEventListener('click', () => window.location = 'search');
-
-    
     // status search result wrapper
     function statusSearchResultWrapper(status = true){
         if(status){
@@ -49,28 +49,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    btnClear.addEventListener('click', () => clearSearch());
 
-    // отправка запроса
+    
+    //////// ОТПРАВКА ЗАПРОСА ПОИСКА ////////
     function onSendSearch(){
         axios.post('/search/widget/', {
             query: searchInput.value
         })
-        .then(function (response) {
-
+        .then(response => {
             let categories = response.data.response.categories,
                 products = response.data.response.products;
 
-            //console.log(response.data.response);
+            if (categories) renderCategories(categories);
+            if (products) renderProducts(products);
 
-            if(categories) renderCategories(categories);
-            //if(products) renderCategories(products);
+            statusSearchResultWrapper();
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+        .catch(error => console.log(error));
     }
 
-    // рендер категорий в список результата поиска
+
+    //////// РЕНДЕР РЕЗУЛЬТАТА ПОИСКА ////////
+    // категории
     function renderCategories(categoriesResult){
 
         let categories = '',
@@ -82,38 +83,59 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })    
 
-        categoriesList.innerHTML = categories;
-        sectionCategories.classList.add('active');
-        statusSearchResultWrapper();
-        clickResultSearch();
+        if(categories.length){
+            categoriesList.innerHTML = categories;
+            sectionCategories.classList.add('active');
+        }
+
+        //clickResultSearch();
+    }
+
+    // товары
+    function renderProducts(productsResult){
+
+        let products = '';
+
+        productsResult.forEach(product => {
+            products += `<div data-href='/catalog/product/${product.id}'><img src="/uploaded/${product.image_path}"><span>${product.name}</span></div>`;
+        })    
+
+        if(products.length){
+            productsList.innerHTML = products;
+            sectionProducts.classList.add('active');
+        }
+
+        //clickResultSearch();
     }
 
 
-
-    // слежение за полем поиска
+    //////// СЛЕЖЕНИЕ ЗА ИЗМЕНЕНИЯМИ ПОЛЯ ПОИСКА ////////
     let sendFormSearch = null;
 
     searchInput.addEventListener('input', function () {   
 
         // отправка запроса если есть изменения в поле поиска
         if(this.value.length > 0){
-            if (sendFormSearch) clearTimeout(sendFormSearch);
+            if (sendFormSearch){
+                clearTimeout(sendFormSearch);
+            } 
             sendFormSearch = setTimeout(onSendSearch, 1000);
         }else{
-            onClearSearch();
+            clearSearch();
             statusSearchResultWrapper(false);
-            clearResults();
         }
 
         // статус кнопки очистить поиск
-        if (this.value.length > 0 && !btnClearStatus) {
-            onStatusBtnClearSearch();
-        }
+        if (this.value.length > 0 && !btnClearStatus) statusBtnClearSearch();
     });
 
 
+    //////// ПЕРЕХОДЫ ////////
+    // на страницу поиска по нажатию кнопки найти
+    let btnSearch = widgetSearch.querySelector('.btn-search');
+    btnSearch.addEventListener('click', () => window.location = 'search');
 
-    // HISTORY SEARCH
+    // переход на результат поиска
     function clickResultSearch(){
 
         let categories = categoriesList.querySelectorAll('div');
@@ -133,6 +155,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }) 
     }
 
+
+    //////// ИСТОРИЯ ПОИСКА ////////
+    // добавить
     function addHistorySearch(value){
 
         let localStorageName = 'search-history',

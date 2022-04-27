@@ -34,21 +34,19 @@ class Search extends App_Controller
                     catalog_products cp ON cp.category_id = c.id
                 WHERE
                     lower(c.name) LIKE '%{$query}%' AND c.hidden IS NULL AND c.deleted IS NULL AND cp.hidden IS NULL AND cp.deleted IS NULL
-                GROUP BY c.id") ?: [];
+                GROUP BY c.id LIMIT 5") ?: [];
 
 
             // PRODUCTS
 
-            $products = Db_DbHelper::objectArray("
-                select p.id, p.name, p.price, df.id as image_id, df.disk_name as image_path 
-                from 
+            $products = Db_DbHelper::objectArray("SELECT p.id, p.name, p.price, df.id AS image_id, df.disk_name AS image_path 
+                FROM 
                     catalog_products as p
-                left join 
+                LEFT JOIN 
                     db_files df on df.master_object_id = p.id and df.master_object_class = 'Catalog_Product' and df.field = 'photos'
-                where
-                    (p.hidden is null or p.hidden <> 1) and (lower(p.name) like '%{$query}%')                
-                group by p.id
-                ") ?: [];
+                WHERE
+                    lower(p.name) LIKE '%{$query}%' AND p.hidden IS NULL AND p.deleted IS NULL         
+                GROUP BY p.id LIMIT 5") ?: [];
 
 
             $this->ajaxResponse(["categories" => $categories, "products" => $products]);

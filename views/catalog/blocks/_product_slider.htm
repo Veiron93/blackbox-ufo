@@ -1,0 +1,33 @@
+<?php 
+	if(!isset($view_type)){
+		$view_type = "grid";
+	}
+?>
+
+<?php if (isset($products) && count($products)) : ?>
+	<div class="block-product-slider block-product-slider__<?= $view_type?>">
+		
+		<div class="block-product-slider-header">
+			<div class="title">
+				<?php if(isset($link) && $link): ?>
+					<a href="<?=$link?>"><?=$title?></a>
+				<?php else: ?>
+					<?=$title?>
+				<?php endif ?>
+			</div>
+
+			<div class="navigation">
+				<div class="btn btn-prev"></div>
+				<div class="btn btn-next"></div>
+			</div>
+		</div>
+
+		<div class="wrapper-products swiper-wrapper" data-view-list="<?= $view_type?>">
+			<?php foreach ($products as $product) : ?>
+				<div class="swiper-slide">
+					<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product' => $product]); ?>
+				</div>
+			<?php endforeach ?>
+		</div>
+	</div>
+<?php endif ?>

@@ -40,7 +40,7 @@
 							$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList, 'url'=>'catalog/'.$category->id]);
 						?>
 
-						<div class="list-products lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
+						<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
 							<?php foreach ($products as $product): ?>
 								<?php $this->renderPartial("product_card", ['product'=>$product]);?>
 							<?php endforeach; ?>
