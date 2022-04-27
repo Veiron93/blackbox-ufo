@@ -439,7 +439,7 @@
 
 	@include screen_sm_down {
 		&[data-view-list="grid"] {
-			column-gap: 10px;
+			gap: 10px;
 
 			&.sm-2 {
 				.product-card {
@@ -449,6 +449,7 @@
 		}
 
 		&[data-view-list="list"] {
+			row-gap: 15px;
 			.product-card {
 				width: 100%;
 			}
@@ -1365,9 +1366,9 @@
 	@include style-block;
 	height: 50px;
 	padding: 0px 15px;
+	margin-bottom: 30px;
 	display: flex;
 	align-items: center;
-	margin-bottom: 30px;
 
 	.sorting-mode {
 		display: flex;
@@ -1430,7 +1431,6 @@
 		.sorting-mode {
 			font-size: 13px;
 
-
 			&_list {
 				.item {
 					a {
@@ -1448,6 +1448,7 @@
 		height: auto;
 		padding: 0;
 		padding-bottom: 2px;
+		margin-bottom: 20px;
 
 		.sorting-mode {
 			display: flex;
