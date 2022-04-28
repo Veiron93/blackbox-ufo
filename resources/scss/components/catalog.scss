@@ -489,7 +489,7 @@
 					padding: 10px;
 
 					img {
-						max-height: 100%;
+						width: 100%;
 					}
 				}
 			}
@@ -632,10 +632,8 @@
 
 			&--normal {
 				a {
-					padding: 5px;
-
 					img {
-						max-height: 100%;
+						max-width: 100%;
 					}
 				}
 			}
@@ -685,8 +683,11 @@
 			padding: 10px 4px 4px 15px;
 
 			&-name {
+				height: 58px;
+				overflow: hidden;
+				padding-right: 5px;
 				a {
-					font-size: 15px;
+					font-size: 14px;
 					line-height: 1.2em;
 				}
 			}
@@ -746,14 +747,43 @@
 		}
 	}
 
-	@include screen_md {
+	@include screen_lg {
 		.product-card {
+			height: 110px;
+
+			&_photo {
+				a {
+					height: 110px;
+					width: 110px;
+				}
+			}
+
 			&_info {
-				&-description {
-					.name {
-						a {
-							font-size: 16px;
+				padding-left: 10px;
+
+				&-name {
+					height: 54px;
+					a {
+						font-size: 13px;
+						line-height: 1.1em;
+					}
+				}
+
+				&-buy {
+				
+					.price {
+						&-old {
+							font-size: 13px;
+							margin-left: 10px;
 						}
+	
+						&-actual {
+							font-size: 18px;
+						}
+					}
+	
+					form {
+						margin-left: 15px;
 					}
 				}
 			}
@@ -762,81 +792,14 @@
 
 	@include screen_sm_down {
 		.product-card {
-			height: auto;
-			width: 100%;
-			display: flex;
-			padding: 10px;
-
-			&_photo {
-				a {
-					height: 100px;
-					width: 100px;
-					border-radius: 10px;
-				}
-
-				&--normal {
-					a {
-						padding: 0;
-					}
-				}
-
-				.product-card_flags {
-					margin-top: 14px;
-					margin-left: 14px;
-				}
-			}
-
 			&_info {
-				display: block;
-				margin-left: 15px;
-
-				&-description {
-					padding: 0;
-
-					.name {
-						margin-bottom: 4px;
-						margin-top: 0;
-					}
-
-					.short-description {
-						max-height: 70px;
-
-						>* {
-							font-size: 14px;
-							line-height: 1.3em;
-						}
-					}
-				}
-
-				&-buy {
-					width: auto;
-					margin-top: 20px;
-					margin-left: 0;
-					position: relative;
-					justify-content: flex-end;
-
-					.price {
-						margin-right: 40px;
-
-						&-old {
-							font-size: 15px;
-							margin-top: 0;
-							margin-left: 0;
-							margin-right: 10px;
-							position: relative;
-						}
-
-						&-actual {
-							color: #000;
-							font-size: 24px;
-							font-weight: bold;
-						}
-					}
-
-					form {
-						height: 40px;
-						padding: 0;
-						flex: none;
+				padding: 8px 4px 4px 10px;
+	
+				&-name {
+					height: 62px;
+					a {
+						font-size: 16px;
+						line-height: 1.3em;
 					}
 				}
 			}
@@ -1306,7 +1269,6 @@
 		}
 
 		.navigation {
-			z-index: 100;
 			display: flex;
 			column-gap: 10px;
 
@@ -1341,6 +1303,19 @@
 
 	@include screen_sm_down {
 		margin-top: 30px;
+
+		&-header {	
+			.title {
+				font-size: 24px;
+			}
+	
+			.navigation {
+				.btn {
+					height: 36px;
+					width: 36px;
+				}
+			}
+		}
 	}
 }
 
@@ -1356,7 +1331,7 @@
 	}
 
 	@include screen_sm_down {
-		margin-top: 25px;
+		margin-top: 35px;
 	}
 }
 

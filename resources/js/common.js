@@ -91,16 +91,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 			settings.breakpoints = {
 				0: {
-					slidesPerView: 2.2,
+					slidesPerView: 1,
 					spaceBetween: 10,
 					freeMode: true,
 				},
 				768: {
-					slidesPerView: 4,
+					slidesPerView: 2,
 					spaceBetween: 20
 				},
 				991: {
-					slidesPerView: 5,
+					slidesPerView: 3,
 					spaceBetween: 20
 				},
 				1200: {
