@@ -3,9 +3,9 @@
 		<a href="/catalog/product/<?= $product->id ?>">
 			<?php
 				if(isset($product->photos) && count($product->photos)){
-					$image = (new LWImageManipulator($product->photos[0]->id, $product->photos[0]->disk_name))->getThumb(300, 300, Phpr_ImageManipulator::fitAndCrop);
+					$image = (new LWImageManipulator($product->photos[0]->id, $product->photos[0]->disk_name))->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
 				}else if($product->findMainPhoto()){
-					$image = $product->findMainPhoto()->getThumb(300, 300);
+					$image = $product->findMainPhoto()->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
 				}else{
 					$image = '/resources/images/icons/no-image.svg';
 				}

@@ -55,9 +55,9 @@
 									<div class="cart-list-products-item">
 
 										<? if ($photo = $product->findMainPhoto()): ?>
-											<div class="photo">
+											<div class="photo <?= $product->regular_photo ? 'photo--regular':''?>">
 												<a href="<?= $product->getUrl() ?>">
-													<img src="<?= $photo->getThumb(70, 70,  Phpr_ImageManipulator::fitAndCrop) ?>" alt=""/>
+													<img src="<?= $photo->getThumb(70, 70,  Phpr_ImageManipulator::keepRatio); ?>" alt="<?= $product->name ?>"/>
 												</a>
 											</div>
 										<? endif ?>

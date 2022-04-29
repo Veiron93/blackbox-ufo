@@ -618,6 +618,16 @@ footer{
 						border-radius: 10px;
 						overflow: hidden;
 						flex: none;
+
+						&--regular{
+							a{
+								img{
+									width: 70px;
+									height: 70px;
+									object-fit: cover;
+								}
+							}
+						}
 						
 						a{
 							img{

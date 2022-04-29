@@ -266,7 +266,7 @@ header {
 
 					&:hover>.menu-catalog-categories {
 						transition-delay: .5s;
-						visibility: visible;
+						visibility: visible !important;
 						height: auto;
 					}
 
@@ -277,7 +277,6 @@ header {
 						position: absolute;
 						min-width: 280px;
 						padding: 0;
-						visibility: hidden;
 						z-index: 999;
 						padding: 10px 0;
 
@@ -487,6 +486,16 @@ header {
 									border-radius: 14px;
 									overflow: hidden;
 									flex: none;
+
+									&--regular{
+										a{
+											img{
+												width: 60px;
+												height: 60px;
+												object-fit: cover;
+											}
+										}
+									}
 
 									a {
 										img {
