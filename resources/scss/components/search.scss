@@ -86,32 +86,15 @@
         z-index: 5;
         border-radius: 6px;
         box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
-        padding: 15px 0px;
-
         flex-direction: column;
-        row-gap: 20px;
 
         &.active{
             display: flex;
-        }
+        }   
 
-        &_words-list{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-
-            .item{
-                //border: 1px solid red;
-                padding: 8px 10px;
-                font-size: 14px;
-                background: $gray;
-                border-radius: $brs;
-                cursor: pointer;
-            }
-        }
-
-        &_categories, &_products{
+        &_categories, &_products, &_history{
             display: none;
+            padding: 15px 0;
 
             &.active{
                 display: block;
@@ -194,6 +177,34 @@
                         font-size: 15px;
                     }
                 }
+            }
+        }
+
+        &_history{
+
+            &-list{
+                >div{
+                    a{
+                        display: inline-block;
+                        padding: 5px 15px;
+                    }
+                }
+            }
+
+            &-btn-clear{
+                font-size: 14px;
+                width: 130px;
+                margin-left: auto;
+                margin-right: 15px;
+
+                cursor: pointer;
+                user-select: none;
+                transition: color .2s;
+                margin-top: 5px;
+
+				&:hover{
+					color: $accentHover;
+				}
             }
         }
     }

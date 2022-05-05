@@ -23,6 +23,8 @@ class Search extends App_Controller
                 return false;
             }
 
+            //traceLog($query);
+
             // CATEGORIES
 
             $categories = Db_DbHelper::objectArray("SELECT c.id, c.name, pc.name AS parent_name, COUNT(cp.id) AS products_count
