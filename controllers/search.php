@@ -43,11 +43,22 @@ class Search extends App_Controller
                 FROM 
                     catalog_products as p
                 LEFT JOIN 
-                    db_files df on df.master_object_id = p.id and df.master_object_class = 'Catalog_Product' and df.field = 'photos'
+                    db_files df on
+                    df.master_object_id = p.id and 
+                    df.sort_order = (SELECT MIN(sort_order) FROM db_files WHERE master_object_id = p.id and df.field = 'photos' and master_object_class = 'Catalog_Product')
                 WHERE
-                    lower(p.name) LIKE '%{$query}%' AND p.hidden IS NULL AND p.deleted IS NULL         
+                    lower(p.name) LIKE '%{$query}%' AND p.hidden IS NULL AND p.deleted IS NULL      
                 GROUP BY p.id LIMIT 5") ?: [];
 
+
+            foreach($products as $product){
+                $image = (new LWImageManipulator($product->image_id, $product->image_path))->getThumb(40, 40, Phpr_ImageManipulator::fitAndCrop);
+                
+                $product->image = $image;
+
+                unset($product->disk_name);
+                unset($product->image_path);
+            }
 
             $this->ajaxResponse(["categories" => $categories, "products" => $products]);
 
@@ -106,11 +117,10 @@ class Search extends App_Controller
                 LEFT JOIN 
                     db_files df on df.master_object_id = p.id and df.master_object_class = 'Catalog_Product' and df.field = 'photos'
                 WHERE
-                    lower(p.name) LIKE '%{$query}%' AND p.hidden IS NULL AND p.deleted IS NULL         
+                    lower(p.name) LIKE '%{$query}%' AND p.hidden IS NULL AND p.deleted IS NULL      
                 GROUP BY p.id LIMIT {$offset}, {$limit}") ?: [];
 
 
-      
             $pagination->setRowCount($count);
             $pagination->setCurrentPageIndex($page - 1);
 

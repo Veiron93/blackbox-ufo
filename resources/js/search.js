@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 i = 0;
 
             productsResult.forEach(product => {
-                products += `<div data-href='/catalog/product/${product.id}'><img src="/uploaded/${product.image_path}"><span>${product.name}</span></div>`;
+                products += `<div data-href='/catalog/product/${product.id}'><img src="${product.image}"><span>${product.name}</span></div>`;
 
                 i++;
 

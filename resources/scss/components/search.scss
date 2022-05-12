@@ -201,7 +201,6 @@ body.search-active{
             }
 
             &_history{
-
                 &-list{
                     >div{
                         a{
@@ -214,14 +213,11 @@ body.search-active{
                 &-btn-clear{
                     font-size: 14px;
                     width: 130px;
-                    margin-left: auto;
-                    margin-right: 15px;
-
+                    margin: 15px 15px 0 auto;
                     cursor: pointer;
                     user-select: none;
                     transition: color .2s;
-                    margin-top: 5px;
-
+                    
                     &:hover{
                         color: $accentHover;
                     }
