@@ -43,7 +43,6 @@ header {
 			}
 
 			.header-description {
-
 				font-size: 13px;
 
 				h1{
@@ -67,18 +66,16 @@ header {
 					align-items: center;
 					padding: 5px 10px;
 
-					img {
-						height: 17px;
-						display: block;
-						margin-right: 5px;
-					}
-
 					span {
 						font-size: 14px;
 						font-weight: bold;
 						letter-spacing: 0.5px;
 					}
 				}
+			}
+
+			.btn-status-search-mobile{
+				display: none;
 			}
 
 			.header-socials {
@@ -89,7 +86,7 @@ header {
 
 				a {
 					img {
-						width: 20px;
+						height: 22px;
 						display: block;
 					}
 				}
@@ -159,12 +156,6 @@ header {
 				}
 			}
 
-			.widget-search {
-				margin-right: 60px;
-				margin-left: auto;
-				width: 100%;
-			}
-
 			.mini-cart {
 				height: 50px;
 				display: flex;
@@ -232,6 +223,12 @@ header {
 
 				.btn-catalog-menu-mobile{
 					display: none;
+				}
+
+				.widget-search {
+					margin-right: 60px;
+					margin-left: auto;
+					width: 100%;
 				}
 
 				.menu-catalog {
@@ -623,23 +620,6 @@ header {
 					}
 				}
 
-				.header-phone {
-					margin-left: auto;
-
-					a {
-						padding: 5px 6px;
-
-						img {
-							height: 13px;
-						}
-
-						span {
-							font-size: 13px;
-							letter-spacing: 0.2px;
-						}
-					}
-				}
-
 				nav {
 					column-gap: 15px;
 
@@ -659,7 +639,7 @@ header {
 					height: 50px;
 					display: flex;
 					align-items: center;
-					margin-right: 30px;
+					margin-right: 20px;
 
 					img,
 					span {
@@ -688,7 +668,7 @@ header {
 				}
 
 				.other-menu {
-					margin-right: 30px;
+					margin-right: 20px;
 
 					ul {
 						li {
@@ -696,12 +676,12 @@ header {
 
 							a {
 								img {
-									height: 26px;
+									height: 18px;
 								}
 
 								span {
 									font-weight: 500;
-									font-size: 11px;
+									font-size: 10px;
 									line-height: 1.25em;
 
 									span {
@@ -711,6 +691,10 @@ header {
 							}
 						}
 					}
+				}
+
+				.widget-search{
+					margin-right: 25px;
 				}
 			}
 		}
@@ -753,6 +737,22 @@ header {
 					}
 				}
 
+				.btn-status-search{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin-left: auto;
+					margin-right: 30px;
+
+					img{
+						height: 24px;
+					}
+				}
+
+				.header-socials{
+					margin-left: 0;
+				}
+
 				nav {
 					position: fixed;
 					background: #fff;
@@ -788,7 +788,24 @@ header {
 
 		// нижняя секция шапки
 		.header-bottom-section {
-			display: none;
+			background: none;
+
+			.header-wrapper{
+				padding: 0;
+				height: 0;
+
+				> *{
+					&:not(.widget-search){
+						display: none;
+					}
+				}
+			}
+
+			
+			
+
+
+			//display: none;
 		}
 	}
 

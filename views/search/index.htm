@@ -1,41 +1,46 @@
 <div class="search-page container">
 
-	<? if (!isset($error)): ?>
+	<?php if (!isset($error)): ?>
 
-		<? if (isset($products) || isset($categories)): ?>
-
-			<div class="search-query">
-				Результаты поиска по запросу <span>«<?= h(Phpr::$request->getField('q')) ?>»</span>
+		<?php if (isset($products) && count($products) || isset($categories) && count($categories)): ?>
+			<div class="search-page_heading">
+				<div class="query">Результаты поиска по запросу <span>«<?= h(Phpr::$request->getField('q')) ?>»</span></div>
+				
+				<?php if($count):?>
+					<div class="count">Найдено: <?=$count?></div>
+				<?php endif; ?>
 			</div>
 
-				<?php if(count($categories)): ?>
-					<?php $this->renderPartial($this->getViewsDir() . "catalog/_categories_list.htm");?>
-				<?php endif; ?>
 
-				<? if (count($products)): ?>
-					<div class="list-products">
-						<? foreach ($products as $product): ?>
-							<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product'=>$product, 'typePage'=>'search']);?>
-						<? endforeach; ?>
-					</div>
-				<? endif ?>
+			<?/*
+			<?php if(count($categories)): ?>
+				<?php $this->renderPartial($this->getViewsDir() . "catalog/_categories_list.htm");?>
+			<?php endif; ?>
+			*/?>
 
-				<?php if(!count($categories) && !count($products)): ?>
-					<div class="search-no-products">
-						К сожалению, по вашему запросу ничего не найдено. <br> Проверьте правильность ввода или попробуйте изменить запрос.
-					</div>
-				<?php endif;?>
+			<?php if (count($products)): ?>
+				<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list="grid">
+					<?php foreach ($products as $product) : ?>
+						<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product' => $product]); ?>
+					<?php endforeach ?>
+				</div>
+			<?php endif ?>
 
-				<? /** @var $pagination Phpr_Pagination */ ?>
-				<? if (isset($pagination)): ?>
-					<div class="pagination-block">
-						<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("search_page", array()) . "%d/" . str_replace("%", "%%", $query)) ?>
-					</div>
-				<? endif; ?>
-		
-		<? endif; ?>
-		
-	<? else: ?>
-		<p class="error"><?= $error ?></p>
-	<? endif; ?>
+			<?php /** @var $pagination Phpr_Pagination */ ?>
+			<?php if (isset($pagination)): ?>
+				<div class="pagination-block">
+					<?//= $pagination->format(new Phpr_PrimePaginationFormatter(), u("search_page", array()) . "%d/" . str_replace("%", "%%", $query)) ?>
+				</div>
+			<?php endif; ?>
+
+		<?php else: ?>
+			<div class="search-page_text-inform">
+				К сожалению, по вашему запросу ничего не найдено.
+			</div>
+		<?php endif; ?>
+	<?php else: ?>
+		<div class="search-page_text-inform">
+			<?= $error ?>
+		</div>
+	<?php endif; ?>
 </div>

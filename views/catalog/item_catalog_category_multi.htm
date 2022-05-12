@@ -1,4 +1,4 @@
-<?php $categories_level_2 = $category->list_children(); ?>
+<?php $categories_level_2 = $category->list_children()->except(true, 'hidden'); ?>
 
 <div class="item-catalog-category-multi">
 
@@ -9,7 +9,7 @@
 	<div class="category_list-level-2">
 		<?php foreach($categories_level_2 as $category_level_2): ?>
 
-			<?php $categories_level_3 = $category_level_2->list_children(); ?>
+			<?php $categories_level_3 = $category_level_2->list_children()->except(true, 'hidden'); ?>
 
 			<?php if(count($categories_level_3)): ?>
 				<div class="item-level-2">

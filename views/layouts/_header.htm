@@ -23,9 +23,12 @@
 
 			<div class="header-phone">
 				<a href="tel:<?= $phone ?>">
-					<img src="/resources/images/icons/phone.svg" alt="">
 					<span><?= $phone?></span>
 				</a>
+			</div>
+
+			<div class="btn-status-search">
+				<img src="/resources/images/icons/search.svg" alt="">
 			</div>
 
 			<div class="header-socials">
@@ -60,8 +63,8 @@
 					</li>
 				</ul>
 			</div>
-			
-			<?php $this->renderLayout('_widget_search'); ?>
+
+			<?php $this->renderLayout($this->getViewsDir() . "search/widget.htm") ?>
 			<?php Shop_Helper::renderMiniCart($this) ?>
 		</div>
 	</div>

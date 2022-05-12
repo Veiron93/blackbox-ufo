@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let widgetSearch = document.querySelector('.widget-search'),
         searchInput = widgetSearch.querySelector('.search-input'),
+        btnSearch = widgetSearch.querySelector('.btn-search'),
         searchResultsWrapper = widgetSearch.querySelector('.widget-search-results');
     
     // категории
@@ -19,6 +20,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // история
     let sectionHistory = searchResultsWrapper.querySelector('.widget-search-results_history'),
         historyList = sectionHistory.querySelector('.widget-search-results_history-list');
+
+
+    // ВАЛИДАЦИЯ ЗАПРОСА (УДАЛЕНИЕ СКИПТОВ И Т.Д.)
+    function queryValid(){
+        let result = searchInput.value;
+        result = result.replaceAll(/<[^>]+>/gi, "");
+        return result;
+    }
 
     
     //////// ОЧИСТИТЬ ПОИСК ////////
@@ -38,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             productsList.innerHTML = '';
         }
 
+        renderHistory();
         statusBtnClearSearch();
     }
 
@@ -48,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnClear.addEventListener('click', () => clearSearch());
 
-    
     
     // status search result wrapper
     function statusSearchResultWrapper(){
@@ -64,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener('click', element => {
             if(searchResultsWrapper.classList.contains('active') && element.target.className != 'widget-search' && !element.target.closest('.widget-search')){
                 searchResultsWrapper.classList.remove('active');
-                console.log('закрыть поиск')
             }
         });
     }
@@ -74,15 +82,14 @@ document.addEventListener("DOMContentLoaded", function () {
     //////// ОТПРАВКА ЗАПРОСА ПОИСКА ////////
     function onSendSearch(){
         axios.post('/search/widget/', {
-            query: searchInput.value
+            query: queryValid()
         })
         .then(response => {
             renderResults(response.data.response);
+            queryValid()
         })
         .catch(error => console.log(error));
     }
-
-
 
 
     //////// РЕНДЕР РЕЗУЛЬТАТОВ ПОИСКА ////////
@@ -163,11 +170,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     //////// СЛЕЖЕНИЕ ЗА ИЗМЕНЕНИЯМИ ПОЛЯ ПОИСКА ////////
     let sendFormSearch = null;
 
-    searchInput.addEventListener('input', function () {   
+    // ввод
+    searchInput.addEventListener('input', function () {
 
         // отправка запроса если есть изменения в поле поиска
         if(this.value.length > 0){
@@ -177,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
             sendFormSearch = setTimeout(onSendSearch, 1000);
         }else{
             clearSearch();
-            //statusSearchResultWrapper(false);
         }
 
         // статус кнопки очистить поиск
@@ -187,9 +193,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //////// ПЕРЕХОДЫ ////////
 
+    // нажатие Enter
+    searchInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+
+            let href = '/search/?q=' + queryValid().replace(' ', '+'),
+                name = queryValid(),
+                resultData = {name: name, href: href};
+    
+            addHistorySearch(resultData);
+
+            event.preventDefault();
+            btnSearch.click();
+        }
+    });
+
     // на страницу поиска по нажатию кнопки найти
-    let btnSearch = widgetSearch.querySelector('.btn-search');
-    btnSearch.addEventListener('click', () => window.location = 'search');
+    btnSearch.addEventListener('click', () => window.location = '/search?q=' + queryValid());
 
     // переход на результат поиска
     function clickResultSearch(){
@@ -197,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let categories = categoriesList.querySelectorAll('div'),
             products = productsList.querySelectorAll('div'),
             searchResults = [...categories, ...products];
-
 
         searchResults.forEach(result => {
             result.addEventListener('click', ()=>{
@@ -263,4 +282,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     clearHistorySearch();
+
+
+    //////// МОБИЛЬНЫЙ ПОИСК ////////
+    function statusMobileSearch(){
+        let btnsStatusSearch = document.querySelectorAll('.btn-status-search');
+
+        if(btnsStatusSearch){
+            btnsStatusSearch.forEach(btn => {
+                btn.addEventListener('click', () => document.body.classList.toggle('search-active'));
+            })
+        }
+    }
+
+    statusMobileSearch();
 });

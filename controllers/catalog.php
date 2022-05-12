@@ -21,7 +21,16 @@ class Catalog extends App_Controller {
 	const productsPerPage = 40;
 
 	public function index() {
-		$this->viewData['categories'] = Catalog_Category::create()->list_root_children();
+		$categories = Catalog_Category::create()->list_root_children();
+		$arrCategories = [];
+
+		foreach($categories as $category){
+			if(!$category->hidden){
+				array_push($arrCategories, $category);
+			}
+		}
+
+		$this->viewData['categories'] = $arrCategories;
 		$this->setTitle("Каталог");
 	}
 
@@ -62,12 +71,8 @@ class Catalog extends App_Controller {
 				}
 			}
 
-			// фильтры
-			// if($_POST){
-			// 	self::filters($_POST);
-			// }
-
 			$pagination = new Phpr_Pagination(self::productsPerPage);
+			
 			$this->viewData['category'] = $category;
 			$this->viewData['products'] = $category->list_products(true, $pagination, $pageIndex - 1, $sorting);
 			$this->viewData['pagination'] = $pagination;

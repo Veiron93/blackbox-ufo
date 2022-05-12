@@ -2,14 +2,27 @@
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		<a href="/catalog/product/<?= $product->id ?>">
 			<?php
-				if(isset($product->photos) && count($product->photos)){
-					$image = (new LWImageManipulator($product->photos[0]->id, $product->photos[0]->disk_name))->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
+				$image_id = null;
+				$image_path = null;
+
+				if($product->image_id && $product->image_path){
+					$image_id = $product->image_id;
+					$image_path = $product->image_path;
+
+				}elseif(isset($product->photos) && count($product->photos)){
+					$image_id = $product->photos[0]->id;
+					$image_path = $product->photos[0]->disk_name;
+				}
+
+				if($image_id && $image_path){
+					$image = (new LWImageManipulator($image_id, $image_path))->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
 				}else if($product->findMainPhoto()){
 					$image = $product->findMainPhoto()->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
 				}else{
 					$image = '/resources/images/icons/no-image.svg';
 				}
 			?>
+			
 			<img src="<?= $image ?>" alt="<?= $product->name?>" />
 		</a>
 

@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// главный слайдер
 	new Swiper(".main-slider", {
 		loop: true,
+		effect: "fade",
 		autoplay: {
 			delay: 5000,
 			disableOnInteraction: false,
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// главный слайдер - мобильная версия
 	new Swiper(".main-slider-mobile", {
 		loop: true,
+		effect: "fade",
 		autoplay: {
 			delay: 5000,
 			disableOnInteraction: false,
@@ -34,6 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	function productsSliiders() {
 
 		let defaultSliderSettings = {
+
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+
 			navigation: {
 				nextEl: null,
 				prevEl: null,
@@ -64,8 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			settings.breakpoints = {
 				0: {
 					slidesPerView: 2.2,
-					spaceBetween: 10,
-					freeMode: true,
+					spaceBetween: 10
 				},
 				768: {
 					slidesPerView: 4,
@@ -92,8 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			settings.breakpoints = {
 				0: {
 					slidesPerView: 1,
-					spaceBetween: 10,
-					freeMode: true,
+					spaceBetween: 10
 				},
 				768: {
 					slidesPerView: 2,
