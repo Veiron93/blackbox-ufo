@@ -76,7 +76,7 @@ header {
 			}
 
 			.header-address {
-				margin-right: 20px;
+				
 
 				a {
 					font-size: 13px;
@@ -91,6 +91,7 @@ header {
 				display: flex;
 				align-items: center;
 				column-gap: 15px;
+				margin-left: 20px;
 				margin-right: 45px;
 
 				a {
@@ -735,7 +736,7 @@ header {
 				}
 
 				.header-socials{
-					margin-right: 0;
+					margin: 0;
 				}
 
 				nav {
