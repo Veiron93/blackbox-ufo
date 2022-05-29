@@ -1,4 +1,14 @@
-<footer>
-	<p>BLACKBOX</p>
-	<p>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</p>
+<footer class="footer">
+	<div class="footer-logo">
+		<img src="/resources/images/logo.svg" alt="BLACKBOX">
+		<span>BLACKBOX</span>
+	</div>
+
+	<div class="footer-description">
+		<?php if(Phpr::$request->getCurrentUri() === '/'): ?>
+			<h1>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</h1>
+		<?php else: ?>
+			<p>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</p>
+		<?php endif; ?>
+	</div>
 </footer>

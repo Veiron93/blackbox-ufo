@@ -1,6 +1,8 @@
 <?php 
 	$catalogCategoriesMenu = Catalog_Category::create()->list_root_children();
 	$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content; 
+	$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+	$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
 ?>
 
 <header>
@@ -8,24 +10,22 @@
 		<div class="header-wrapper">
 			<div class="header-logo">
 				<a href="/">
-					<img src="/resources/images/logo.svg" alt="BlackBox">
-					<span>BlackBox</span>
+					<img src="/resources/images/logo.svg" alt="BLACKBOX">
+					<span>BLACKBOX</span>
 				</a>
 			</div>
 
-			<div class="header-description">
-				<?php if(Phpr::$request->getCurrentUri() === '/'): ?>
-					<h1>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</h1>
-				<?php else: ?>
-					Аксессуары и гаджеты, а так же товары для авто, дома, отдыха
-				<?php endif; ?>
-			</div>
+			<div class="header-description">Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</div>
 
 			<div class="header-phone">
-				<a href="tel:<?= $phone ?>">
-					<span><?= $phone?></span>
-				</a>
+				<a href="tel:<?= $phone ?>"><?= $phone ?></a>
 			</div>
+
+			<?php if($address): ?>
+				<div class="header-address">
+					<a href="<?= $address_link ?>" target="_blank"><?= $address ?></a>
+				</div>
+			<?php endif; ?>
 
 			<div class="btn-status-search">
 				<img src="/resources/images/icons/search.svg" alt="">
@@ -58,7 +58,7 @@
 					<li>
 						<a href="/free-delivery/">
 							<img src="/resources/images/icons/smiles/happy_smile.svg" alt="бесплатная доставка">
-							<span>бесплатная доставка *</span>
+							<span>бесплатная доставка</span>
 						</a>
 					</li>
 				</ul>
