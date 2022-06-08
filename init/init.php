@@ -122,9 +122,8 @@ $APP_CONF['THUMBNAIL_SAVE_ORIGINAL_PATH'] = true;
 
 $APP_CONF['PAGINATION_GO_AWAY_ONE'] = true; // убирать номер страницы из url для первой страницы в пагинаторе
 
-
 $APP_CONF['DELIVERY'] = [
-    ['name' => 'Самовывоз', 'price' => '0', 'code' => 'pickup', 'description' => '<p>Адрес: <a href="https://go.2gis.com/63uvt" target="_blank">Карла Маркса 51, офис 102А</a></p><p>Ежедневно с 10:00 до 20:00</p>'],
+    ['name' => 'Самовывоз', 'price' => '0', 'code' => 'pickup'],
     ['name' => 'по Южно-Сахалинску', 'code' => 'ys','price' => '100', 'checked'=>true],
     ['name' => 'Дальнее, Хомутово', 'code' => 'sector-1','price' => '150'],
     ['name' => 'Троицкое, Ново-Троицкое, Луговое', 'code' => 'sector-2','price' => '200'],

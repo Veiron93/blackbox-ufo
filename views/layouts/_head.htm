@@ -6,30 +6,39 @@
 <meta http-equiv="x-ua-compatible" content="IE=edge">
 <meta name="application-name" content="BLACKBOX">
 <meta name="currency" content="ruble">
-<meta name="description" content="<?= site_description() ?>" />
 <meta name="keywords" content="<?= site_keywords() ?>" />
+
+<?php $partsURI = explode("/", $_SERVER['REQUEST_URI']); ?>
+
+<?php if(isset($partsURI[1]) && $partsURI[1] != "catalog"): ?>
+	<meta name="description" content="<?= site_description() ?>" />
+
+	<meta property="og:title" content="BLACKBOX - аксессуары и гаджеты, а так же товаров для дома, автомобилей, отдыха." />
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://bb65.ru/">
+	<meta property="og:description" content="Большой ассортимент аксессуаров и гаджетов, а так же товаров для дома, автомобилей, отдыха в интернет-магазине BLACKBOX по отличным ценам. Доставка!" />
+	<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+	<meta property="og:site_name" content="BLACKBOX">
+<?php endif; ?>
+
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<meta name="currency" content="ruble">
+<meta name="application-name" content="BLACKBOX">
+
+<meta name="yandex-verification" content="ac10f210c4c80b28" />
+<meta name='wmail-verification' content='b985167df8f768b4c68dc88717539f48' />
+<meta name="google-site-verification" content="c6gDw2zAv1MBMG2zyGdKCvGZJwi1ChCqTVYdxsIuIUk" />
 
 <?= site_metatags($this) ?>
 
 <link rel="shortcut icon" type="image/ico" href="/resources/images/favicon.ico">
 <link rel="icon" type="image/png" href="/resources/images/favicon.png" />
 <link rel="icon" type="image/x-icon" href="/resources/images/favicon.svg" />
-
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-
-<!-- <link rel="manifest" href="/manifest.json"> -->
 <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
+<!-- <link rel="manifest" href="/manifest.json"> -->
 
-<meta property="og:title" content="BLACKBOX - аксессуары и гаджеты, а так же товаров для дома, автомобилей, отдыха." />
-<meta property="og:locale" content="ru_RU">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bb65.ru/">
-<meta property="og:description" content="Большой ассортимент аксессуаров и гаджетов, а так же товаров для дома, автомобилей, отдыха в интернет-магазине BLACKBOX по отличным ценам. Доставка!" />
-<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
-<meta property="og:site_name" content="BLACKBOX">
-
-<meta name="yandex-verification" content="ac10f210c4c80b28" />
 
 <!--[if lte IE 10]>
 <?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
