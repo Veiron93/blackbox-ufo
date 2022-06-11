@@ -21,6 +21,7 @@
 
 			<?php 
 				$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
+				$pickup_description = $this->menuItems->getTextBlock('pickup_description', 'Самовывоз', Admin_TextBlock::TYPE_WYSIWYG, '', 'Способы доставки - описание')->content;
 			?>
 
 			<?php foreach (Phpr::$config->get('DELIVERY') as $id => $value) : ?>
@@ -39,9 +40,9 @@
 
 					<input type="radio" name="delivery" value="<?=$id?>" id="cart-form-input-<?=$id?>" <?= isset($value['checked']) ? 'checked':''?> data-price="<?=$value['price']?>" data-code="<?=$value['code']?>">
 							
-					<?php if(isset($value['description'])): ?>
+					<?php if(isset(${$value['code'] . '_description'})): ?>
 						<div class="form-item-radio-description">
-							<?=$value['description']?>
+							<?= ${$value['code'] . '_description'}?>
 						</div>
 					<?php endif; ?>
 				</div>
