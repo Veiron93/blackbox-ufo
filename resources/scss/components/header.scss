@@ -19,7 +19,7 @@ header {
 			height: 50px;
 
 			.logo-index {
-				margin-right: 30px;
+				margin-right: 35px;
 				position: relative;
 				width: 126px;
 
@@ -99,12 +99,15 @@ header {
 			}
 
 			.logo{
-				margin-right: 30px;
+				margin-right: 35px;
 			}
 
 			.header-description {
 				font-size: 13px;
-				margin-right: 30px;
+				margin-right: 20px;
+				width: 230px;
+				line-height: 1.1em;
+				flex: none;
 			}
 
 			.header-phone, .header-address{
@@ -120,7 +123,8 @@ header {
 				a {
 					display: flex;
 					align-items: center;
-					padding: 5px 7px;
+					padding: 0 10px;
+					height: 30px;
 				}
 			}
 
@@ -148,8 +152,8 @@ header {
 			.header-socials {
 				display: flex;
 				align-items: center;
-				column-gap: 15px;
-				margin-left: 20px;
+				column-gap: 10px;
+				margin-left: 40px;
 				margin-right: 45px;
 
 				a {
@@ -657,6 +661,28 @@ header {
 		}
 	}
 
+	@include screen_lg{
+		.header-top-section {
+			.header-wrapper {
+
+				.logo-index, .logo{
+					margin-right: 15px;
+				}
+
+				.header-description {
+					font-size: 11px;
+					margin-right: 15px;
+					width: 186px;
+				}
+
+				.header-socials{
+					margin-left: 15px;
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+
 
 	@include screen_md {
 		margin-bottom: 20px;
@@ -761,6 +787,8 @@ header {
 
 		.header-top-section {
 			.header-wrapper {
+				height: 54px;
+
 				.header-description{
 					display: none;
 				}
@@ -774,7 +802,6 @@ header {
 					align-items: center;
 					justify-content: center;
 					margin-left: auto;
-					margin-right: 30px;
 
 					img{
 						height: 24px;
@@ -786,7 +813,7 @@ header {
 				}
 
 				.header-socials{
-					margin: 0;
+					display: none;
 				}
 
 				nav {
