@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 	// товары
-	function productsSliiders() {
+	function productsSliders() {
 
 		let defaultSliderSettings = {
 
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
-	productsSliiders();
+	productsSliders();
 
 
 	// слайдер в просмотре продукта
@@ -313,7 +313,21 @@ document.addEventListener("DOMContentLoaded", function () {
 					deliveryCode = deliveryItem.getAttribute('data-code');
 
 				if (deliveryPrice == 0) {
-					deviveryPriceBlock.textContent = deliveryCode == 'pickup' ? 'Самовывоз' : 'Бесплатно';
+
+					let text = null;
+
+					switch(deliveryCode){
+						case 'pickup':
+							text = 'Самовывоз';
+							break;
+						case 'tk':
+							text = 'Бесплатно до ТК';
+							break;
+						default:
+							text = 'Бесплатно';
+					}
+
+					deviveryPriceBlock.textContent = text;
 				} else {
 					deviveryPriceBlock.textContent = deliveryPrice;
 				}

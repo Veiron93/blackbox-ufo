@@ -8,7 +8,7 @@
 <header>
 	<div class="header-top-section">
 		<div class="header-wrapper">
-			<div class="header-logo">
+			<div class="<?= Phpr::$request->getCurrentUri() === '/' ? 'logo-index':'logo'?>">
 				<a href="/">
 					<span class="text-1">БЛЭК</span>
 					<img src="/resources/images/logo.svg" alt="БЛЭКБОКС">
@@ -16,7 +16,7 @@
 				</a>
 			</div>
 
-			<div class="header-description">Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</div>
+			<div class="header-description">Аксессуары для гаджетов, компьютеров, автомобилей и дома</div>
 
 			<div class="header-phone">
 				<a href="tel:<?= $phone ?>"><?= $phone ?></a>

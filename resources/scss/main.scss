@@ -10,7 +10,7 @@
 html, body{
 	height: 100%;
 	color: $font;
-	font-family: $Ubuntu;
+	font-family: $main;
 }
 
 body{
@@ -149,27 +149,48 @@ footer{
 	}
 }
 
+.logo{
+	position: relative;
+	width: 126px;
+
+	a {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			height: 30px;
+			display: block;
+		}
+
+		span {
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 14px;
+			color: #000;
+			letter-spacing: 1px;
+			margin-top: 6px;
+			font-family: 'Rubik', sans-serif;
+			position: absolute;
+
+			&.text-1{
+				margin-left: -84px;
+			}
+
+			&.text-2{
+				margin-right: -84px;
+			}	
+		}
+	}
+}
+
 .footer{
 	margin-top: 100px;
 	padding: 20px;
 
-	&-logo{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		margin-bottom: 3px;
-
-		img{
-			height: 28px;
-		}
-
-		span{
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 14px;
-			letter-spacing: 1px;
-		}
+	.logo{
+		margin: 0 auto 5px;
 	}
 
 	&-description{
@@ -582,6 +603,7 @@ footer{
 
 				span{
 					font-size: 14px;
+					margin-top: 2px;
 				}
 			}
 		}
@@ -781,28 +803,16 @@ footer{
 		}
 
 		.free-delivery-cart{
-			display: flex;
-			align-items: center;
-			column-gap: 10px;
 			margin-top: 20px;
 			background: $accentHover;
-			padding: 10px 15px;
+			padding: 15px;
 			border-radius: 14px;
 
-			img{
-				height: 44px;
-			}
+			color: #fff;
+			font-size: 16px;
+			line-height: 1.4em;
 
-			.text{
-				color: #fff;
-				font-size: 18px;
-				line-height: 1.4em;
-
-				span{
-					font-size: 20px;
-					font-weight: 500;
-				}
-			}
+			text-align: center;
 		}
 
 		.branded-packaging{
@@ -1103,19 +1113,7 @@ footer{
 			}
 
 			.free-delivery-cart{
-				display: block;
-				padding: 10px 10px 15px;
-				text-align: center;
-
-				.text{
-					font-size: 14px;
-	
-					span{
-						margin-top: 8px;
-						font-size: 24px;
-						display: block;
-					}
-				}
+				font-size: 14px;
 			}
 
 
@@ -1189,13 +1187,14 @@ form{
 
 		input[type='text'], input[type='tel'], input[type='email'], select, textarea{
 			width: 100%;
-			border-radius: 4px;
 			border-radius: 6px;
 			border: 1px solid $gray;
 			padding: 10px;
 			outline: none;
 			background: #fff;
 			transition: border-color .2s;
+			font-family: $main;
+			line-height: 1.4em;
 
 			&:hover, &:focus{
 				border-color: rgba($accentHover, .6);
@@ -1228,11 +1227,11 @@ form{
 				margin-bottom: 0;
 				order: 2;
 
-				font-size: 14px;
+				font-size: 15px;
 				line-height: 1.35em;
 
 				span{
-					font-weight: 600;
+					font-weight: 500;
 				}
 			}
 
@@ -1473,6 +1472,22 @@ form{
 
 	@include screen_sm_down{
 		display: flex;
+	}
+}
+
+.about-page{
+	&_map{
+		margin-top: 50px;
+		border-radius: $brs;
+		overflow: hidden;
+	}
+
+	@include screen_sm_down{
+		&_map{
+			iframe{
+				height: 300px;
+			}
+		}
 	}
 }
 

@@ -16,7 +16,6 @@
         "rinamika/admin": "~2.0",
         "rinamika/catalog": "~2.0",
         "rinamika/payment": "~2.0",
-        "rinamika/news": "~2.0",
         "rinamika/shop": "dev-master"
     },
     "repositories": [
@@ -27,7 +26,6 @@
         {"type": "git", "url": "https://gitlab.rin.am/modules/banners.git/"},
         {"type": "git", "url": "https://gitlab.rin.am/altmodules/catalog.git/"},
         {"type": "git", "url": "https://gitlab.rin.am/modules/payment.git/"},
-        {"type": "git", "url": "https://gitlab.rin.am/modules/news.git/"},
         {"type": "git", "url": "https://gitlab.rin.am/modules/shop.git/"},
 	    {"type": "git", "url": "https://gitlab.rin.am/modules/scripts.git/"}
     ],

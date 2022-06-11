@@ -1,14 +1,17 @@
 <footer class="footer">
-	<div class="footer-logo">
-		<img src="/resources/images/logo.svg" alt="BLACKBOX">
-		<span>BLACKBOX</span>
+	<div class="logo">
+		<a href="/">
+			<span class="text-1">БЛЭК</span>
+			<img src="/resources/images/logo.svg" alt="БЛЭКБОКС">
+			<span class="text-2">БОКС</span>
+		</a>
 	</div>
 
 	<div class="footer-description">
 		<?php if(Phpr::$request->getCurrentUri() === '/'): ?>
-			<h1>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</h1>
+			<h1>Аксессуары для гаджетов, компьютеров, автомобилей и дома</h1>
 		<?php else: ?>
-			<p>Аксессуары и гаджеты, а так же товары для авто, дома, отдыха</p>
+			<p>Аксессуары для гаджетов, компьютеров, автомобилей и дома</p>
 		<?php endif; ?>
 	</div>
 </footer>

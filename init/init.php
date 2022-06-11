@@ -123,11 +123,11 @@ $APP_CONF['THUMBNAIL_SAVE_ORIGINAL_PATH'] = true;
 $APP_CONF['PAGINATION_GO_AWAY_ONE'] = true; // убирать номер страницы из url для первой страницы в пагинаторе
 
 $APP_CONF['DELIVERY'] = [
-    ['name' => 'Самовывоз', 'price' => '0', 'code' => 'pickup'],
-    ['name' => 'по Южно-Сахалинску', 'code' => 'ys','price' => '120', 'checked'=>true],
-    ['name' => 'Дальнее, Хомутово', 'code' => 'sector-1','price' => '150'],
-    ['name' => 'Троицкое, Ново-Троицкое, Луговое', 'code' => 'sector-2','price' => '250'],
-    ['name' => 'Ново-Александровск', 'code' => 'sector-3','price' => '300']
+    ['name' => 'Самовывоз', 'price' => '0', 'code' => 'pickup', 'checked'=>true],
+    ['name' => 'Посылкой', 'price' => '0', 'code' => 'tk'],
+    ['name' => 'по Южно-Сахалинску', 'code' => 'ys','price' => '200'],
+    ['name' => 'Дальнее, Луговое', 'code' => 'sector-1','price' => '250'],
+    ['name' => 'Троицкое, Новотроицкое, Ново-Александровск, Хомутово', 'code' => 'sector-2','price' => '300']
 ];
 
 $APP_CONF['PHONE'] = $phone = "79624192078";

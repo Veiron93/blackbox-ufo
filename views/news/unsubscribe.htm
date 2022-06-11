@@ -1,8 +1,0 @@
-<?= Phpr_Form::openTag(array('onsubmit'=>null)) ?>
-	<? if (!$success): ?>
-		<p>Действительно, отписаться от рассылки?</p>
-		<input type="submit" name="submit" value="Отписаться"/>
-	<? else: ?>
-		<p>Ваш электронный адрес был удален из списка рассылки.</p>
-	<? endif ?>
-<? Phpr_Form::closeTag(); ?>

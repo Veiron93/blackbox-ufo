@@ -13,7 +13,7 @@
 
 		<div class="form-section">
 			<label for="comment">Комментарий</label>
-			<textarea name="comment" id="comment" placeholder="Например: Желательно доставку после 18:00"><?= h(post('comment'))?></textarea>
+			<textarea name="comment" id="comment" placeholder="Например: Домофон не работает, позвоните как подъедите"><?= h(post('comment'))?></textarea>
 		</div>
 
 		<div class="form-section">
@@ -22,9 +22,11 @@
 			<?php 
 				$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
 				$pickup_description = $this->menuItems->getTextBlock('pickup_description', 'Самовывоз', Admin_TextBlock::TYPE_WYSIWYG, '', 'Способы доставки - описание')->content;
+				$tk_description = $this->menuItems->getTextBlock('tk_description', 'Транспортная компания', Admin_TextBlock::TYPE_WYSIWYG, '', 'Способы доставки - описание')->content;
 			?>
 
 			<?php foreach (Phpr::$config->get('DELIVERY') as $id => $value) : ?>
+
 				
 				<?php 
 					if($freeDelivery && $value['code'] === 'ys' && $freeDelivery <= $cart->getTotalPrice()){
@@ -35,11 +37,18 @@
 				<div class="form-item-radio">
 					<label for="cart-form-input-<?=$id?>">
 						<?= $value['name'] ?>
-						- <span><?= $value['price'] == 0 ? 'бесплатно': $value['price']?></span>
+
+						<?php 
+							if($value['code'] == "tk"){
+								$postfix = " до ТК";
+							}
+						?>
+
+						- <span><?= $value['price'] == 0 ? 'бесплатно' . ((isset($postfix)) ? $postfix : '') : $value['price']?></span>
 					</label>
 
 					<input type="radio" name="delivery" value="<?=$id?>" id="cart-form-input-<?=$id?>" <?= isset($value['checked']) ? 'checked':''?> data-price="<?=$value['price']?>" data-code="<?=$value['code']?>">
-							
+		
 					<?php if(isset(${$value['code'] . '_description'})): ?>
 						<div class="form-item-radio-description">
 							<?= ${$value['code'] . '_description'}?>

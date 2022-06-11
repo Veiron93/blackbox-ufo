@@ -4,17 +4,20 @@
     <meta property="og:site_name" content="<?= h(site_title()) ?>" />
 	
 	<? if (isset($product) && $product): ?>
-		<?php $metaTitle = h(strip_tags($product->name)); ?>
+		<?php 
+			$metaTitle = h(strip_tags($product->name));
+			$metaDescription = "Купить $metaTitle в интернет магазине БЛЭКБОКС (bb65.ru). Выгодные цены с бесплатной доставкой по г. Южно-Сахалинск"
+		?>
 
-		<meta name="description" content="Купить <?= $metaTitle ?> в интернет магазине BLACKBOX. Выгодные цены с бесплатной доставкой по городу г. Южно-Сахалинск">
+		<meta name="description" content="<?=$metaDescription?>">
 		
 		<meta property="og:title" content="<?= $metaTitle ?>" />
-		<meta property="og:description" content="Купить <?= $metaTitle ?> в интернет магазине BLACKBOX. Выгодные цены с бесплатной доставкой по городу г. Южно-Сахалинск" />
+		<meta property="og:description" content="<?=$metaDescription?>" />
 
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
 		<meta name="twitter:title" content="<?= $metaTitle ?>" />
-		<meta name="twitter:description" content="Купить <?= $metaTitle ?> в интернет магазине BLACKBOX. Выгодные цены с бесплатной доставкой по городу г. Южно-Сахалинск" />
+		<meta name="twitter:description" content="<?=$metaDescription?>" />
 		
 		<? if ($product->photos->count): ?>
 			<?php $imgMeta = $product->photos[0]->getThumb(480, 'auto'); ?>
