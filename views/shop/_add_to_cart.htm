@@ -7,18 +7,26 @@
 <?php 
 	// проверка добавлен ли товар в корзину
 	if(in_array($item->id, $idsProductsCart)) $added = true; 
+
+	$extra = ["id" => $item->id, "type" => $type];
+
+	if($type == "sku"){
+		$extra["id_sku"] = $id_sku;
+	}
 ?>
 
 <div class="btn-buy" 
 	id="<?= $idPrefix ?>-wrapper" 
+
 	<?php if (isset($added) && $added): ?> 
 		data-added="true"
 	<?php endif ?>
+
 	title="<?=isset($added) && $added ? 'Перейти в коробку':'Добавить в коробку'?>">
 
 	<a href="#" class="add-to-cart-btn" 
 		<? if ($withQuantity): ?> data-quantity="#<?= $idPrefix ?>-quantity"<? endif ?>
-		data-extra="<?= extra(["id" => $item->id, "type" => $type]) ?>"
+		data-extra="<?= extra($extra) ?>"
 		id="<?= $idPrefix ?>-btn">
 	</a>
 

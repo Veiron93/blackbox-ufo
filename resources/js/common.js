@@ -660,4 +660,47 @@ document.addEventListener("DOMContentLoaded", function () {
 		let btns = document.querySelectorAll('.btn-up-page');
 		btns.forEach(btn => btn.addEventListener('click', backToTop))
 	}
+
+
+
+	// ВЫБОР АРТИКУЛА
+	function selectSku(){
+		
+		function price(){
+
+		}
+
+
+		let productPage = document.querySelector('.catalog-product');
+
+		if(productPage){
+			let skus = productPage.querySelectorAll("input[name='product-sku']");
+
+			const priceProduct = productPage.querySelector(".catalog-product_buy-price .actual");
+
+			if(skus){
+				skus.forEach(sku => sku.addEventListener("change", ev => {
+					let id = ev.target.value,
+						price = ev.target.getAttribute('data-price');
+
+					priceProduct.textContent = Math.round(price);
+
+
+					console.log(price)
+				}))
+				
+			}
+
+			// if(skusSection){
+			// 	let skus = skusSection.querySelectorAll('.item');
+
+			// 	skus.forEach(sku => {
+			// 		console.log(sku);
+			// 	})
+				
+			// }
+		}
+	}
+
+	selectSku();
 });

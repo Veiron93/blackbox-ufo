@@ -51,29 +51,44 @@ class Shop extends App_Controller
             $id = post('id');
             $quantity = post('quantity', 1);
             $type = post('type');
+            
             if (!$id || !$type) {
                 throw new Phpr_ApplicationException("Illegal request");
             }
+
             $cart = Shop_Cart::getCart();
+
             if ($type == "product") {
+
                 /** @var Catalog_Product $product */
                 $product = Catalog_Product::create()->where('hidden is null')->find($id);
+
                 if (!$product) {
                     throw new Phpr_ApplicationException("Продукт не найден. Попробуйте обновить страницу и попробовать снова.");
                 }
+
                 if ($this->checkLeftover($product, $quantity)) {
                     $cart->addProduct($product, $quantity);
                 }
+
             } else if ($type == "sku") {
+
+                $id_sku = post('id_sku');
+
                 /** @var Catalog_Sku $sku */
-                $sku = Catalog_Sku::create()->find($id);
+                $sku = Catalog_Sku::create()->find($id_sku);
+
+                traceLog($sku);
+
                 if (!$sku) {
                     throw new Phpr_ApplicationException("Артикул не найден. Попробуйте обновить страницу и попробовать снова.");
                 }
+
                 if ($this->checkLeftover($sku, $quantity)) {
                     $cart->addSku($sku, $quantity);
                 }
             }
+
             $this->renderMultiple([
                 "#mini-cart" => "@_mini_cart",
                 "#mini-cart-mobile" => "@_mini_cart_mobile",
@@ -285,6 +300,7 @@ class Shop extends App_Controller
         }
     }
 
+    // счётчик проданных товаров
     protected function setSalesProducts($products)
     {
         $productsId = [];

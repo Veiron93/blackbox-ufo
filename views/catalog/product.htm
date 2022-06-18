@@ -86,28 +86,34 @@
 					
 					<div class="description" data-formatted-text>
 						<?= $product->description ?>
+
+						<?php if (count($product->skus)): ?>
+
+							<?php $selected_sku = $product->skus[0]; ?>
+
+							<div class="catalog-product_skus">
+								<?php foreach($product->skus as $sku): ?>
+									<div class="item">
+										<input type="radio" id="sku-<?= $sku->id ?>" name="product-sku" <?= $selected_sku->id == $sku->id ? "checked": ""?> data-price="<?= $sku->price ?>" value="<?= $sku->id ?>">
+										<label for="sku-<?= $sku->id ?>"><?= $sku->name ?></label>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 
 				<div class="catalog-product_buy">
-					<? if ($product->price): ?>
-						<div class="catalog-product_buy-price <?=$product->old_price ? 'sale':''?>">
-							<?php if($product->old_price): ?>
-								<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
-							<?php endif; ?>
-							
-							<div class="actual"><?= Phpr::$lang->num($product->price) ?></div>
-						</div>
-					<? endif ?>
 
-					<!-- <div class="catalog-product_buy-promo">
-						<div class="promo-title">Товар участвует в акциях</div>
+					<div class="catalog-product_buy-price <?=$product->old_price ? 'sale':''?>">
+						<?php if($product->old_price): ?>
+							<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
+						<?php endif; ?>
 
-						<div class="promo-list">
-							<a href="">Новогодняя распродажа</a>
-							<a href="">Подарок за покупку</a>
+						<div class="actual">
+							<?= Phpr::$lang->num((count($product->skus)) ? $selected_sku->price : $product->price) ?>
 						</div>
-					</div> -->
+					</div>
 
 					<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
 						<?php 
@@ -115,9 +121,13 @@
 								'withQuantity' => true,
 								'initialQuantity' => 1,
 								'item' => $product,
-								'type' => 'product',
+								'type' => (count($product->skus)) ? 'sku' : 'product',
 								'idPrefix' => "atc-product-{$product->id}"
 							];
+
+							if(count($product->skus)){
+								$viewData["id_sku"] = $selected_sku->id;
+							}
 						?>
 
 						<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>

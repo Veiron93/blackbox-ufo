@@ -935,6 +935,30 @@
 			}
 		}
 
+		.catalog-product_skus{
+			//border: 1px solid red;
+			display: flex;
+			column-gap: 20px;
+
+			.item{
+				input{
+					display: none;
+
+					&:checked + label{
+						border-color: green;
+					}
+
+				}
+
+				label{
+					border: 1px solid #c7c7c7;
+					padding: 5px 10px;
+					border-radius: $brs;
+					cursor: pointer;
+				}
+			}
+		}
+
 		.description {
 			font-size: 15px;
 			line-height: 1.5em;
