@@ -282,7 +282,7 @@ header {
 				}
 
 				.mini-cart-dropdown {
-					//display: none;
+					display: none;
 				}
 			}
 		}
@@ -488,7 +488,6 @@ header {
 						}
 					}
 				}
-
 
 				.mini-cart {
 					&:hover {
@@ -923,26 +922,10 @@ header {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			height: 50px;
-			//border: 1px solid red;
+			height: 54px;
 
 			.logo{
-				margin-left: 10px;
-				a{
-					display: flex;
-					align-items: center;
-
-					img{
-						height: 32px;
-						margin-right: 5px;
-					}
-
-					span{
-						font-weight: bold;
-						text-transform: uppercase;
-						font-size: 12px;
-					}
-				}
+				margin: 10px;
 			}
 
 			.btn-catalog-menu-mobile{

@@ -1,8 +1,8 @@
 <?php
 
-$APP_CONF['SHOP_ENABLE_LEFTOVERS'] = true; // Включить пересчет остатков
+$APP_CONF['SHOP_ENABLE_LEFTOVERS'] = false; // Включить пересчет остатков
 $APP_CONF['SHOP_HIDDEN_SKU_WITH_ZERO_LEFTOVERS'] = false; // Не показывать артикулы с нулевыми остатками
-$APP_CONF['CUSTOM_ORDER_SOUND'] = false; //использовать для нотификации о заказах звук /resources/sound/shop.ogg
+$APP_CONF['CUSTOM_ORDER_SOUND'] = true; //использовать для нотификации о заказах звук /resources/sound/shop.ogg
 $APP_CONF['PAYMENT_PAGE_SUPPORT'] = false; // поддержка страницы оплаты (отсылается письмо клиенту со ссылкой на страницу оплаты)
 $APP_CONF['SHOW_IP_ADDRESS'] = false; // отображать в панели управления с какого ip адреса сделан заказа
 $APP_CONF['SHOP_REMOVE_ITEMS_WITH_ZERO_QUANTITY'] = true; // автоматически удалять из корзины товары с нулевым количеством

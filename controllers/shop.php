@@ -286,16 +286,14 @@ class Shop extends App_Controller
             
             foreach ($cart->getItems() as $item) {
                 $orderItem = Shop_OrderItem::createFromCartItem($item);
-
-                //traceLog($orderItem->price);
-                // $orderItem->order_id = $order->id;
-                // $orderItem->save();
+                $orderItem->order_id = $order->id;
+                $orderItem->save();
             }
 
-            //$order->recalculate();
-            //$order->markAsCompiled();
+            $order->recalculate();
+            $order->markAsCompiled();
             //$this->setSalesProducts($cart->getItems());
-            //$cart->delete();
+            $cart->delete();
             Phpr::$response->redirect("/shop/success");
 
         } catch (\Exception $ex) {

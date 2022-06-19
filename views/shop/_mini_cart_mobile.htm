@@ -1,19 +1,12 @@
 <div class="item item-cart" id="mini-cart-mobile">
-	<?php
-		if (!isset($cart) || !$cart) {
-			$cart = Shop_Cart::getCart();
-		}
-
-		$countProductsMiniCart = $cart->getItemsCount();
-		$totalPriceMiniCart = $cart->getTotalPrice();
-	?>
+	<?php if (!isset($cart) || !$cart) $cart = Shop_Cart::getCart() ?>
 
 	<a href="<?= u('shop_cart', []) ?>">
 		<img src="/resources/images/icons/mobile-nav-bottom/shopping-bag-3-line.svg" alt="Корзина">
 
-		<?php if ($countProductsMiniCart) : ?>
+		<?php if ($count_products_mini_cart = $cart->getItemsCount()) : ?>
 			<div class="count">
-				<?= $countProductsMiniCart ?>
+				<?= $count_products_mini_cart ?>
 			</div>
 		<?php endif; ?>
 
