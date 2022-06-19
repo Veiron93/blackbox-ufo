@@ -4,9 +4,16 @@
 		$cart = Shop_Cart::getCart();
 	}
 
+	
+
 	$productsMiniCart = $cart->getItems();
+
+	traceLog($productsMiniCart);
+
+
+
 	$countProductsMiniCart = $cart->getItemsCount();
-	$totalPriceMiniCart = cartTotalPrice($productsMiniCart);
+	$total_price_mini_cart = cartTotalPrice($productsMiniCart);
 ?>
 
 <div id="mini-cart" class="mini-cart">
@@ -23,7 +30,7 @@
 
 		<div class="price">
 			<?php if($countProductsMiniCart): ?>
-				<?= Core_Number::formatNumber($totalPriceMiniCart) ?>
+				<?= Core_Number::formatNumber($total_price_mini_cart) ?>
 				<span>р.</span>
 			<?php else:?>
 				<span>Коробка</span>
@@ -90,7 +97,7 @@
 
 			<div class="mini-cart-dropdown_footer">
 				<div class="price">
-					<?= Core_Number::formatNumber($totalPriceMiniCart) ?>
+					<?= Core_Number::formatNumber($total_price_mini_cart) ?>
 				</div>
 
 				<div class="btn">

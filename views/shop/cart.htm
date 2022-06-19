@@ -6,6 +6,7 @@
 
 		<div class="cart-heading">
 			<h1>Коробка</h1>
+
 			<?php if ($cart->getItemsCount()): ?>
 				<form>
 					<a href="#" 
@@ -27,12 +28,14 @@
 				<p>Пока тут только дерево</p>
 			</div>
 		<?php else: ?>
+			<?php $cartItems = $cart->getItems(); ?>
+
 			<div class="cart-wrapper">
 				<div class="cart-section">
 					<div class="cart-list-products">
 						<?= Phpr_Form::openTag(["id" => "cart-form"]) ?>
 			
-							<?php foreach ($cart->getItems() as $item): ?>
+							<?php foreach ($cartItems as $item): ?>
 
 								<?php 
 									$product = $item->getProduct();
@@ -105,12 +108,12 @@
 
 					<?php 
 						$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
-						$totalPrice = $cart->getTotalPrice();
+						$cart_total_price = cartTotalPrice($cartItems, true);
 					?>
 
-					<?php if($freeDelivery && $freeDelivery > $totalPrice): ?>
+					<?php if($freeDelivery && $freeDelivery > $cart_total_price): ?>
 						<div class="free-delivery-cart">
-							Для бесплатной доставки по г. Южно-Сахалинск, добавьте товаров ещё на <span> <?= $freeDelivery - $totalPrice ?> р.</span>
+							Для бесплатной доставки по г. Южно-Сахалинск, добавьте ещё товаров на <span><?= Core_Number::formatNumber($freeDelivery - $cart_total_price) ?> р.</span>
 						</div>
 					<?php endif; ?>	
 

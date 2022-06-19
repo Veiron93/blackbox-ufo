@@ -78,8 +78,6 @@ class Shop extends App_Controller
                 /** @var Catalog_Sku $sku */
                 $sku = Catalog_Sku::create()->find($id_sku);
 
-                //traceLog($sku);
-
                 if (!$sku) {
                     throw new Phpr_ApplicationException("Артикул не найден. Попробуйте обновить страницу и попробовать снова.");
                 }
@@ -236,11 +234,14 @@ class Shop extends App_Controller
                 throw new Phpr_ApplicationException("Ваша корзина пуста. Оформление заказа невозможно.");
             }
 
-            if($_POST['delivery']){
-                $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery']];
-            }else{
-                $delivery = Phpr::$config->get('DELIVERY')[0];
-            }
+            $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery'] ? $_POST['delivery'] : 0];
+
+
+            // if($_POST['delivery']){
+            //     $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery']];
+            // }else{
+            //     $delivery = Phpr::$config->get('DELIVERY')[0];
+            // }
 
             $this->validation->add("name", "Имя")->required("Укажите имя");
             $this->validation->add("phone", "Телефон")->required("Укажите свой номер телефон");
@@ -285,14 +286,16 @@ class Shop extends App_Controller
             
             foreach ($cart->getItems() as $item) {
                 $orderItem = Shop_OrderItem::createFromCartItem($item);
-                $orderItem->order_id = $order->id;
-                $orderItem->save();
+
+                //traceLog($orderItem->price);
+                // $orderItem->order_id = $order->id;
+                // $orderItem->save();
             }
 
-            $order->recalculate();
-            $order->markAsCompiled();
-            $this->setSalesProducts($cart->getItems());
-            $cart->delete();
+            //$order->recalculate();
+            //$order->markAsCompiled();
+            //$this->setSalesProducts($cart->getItems());
+            //$cart->delete();
             Phpr::$response->redirect("/shop/success");
 
         } catch (\Exception $ex) {
@@ -301,16 +304,16 @@ class Shop extends App_Controller
     }
 
     // счётчик проданных товаров
-    protected function setSalesProducts($products)
-    {
-        $productsId = [];
+    // protected function setSalesProducts($products)
+    // {
+    //     $productsId = [];
 
-        foreach ($products as $product) {
-            array_push($productsId, $product->productId);
-        }
+    //     foreach ($products as $product) {
+    //         array_push($productsId, $product->productId);
+    //     }
 
-        Db_DbHelper::objectArray("UPDATE catalog_products SET sales = sales + 1 WHERE id IN (" . implode(',', $productsId) . ")");
-	}
+    //     Db_DbHelper::objectArray("UPDATE catalog_products SET sales = sales + 1 WHERE id IN (" . implode(',', $productsId) . ")");
+	// }
 
     public function success()
     {

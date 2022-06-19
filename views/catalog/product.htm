@@ -154,7 +154,7 @@
 
 					<div class="product-other-info">
 						<div class="product-code">Код товара: <span><?= $product->id ?></span></div>
-						<div class="product-amount">В наличии: <span><?= $product->leftover ?></span></div>
+						<div class="product-amount">В наличии: <span><?= $selected_sku ? $selected_sku["leftover"] : $product->leftover ?></span></div>
 
 						<?php if($product->sales): ?>
 							<div class="product-sales">Купили: <span><?= $product->sales ?></span></div>

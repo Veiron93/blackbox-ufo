@@ -147,17 +147,18 @@ function checkActualProductsCart()
 {
 	$cart = Shop_Cart::getCart();
 	$productCartItems = $cart->getItems();
-	$idsProductsCart = [];
+
+	$idsProductsCart = getProductsAddedCart();
 	$statusUpdateCart = false;
 
-	foreach ($productCartItems as $productCart) {
-		array_push($idsProductsCart, $productCart->productId);
-	}
+	// foreach ($productCartItems as $productCart) {
+	// 	array_push($idsProductsCart, $productCart->productId);
+	// }
 
 	if (count($idsProductsCart)) {
+
 		// проверка товара на количество в наличии и актуальные цены
-		$actualProducts = Db_DbHelper::objectArray("SELECT id, leftover, price FROM catalog_products
-		WHERE id IN (" . implode(',', $idsProductsCart) . ")");
+		$actualProducts = Db_DbHelper::objectArray("SELECT id, leftover, price FROM catalog_products WHERE id IN (" . implode(',', $idsProductsCart) . ")");
 
 		foreach ($productCartItems as $productCart) {
 
@@ -167,6 +168,7 @@ function checkActualProductsCart()
 
 					// если актульная стоимость отличается от стоимости товара добавленно ранее в корзину, то меняем на актуальную
 					if ($productCart->price != $actualProduct->price) {
+
 						$productCart->setPrice($actualProduct->price);
 						$cart->notifyCartUpdated();
 
@@ -175,6 +177,7 @@ function checkActualProductsCart()
 
 					// если товара в наличии меньше чем добавлено в корзине, то устанавливается значение из остатка
 					if ($productCart->quantity > $actualProduct->leftover) {
+
 						$productCart->setQuantity($actualProduct->leftover);
 						$cart->notifyCartUpdated();
 
@@ -189,6 +192,11 @@ function checkActualProductsCart()
 
 	return $statusUpdateCart;
 }
+
+
+
+
+
 
 function getProductsAddedCart()
 {
