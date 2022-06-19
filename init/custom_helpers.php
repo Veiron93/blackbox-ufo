@@ -17,15 +17,18 @@
  * String helpers
  */
 
-function h($str) {
+function h($str)
+{
 	return Phpr_Html::encode($str);
 }
 
-function plainText($str) {
+function plainText($str)
+{
 	return Phpr_Html::plainText($str);
 }
 
-function l($key) {
+function l($key)
+{
 	return Phpr::$lang->app($key);
 }
 
@@ -38,14 +41,16 @@ function l($key) {
  * @param string $format
  * @return string
  */
-function displayDate($date, $format = '%x') {
+function displayDate($date, $format = '%x')
+{
 	return Phpr_Date::display($date, $format);
 }
 
 /**
  * @return Phpr_DateTime
  */
-function gmtNow() {
+function gmtNow()
+{
 	return Phpr_DateTime::gmtNow();
 }
 
@@ -53,16 +58,19 @@ function gmtNow() {
  * Other helpers
  */
 
-function traceLog($Str, $Listener = 'INFO') {
+function traceLog($Str, $Listener = 'INFO')
+{
 	if (Phpr::$traceLog)
 		Phpr::$traceLog->write($Str, $Listener);
 }
 
-function flash() {
+function flash()
+{
 	return Admin_Html::flash();
 }
 
-function post($name, $default = null) {
+function post($name, $default = null)
+{
 	return Phpr::$request->post($name, $default);
 }
 
@@ -70,19 +78,23 @@ function post($name, $default = null) {
  * Form helpers
  */
 
-function optionState($currentValue, $selectedValue) {
+function optionState($currentValue, $selectedValue)
+{
 	return PHpr_Form::optionState($selectedValue, $currentValue);
 }
 
-function checkboxState($value) {
+function checkboxState($value)
+{
 	return Phpr_Form::checkboxState($value);
 }
 
-function radioState($currentValue, $selectedValue) {
+function radioState($currentValue, $selectedValue)
+{
 	return Phpr_Form::radioState($currentValue, $selectedValue);
 }
 
-function a_link($url, $title) {
+function a_link($url, $title)
+{
 	if ($url != Phpr::$request->getCurrentUri()) {
 		return sprintf('<a href="%s">%s</a>', $url, $title);
 	} else {
@@ -107,7 +119,8 @@ function a_link($url, $title) {
  * @see Phpr_Router#url()
  * @return string
  */
-function u($name) {
+function u($name)
+{
 	$args = func_get_args();
 	$name = array_shift($args);
 	reset($args);
@@ -130,43 +143,44 @@ function u($name) {
 }
 
 
-function checkActualProductsCart(){
+function checkActualProductsCart()
+{
 	$cart = Shop_Cart::getCart();
 	$productCartItems = $cart->getItems();
 	$idsProductsCart = [];
 	$statusUpdateCart = false;
 
-	foreach($productCartItems as $productCart){
+	foreach ($productCartItems as $productCart) {
 		array_push($idsProductsCart, $productCart->productId);
 	}
 
-	if(count($idsProductsCart)){
+	if (count($idsProductsCart)) {
 		// проверка товара на количество в наличии и актуальные цены
 		$actualProducts = Db_DbHelper::objectArray("SELECT id, leftover, price FROM catalog_products
 		WHERE id IN (" . implode(',', $idsProductsCart) . ")");
 
-		foreach($productCartItems as $productCart){
+		foreach ($productCartItems as $productCart) {
 
-			foreach($actualProducts as $actualProduct){
+			foreach ($actualProducts as $actualProduct) {
 
-				if($productCart->productId == $actualProduct->id){
+				if ($productCart->productId == $actualProduct->id) {
 
 					// если актульная стоимость отличается от стоимости товара добавленно ранее в корзину, то меняем на актуальную
-					if($productCart->price != $actualProduct->price){
+					if ($productCart->price != $actualProduct->price) {
 						$productCart->setPrice($actualProduct->price);
 						$cart->notifyCartUpdated();
 
-						if(!$statusUpdateCart) $statusUpdateCart = true;
+						if (!$statusUpdateCart) $statusUpdateCart = true;
 					}
 
-					// если товара в наличии меньше чем добавлено в корзине, то устанавливается знаечие из остатка
-					if($productCart->quantity > $actualProduct->leftover){
+					// если товара в наличии меньше чем добавлено в корзине, то устанавливается значение из остатка
+					if ($productCart->quantity > $actualProduct->leftover) {
 						$productCart->setQuantity($actualProduct->leftover);
 						$cart->notifyCartUpdated();
 
-						if(!$statusUpdateCart) $statusUpdateCart = true;
+						if (!$statusUpdateCart) $statusUpdateCart = true;
 					}
-					
+
 					break;
 				}
 			}
@@ -176,14 +190,69 @@ function checkActualProductsCart(){
 	return $statusUpdateCart;
 }
 
-function getProductsAddedCart(){
+function getProductsAddedCart()
+{
 	$cart = Shop_Cart::getCart();
 	$productCartItems = $cart->getItems();
 	$idsProductsCart = [];
 
-	foreach($productCartItems as $productCart){
+	foreach ($productCartItems as $productCart) {
 		array_push($idsProductsCart, $productCart->productId);
 	}
 
 	return $idsProductsCart;
+}
+
+
+function skus($productSkus)
+{
+	$skus = [];
+
+	foreach ($productSkus as $e) {
+
+		if($e->leftover){
+			
+			$sku["id"] = $e->id;
+			$sku["product_id"] = $e->product_id;
+			$sku["name"] = $e->name;
+			$sku["price"] = $e->price;
+			$sku["leftover"] = $e->leftover;
+
+			array_push($skus, $sku);
+		}
+	}
+
+	usort($skus, function ($a, $b) {
+		return strcmp($a["name"], $b["name"]);
+	});
+
+	return $skus;
+}
+
+
+// стоимость товара в корзине
+function cartProductPrice($product, $total_price = false){
+
+	if($product->skuId) $sku = $product->getSku();
+
+	$price = isset($sku) ? $sku->price : $product->price;
+
+	if($total_price) $price = $product->quantity * $price;
+	
+	return $price;
+}
+
+// стоимость товаров добавленных в корзину 
+function cartTotalPrice($products){
+
+	$total_price = null;
+	
+	foreach($products as $product){
+
+		if($product->skuId) $sku = $product->getSku();
+
+		$total_price += $product->quantity * (isset($sku) ? $sku->price : $product->price);
+	}
+
+	return $total_price;
 }

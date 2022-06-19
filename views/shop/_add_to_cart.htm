@@ -5,9 +5,7 @@
 
 
 <?php 
-	// проверка добавлен ли товар в корзину
-	if(in_array($item->id, $idsProductsCart)) $added = true; 
-
+	// передаваемые данные о товаре
 	$extra = ["id" => $item->id, "type" => $type];
 
 	if($type == "sku"){
@@ -15,6 +13,23 @@
 	}
 ?>
 
+
+<div class="btn-buy" 
+	id="<?= $idPrefix ?>-wrapper" 
+	title="<?=isset($added) && $added ? 'Перейти в коробку':'Добавить в коробку'?>">
+
+	<a href="#" class="add-to-cart-btn" 
+		<? if ($withQuantity): ?> data-quantity="#<?= $idPrefix ?>-quantity"<? endif ?>
+		data-extra="<?= extra($extra) ?>"
+		id="<?= $idPrefix ?>-btn">
+	</a>
+
+	<a class="to-cart-btn" href="/shop/cart/" title="Перейти в коробку"></a>
+</div>
+
+
+
+<?/*
 <div class="btn-buy" 
 	id="<?= $idPrefix ?>-wrapper" 
 
@@ -32,6 +47,7 @@
 
 	<a class="to-cart-btn" href="/shop/cart/" title="Перейти в коробку"></a>
 </div>
+*?>
 
 
 

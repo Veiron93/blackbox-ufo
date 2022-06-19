@@ -605,37 +605,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-	function search() {
-		let headerSearch = document.querySelector('.header-search');
-
-		if (headerSearch) {
-
-		}
-	}
-
-
-
 	///////////// КНОПКА ДОБАВИТЬ В КОРЗИНУ /////////////
 
-	function productAddToCart() {
-		let btns = document.querySelectorAll('.btn-buy');
+	// function productAddToCart() {
+	// 	let btns = document.querySelectorAll('.btn-buy');
 
-		if (btns) {
-			btns.forEach(btn => {
-				btn.querySelector('a').addEventListener('click', function () {
+	// 	if (btns) {
+	// 		btns.forEach(btn => {
+	// 			btn.querySelector('a').addEventListener('click', function () {
 
-					let id = this.parentElement.getAttribute('id')
-					let products = document.querySelectorAll('#' + id)
+	// 				let id = this.parentElement.getAttribute('id')
+	// 				let products = document.querySelectorAll('#' + id)
 
-					products.forEach(product => product.setAttribute('data-added', true))
-				})
-			})
-		}
-	}
+	// 				products.forEach(product => product.setAttribute('data-added', true))
+	// 			})
+	// 		})
+	// 	}
+	// }
 
-	productAddToCart();
+	//productAddToCart();
 
 
 	///////////// КНОПКА ВВЕРХ /////////////
@@ -666,8 +654,32 @@ document.addEventListener("DOMContentLoaded", function () {
 	// ВЫБОР АРТИКУЛА
 	function selectSku(){
 		
-		function price(){
+		function dataExtra(sku){
+			const btnAddToCart = productPage.querySelector(".add-to-cart-btn");
 
+			let id = sku.value,
+				extra = JSON.parse(btnAddToCart.getAttribute('data-extra'));
+
+			extra.id_sku = id;
+
+			btnAddToCart.setAttribute('data-extra', JSON.stringify(extra));
+		}
+
+		function price(sku){
+			let price = sku.getAttribute('data-price');
+
+			const priceProduct = productPage.querySelector(".catalog-product_buy-price .actual");
+
+			priceProduct.textContent = price;
+		}
+
+		function productsOtherInfo(sku){
+			const blockProductsOtherInfo = productPage.querySelector(".product-other-info");
+			const productAmount = blockProductsOtherInfo.querySelector(".product-amount");
+
+			let leftover = sku.getAttribute('data-leftover');
+
+			productAmount.querySelector("span").textContent = leftover;
 		}
 
 
@@ -676,29 +688,15 @@ document.addEventListener("DOMContentLoaded", function () {
 		if(productPage){
 			let skus = productPage.querySelectorAll("input[name='product-sku']");
 
-			const priceProduct = productPage.querySelector(".catalog-product_buy-price .actual");
-
 			if(skus){
 				skus.forEach(sku => sku.addEventListener("change", ev => {
-					let id = ev.target.value,
-						price = ev.target.getAttribute('data-price');
+					let sku = ev.target;
 
-					priceProduct.textContent = Math.round(price);
-
-
-					console.log(price)
+					dataExtra(sku);
+					price(sku);
+					productsOtherInfo(sku);
 				}))
-				
 			}
-
-			// if(skusSection){
-			// 	let skus = skusSection.querySelectorAll('.item');
-
-			// 	skus.forEach(sku => {
-			// 		console.log(sku);
-			// 	})
-				
-			// }
 		}
 	}
 

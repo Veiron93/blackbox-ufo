@@ -6,7 +6,7 @@
 
 	$productsMiniCart = $cart->getItems();
 	$countProductsMiniCart = $cart->getItemsCount();
-	$totalPriceMiniCart = $cart->getTotalPrice();
+	$totalPriceMiniCart = cartTotalPrice($productsMiniCart);
 ?>
 
 <div id="mini-cart" class="mini-cart">
@@ -44,28 +44,38 @@
 						<?php $product = $item->getProduct() ?>
 
 						<div class="item">
+
 							<? if ($photo = $product->findMainPhoto()): ?>
 								<div class="photo <?= $product->regular_photo ? 'photo--regular':''?>">
 									<a href="<?= $product->getUrl() ?>">
 										<?php 
-											if($product->regular_photo){
-												$img = $photo->getThumb(80, 80,  Phpr_ImageManipulator::keepRatio);
-											}else{
-												$img = $photo->getThumb(60, 60,  Phpr_ImageManipulator::keepRatio);
-											}
+											$width = $height = ($product->regular_photo) ? 80 : 60;
+											$img = $photo->getThumb($width, $height,  Phpr_ImageManipulator::keepRatio);
 										?>
+
 										<img src="<?= $img ?>" alt="<?= $product->name ?>"/>
 									</a>
 								</div>
 							<? endif ?>
 
 							<div class="name">
-								<a href="<?= $product->getUrl() ?>"><?= $product->name ?></a>
+								<a href="<?= $product->getUrl() ?>">
+									<?= $product->name ?>
+								</a>
+
+								<?php if($sku = $item->getSku()): ?>
+									<span><?=$sku->name ?></span>
+								<?php endif; ?>
 							</div>
 
 							<div class="price">
-								<p class="price-tovar"><span><?= Core_Number::formatNumber($item->getTotalPrice()) ?></span></p>
-								<p class="summa"><span><?= $item->getQuantity() ?></span> шт. &#215; <span><?= Core_Number::formatNumber($product->price) ?></span></p>
+								<?php 
+									$product_price = cartProductPrice($item);
+									$product_total_price = cartProductPrice($item, true);
+								?>
+
+								<p class="price-product"><span><?= Core_Number::formatNumber($product_total_price) ?></span></p>
+								<p class="summa"><span><?= $item->getQuantity() ?></span> шт. &#215; <span><?= Core_Number::formatNumber($product_price) ?></span></p>
 							</div>
 
 							<div class="del">

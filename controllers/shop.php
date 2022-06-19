@@ -78,7 +78,7 @@ class Shop extends App_Controller
                 /** @var Catalog_Sku $sku */
                 $sku = Catalog_Sku::create()->find($id_sku);
 
-                traceLog($sku);
+                //traceLog($sku);
 
                 if (!$sku) {
                     throw new Phpr_ApplicationException("Артикул не найден. Попробуйте обновить страницу и попробовать снова.");

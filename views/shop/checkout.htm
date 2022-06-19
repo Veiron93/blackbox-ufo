@@ -27,7 +27,6 @@
 
 			<?php foreach (Phpr::$config->get('DELIVERY') as $id => $value) : ?>
 
-				
 				<?php 
 					if($freeDelivery && $value['code'] === 'ys' && $freeDelivery <= $cart->getTotalPrice()){
 						$value['price'] = 0;
@@ -73,7 +72,7 @@
 		<div class="total-price-section">
 			<div class="total-price-section-title">Итого</div>
 
-			<?php $totalPrice = Core_Number::formatNumber($cart->getTotalPrice()); ?>
+			<?php $cart_total_price = cartTotalPrice($cart->getItems()) ?>
 
 			<div class="item-price devivery-price">
 				<div>Доставка:</div>
@@ -85,14 +84,14 @@
 			<div class="item-price goods-price">
 				<div>Товары:</div>
 				<div>
-					<span data-summ="<?=$cart->getTotalPrice()?>"><?= $totalPrice ?></span>
+					<span data-summ="<?= $cart_total_price ?>"><?= Core_Number::formatNumber($cart_total_price) ?></span>
 				</div>
 			</div>
 
 			<div class="item-price total-price">
 				<div>Всего к оплате:</div>
 				<div>
-					<span><?= $totalPrice ?></span>
+					<span><?= $cart_total_price ?></span>
 				</div>
 			</div>
 		</div>
@@ -102,7 +101,6 @@
 		<div class="bnt-order-buy">
 			<input type="hidden" name="customer-email" value="user@bb65.ru">
 			<a href="#" data-handler="onRecalculationCart">Купить</a>
-			<!-- <a href="#" data-handler="onPlaceOrder">Купить</a> -->
 		</div>	
 	<? Phpr_Form::closeTag() ?>
 </div>

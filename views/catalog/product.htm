@@ -34,6 +34,14 @@
 		<? $this->renderPartial('breadcrumbs', array('category' => $product->category, 'product' => $product)) ?>
 
 		<?php if (isset($product) && $product): ?>
+
+			<?php 
+				if (count($product->skus)){
+					$skus = skus($product->skus);
+					$selected_sku = $skus[0];
+				} 
+			?>
+
 			<div class="catalog-product_name">
 				<h1><?= $product->name ?></h1>
 			</div>
@@ -53,7 +61,7 @@
 								  	<? foreach ($product->photos as $photo): ?>
 								  		<div class="swiper-slide">
 								  			<a href="<?= $photo->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
-												<img src="<?= $photo->getThumb(370, 320, Phpr_ImageManipulator::keepRatio) ?>" alt="" />
+												<img src="<?= $photo->getThumb(370, 320, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
 											</a>
 								  		</div>
 									<? endforeach; ?>
@@ -64,7 +72,7 @@
 								<div class="swiper-wrapper">
 								  	<? foreach ( $product->photos as $photo ): ?>
 								  		<div class="swiper-slide">
-								  			<img src="<?= $photo->getThumb(66, 66, Phpr_ImageManipulator::keepRatio) ?>" alt="" />
+								  			<img src="<?= $photo->getThumb(66, 66, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
 								  		</div>
 									<? endforeach; ?>
 								</div>
@@ -77,29 +85,42 @@
 							$img = $mainPhoto ? $mainPhoto->getThumb(450, 'auto'): '/resources/images/no-image.png';
 						?>
 
-						<div class="catalog-product_photo" class="pswp">
+						<div class="catalog-product_photo">
 							<a href="<?= $img ?>">
-								<img src="<?= $img ?>" alt="">
+								<img src="<?= $img ?>" alt="<?= $product->name ?>">
 							</a>
 						</div>
 					<?php endif; ?>
 					
-					<div class="description" data-formatted-text>
-						<?= $product->description ?>
-
-						<?php if (count($product->skus)): ?>
-
-							<?php $selected_sku = $product->skus[0]; ?>
+					<div class="info">
+						<?php if (isset($skus)): ?>
 
 							<div class="catalog-product_skus">
-								<?php foreach($product->skus as $sku): ?>
-									<div class="item">
-										<input type="radio" id="sku-<?= $sku->id ?>" name="product-sku" <?= $selected_sku->id == $sku->id ? "checked": ""?> data-price="<?= $sku->price ?>" value="<?= $sku->id ?>">
-										<label for="sku-<?= $sku->id ?>"><?= $sku->name ?></label>
-									</div>
-								<?php endforeach; ?>
+
+								<div class="skus-title">Выберите модель</div>
+
+								<div class="skus-list">
+									<?php foreach($skus as $sku): ?>
+										<div class="item">
+											<input 
+												type="radio" 
+												id="sku-<?= $sku["id"] ?>" 
+												name="product-sku" 
+												<?= $selected_sku["id"] == $sku["id"] ? "checked": ""?> 
+												data-price="<?= Phpr::$lang->num($sku["price"]) ?>"
+												data-leftover="<?= $sku["leftover"] ?>"
+												value="<?= $sku["id"] ?>">
+											
+											<label for="sku-<?= $sku["id"] ?>"><?= $sku["name"] ?></label>
+										</div>
+									<?php endforeach; ?>
+								</div>
 							</div>
 						<?php endif; ?>
+
+						<div class="catalog-product_description" data-formatted-text>
+							<?= $product->description ?>
+						</div>
 					</div>
 				</div>
 
@@ -111,7 +132,7 @@
 						<?php endif; ?>
 
 						<div class="actual">
-							<?= Phpr::$lang->num((count($product->skus)) ? $selected_sku->price : $product->price) ?>
+							<?= Phpr::$lang->num((isset($selected_sku)) ? $selected_sku["price"] : $product->price) ?>
 						</div>
 					</div>
 
@@ -125,20 +146,18 @@
 								'idPrefix' => "atc-product-{$product->id}"
 							];
 
-							if(count($product->skus)){
-								$viewData["id_sku"] = $selected_sku->id;
-							}
+							if(count($product->skus)) $viewData["id_sku"] = $selected_sku["id"];
 						?>
 
 						<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
 					<? Phpr_Form::closeTag(); ?>
 
 					<div class="product-other-info">
-						<div>Код товара: <?= $product->id ?></div>
-						<div>В наличии: <?= $product->leftover ?></div>
+						<div class="product-code">Код товара: <span><?= $product->id ?></span></div>
+						<div class="product-amount">В наличии: <span><?= $product->leftover ?></span></div>
 
 						<?php if($product->sales): ?>
-							<div>Купили: <?= $product->sales ?></div>
+							<div class="product-sales">Купили: <span><?= $product->sales ?></span></div>
 						<?php endif;?>
 					</div>
 
