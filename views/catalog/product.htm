@@ -107,7 +107,7 @@
 												id="sku-<?= $sku["id"] ?>" 
 												name="product-sku" 
 												<?= $selected_sku["id"] == $sku["id"] ? "checked": ""?> 
-												data-price="<?= Phpr::$lang->num($sku["price"]) ?>"
+												data-price="<?= Phpr::$lang->num(($sku["price"]) ? $sku["price"] : $product->price) ?>"
 												data-leftover="<?= $sku["leftover"] ?>"
 												value="<?= $sku["id"] ?>">
 											
@@ -132,7 +132,7 @@
 						<?php endif; ?>
 
 						<div class="actual">
-							<?= Phpr::$lang->num(isset($selected_sku) ? $selected_sku["price"] : $product->price) ?>
+							<?= Phpr::$lang->num(isset($selected_sku) && $selected_sku["price"] ? $selected_sku["price"] : $product->price) ?>
 						</div>
 					</div>
 

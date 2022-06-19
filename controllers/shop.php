@@ -83,6 +83,15 @@ class Shop extends App_Controller
                 }
 
                 if ($this->checkLeftover($sku, $quantity)) {
+
+                    if(!$sku->price){
+                        $product = Catalog_Product::create()->where('hidden is null')->find($id);
+
+                        $sku->price = $product->price;
+                    }
+
+                    traceLog( $sku);
+
                     $cart->addSku($sku, $quantity);
                 }
             }
@@ -235,13 +244,6 @@ class Shop extends App_Controller
             }
 
             $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery'] ? $_POST['delivery'] : 0];
-
-
-            // if($_POST['delivery']){
-            //     $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery']];
-            // }else{
-            //     $delivery = Phpr::$config->get('DELIVERY')[0];
-            // }
 
             $this->validation->add("name", "Имя")->required("Укажите имя");
             $this->validation->add("phone", "Телефон")->required("Укажите свой номер телефон");

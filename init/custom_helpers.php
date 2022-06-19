@@ -198,9 +198,13 @@ function checkActualProductsCart()
 
 		foreach ($product_cart_items as $product_cart) {
 			foreach ($actual_products as $actual_product){
+
 				if($product_cart->skuId){
 					if($actual_product->sku_id == $product_cart->skuId){
-						setPrice($product_cart, $actual_product->sku_price, $cart, $status_update_cart);
+
+						$actual_price = $actual_product->sku_price ? $actual_product->sku_price : $actual_product->price;
+
+						setPrice($product_cart, $actual_price, $cart, $status_update_cart);
 						setLeftover($product_cart, $actual_product->sku_leftover, $cart, $status_update_cart);
 						break;
 					}
@@ -211,6 +215,7 @@ function checkActualProductsCart()
 						break;
 					}
 				}
+
 			}
 		}
 	}
@@ -262,7 +267,7 @@ function cartProductPrice($product, $total_price = false){
 
 	if($product->skuId) $sku = $product->getSku();
 
-	$price = isset($sku) ? $sku->price : $product->price;
+	$price = isset($sku) && $sku->price ? $sku->price : $product->price;
 
 	if($total_price) $price = $product->quantity * $price;
 	
@@ -279,7 +284,7 @@ function cartTotalPrice($products){
 		$sku = null;
 
 		if($product->skuId) $sku = $product->getSku();
-		$total_price += $product->quantity * (isset($sku) ? $sku->price : $product->price);
+		$total_price += $product->quantity * (isset($sku) && $sku->price ? $sku->price : $product->price);
 	}
 
 	return $total_price;
