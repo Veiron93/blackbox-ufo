@@ -158,7 +158,10 @@ function checkActualProductsCart()
 	if (count($idsProductsCart)) {
 
 		// проверка товара на количество в наличии и актуальные цены
-		$actualProducts = Db_DbHelper::objectArray("SELECT id, leftover, price FROM catalog_products WHERE id IN (" . implode(',', $idsProductsCart) . ")");
+		$actualProducts = Db_DbHelper::objectArray("SELECT p.id, p.leftover, p.price, s.price sku_price, s.leftover sku_leftover
+			FROM catalog_products as p
+			LEFT JOIN catalog_skus as s on s.product_id = p.id
+			WHERE p.id IN (" . implode(',', $idsProductsCart) . ")");
 
 		foreach ($productCartItems as $productCart) {
 
@@ -166,13 +169,24 @@ function checkActualProductsCart()
 
 				if ($productCart->productId == $actualProduct->id) {
 
+					//$price = $productCart->skuId ? $productCart->skuId
+
+					// if($productCart->skuId){
+
+					// }
+
+					traceLog($productCart->skuId);
+
 					// если актульная стоимость отличается от стоимости товара добавленно ранее в корзину, то меняем на актуальную
 					if ($productCart->price != $actualProduct->price) {
 
-						$productCart->setPrice($actualProduct->price);
-						$cart->notifyCartUpdated();
 
-						if (!$statusUpdateCart) $statusUpdateCart = true;
+						traceLog('opa');
+
+						// $productCart->setPrice($actualProduct->price);
+						// $cart->notifyCartUpdated();
+
+						// if (!$statusUpdateCart) $statusUpdateCart = true;
 					}
 
 					// если товара в наличии меньше чем добавлено в корзине, то устанавливается значение из остатка
