@@ -74,7 +74,9 @@ class Catalog extends App_Controller {
 			$pagination = new Phpr_Pagination(self::productsPerPage);
 			
 			$this->viewData['category'] = $category;
+
 			$this->viewData['products'] = $category->list_products(true, $pagination, $pageIndex - 1, $sorting);
+
 			$this->viewData['pagination'] = $pagination;
 			$this->setTitle($category->name);
 			Admin_SeoPlugin::apply($category);

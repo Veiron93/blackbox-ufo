@@ -63,7 +63,7 @@
 
 					foreach($product->skus as $sku){
 
-						if($sku->price > 0){
+						if($sku->price > 0 && $sku->leftover){
 							array_push($prices, round($sku->price));
 						}
 					}
