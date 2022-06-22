@@ -153,6 +153,8 @@ function checkActualProductsCart()
 	$products_id = [];
 	$skus_id = [];
 
+	
+
 	foreach ($product_cart_items as $product_cart) {
 		array_push($products_id, $product_cart->productId);
 
@@ -162,26 +164,34 @@ function checkActualProductsCart()
 	}
 
 	// изменяет стоимость
-	function setPrice($product_cart, $actual_price, $cart, $status_update_cart){
-		if($product_cart->price != $actual_price){
-			$product_cart->setPrice($actual_price);
-			$cart->notifyCartUpdated();
+	if(!function_exists('setPriceProduct')) {
+		function setPriceProduct($product_cart, $actual_price, $cart, $status_update_cart){
+			if($product_cart->price != $actual_price){
+				$product_cart->setPrice($actual_price);
+				$cart->notifyCartUpdated();
 
-			if(!$status_update_cart) $status_update_cart = true;
+				if(!$status_update_cart) $status_update_cart = true;
+			}
 		}
 	}
 
 	// изменяет остаток
-	function setLeftover($product_cart, $actual_leftover, $cart, $status_update_cart){
-		if($product_cart->quantity > $actual_leftover){
-			$product_cart->setQuantity($actual_leftover);
-			$cart->notifyCartUpdated();
+	if(!function_exists('setLeftoverProduct')){
+		function setLeftoverProduct($product_cart, $actual_leftover, $cart, $status_update_cart){
+			if($product_cart->quantity > $actual_leftover){
+				$product_cart->setQuantity($actual_leftover);
+				$cart->notifyCartUpdated();
 
-			if(!$status_update_cart) $status_update_cart = true;
+				if(!$status_update_cart) $status_update_cart = true;
+			}
 		}
 	}
 
+	
+
 	if (count($products_id)) {
+
+		traceLog(2222);
 
 		if(count($skus_id)){
 
@@ -201,17 +211,16 @@ function checkActualProductsCart()
 
 				if($product_cart->skuId){
 					if($actual_product->sku_id == $product_cart->skuId){
-
 						$actual_price = $actual_product->sku_price ? $actual_product->sku_price : $actual_product->price;
 
-						setPrice($product_cart, $actual_price, $cart, $status_update_cart);
-						setLeftover($product_cart, $actual_product->sku_leftover, $cart, $status_update_cart);
+						setPriceProduct($product_cart, $actual_price, $cart, $status_update_cart);
+						setLeftoverProduct($product_cart, $actual_product->sku_leftover, $cart, $status_update_cart);
 						break;
 					}
 				}else{
 					if($actual_product->id == $product_cart->productId){
-						setPrice($product_cart, $actual_product->price, $cart, $status_update_cart);
-						setLeftover($product_cart, $actual_product->leftover, $cart, $status_update_cart);
+						setPriceProduct($product_cart, $actual_product->price, $cart, $status_update_cart);
+						setLeftoverProduct($product_cart, $actual_product->leftover, $cart, $status_update_cart);
 						break;
 					}
 				}
