@@ -83,6 +83,15 @@ class Shop extends App_Controller
                 }
 
                 if ($this->checkLeftover($sku, $quantity)) {
+
+                    if(!$sku->price){
+                        $product = Catalog_Product::create()->where('hidden is null')->find($id);
+
+                        $sku->price = $product->price;
+                    }
+
+                    traceLog( $sku);
+
                     $cart->addSku($sku, $quantity);
                 }
             }
@@ -236,13 +245,6 @@ class Shop extends App_Controller
 
             $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery'] ? $_POST['delivery'] : 0];
 
-
-            // if($_POST['delivery']){
-            //     $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery']];
-            // }else{
-            //     $delivery = Phpr::$config->get('DELIVERY')[0];
-            // }
-
             $this->validation->add("name", "Имя")->required("Укажите имя");
             $this->validation->add("phone", "Телефон")->required("Укажите свой номер телефон");
             $this->validation->add("comment", "Комментарий")->fn("trim");
@@ -283,8 +285,10 @@ class Shop extends App_Controller
             $order->comment = $values['comment'];
             $order->cart_id = $cart->cart_id;
             $order->save();
+
+            $cart_items = $cart->getItems();
             
-            foreach ($cart->getItems() as $item) {
+            foreach ($cart_items as $item) {
                 $orderItem = Shop_OrderItem::createFromCartItem($item);
                 $orderItem->order_id = $order->id;
                 $orderItem->save();
@@ -292,26 +296,51 @@ class Shop extends App_Controller
 
             $order->recalculate();
             $order->markAsCompiled();
-            //$this->setSalesProducts($cart->getItems());
             $cart->delete();
-            Phpr::$response->redirect("/shop/success");
+
+            $this->setSalesProducts($cart_items);
+            $this->setLeftoverProducts($cart_items);
+
+            Phpr::$response->redirect("/shop/success"); 
 
         } catch (\Exception $ex) {
             $this->ajaxError($ex);
         }
     }
 
-    // счётчик проданных товаров
-    // protected function setSalesProducts($products)
-    // {
-    //     $productsId = [];
+    // количество продаж товара
+    protected function setSalesProducts($products_cart)
+    {
+        foreach ($products_cart as $product) {
+            Db_DbHelper::query("UPDATE catalog_products SET sales = IF(sales, sales + $product->quantity , $product->quantity) WHERE id = $product->productId");
+        }
+	}
 
-    //     foreach ($products as $product) {
-    //         array_push($productsId, $product->productId);
-    //     }
+    // остаток товара
+    protected function setLeftoverProducts($products_cart)
+    {
+        $skus = [];
+        $products = [];
 
-    //     Db_DbHelper::objectArray("UPDATE catalog_products SET sales = sales + 1 WHERE id IN (" . implode(',', $productsId) . ")");
-	// }
+        foreach ($products_cart as $product) {
+            if($product->skuId){
+                array_push($skus, $product);
+            }else{
+                array_push($products, $product);
+            }
+        }
+
+        foreach ($skus as $sku) {
+            Db_DbHelper::query("UPDATE catalog_skus SET leftover = leftover - $sku->quantity WHERE id = $sku->skuId");
+        }
+
+        foreach ($products as $product) {
+            Db_DbHelper::query("UPDATE catalog_products SET leftover = leftover - $product->quantity WHERE id = $product->productId");
+        }
+    }
+
+
+
 
     public function success()
     {

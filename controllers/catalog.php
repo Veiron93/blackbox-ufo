@@ -43,39 +43,12 @@ class Catalog extends App_Controller {
 				$this->throw404();
 			}
 
-			//СОРТРОВКА 
-			$sorting = 'sales desc';
-			$partsURI = parse_url($_SERVER['REQUEST_URI']);
-
-			if(isset($partsURI['query'])){
-				parse_str($partsURI['query'], $query);
-
-				if(isset($query['order'])){
-					switch($query['order']){
-						case 'name':
-							$sorting = 'name';
-						break;
-
-						case 'new':
-							$sorting = 'id desc';
-						break;
-
-						case '-price':
-							$sorting = 'price desc';
-						break;
-
-						case 'price':
-							$sorting = 'price asc';
-						break;
-					}
-				}
-			}
-
 			$pagination = new Phpr_Pagination(self::productsPerPage);
 			
 			$this->viewData['category'] = $category;
-			$this->viewData['products'] = $category->list_products(true, $pagination, $pageIndex - 1, $sorting);
+			$this->viewData['products'] = $category->list_products(true, $pagination, $pageIndex - 1, self::sorting());
 			$this->viewData['pagination'] = $pagination;
+
 			$this->setTitle($category->name);
 			Admin_SeoPlugin::apply($category);
 
@@ -89,13 +62,31 @@ class Catalog extends App_Controller {
 		try {
 			/* @var $product Catalog_Product */
 			$product = Catalog_Product::create()->find($productId);
+			
 			if (!$product) {
 				$this->throw404();
 			}
-			$this->viewData['product'] = $product;
-			$this->viewData['category'] = $product->category;
-			$this->setTitle($product->name);
-			Admin_SeoPlugin::apply($product);
+
+			if(count($product->skus)){
+				foreach($product->skus as $sku){
+					$product_hidden = true;
+
+					if($sku->leftover){
+						$product_hidden = false;
+						break;
+					}
+				}
+			}
+			
+			if(isset($product_hidden) && !$product_hidden || !count($product->skus) && $product->leftover){
+				$this->viewData['product'] = $product;
+				$this->viewData['category'] = $product->category;
+				$this->setTitle($product->name);
+				Admin_SeoPlugin::apply($product);
+			}else{
+				$this->throw404();
+			}
+
 		} catch (Exception $ex) {
 			$this->viewData['error'] = $ex->getMessage();
 		}
@@ -104,6 +95,39 @@ class Catalog extends App_Controller {
 
 	public function all_products(){
 		$this->viewData['allProducts'] = Catalog_Product::create()->where('catalog_products.leftover > 0 && catalog_products.deleted is null && catalog_products.hidden is null')->order('id desc')->find_all();
+	}
+
+	//СОРТИРОВКА
+	public function sorting(){
+		$sorting = 'sales desc';
+		$partsURI = parse_url($_SERVER['REQUEST_URI']);
+
+		if(isset($partsURI['query'])){
+
+			parse_str($partsURI['query'], $query);
+
+			if(isset($query['order'])){
+				switch($query['order']){
+					case 'name':
+						$sorting = 'name';
+					break;
+
+					case 'new':
+						$sorting = 'id desc';
+					break;
+
+					case '-price':
+						$sorting = 'price desc';
+					break;
+
+					case 'price':
+						$sorting = 'price asc';
+					break;
+				}
+			}
+		}
+
+		return $sorting;
 	}
 
 
