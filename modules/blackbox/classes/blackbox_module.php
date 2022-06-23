@@ -18,7 +18,7 @@ class Blackbox_Module extends Core_ModuleBase
             if ($model instanceof Catalog_Product) {
                 $model->defineColumn("regular_photo", "Обычное фото");
                 $model->defineColumn("sales", "Продано");
-
+                $model->defineColumn("title_sku", "Заголовок у артикулов");
                 $model->defineColumn("is_sale", "Добавить в блок - Товары со скидкой");
             }
         });
@@ -31,7 +31,7 @@ class Blackbox_Module extends Core_ModuleBase
             if ($model instanceof Catalog_Product) {
                 $model->addFormField("regular_photo", "left")->sortOrder(60)->tab(Catalog_Product::$generalTabTitle);
                 $model->addFormField("sales", "left")->sortOrder(50)->tab(Catalog_Product::$generalTabTitle);
-
+                $model->addFormField("title_sku", "left")->sortOrder(70)->tab("Дополнительно");
                 $model->addFormField("is_sale", "left")->sortOrder(70)->tab("Дополнительно");
             }
         });

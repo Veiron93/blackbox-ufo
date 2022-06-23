@@ -97,7 +97,9 @@
 
 							<div class="catalog-product_skus">
 
-								<div class="skus-title">Выберите модель</div>
+								<?php $title_sku = $product->title_sku ? $product->title_sku : "Выберите модель"; ?>
+
+								<div class="skus-title"><?=$title_sku?></div>
 
 								<div class="skus-list">
 									<?php foreach($skus as $sku): ?>
