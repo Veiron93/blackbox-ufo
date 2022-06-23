@@ -13,6 +13,7 @@ class Blackbox_Module extends Core_ModuleBase
         Phpr::$events->addEvent(Db_Events::onModelDefineColumns, function (Db_ActiveRecord $model) {
             if ($model instanceof Catalog_Category) {
                 $model->defineColumn("hot", "Популярная категория");
+                $model->defineColumn("title_sku", "Заголовок у артикулов");
             }
 
             if ($model instanceof Catalog_Product) {
@@ -26,6 +27,7 @@ class Blackbox_Module extends Core_ModuleBase
         Phpr::$events->addEvent(Db_Events::onModelDefineFormFields, function (Db_ActiveRecord $model) {
             if ($model instanceof Catalog_Category) {
                 $model->addFormField("hot", "left")->sortOrder(50)->tab(Catalog_Category::$generalTabTitle);
+                $model->addFormField("title_sku", "left")->sortOrder(20)->tab("Дополнительно");
             }
 
             if ($model instanceof Catalog_Product) {
