@@ -8,7 +8,9 @@
 	// передаваемые данные о товаре
 	$extra = ["id" => $item->id, "type" => $type];
 
-	if($type == "sku") $extra["id_sku"] = $id_sku;
+	if($type == "sku"){
+		$extra["id_sku"] = $id_sku;
+	} 
 ?>
 
 

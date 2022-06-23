@@ -191,8 +191,6 @@ function checkActualProductsCart()
 
 	if (count($products_id)) {
 
-		traceLog(2222);
-
 		if(count($skus_id)){
 
 			$actual_products = Db_DbHelper::objectArray("SELECT p.id, p.leftover, p.price, s.id sku_id, s.price sku_price, s.leftover sku_leftover
@@ -236,7 +234,7 @@ function getProductsAddedCart()
 	$cart = Shop_Cart::getCart();
 	$items = $cart->getItems();
 	$products_cart_id = [];
-
+	
 	foreach ($items as $item) {
 		array_push($products_cart_id, $item->productId);
 	}

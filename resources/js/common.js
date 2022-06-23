@@ -650,7 +650,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 
-
 	// ВЫБОР АРТИКУЛА
 	function selectSku(){
 		
@@ -661,7 +660,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				extra = JSON.parse(btnAddToCart.getAttribute('data-extra'));
 
 			extra.id_sku = id;
-
 			btnAddToCart.setAttribute('data-extra', JSON.stringify(extra));
 		}
 
@@ -676,10 +674,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		function productsOtherInfo(sku){
 			const blockProductsOtherInfo = productPage.querySelector(".product-other-info");
 			const productAmount = blockProductsOtherInfo.querySelector(".product-amount");
+			const productCode = blockProductsOtherInfo.querySelector(".product-code_sku");
 
 			let leftover = sku.getAttribute('data-leftover');
+			let skuId = sku.value;
 
 			productAmount.querySelector("span").textContent = leftover;
+			productCode.textContent = skuId;
 		}
 
 

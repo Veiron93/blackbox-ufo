@@ -90,8 +90,6 @@ class Shop extends App_Controller
                         $sku->price = $product->price;
                     }
 
-                    traceLog( $sku);
-
                     $cart->addSku($sku, $quantity);
                 }
             }
