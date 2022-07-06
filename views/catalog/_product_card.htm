@@ -7,9 +7,6 @@
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		<a href="/catalog/product/<?= $product->id ?>">
 			<?php
-				$image_id = null;
-				$image_path = null;
-
 				if($product->image_id && $product->image_path){
 					$image_id = $product->image_id;
 					$image_path = $product->image_path;
@@ -19,10 +16,10 @@
 					$image_path = $product->photos[0]->disk_name;
 				}
 
-				if($image_id && $image_path){
-					$image = (new LWImageManipulator($image_id, $image_path))->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
+				if(isset($image_id) && isset($image_path)){
+					$image = (new LWImageManipulator($image_id, $image_path))->getThumb(510, 510, Phpr_ImageManipulator::keepRatio);
 				}else if($product->findMainPhoto()){
-					$image = $product->findMainPhoto()->getThumb(240, 240, Phpr_ImageManipulator::keepRatio);
+					$image = $product->findMainPhoto()->getThumb(510, 510, Phpr_ImageManipulator::keepRatio);
 				}else{
 					$image = '/resources/images/icons/no-image.svg';
 				}

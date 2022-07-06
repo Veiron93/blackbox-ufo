@@ -49,9 +49,7 @@
 
 				<div class="swiper-wrapper">
 					<?php foreach ($mainSlider as $banner): ?>
-
-						<?php $imgBanner = $banner->image->getThumb(850, 270, Phpr_ImageManipulator::fitAndCrop); ?>
-						<?php //$imgBanner = $banner->image->getPath(); ?>
+						<?php $imgBanner = $banner->image->getPath(); ?>
 
 
 						<?php if($imgBanner): ?>
