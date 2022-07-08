@@ -1,6 +1,5 @@
 <?php 
-	$catalogCategoriesMenu = Catalog_Category::create()->list_root_children();
-	$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content; 
+	$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
 	$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
 	$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
 ?>
@@ -51,7 +50,7 @@
 	<div class="header-bottom-section">
 		<div class="header-wrapper">
 
-			<?php if($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog', ['catalogCategoriesMenu' => $catalogCategoriesMenu]); ?>
+			<?php if($catalogRootCategories) $this->renderLayout('_dynamic_menu_catalog', ['catalogRootCategories' => $catalogRootCategories]); ?>
 
 			<div class="btn-catalog-menu-mobile">
 				<img src="/resources/images/icons/menu.svg" alt="Меню" />
@@ -75,5 +74,5 @@
 	</div>
 </header>
 
-<?php if ($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);?>
+<?php //if ($catalogCategoriesMenu) $this->renderLayout('_dynamic_menu_catalog_mobile', ['catalogCategoriesMenu' => $catalogCategoriesMenu, 'phone' => $phone]);?>
 

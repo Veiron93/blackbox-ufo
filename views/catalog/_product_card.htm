@@ -7,19 +7,11 @@
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		<a href="/catalog/product/<?= $product->id ?>">
 			<?php
-				if($product->image_id && $product->image_path){
-					$image_id = $product->image_id;
-					$image_path = $product->image_path;
+				$image_id = $product->image_id;
+				$image_path = $product->image_path;
 
-				}elseif(isset($product->photos) && count($product->photos)){
-					$image_id = $product->photos[0]->id;
-					$image_path = $product->photos[0]->disk_name;
-				}
-
-				if(isset($image_id) && isset($image_path)){
+				if($image_id && $image_path){
 					$image = (new LWImageManipulator($image_id, $image_path))->getThumb(510, 510, Phpr_ImageManipulator::keepRatio);
-				}else if($product->findMainPhoto()){
-					$image = $product->findMainPhoto()->getThumb(510, 510, Phpr_ImageManipulator::keepRatio);
 				}else{
 					$image = '/resources/images/icons/no-image.svg';
 				}
@@ -53,7 +45,7 @@
 		</div>
 
 		<div class="product-card_info-buy">
-			<?php if(count($product->skus)): ?>
+			<?php if(isset($product->skus)): ?>
 
 				<?php  
 					$prices = [];

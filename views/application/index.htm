@@ -1,22 +1,26 @@
 <div class="container">
-	<div class="index-top-section">
-		<?php $catalogCategories = Catalog_Category::create()->list_root_children(); ?>
-
-		<?php if(isset($catalogCategories) && count($catalogCategories)): ?>
+	<div class="index-top-section">	
+		<?php if(isset($catalogRootCategories) && count($catalogRootCategories)): ?>
 			<div class="catalog-menu">
 				<ul>
-					<?php foreach ($catalogCategories as $category): ?>
+					<?php foreach ($catalogRootCategories as $category): ?>
 						<li>
 							<a href="/catalog/<?= $category->id ?>">
-								<img src="<?= $category->image->getPath()?>" alt="<?= $category->name?>" />
+								<?php
+									$categoryImg = '';
+									
+									if(isset($category->image_id) && isset($category->image_path)){
+										$categoryImg = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+									}
+								?>
+
+								<img src="<?=$categoryImg?>" alt="<?= $category->name?>" />
 								<span><?= $category->name ?></span>
 							</a>
 
-							<?php $hotCategories = App_Helper::getHotCatalogCategories($category->id); ?>
-
-							<?php if($hotCategories):?>
+							<?php if(isset($category->hot_categories) && count($category->hot_categories)):?>
 								<div class="hot-categories">
-									<?php foreach($hotCategories as $hotCategory): ?>
+									<?php foreach($category->hot_categories as $hotCategory): ?>
 										<a href="/catalog/<?= $hotCategory->id?>"><?= $hotCategory->name?></a>
 									<?php endforeach ?>	
 								</div>
@@ -100,8 +104,16 @@
 	</div>
 
 	<?php 
-		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $sale, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
-		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $bestsellers, 'title' => 'Топ продаж', 'view_type' => 'list']);
-		$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_slider.htm", ['products' => $newProducts, 'title' => 'Новинки', 'view_type' => 'list']);
+		if(isset($productSale)){
+			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productSale, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
+		}	
+
+		// if(isset($productBestsellers)){
+		// 	$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productBestsellers, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
+		// }
+
+		// if(isset($productNew)){
+		// 	$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productNew, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
+		// }
 	?>
 </div>
