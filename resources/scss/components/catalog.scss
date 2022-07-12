@@ -100,39 +100,6 @@
 		column-gap: 20px;
 	}
 
-	.pagination {
-		margin-top: 30px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		column-gap: 10px;
-
-		>* {
-
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 34px;
-			height: 34px;
-			user-select: none;
-			border-radius: 6px;
-			font-weight: 500;
-			font-size: 14px;
-		}
-
-		a {
-			transition: background .2s;
-
-			&:hover {
-				background: rgba($accentHover, .1);
-			}
-		}
-
-		span {
-			background: rgba($accentHover, .2);
-		}
-	}
-
 	@include screen_md {
 		&-title {
 			font-size: 36px;

@@ -21,8 +21,6 @@ class Catalog extends App_Controller {
 	const productsPerPage = 40;
 
 	public function index() {
-		
-		$this->viewData['categories'] = $this->catalog::$catalogRootCategories;
 		$this->setTitle("Каталог");
 	}
 
@@ -30,18 +28,13 @@ class Catalog extends App_Controller {
 		try {
 			$category = $this->catalog->getCategory($categoryId);
 			
-			if (!$category) {
-				$this->throw404();
-			}
+			if(!$category) $this->throw404();
 
 			if(!$pageIndex) $pageIndex = 1;
-
-			$pagination = new Phpr_Pagination(self::productsPerPage);
 			
 			$this->viewData['category'] = $category;
-			$this->viewData['products'] = $this->catalog::getProducts(self::productsPerPage, "cp.category_id = $categoryId", $pageIndex - 1, self::sorting());
-			//$category->list_products(true, $pagination, $pageIndex - 1, self::sorting());
-			$this->viewData['pagination'] = $pagination;
+			$this->viewData['products'] = $this->catalog->getProducts("cp.category_id = $categoryId", self::productsPerPage, $pageIndex - 1, self::sorting());
+			$this->viewData['pagination'] = $this->catalog->pagination($categoryId, self::productsPerPage, $pageIndex);
 
 			$this->setTitle($category->name);
 			//Admin_SeoPlugin::apply($category);

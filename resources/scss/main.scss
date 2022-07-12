@@ -131,6 +131,39 @@ footer{
 	}
 }
 
+// пагинация
+.pagination {
+	margin-top: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 10px;
+
+	
+
+	>* {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 34px;
+		height: 34px;
+		user-select: none;
+		border-radius: 6px;
+		font-weight: 500;
+		font-size: 14px;
+
+		//border: 1px solid red;
+	}
+
+	a {
+		transition: background .2s;
+	}
+
+	a:hover, span{
+		background: rgba($accentHover, .2);
+	}
+}
+
 .heading-page{
 	margin-bottom: 15px;
 

@@ -1,17 +1,18 @@
 <?
 	class App_Catalog{
 
-		public static $categories;
+		private static $categories;
 
 		public function __construct()
 		{
 			self::$categories = self::getCategories();
 		}
 
-		public function getCategory($id){
-			$category = self::$categories[$id];
-			return $category;
-		}
+		/**
+		 * Категории 
+		 *
+		 * @return array
+		 */
 
 		public static function getCategories(){
 
@@ -30,9 +31,18 @@
 				$categories_arr_assoc[$category->id] = $category;
 			}
 
-			//traceLog($categories);
-
 			return $categories_arr_assoc;
+		}
+
+		/**
+		 * Категория
+		 *
+		 * @return object
+		 */
+
+		public function getCategory($id){
+			$category = self::$categories[$id];
+			return $category;
 		}
 
 		public static function getRootCategories(){
@@ -73,19 +83,18 @@
 				ORDER BY sort_order asc 
 				LIMIT $limit");
 		}
-	
-    
-		public static function getProducts($limit = 10, $where = null, $offset = 0, $order = null){
+
+
+		public static function getProducts($where = null, $limit = null, $offset = null, $order = null){
 
 			if($where) $where = "AND " . $where;
 
-			if($offset){
-                $offset = $limit * $offset;
-            }
+			$offset = $offset == 0 ? null : "OFFSET " . $limit * $offset;
 
-			if(!$order){
-				$order = "cp.id asc";
-			}
+			if($limit) $limit = "LIMIT " . $limit;
+
+			if(!$order) $order = "cp.id asc";
+
 			
 			$products = Db_DbHelper::objectArray("SELECT 
 				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price,
@@ -106,8 +115,8 @@
 				AND cp.leftover > 0
 				$where
 				ORDER BY $order
-				LIMIT $limit
-				OFFSET $offset");
+				$limit
+				$offset");
 
 			
 			foreach($products as $product){
@@ -160,9 +169,24 @@
 				}
 			}
 
-			//traceLog($products);
-
 			return $products;
+		}
+
+
+		public static function pagination($categoryId, $count_products_page, $number_current_page){
+
+			$count_products = Db_DbHelper::scalar("SELECT COUNT(id) FROM catalog_products
+				WHERE category_id = ? AND hidden is null AND deleted is null AND leftover > 0", [$categoryId]);
+
+			$count_pages = ceil($count_products / $count_products_page);
+
+			$pagination = new stdClass();
+
+			$pagination->count_products = $count_products;
+			$pagination->count_pages = $count_pages;
+			$pagination->number_current_page = $number_current_page;
+
+			return $pagination;
 		}
 	}
 ?>

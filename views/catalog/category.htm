@@ -73,28 +73,9 @@
 					</div>
 				<?php endif; ?>	
 			</div>
-		<?php endif;?>		
+		<?php endif;?>
 
-		<?php /** @var $pagination Phpr_Pagination*/ ?>
-		<?php if (isset($pagination)): ?>	
-			<?php
-				$sortingQueryUri = null;
-				$partsURI = parse_url($_SERVER['REQUEST_URI']);
-
-				if(isset($partsURI['query'])){
-					parse_str($partsURI['query'], $query);
-
-					if(isset($query['order'])){
-						if($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price'){
-							$sortingQueryUri = "?order=" . $query['order'];
-						}
-					}
-				}
-			?>
-
-			<?= $pagination->format(new Phpr_PrimePaginationFormatter(), u("catalog_category", [$category->id]) . "%d/" . $sortingQueryUri) ?>
-		<?php endif; ?>
-
+		<?php $this->renderPartial("pagination")?>
 	</div>
 <?php else: ?>
 	<div class="catalog-no-category">Категория не найдена</div>

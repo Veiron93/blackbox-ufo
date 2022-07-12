@@ -11,8 +11,6 @@
 		{
 			$this->menuItems = new PKMenu_Items();
 
-			traceLog(1);
-
 			// CART
 			self::$statusUpdateCart = checkActualProductsCart();
 			$this->viewData['idsProductsCart'] = getProductsAddedCart();
