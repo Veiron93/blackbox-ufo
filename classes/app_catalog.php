@@ -173,10 +173,12 @@
 		}
 
 
-		public static function pagination($categoryId, $count_products_page, $number_current_page){
+		public static function pagination($where, $count_products_page, $number_current_page){
+
+			if($where) $where = "AND " . $where;
 
 			$count_products = Db_DbHelper::scalar("SELECT COUNT(id) FROM catalog_products
-				WHERE category_id = ? AND hidden is null AND deleted is null AND leftover > 0", [$categoryId]);
+				WHERE hidden is null AND deleted is null AND leftover > 0 $where");
 
 			$count_pages = ceil($count_products / $count_products_page);
 
@@ -185,6 +187,8 @@
 			$pagination->count_products = $count_products;
 			$pagination->count_pages = $count_pages;
 			$pagination->number_current_page = $number_current_page;
+
+			traceLog($pagination);
 
 			return $pagination;
 		}

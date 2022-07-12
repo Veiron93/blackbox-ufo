@@ -1,5 +1,9 @@
+<? traceLog($pagination)?>
+
 <?php if (isset($pagination) && $pagination->count_pages > 1) : ?>
 	<?php $get_params = isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) ? "?" . $_SERVER['QUERY_STRING'] : null; ?>
+
+	
 
 	<div class="pagination">
 
@@ -7,7 +11,20 @@
 			<?php if($i == $pagination->number_current_page): ?>
 				<span><?=$i?></span>
 			<?php else: ?>
-				<a href="<?= u("catalog_category", $category->id, $i) . $get_params ?>"><?=$i?></a>
+				
+				<?php 
+					switch($route){
+						case "catalog_category":
+							$params = [$category->id, $i];
+							break;
+						case "catalog_all_products":
+							$params = $i;
+							break;
+						default:
+							$params = null;
+					}
+				?>
+				<a href="<?= u($route, $params) . $get_params ?>"><?=$i?></a>
 			<?php endif; ?>
 		<?php endfor; ?>
 

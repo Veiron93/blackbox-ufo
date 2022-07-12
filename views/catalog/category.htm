@@ -75,7 +75,7 @@
 			</div>
 		<?php endif;?>
 
-		<?php $this->renderPartial("pagination")?>
+		<?php $this->renderPartial("pagination", ["route" => "catalog_category"]) ?>
 	</div>
 <?php else: ?>
 	<div class="catalog-no-category">Категория не найдена</div>

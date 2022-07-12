@@ -34,7 +34,7 @@ class Catalog extends App_Controller {
 			
 			$this->viewData['category'] = $category;
 			$this->viewData['products'] = $this->catalog->getProducts("cp.category_id = $categoryId", self::productsPerPage, $pageIndex - 1, self::sorting());
-			$this->viewData['pagination'] = $this->catalog->pagination($categoryId, self::productsPerPage, $pageIndex);
+			$this->viewData['pagination'] = $this->catalog->pagination("category_id = $categoryId", self::productsPerPage, $pageIndex);
 
 			$this->setTitle($category->name);
 			//Admin_SeoPlugin::apply($category);
@@ -80,8 +80,12 @@ class Catalog extends App_Controller {
 	}
 
 
-	public function all_products(){
-		$this->viewData['allProducts'] = $this->catalog::getProducts();
+	public function all_products($pageIndex = null){
+
+		if(!$pageIndex) $pageIndex = 1;
+
+		$this->viewData['allProducts'] = $this->catalog::getProducts(null, self::productsPerPage, $pageIndex - 1);
+		$this->viewData['pagination'] = $this->catalog->pagination(null, self::productsPerPage, $pageIndex);
 	}
 
 	//СОРТИРОВКА
