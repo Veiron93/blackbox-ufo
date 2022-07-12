@@ -1,10 +1,10 @@
 <? /* @var $categories Catalog_Category */ ?>
 
 <div class="catalog-categories-index container">
-	<?php if($categories):?>
+	<?php if($catalogRootCategories):?>
 		<div class="catalog-categories-index_title">Каталог товаров БЛЭКБОКС</div>
 		<div class="catalog-categories-index_list">
-			<?php foreach ($categories as $category): ?>
+			<?php foreach ($catalogRootCategories as $category): ?>
 				<?php $this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_multi.htm", ['category'=>$category]);?>
 			<?php endforeach; ?>
 		</div>

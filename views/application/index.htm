@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="index-top-section">	
+
 		<?php if(isset($catalogRootCategories) && count($catalogRootCategories)): ?>
 			<div class="catalog-menu">
 				<ul>
@@ -7,14 +8,15 @@
 						<li>
 							<a href="/catalog/<?= $category->id ?>">
 								<?php
-									$categoryImg = '';
 									
 									if(isset($category->image_id) && isset($category->image_path)){
-										$categoryImg = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+										$image = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+									}else{
+										$image = "/resources/images/icons/no-image.svg";
 									}
 								?>
 
-								<img src="<?=$categoryImg?>" alt="<?= $category->name?>" />
+								<img src="<?=$image?>" alt="<?= $category->name?>" />
 								<span><?= $category->name ?></span>
 							</a>
 
@@ -42,8 +44,8 @@
 		<?php endif;?>
 
 		<?php 
-			$mainSlider = App_Helper::getBanners('main_slider');
-			$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
+			//$mainSlider = App_Helper::getBanners('main_slider');
+			//$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
 		?>
 
 		<?php if(isset($mainSlider) && count($mainSlider)): ?>
@@ -108,12 +110,12 @@
 			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productSale, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
 		}	
 
-		// if(isset($productBestsellers)){
-		// 	$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productBestsellers, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
-		// }
+		if(isset($productBestsellers)){
+			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productBestsellers, 'title' => 'Топ продаж', 'view_type' => 'list']); 
+		}
 
-		// if(isset($productNew)){
-		// 	$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productNew, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
-		// }
+		if(isset($productNew)){
+			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_slider.htm", ['products' => $productNew, 'title' => 'Новинки', 'view_type' => 'list']); 
+		}
 	?>
 </div>

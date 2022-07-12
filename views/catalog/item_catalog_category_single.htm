@@ -1,8 +1,14 @@
 <div class="item-catalog-category-single">
-	<a href="<?= $category->getUrl() ?>">
-		<?php
-			$image = count($category->image) ? $category->image->getThumb(240, 150, Phpr_ImageManipulator::fit) : '/resources/images/icons/no-image.svg';
+	<a href="<?= u("catalog_category", $category->id)?>">
+
+		<?php						
+			if(isset($category->image_id) && isset($category->image_path)){
+				$image = (new LWImageManipulator($category->image_id, $category->image_path))->getThumb(240, 150, Phpr_ImageManipulator::fit);
+			}else{
+				$image = "/resources/images/icons/no-image.svg";
+			}
 		?>
+
 		<img src="<?= $image ?>" alt="<?= $category->name?>" />
 		<span><?= $category->name?></span>
 	</a>								

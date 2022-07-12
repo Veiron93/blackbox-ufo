@@ -1,32 +1,25 @@
-<?php $categories_level_2 = $category->list_children()->except(true, 'deleted')->except(true, 'hidden'); ?>
+<?php $categories_level_2 = $this->catalog->getChildCategories($category); ?>
 
 <div class="item-catalog-category-multi">
 
 	<div class="category_name">
-		<a href="<?= $category->getUrl() ?>"><?= $category->name ?></a>
+		<a href="<?= u("catalog_category", $category->id)?>"><?= $category->name ?></a>
 	</div>
 
 	<div class="category_list-level-2">
 		<?php foreach($categories_level_2 as $category_level_2): ?>
 
-			<?php $categories_level_3 = $category_level_2->list_children()->except(true, 'deleted')->except(true, 'hidden'); ?>
+			<?php $categories_level_3 = $this->catalog->getChildCategories($category_level_2); ?>
 
 			<?php if(count($categories_level_3)): ?>
 				<div class="item-level-2">
 					<div class="item-level-2_name">
-
-						<?php if($image = $category_level_2->image->getPath()): ?>
-							<div class="item-level-2_icon">
-								<img src="<?= $image ?>" alt="<?= $category_level_2->name?>" />
-							</div>
-						<?php endif ?>
-
-						<a href="<?= $category_level_2->getUrl() ?>"><?= $category_level_2->name?></a>
+						<a href="<?= u("catalog_category", $category_level_2->id)?>"><?= $category_level_2->name?></a>
 					</div>
 
 					<div class="categories-level-3">
 						<?php foreach($categories_level_3 as $category_level_3): ?>
-							<a href="<?= $category_level_3->getUrl() ?>"><?= $category_level_3->name?></a>
+							<a href="<?= u("catalog_category", $category_level_3->id)?>"><?= $category_level_3->name?></a>
 						<?php endforeach ?>	
 					</div>
 				</div>

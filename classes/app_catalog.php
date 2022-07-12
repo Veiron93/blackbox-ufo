@@ -1,18 +1,21 @@
 <?
 	class App_Catalog{
 
-		private static $categories;
-		public static $catalogRootCategories;
-
-
+		public static $categories;
 
 		public function __construct()
 		{
-			self::$categories = $this->getCategories();
-			self::$catalogRootCategories = $this->getRootCategories();
+			self::$categories = self::getCategories();
 		}
 
-		public function getCategories(){
+		public function getCategory($id){
+			$category = self::$categories[$id];
+			return $category;
+		}
+
+		public static function getCategories(){
+
+			$categories_arr_assoc = [];
 
 			$categories = Db_DbHelper::objectArray("SELECT 
 				cc.id, cc.name, cc.hot, cc.title_sku, cc.level, cc.parent_id, cc.path,
@@ -22,7 +25,14 @@
                 WHERE cc.deleted is null 
 				AND cc.hidden is null");
 
-			return $categories;
+			
+			foreach($categories as $category){
+				$categories_arr_assoc[$category->id] = $category;
+			}
+
+			//traceLog($categories);
+
+			return $categories_arr_assoc;
 		}
 
 		public static function getRootCategories(){
@@ -56,7 +66,7 @@
 		}
 
 
-		static function getHotCategories($idCategory, $limit = 2){
+		private static function getHotCategories($idCategory, $limit = 2){
 			return Db_DbHelper::objectArray("SELECT id, name
 				FROM catalog_categories
 				WHERE hidden is null AND deleted is null AND hot is not null AND path LIKE '%$idCategory%'
@@ -65,20 +75,17 @@
 		}
 	
     
-		public static function getProducts($limit = 500, $where = null){
+		public static function getProducts($limit = 10, $where = null, $offset = 0, $order = null){
 
-			if($where){
-				$where = "AND " . $where;
+			if($where) $where = "AND " . $where;
+
+			if($offset){
+                $offset = $limit * $offset;
+            }
+
+			if(!$order){
+				$order = "cp.id asc";
 			}
-
-			// (SELECT CONCAT_WS('---', id, disk_name)
-			// 		FROM db_files 
-			// 		WHERE master_object_id = cp.id 
-			// 		AND master_object_class = 'Catalog_Product'
-			// 		AND is_main = 1) AS photo_is_main,
-
-
-			//AND (is_main != 1 || is_main is null)
 			
 			$products = Db_DbHelper::objectArray("SELECT 
 				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price,
@@ -86,9 +93,9 @@
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 
 					WHERE cs.product_id = cp.id
-					AND cs.leftover > 0) as skus,	
+					AND cs.leftover > 0) as skus,
 				
-				(SELECT GROUP_CONCAT(CONCAT_WS('---', id, disk_name, is_main) SEPARATOR '----')
+				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) SEPARATOR '----')
 					FROM db_files 
 					WHERE master_object_id = cp.id 
 					AND master_object_class = 'Catalog_Product') AS photos
@@ -98,69 +105,62 @@
 				AND cp.deleted is null
 				AND cp.leftover > 0
 				$where
-				
-				ORDER BY cp.sort_order asc 
-				LIMIT $limit");
+				ORDER BY $order
+				LIMIT $limit
+				OFFSET $offset");
 
-			// PHOTOS
-
+			
 			foreach($products as $product){
-				
 
-				$productPhotos = [];
-				$photos = explode("----", $product->photos);
+				// IMAGES
+				$product->images = null;
 
-				foreach($photos as $photo){
+				if(strlen($product->photos)){
+					$photos = explode("----", $product->photos);
+					$index_photo = 0;
 
-					if($photo){
-						$photoArr = explode("---", $photo);
+					foreach($photos as $photo){
+						$values = explode(",", $photo);
 
-						if(count($photoArr)){						
-							$photoObj["id"] = isset($photoArr[0]) ? $photoArr[0] : null;
-							$photoObj["name"] = isset($photoArr[1]) ? $photoArr[1] : null;
-							$photoObj["leftover"] = isset($photoArr[2]) ? $photoArr[2] : null;
+						$photo = new stdClass();
+						$photo->image_id = $values[0] ?? null;
+						$photo->image_path = $values[1] ?? null;
 
-							array_push($productPhotos, $photoObj);
+						if(isset($values[2]) && $values[2]){
+							$product->images["main_photo"] = $photo;
+						}else{
+							$product->images["photo_$index_photo"] = $photo;
+							$index_photo++;
 						}
 					}
 				}
 
-				$product->photos = $productPhotos;
+				unset($product->photos);
+
+				// SKUS
+				$skus_arr = [];
+
+				if($product->skus){
+					$skus = explode("----", $product->skus);
+
+					foreach($skus as $sku){
+
+						$values = explode("---", $sku);
+						$sku = new stdClass();
+		
+						$sku->id = $values[0] ?? null;
+						$sku->name = $values[1] ?? null;
+						$sku->leftover = $values[2] ?? null;
+						$sku->price = $values[3] ?? null;
+
+						array_push($skus_arr, $sku);
+					}
+
+					$product->skus = $skus_arr;
+				}
 			}
 
-
-			
-			// SKUS
-			// foreach($products as $product){
-
-			// 	$productSkus = [];
-			// 	$skus = explode("----", $product->skus);
-
-			// 	foreach($skus as $sku){
-
-			// 		if($sku){
-			// 			$skuArr = explode("---", $sku);
-
-			// 			if(count($skuArr)){
-
-			// 				//$skuObj = null;
-							
-			// 				$skuObj["id"] = isset($skuArr[0]) ? $skuArr[0] : null;
-			// 				$skuObj["name"] = isset($skuArr[1]) ? $skuArr[1] : null;
-			// 				$skuObj["leftover"] = isset($skuArr[2]) ? $skuArr[2] : null;
-			// 				$skuObj["price"] = isset($skuArr[3]) ? $skuArr[3] : null;
-
-			// 				//$skuObj = (object)$skuObj;
-
-			// 				array_push($productSkus, $skuObj);
-			// 			}
-			// 		}
-			// 	}
-
-			// 	$product->skus = $productSkus;
-			// }
-
-			traceLog($products);
+			//traceLog($products);
 
 			return $products;
 		}

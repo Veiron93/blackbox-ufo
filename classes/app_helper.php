@@ -1,23 +1,5 @@
 <?php
 class App_Helper{
-
-	 /**
-     * Добавляет поле image
-     *
-     * @param array $rows
-     * @return void
-     */
-	 private static function initImages(&$rows){
-	 	foreach($rows as $row){
-	 		if($row->image_id){
-	 			$row->image = new LWImageManipulator($row->image_id, $row->image_path);
-	 		}
-	 		else{
-	 			$row->image = null;
-	 		}
-	 	}
-	 }
-
 	public static function getBanners($category){
 		$result = Db_DbHelper::objectArray("SELECT b.id, b.name, b.description, b.link, b.banner_text, b.link_type, b.link_page_id, tb.code as page_code, banner_type, bg_color,
 			image_width, image_height,
@@ -29,7 +11,8 @@ class App_Helper{
 		WHERE b.enabled = 1 AND cat.code = '{$category}'
 		ORDER BY b.sort_order desc");
 
-		self::initImages($result);
+		//traceLog($result);
+
 		return $result;
 	}
 

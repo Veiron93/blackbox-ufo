@@ -50,7 +50,7 @@
 	<div class="header-bottom-section">
 		<div class="header-wrapper">
 
-			<?php if($catalogRootCategories) $this->renderLayout('_dynamic_menu_catalog', ['catalogRootCategories' => $catalogRootCategories]); ?>
+			<?php if(isset($catalogRootCategories)) $this->renderLayout('_dynamic_menu_catalog', ['catalogRootCategories' => $catalogRootCategories]); ?>
 
 			<div class="btn-catalog-menu-mobile">
 				<img src="/resources/images/icons/menu.svg" alt="Меню" />

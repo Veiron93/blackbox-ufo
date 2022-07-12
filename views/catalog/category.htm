@@ -1,9 +1,9 @@
 <?php if (isset($category) && $category): ?>
 
-	<?php $subCategories = $category->list_children()->except(true, 'deleted')->except(true, 'hidden') ?>
+	<?php $subCategories = $this->catalog->getChildCategories($category); ?>
 
 	<div class="container <?= $subCategories ? 'catalog-categories': 'catalog-products'?>">
-		<?php $this->renderPartial('breadcrumbs') ?>
+		<?//php $this->renderPartial('breadcrumbs') ?>
 
 		<?php if(count($subCategories)): ?>
 
@@ -14,7 +14,9 @@
 			<div class="catalog-categories-list">
 				<?php
 					foreach ($subCategories as $subCategory){
-						$typeItem = count($subCategory->list_children()) ? 'multi': 'single';
+
+						$typeItem = count($this->catalog->getChildCategories($subCategory)) ? 'multi': 'single';
+
 						$this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_".$typeItem.".htm", ['category'=>$subCategory]);
 					}
 				?>
@@ -31,7 +33,7 @@
 
 				<?php //$this->renderPartial('filters') ?>
 
-				<?php if (isset($products) && $products->count): ?>
+				<?php if (isset($products) && count($products)): ?>
 					<div class="catalog-products_list">
 						<?php 
 							$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
@@ -42,7 +44,7 @@
 							<?php foreach ($products as $product): ?>
 
 								<?php 
-									if(count($product->skus)){
+									if($product->skus){
 
 										foreach($product->skus as $sku){
 
@@ -55,7 +57,7 @@
 										}
 									}
 
-									if(!count($product->skus) || !$product_hidden){
+									if(!$product->skus || !$product_hidden){
 										$this->renderPartial("product_card", ['product'=>$product]);
 									}
 								?>
@@ -74,7 +76,7 @@
 		<?php endif;?>		
 
 		<?php /** @var $pagination Phpr_Pagination*/ ?>
-		<?php if (isset($pagination)): ?>
+		<?php if (isset($pagination)): ?>	
 			<?php
 				$sortingQueryUri = null;
 				$partsURI = parse_url($_SERVER['REQUEST_URI']);

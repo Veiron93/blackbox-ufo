@@ -1,21 +1,26 @@
 <?
 	class App_Controller extends Core_FrontendController{
 		public $menuItems;
-		public $catalog;
+		
 		public static $statusUpdateCart = false;
-	    
+
+		// CATALOG
+		public $catalog;
+
 		public function __construct()
 		{
 			$this->menuItems = new PKMenu_Items();
 
-			// Cart
-			self::$statusUpdateCart = checkActualProductsCart();
+			traceLog(1);
 
+			// CART
+			self::$statusUpdateCart = checkActualProductsCart();
 			$this->viewData['idsProductsCart'] = getProductsAddedCart();
 
+			// CATALOG
 			$this->catalog = new App_Catalog();
-			$this->viewData['catalogRootCategories'] = $this->catalog::$catalogRootCategories;
-
+			$this->viewData['catalogRootCategories'] = $this->catalog::getRootCategories();
+			
 			parent::__construct();
 		}
 	}

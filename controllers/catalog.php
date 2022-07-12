@@ -21,36 +21,30 @@ class Catalog extends App_Controller {
 	const productsPerPage = 40;
 
 	public function index() {
-		$categories = Catalog_Category::create()->list_root_children();
-		$arrCategories = [];
-
-		foreach($categories as $category){
-			if(!$category->hidden){
-				array_push($arrCategories, $category);
-			}
-		}
-
-		$this->viewData['categories'] = $arrCategories;
+		
+		$this->viewData['categories'] = $this->catalog::$catalogRootCategories;
 		$this->setTitle("Каталог");
 	}
 
-	public function category($categoryId, $pageIndex = 1) {
+	public function category($categoryId, $pageIndex) {
 		try {
-			/* @var $category Catalog_Category */
-			$this->viewData['category'] = $category = Catalog_Category::create()->find($categoryId);
+			$category = $this->catalog->getCategory($categoryId);
 			
 			if (!$category) {
 				$this->throw404();
 			}
 
+			if(!$pageIndex) $pageIndex = 1;
+
 			$pagination = new Phpr_Pagination(self::productsPerPage);
 			
 			$this->viewData['category'] = $category;
-			$this->viewData['products'] = $category->list_products(true, $pagination, $pageIndex - 1, self::sorting());
+			$this->viewData['products'] = $this->catalog::getProducts(self::productsPerPage, "cp.category_id = $categoryId", $pageIndex - 1, self::sorting());
+			//$category->list_products(true, $pagination, $pageIndex - 1, self::sorting());
 			$this->viewData['pagination'] = $pagination;
 
 			$this->setTitle($category->name);
-			Admin_SeoPlugin::apply($category);
+			//Admin_SeoPlugin::apply($category);
 
 		} catch (Exception $ex) {
 			$this->viewData['error'] = $ex->getMessage();
@@ -94,7 +88,7 @@ class Catalog extends App_Controller {
 
 
 	public function all_products(){
-		$this->viewData['allProducts'] = Catalog_Product::create()->where('catalog_products.leftover > 0 && catalog_products.deleted is null && catalog_products.hidden is null')->order('id desc')->find_all();
+		$this->viewData['allProducts'] = $this->catalog::getProducts();
 	}
 
 	//СОРТИРОВКА
