@@ -6,36 +6,17 @@
 <div class="product-card">
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		<a href="/catalog/product/<?= $product->id ?>">
-			<?php
-
-				$image = '/resources/images/icons/no-image.svg';
-
-				if($product->images){
-
-					if(isset($product->images["main_photo"])){
-						$image_id = $product->images["main_photo"]->image_id;
-						$image_path = $product->images["main_photo"]->image_path;
-					}else{
-						$image_id = $product->images["photo_0"]->image_id;
-						$image_path = $product->images["photo_0"]->image_path;
-					}
-
-					$image = (new LWImageManipulator($image_id, $image_path))->getThumb(510, 510, Phpr_ImageManipulator::keepRatio);
-				}
-			?>
-			
+			<?php $image = $this->catalog->imageProduct($product->images); ?>
 			<img src="<?= $image ?>" alt="<?= $product->name?>" />
 		</a>
 
 		<?php if($product->old_price):?>
 			<div class="product-card_flags">
-
 				<?php if (isset($added) && $added): ?> 
 					<div class="added-to-cart" title="Товар уже добавлен">
 						<img src="/resources/images/icons/white-box-close.svg" alt="">
 					</div>
 				<?php endif ?>
-
 
 				<?php if($product->old_price): ?>
 					<div class="discount-percentage" title="Товар со скидкой">

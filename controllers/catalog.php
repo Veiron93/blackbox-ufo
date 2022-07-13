@@ -47,32 +47,27 @@ class Catalog extends App_Controller {
 
 	public function product($productId) {
 		try {
-			/* @var $product Catalog_Product */
-			$product = Catalog_Product::create()->find($productId);
+
+			$product = $this->catalog->getProduct($productId);
 			
 			if (!$product) {
 				$this->throw404();
 			}
 
-			if(count($product->skus)){
-				foreach($product->skus as $sku){
-					$product_hidden = true;
+			$category = $this->catalog->getCategory($product->category_id);
 
-					if($sku->leftover){
-						$product_hidden = false;
-						break;
-					}
-				}
-			}
+			$this->viewData['product'] = $product;
+			$this->viewData['category'] = $category;
 			
-			if(isset($product_hidden) && !$product_hidden || !count($product->skus) && $product->leftover){
-				$this->viewData['product'] = $product;
-				$this->viewData['category'] = $product->category;
-				$this->setTitle($product->name);
-				Admin_SeoPlugin::apply($product);
-			}else{
-				$this->throw404();
-			}
+			
+			// if(isset($product_hidden) && !$product_hidden || !count($product->skus) && $product->leftover){
+			// 	$this->viewData['product'] = $product;
+			// 	$this->viewData['category'] = $product->category;
+			// 	$this->setTitle($product->name);
+			// 	Admin_SeoPlugin::apply($product);
+			// }else{
+			// 	$this->throw404();
+			// }
 
 		} catch (Exception $ex) {
 			$this->viewData['error'] = $ex->getMessage();

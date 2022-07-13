@@ -243,30 +243,30 @@ function getProductsAddedCart()
 }
 
 
-function skus($product_skus)
-{
-	$skus = [];
+// function skus($product_skus)
+// {
+// 	$skus = [];
 
-	foreach ($product_skus as $s) {
+// 	foreach ($product_skus as $s) {
 
-		if($s->leftover){
+// 		if($s->leftover){
 			
-			$sku["id"] = $s->id;
-			$sku["product_id"] = $s->product_id;
-			$sku["name"] = $s->name;
-			$sku["price"] = $s->price;
-			$sku["leftover"] = $s->leftover;
+// 			$sku["id"] = $s->id;
+// 			$sku["product_id"] = $s->product_id;
+// 			$sku["name"] = $s->name;
+// 			$sku["price"] = $s->price;
+// 			$sku["leftover"] = $s->leftover;
 
-			array_push($skus, $sku);
-		}
-	}
+// 			array_push($skus, $sku);
+// 		}
+// 	}
 
-	usort($skus, function ($a, $b) {
-		return strcmp($a["name"], $b["name"]);
-	});
+// 	usort($skus, function ($a, $b) {
+// 		return strcmp($a["name"], $b["name"]);
+// 	});
 
-	return $skus;
-}
+// 	return $skus;
+// }
 
 
 // стоимость товара в корзине

@@ -1,20 +1,31 @@
-<? 
-	$parents = $category->get_object_path();
+<?php 
+	if($category->path){
+		$categories = $this->catalog->getParentCategories($category->path);
+	}
 ?>
+
 <div class="breadcrumbs">
 	<ul>
+		<li>
+			<a href="<?= u("catalog_category", $category->id)?>">
+				<img src="/resources/images/icons/left-arrow.svg" alt="">
+			</a>
+		</li>
+
 		<li>
 			<a href="<?= Phpr::$router->url("catalog_index") ?>">Каталог</a>
 		</li>
 
-		<?foreach ($parents as $i => $parent):?>
-			<li>
-				<? if ( isset($product) or $parent->id != $category->id ): ?>
-					<a href="<?= $parent->getUrl() ?>"><?= $parent->name ?></a>
-				<? else: ?>
-					<?= $parent->name ?>
-				<? endif; ?>
-			</li>
-		<? endforeach; ?>
+		<?php if(isset($categories)): ?>
+			<?php foreach ($categories as $category):?>
+				<li>
+					<a href="<?= u("catalog_category", $category->id)?>"><?= $category->name?></a>
+				</li>
+			<?php endforeach; ?>
+		<?php endif; ?>
+
+		<?php if(isset($categories)): ?>
+
+		<?php endif; ?>
 	</ul>
 </div>

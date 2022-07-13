@@ -19,7 +19,7 @@
 			$categories_arr_assoc = [];
 
 			$categories = Db_DbHelper::objectArray("SELECT 
-				cc.id, cc.name, cc.hot, cc.title_sku, cc.level, cc.parent_id, cc.path,
+				cc.id, cc.name, cc.hot, cc.title_sku, cc.level, cc.parent_id, cc.path, cc.title_sku,
 				f.id as image_id, f.disk_name as image_path
                 FROM catalog_categories cc
 				LEFT JOIN db_files f ON f.master_object_id = cc.id and f.master_object_class ='Catalog_Category'
@@ -40,7 +40,7 @@
 		 * @return object
 		 */
 
-		public function getCategory($id){
+		public static function getCategory($id){
 			$category = self::$categories[$id];
 			return $category;
 		}
@@ -75,6 +75,20 @@
 			return $categories;
 		}
 
+		public static function getParentCategories($path){
+
+			$categories = [];
+			$idCategories = explode(".", $path);
+
+			array_pop($idCategories);
+
+			foreach($idCategories as $id){
+				array_push($categories, self::getCategory($id));
+			}
+
+			return $categories;
+		}
+
 
 		private static function getHotCategories($idCategory, $limit = 2){
 			return Db_DbHelper::objectArray("SELECT id, name
@@ -87,14 +101,11 @@
 
 		public static function getProducts($where = null, $limit = null, $offset = null, $order = null){
 
-			if($where) $where = "AND " . $where;
-
 			$offset = $offset == 0 ? null : "OFFSET " . $limit * $offset;
 
+			if($where) $where = "AND " . $where;
 			if($limit) $limit = "LIMIT " . $limit;
-
 			if(!$order) $order = "cp.id asc";
-
 			
 			$products = Db_DbHelper::objectArray("SELECT 
 				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price,
@@ -118,58 +129,121 @@
 				$limit
 				$offset");
 
-			
+
 			foreach($products as $product){
-
-				// IMAGES
-				$product->images = null;
-
-				if(strlen($product->photos)){
-					$photos = explode("----", $product->photos);
-					$index_photo = 0;
-
-					foreach($photos as $photo){
-						$values = explode(",", $photo);
-
-						$photo = new stdClass();
-						$photo->image_id = $values[0] ?? null;
-						$photo->image_path = $values[1] ?? null;
-
-						if(isset($values[2]) && $values[2]){
-							$product->images["main_photo"] = $photo;
-						}else{
-							$product->images["photo_$index_photo"] = $photo;
-							$index_photo++;
-						}
-					}
-				}
-
-				unset($product->photos);
-
-				// SKUS
-				$skus_arr = [];
-
-				if($product->skus){
-					$skus = explode("----", $product->skus);
-
-					foreach($skus as $sku){
-
-						$values = explode("---", $sku);
-						$sku = new stdClass();
-		
-						$sku->id = $values[0] ?? null;
-						$sku->name = $values[1] ?? null;
-						$sku->leftover = $values[2] ?? null;
-						$sku->price = $values[3] ?? null;
-
-						array_push($skus_arr, $sku);
-					}
-
-					$product->skus = $skus_arr;
-				}
+				self::imagesProduct($product);
+				self::skusProduct($product);
 			}
 
 			return $products;
+		}
+
+		public static function getProduct($productId){
+
+			$product = Db_DbHelper::object("SELECT 
+				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, cp.sales, cp.title_sku, cp.category_id, cp.leftover,
+
+				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
+					FROM catalog_skus cs 
+					WHERE cs.product_id = cp.id
+					AND cs.leftover > 0) as skus,
+				
+				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) SEPARATOR '----')
+					FROM db_files 
+					WHERE master_object_id = cp.id 
+					AND master_object_class = 'Catalog_Product') AS photos
+
+				FROM catalog_products cp
+				WHERE 
+					cp.id = ?
+					AND cp.hidden is null 
+					AND cp.deleted is null
+					AND cp.leftover > 0", [$productId]);
+
+			self::imagesProduct($product);
+			self::skusProduct($product);
+
+			//traceLog($product);
+
+			return $product;
+		}
+
+		/**
+		 * фото продукта
+		 *
+		 * @param object
+		 */
+
+		private static function imagesProduct($product){
+			$product->images = null;
+
+			if(strlen($product->photos)){
+				$photos = explode("----", $product->photos);
+				$index_photo = 0;
+
+				foreach($photos as $photo){
+					$values = explode(",", $photo);
+
+					if(isset($values[0]) && isset($values[1])){
+
+						$img = (new LWImageManipulator($values[0], $values[1]));
+
+						$product->images[isset($values[2]) ? 'main_photo': 'photo_' . $index_photo] = $img;
+						$index_photo++;
+					}
+				}
+			}
+
+			unset($product->photos);
+		}
+
+
+		/**
+		 * артикулы продукта
+		 *
+		 * @param object
+		 */
+
+		private static function skusProduct($product){
+			if($product->skus){
+				$skus = explode("----", $product->skus);
+
+				$product->skus = [];
+
+				foreach($skus as $sku){
+
+					$values = explode("---", $sku);
+					$sku = new stdClass();
+		
+					$sku->id = $values[0] ?? null;
+					$sku->name = $values[1] ?? null;
+					$sku->leftover = $values[2] ?? null;
+					$sku->price = $values[3] ?? null;
+
+					array_push($product->skus, $sku);
+				}
+			}
+		}
+
+
+		public static function imageProduct($images){
+
+			$image = '/resources/images/icons/no-image.svg';
+
+			if(count($images)){
+				if(isset($images["main_photo"])){
+					$imgSrc = $images["main_photo"];
+	
+				}elseif(isset($images["photo_0"])){
+					$imgSrc = $images["photo_0"];
+				}
+	
+				if(isset($imgSrc)){
+					$image = $imgSrc->getThumb(450, 'auto');
+				}
+			}
+
+			return $image;
 		}
 
 
@@ -188,7 +262,7 @@
 			$pagination->count_pages = $count_pages;
 			$pagination->number_current_page = $number_current_page;
 
-			traceLog($pagination);
+			//traceLog($pagination);
 
 			return $pagination;
 		}
