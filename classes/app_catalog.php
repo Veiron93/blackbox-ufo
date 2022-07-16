@@ -230,7 +230,7 @@
 
 			$image = '/resources/images/icons/no-image.svg';
 
-			if(count($images)){
+			if(isset($images) && count($images)){
 				if(isset($images["main_photo"])){
 					$imgSrc = $images["main_photo"];
 	

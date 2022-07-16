@@ -2,7 +2,7 @@
 
 class Search extends App_Controller
 {
-    const resultsPerPage = 40;
+    const productsPerPage = 40;
 
     public function __construct()
     {
@@ -69,12 +69,10 @@ class Search extends App_Controller
     }
 
 
-    public function index($page = 1)
+    public function index($pageIndex = null)
     {
         try {
-            if ($page < 1) {
-                $page = 1;
-            }
+            if(!$pageIndex) $pageIndex = 1;
 
             $query = Phpr::$request->getField("q");
             $query = mysqli_real_escape_string(Db::$connection, strip_tags($query));
@@ -83,17 +81,6 @@ class Search extends App_Controller
             if (!$query || mb_strlen($query) < 2) {
                 throw new Phpr_ApplicationException("Слишком короткий поисковой запрос.");
             }
-
-            $pagination = new Phpr_Pagination(self::resultsPerPage);
-            $limit = self::resultsPerPage;
-            $offset = ($page - 1) * $limit;
-
-            $this->viewData['count'] = $count = Db_DbHelper::scalar("
-				select count(distinct p.id)
-				from catalog_products as p
-				where 
-                    lower(p.name) like '%{$query}%' and (p.hidden is null or p.hidden <> 1)") ?: 0;
-
 
             // CATEGORIES
 
@@ -110,22 +97,10 @@ class Search extends App_Controller
 
 
             // PRODUCTS
+            $whereProducts = "lower(cp.name) LIKE '%{$query}%' AND cp.hidden IS NULL AND cp.deleted IS NULL";
 
-            $this->viewData['products'] = $products = Db_DbHelper::objectArray("SELECT p.id, p.name, p.price, p.old_price, p.regular_photo, df.id AS image_id, df.disk_name AS image_path 
-                FROM 
-                    catalog_products as p
-                LEFT JOIN 
-                    db_files df on df.master_object_id = p.id and df.master_object_class = 'Catalog_Product' and df.field = 'photos'
-                WHERE
-                    lower(p.name) LIKE '%{$query}%' AND p.hidden IS NULL AND p.deleted IS NULL      
-                GROUP BY p.id LIMIT {$offset}, {$limit}") ?: [];
+            $this->viewData['products'] = $products = $this->catalog->getProducts($whereProducts, self::productsPerPage, $pageIndex - 1);
 
-
-            $pagination->setRowCount($count);
-            $pagination->setCurrentPageIndex($page - 1);
-
-            $this->viewData['pagination'] = $pagination;
-            $this->viewData['page'] = $page;
             $this->viewData["query"] = "?q=" . h(urlencode(Phpr::$request->getField("q")));
       
         } catch (Exception $ex) {

@@ -3,7 +3,7 @@
 	<?php $subCategories = $this->catalog->getChildCategories($category); ?>
 
 	<div class="container <?= $subCategories ? 'catalog-categories': 'catalog-products'?>">
-		<?//php $this->renderPartial('breadcrumbs') ?>
+		<?php $this->renderPartial('breadcrumbs') ?>
 
 		<?php if(count($subCategories)): ?>
 
