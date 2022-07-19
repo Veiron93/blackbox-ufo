@@ -213,25 +213,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		let btnsCatalogMenu = document.querySelectorAll('.btn-catalog-menu-mobile');
 		let catalogMenu = document.querySelector('.mobile-menu-catalog');
 
-		if(catalogMenu){
-			let mainCategories = catalogMenu.querySelectorAll('.main-category_wrapper');
-			let activeCategoriesLevel_2 = null;
-			let activeCategoriesLevel_3 = [];
-			let linksBackMainCategories = catalogMenu.querySelectorAll('.link-back');
+		let mainCategories = catalogMenu.querySelectorAll('.main-category_wrapper');
+		let activeCategoriesLevel_2 = null;
+		let activeCategoriesLevel_3 = [];
+		let linksBackMainCategories = catalogMenu.querySelectorAll('.link-back');
 
-			btnsCatalogMenu.forEach(btn => {
-				btn.addEventListener('click', stateCatalogMenu)
-			})
+		btnsCatalogMenu.forEach(btn => {
+			btn.addEventListener('click', stateCatalogMenu)
+		})
 
-			mainCategories.forEach(mainCategory => {
-				mainCategory.addEventListener('click', stateCategoriesLevel_2)
-			})
+		mainCategories.forEach(mainCategory => {
+			mainCategory.addEventListener('click', stateCategoriesLevel_2)
+		})
 
-			linksBackMainCategories.forEach(link => {
-				link.addEventListener('click', closeSubCategories)
-			})
-		}
-		
+		linksBackMainCategories.forEach(link => {
+			link.addEventListener('click', closeSubCategories)
+		})
 	}
 
 	mobileCatalogMenu();
