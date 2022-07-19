@@ -118,8 +118,7 @@
 				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) ORDER BY sort_order asc SEPARATOR '----')
 					FROM db_files 
 					WHERE master_object_id = cp.id 
-					AND master_object_class = 'Catalog_Product'
-					) AS photos
+					AND master_object_class = 'Catalog_Product') AS photos
 
 				FROM catalog_products cp
 				WHERE cp.hidden is null 
@@ -147,12 +146,11 @@
 					FROM catalog_skus cs 
 					WHERE cs.product_id = cp.id
 					AND cs.leftover > 0) as skus,
-				
-				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) SEPARATOR '----')
+
+				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) ORDER BY sort_order asc SEPARATOR '----')
 					FROM db_files 
 					WHERE master_object_id = cp.id 
-					AND master_object_class = 'Catalog_Product'
-					ORDER BY sort_order) AS photos
+					AND master_object_class = 'Catalog_Product') AS photos
 
 				FROM catalog_products cp
 				WHERE 
@@ -188,8 +186,11 @@
 
 						$img = (new LWImageManipulator($values[0], $values[1]));
 
-						$product->images[isset($values[2]) ? 'main_photo': 'photo_' . $index_photo] = $img;
-						$index_photo++;
+						$product->images[isset($values[2]) && $values[2] ? 'main_photo': 'photo_' . $index_photo] = $img;
+
+						if(!isset($values[2]) || isset($values[2]) && !$values[2]){
+							$index_photo++;
+						}
 					}
 				}
 			}
