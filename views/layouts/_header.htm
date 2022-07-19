@@ -74,5 +74,5 @@
 	</div>
 </header>
 
-<?php $this->renderLayout('_dynamic_menu_catalog_mobile', ['phone' => $phone]);?>
+<?php if(isset($catalogRootCategories)) $this->renderLayout('_dynamic_menu_catalog_mobile', ['phone' => $phone]);?>
 
