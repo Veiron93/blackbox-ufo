@@ -115,10 +115,11 @@
 					WHERE cs.product_id = cp.id
 					AND cs.leftover > 0) as skus,
 				
-				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) SEPARATOR '----')
+				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) ORDER BY sort_order asc SEPARATOR '----')
 					FROM db_files 
 					WHERE master_object_id = cp.id 
-					AND master_object_class = 'Catalog_Product') AS photos
+					AND master_object_class = 'Catalog_Product'
+					) AS photos
 
 				FROM catalog_products cp
 				WHERE cp.hidden is null 
@@ -128,7 +129,6 @@
 				ORDER BY $order
 				$limit
 				$offset");
-
 
 			foreach($products as $product){
 				self::imagesProduct($product);
@@ -151,7 +151,8 @@
 				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) SEPARATOR '----')
 					FROM db_files 
 					WHERE master_object_id = cp.id 
-					AND master_object_class = 'Catalog_Product') AS photos
+					AND master_object_class = 'Catalog_Product'
+					ORDER BY sort_order) AS photos
 
 				FROM catalog_products cp
 				WHERE 
@@ -162,8 +163,6 @@
 
 			self::imagesProduct($product);
 			self::skusProduct($product);
-
-			//traceLog($product);
 
 			return $product;
 		}
@@ -178,6 +177,7 @@
 			$product->images = null;
 
 			if(strlen($product->photos)){
+
 				$photos = explode("----", $product->photos);
 				$index_photo = 0;
 
@@ -231,6 +231,7 @@
 			$image = '/resources/images/icons/no-image.svg';
 
 			if(isset($images) && count($images)){
+				
 				if(isset($images["main_photo"])){
 					$imgSrc = $images["main_photo"];
 	

@@ -3,7 +3,8 @@
 	<?php $subCategories = $this->catalog->getChildCategories($category); ?>
 
 	<div class="container <?= $subCategories ? 'catalog-categories': 'catalog-products'?>">
-		<?php $this->renderPartial('breadcrumbs') ?>
+
+		<?php $this->renderPartial('breadcrumbs', array('category' => $category)) ?>
 
 		<?php if(count($subCategories)): ?>
 
@@ -45,7 +46,6 @@
 
 								<?php 
 									if($product->skus){
-
 										foreach($product->skus as $sku){
 
 											$product_hidden = true;
@@ -75,7 +75,7 @@
 			</div>
 		<?php endif;?>
 
-		<?php $this->renderPartial("pagination", ["route" => "catalog_category"]) ?>
+		<?php //$this->renderPartial("pagination", ["route" => "catalog_category"]) ?>
 	</div>
 <?php else: ?>
 	<div class="catalog-no-category">Категория не найдена</div>
