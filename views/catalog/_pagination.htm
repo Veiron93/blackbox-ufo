@@ -1,9 +1,5 @@
-<? traceLog($pagination)?>
-
 <?php if (isset($pagination) && $pagination->count_pages > 1) : ?>
 	<?php $get_params = isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) ? "?" . $_SERVER['QUERY_STRING'] : null; ?>
-
-	
 
 	<div class="pagination">
 

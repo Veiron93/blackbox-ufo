@@ -41,7 +41,7 @@
 			
 			<div class="catalog-product_wrapper">
 				<div class="catalog-product_details">
-					<?php if (count($product->images) > 1): ?>
+					<?php if (isset($product->images) && count($product->images) > 1): ?>
 
 						<div class="catalog-product-slider">
 
