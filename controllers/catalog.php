@@ -50,6 +50,7 @@ class Catalog extends App_Controller {
 
 			$product = $this->catalog->getProduct($productId);
 			
+			
 			if (!$product) {
 				$this->throw404();
 			}

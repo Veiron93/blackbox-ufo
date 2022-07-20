@@ -8,10 +8,10 @@ class Application extends App_Controller  {
 		// Товары со скидкой
 		$this->viewData['productSale'] = $this->catalog::getProducts("cp.is_sale is not null", 6);
 
-		// // Хиты продаж
+		// Хиты продаж
 		$this->viewData['productBestsellers'] = $this->catalog::getProducts("cp.best_seller is not null", 6);
 
-		// // Новинки
+		// Новинки
 		$this->viewData['productNew'] = $this->catalog::getProducts("cp.is_new is not null", 12);
 	}
 

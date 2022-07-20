@@ -6,7 +6,7 @@
 <div class="product-card">
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		
-		<a href="/catalog/product/<?= $product->id ?>">
+		<a href="<?= u("catalog_product", $product->id); ?>">
 			<?php $image = $this->catalog->imageProduct($product->images); ?>
 			<img src="<?= $image ?>" alt="<?= $product->name?>" />
 		</a>
@@ -30,7 +30,7 @@
 
 	<div class="product-card_info">
 		<div class="product-card_info-name">
-			<a href="/catalog/product/<?= $product->id ?>" title="<?= $product->name ?>"><?= $product->name ?></a>
+			<a href="<?= u("catalog_product", $product->id); ?>" title="<?= $product->name ?>"><?= $product->name ?></a>
 		</div>
 
 		<div class="product-card_info-buy">
