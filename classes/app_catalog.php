@@ -269,4 +269,3 @@
 			return $pagination;
 		}
 	}
-?>

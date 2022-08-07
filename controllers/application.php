@@ -1,8 +1,10 @@
 <?php
 
-class Application extends App_Controller  {
+class Application extends App_Controller
+{
 
-	public function index() {
+	public function index()
+	{
 		// $this->layout = 'index';
 
 		// Товары со скидкой
@@ -14,6 +16,4 @@ class Application extends App_Controller  {
 		// Новинки
 		$this->viewData['productNew'] = $this->catalog::getProducts("cp.is_new is not null", 12);
 	}
-
-
 }

@@ -22,4 +22,3 @@
 			parent::__construct();
 		}
 	}
-?>
