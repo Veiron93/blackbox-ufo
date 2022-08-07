@@ -8,7 +8,6 @@
 						<li>
 							<a href="/catalog/<?= $category->id ?>">
 								<?php
-									
 									if(isset($category->image_id) && isset($category->image_path)){
 										$image = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
 									}else{
@@ -59,16 +58,9 @@
 						<?php $imgBanner = $banner->image->getPath(); ?>
 
 						<?php if($imgBanner): ?>
-							<div class="swiper-slide">
-								
+							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>);" title="<?= $banner->name ?>">
 								<?php if($banner->link || $banner->link_page_id): ?>
-									<a href="<?= ($banner->link_type == 'page') ? $banner->page_code : $banner->link?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>>
-								<?php endif;?>
-
-								<img src="<?= $imgBanner ?>" alt="<?= $banner->name ?>">
-
-								<?php if($banner->link || $banner->link_page_id): ?>
-									</a>
+									<a href="<?= ($banner->link_type == 'page') ? $banner->page_code : $banner->link?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>></a>
 								<?php endif;?>
 							</div>		
 						<?php endif; ?>
@@ -82,19 +74,12 @@
 				<div class="swiper-wrapper">
 					<?php foreach ($mainSliderMobile as $bannerMobile): ?>
 
-						<?php $imgBanner = $bannerMobile->image->getThumb(767, 350, Phpr_ImageManipulator::fitAndCrop); ?>
+						<?php $imgBanner = $bannerMobile->image->getPath(); ?>
 
 						<?php if($imgBanner): ?>
-							<div class="swiper-slide">
-
+							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>);" title="<?= $bannerMobile->name ?>">
 								<?php if($bannerMobile->link || $bannerMobile->link_page_id): ?>
-									<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>>
-								<?php endif;?>
-
-								<img src="<?= $imgBanner ?>" alt="<?= $bannerMobile->name ?>">
-
-								<?php if($bannerMobile->link || $bannerMobile->link_page_id): ?>
-									</a>
+									<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>></a>
 								<?php endif;?>
 							</div>		
 						<?php endif; ?>
@@ -106,16 +91,42 @@
 	</div>
 
 	<?php 
-		if(isset($productSale)){
-			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productSale, 'title' => 'Товары со скидкой', 'link' => '/sale/']); 
-		}	
+		$pathBlocks = $this->getViewsDir() . "/catalog/blocks/";
 
-		if(isset($productBestsellers)){
-			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_grid.htm", ['products' => $productBestsellers, 'title' => 'Топ продаж', 'view_type' => 'list']); 
-		}
+		$blocks = [
+			[
+				'show'=> true,
+				'name' => 'product_grid', 
+				'products' => $productSale ?? [],
+				'params' => [
+					'title' => 'Товары со скидкой',
+					'link' => '/sale/'
+				]
+			],
+			[
+				'show'=> true,
+				'name' => 'product_grid', 
+				'products' => $productBestsellers ?? [],
+				'params' => [
+					'title' => 'Топ продаж',
+					'view_type' => 'list'
+				]
+			],
+			[
+				'show'=> true,
+				'name' => 'product_slider', 
+				'products' => $productNew ?? [],
+				'params' => [
+					'title' => 'Новинки',
+					'view_type' => 'list'
+				]
+			]
+		];
 
-		if(isset($productNew)){
-			$this->renderPartial($this->getViewsDir() . "/catalog/blocks/_product_slider.htm", ['products' => $productNew, 'title' => 'Новинки', 'view_type' => 'list']); 
+		foreach($blocks as $block){
+			if($block['show']){
+				$this->renderPartial($pathBlocks . $block['name'] . ".htm", array_merge(['products' => $block['products']], $block['params']));
+			}
 		}
 	?>
 </div>
