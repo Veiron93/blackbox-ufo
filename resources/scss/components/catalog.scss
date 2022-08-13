@@ -1353,6 +1353,18 @@
 		line-height: 1em;
 	}
 
+	
+
+	@include screen_lg_up {
+		.wrapper-products{
+			.product-card{
+				&:nth-child(6){
+					display: none;
+				}
+			}
+		}
+	}
+
 	@include screen_sm_down {
 		margin-top: 35px;
 	}
