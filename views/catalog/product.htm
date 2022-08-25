@@ -1,183 +1,176 @@
 <? Phpr_View::beginBlock("head") ?>
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-    <meta property="og:site_name" content="<?= h(site_title()) ?>" />
-	
-	<? if (isset($product) && $product): ?>
-		<?php 
-			$metaTitle = h(strip_tags($product->name));
-			$metaDescription = "Купить $metaTitle в интернет магазине БЛЭКБОКС (bb65.ru). Выгодные цены с бесплатной доставкой по г. Южно-Сахалинск"
-		?>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<meta property="og:site_name" content="<?= h(site_title()) ?>" />
 
-		<meta name="description" content="<?=$metaDescription?>">
-		
-		<meta property="og:title" content="<?= $metaTitle ?>" />
-		<meta property="og:description" content="<?=$metaDescription?>" />
+<? if (isset($product) && $product) : ?>
+	<?php
+	$metaTitle = h(strip_tags($product->name));
+	$metaDescription = "Купить $metaTitle в интернет магазине БЛЭКБОКС (bb65.ru). Выгодные цены с бесплатной доставкой по г. Южно-Сахалинск"
+	?>
 
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-		<meta name="twitter:title" content="<?= $metaTitle ?>" />
-		<meta name="twitter:description" content="<?=$metaDescription?>" />
+	<meta name="description" content="<?= $metaDescription ?>">
 
-		<?php $image = $this->catalog->imageProduct($product->images); ?>
-		<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
-		<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
-	<? endif ?>
+	<meta property="og:title" content="<?= $metaTitle ?>" />
+	<meta property="og:description" content="<?= $metaDescription ?>" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+	<meta name="twitter:title" content="<?= $metaTitle ?>" />
+	<meta name="twitter:description" content="<?= $metaDescription ?>" />
+
+	<?php $image = $this->catalog->imageProduct($product->images); ?>
+	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+<? endif ?>
 
 <? Phpr_View::endBlock(true) ?>
 
 <?php Phpr_View::beginBlock("view") ?>
-	<div class="catalog-product container">
+<div class="catalog-product container">
 
-		<?php $this->renderPartial('breadcrumbs', array('category' => $category, 'product' => $product)) ?>
+	<?php $this->renderPartial('breadcrumbs', array('category' => $category, 'product' => $product)) ?>
 
-		<?php if (isset($product) && $product): ?>
+	<?php if (isset($product) && $product) : ?>
 
-			<?php if (isset($product->skus)) $selected_sku = $product->skus[0]; ?>
+		<?php if (isset($product->skus)) $selected_sku = $product->skus[0]; ?>
 
-			<div class="catalog-product_name">
-				<h1><?= $product->name ?></h1>
-			</div>
-			
-			<div class="catalog-product_wrapper">
-				<div class="catalog-product_details">
-					<?php if (isset($product->images) && count($product->images) > 1): ?>
+		<div class="catalog-product_name">
+			<h1><?= $product->name ?></h1>
+		</div>
 
-						<div class="catalog-product-slider">
+		<div class="catalog-product_wrapper">
+			<div class="catalog-product_details">
+				<?php if (isset($product->images) && count($product->images) > 1) : ?>
 
-							<div class="button-prev"></div>
-							<div class="button-next"></div>
+					<div class="catalog-product-slider">
 
-							<div class="mySwiper2 swiper">
-								<div class="swiper-wrapper">
+						<div class="button-prev"></div>
+						<div class="button-next"></div>
 
-								  	<? foreach ($product->images as $image): ?>
-								  		<div class="swiper-slide">
-								  			<a href="<?= $image->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
-												<img src="<?= $image->getThumb(370, 320, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
-											</a>
-								  		</div>
-									<? endforeach; ?>
-								</div>
-							</div>
+						<div class="mySwiper2 swiper">
+							<div class="swiper-wrapper">
 
-							<div class="mySwiper swiper">
-								<div class="swiper-wrapper">
-								  	<? foreach ($product->images as $image): ?>
-								  		<div class="swiper-slide">
-								  			<img src="<?= $image->getThumb(66, 66, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
-								  		</div>
-									<? endforeach; ?>
-								</div>
+								<? foreach ($product->images as $image) : ?>
+									<div class="swiper-slide">
+										<a data-fancybox="product-photos" href="<?= $image->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
+											<img src="<?= $image->getThumb(370, 320, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
+										</a>
+									</div>
+								<? endforeach; ?>
 							</div>
 						</div>
 
-					<?php else: ?>
-						<div class="catalog-product_photo">
-							<a href="<?= $image ?>">
-								<img src="<?= $image ?>" alt="<?= $product->name ?>">
-							</a>
-						</div>
-					<?php endif; ?>
-					
-					<div class="info">
-						<?php if (isset($product->skus) && count($product->skus)): ?>
-
-							<div class="catalog-product_skus">
-
-								<?php
-									$title_sku = "Выберите модель";
-									if($category->title_sku) $title_sku = $category->title_sku;
-									if($product->title_sku) $title_sku = $product->title_sku;
-								?>
-
-								<div class="skus-title"><?=$title_sku?></div>
-
-								<div class="skus-list">
-									<?php foreach($product->skus as $sku): ?>
-										<div class="item">
-											<input 
-												type="radio" 
-												id="sku-<?= $sku->id ?>" 
-												name="product-sku" 
-												<?= $selected_sku->id == $sku->id ? "checked": ""?> 
-												data-price="<?= Phpr::$lang->num(($sku->price) ? $sku->price : $product->price) ?>"
-												data-leftover="<?= $sku->leftover ?>"
-												value="<?= $sku->id ?>">
-											
-											<label for="sku-<?= $sku->id ?>"><?= $sku->name ?></label>
-										</div>
-									<?php endforeach; ?>
-								</div>
+						<div class="mySwiper swiper">
+							<div class="swiper-wrapper">
+								<? foreach ($product->images as $image) : ?>
+									<div class="swiper-slide">
+										<img src="<?= $image->getThumb(66, 66, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
+									</div>
+								<? endforeach; ?>
 							</div>
-						<?php endif; ?>
-
-						<div class="catalog-product_description" data-formatted-text>
-							<?= $product->description ?>
-						</div>
-					</div>
-				</div>
-
-				<div class="catalog-product_buy">
-
-					<div class="catalog-product_buy-price <?=$product->old_price ? 'sale':''?>">
-						<?php if($product->old_price): ?>
-							<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
-						<?php endif; ?>
-
-						<div class="actual">
-							<?= Phpr::$lang->num(isset($selected_sku) && $selected_sku->price ? $selected_sku->price : $product->price) ?>
 						</div>
 					</div>
 
-					<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
-						<?php 
-							$viewData = [
-								'withQuantity' => true,
-								'initialQuantity' => 1,
-								'item' => $product,
-								'type' => (isset($product->skus)) ? 'sku' : 'product',
-								'idPrefix' => "atc-product-{$product->id}"
-							];
-
-							if(isset($product->skus)) $viewData["id_sku"] = $selected_sku->id;
-						?>
-
-						<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
-
-					<? Phpr_Form::closeTag(); ?>
-
-					<div class="product-other-info">
-						<div class="product-code">Код товара:
-							<?php if(isset($selected_sku)): ?>
-								<?= $product->id ?>-<span class="product-code_sku"><?= $selected_sku->id ?></span>
-							<?php else: ?>
-								<?= $product->id ?>
-							<?php endif; ?>	
-						</div>
-
-						<div class="product-amount">В наличии: <span><?= isset($selected_sku) ? $selected_sku->leftover : $product->leftover ?></span></div>
-
-						<?php if($product->sales): ?>
-							<div class="product-sales">Купили: <span><?= $product->sales ?></span></div>
-						<?php endif;?>
-					</div>
-
-					<?php 
-						$urlWhatsApp = Phpr::$config->get('TEXT_WHATSAPP_QUESTION_PRODUCT');
-						$urlWhatsApp .= $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-					?>
-
-					<div class="btn-question">
-						<a href="<?=$urlWhatsApp?>" target="_blank">
-							<img src="/resources/images/icons/social/whatsapp.svg" alt="whatsapp">
-							<span>Задать вопрос по данному товару</span>
+				<?php else : ?>
+					<div class="catalog-product_photo">
+						<a href="<?= $image ?>" data-fancybox>
+							<img src="<?= $image ?>" alt="<?= $product->name ?>">
 						</a>
 					</div>
+				<?php endif; ?>
+
+				<div class="info">
+					<?php if (isset($product->skus) && count($product->skus)) : ?>
+
+						<div class="catalog-product_skus">
+
+							<?php
+							$title_sku = "Выберите модель";
+							if ($category->title_sku) $title_sku = $category->title_sku;
+							if ($product->title_sku) $title_sku = $product->title_sku;
+							?>
+
+							<div class="skus-title"><?= $title_sku ?></div>
+
+							<div class="skus-list">
+								<?php foreach ($product->skus as $sku) : ?>
+									<div class="item">
+										<input type="radio" id="sku-<?= $sku->id ?>" name="product-sku" <?= $selected_sku->id == $sku->id ? "checked" : "" ?> data-price="<?= Phpr::$lang->num(($sku->price) ? $sku->price : $product->price) ?>" data-leftover="<?= $sku->leftover ?>" value="<?= $sku->id ?>">
+
+										<label for="sku-<?= $sku->id ?>"><?= $sku->name ?></label>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<?php endif; ?>
+
+					<div class="catalog-product_description" data-formatted-text>
+						<?= $product->description ?>
+					</div>
 				</div>
 			</div>
-		<? else: ?>
-			<h2>Товар не найден</h2>
-		<? endif; ?>
-	</div>
+
+			<div class="catalog-product_buy">
+
+				<div class="catalog-product_buy-price <?= $product->old_price ? 'sale' : '' ?>">
+					<?php if ($product->old_price) : ?>
+						<div class="old"><?= Phpr::$lang->num($product->old_price) ?></div>
+					<?php endif; ?>
+
+					<div class="actual">
+						<?= Phpr::$lang->num(isset($selected_sku) && $selected_sku->price ? $selected_sku->price : $product->price) ?>
+					</div>
+				</div>
+
+				<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+				<?php
+				$viewData = [
+					'withQuantity' => true,
+					'initialQuantity' => 1,
+					'item' => $product,
+					'type' => (isset($product->skus)) ? 'sku' : 'product',
+					'idPrefix' => "atc-product-{$product->id}"
+				];
+
+				if (isset($product->skus)) $viewData["id_sku"] = $selected_sku->id;
+				?>
+
+				<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData); ?>
+
+				<? Phpr_Form::closeTag(); ?>
+
+				<div class="product-other-info">
+					<div class="product-code">Код товара:
+						<?php if (isset($selected_sku)) : ?>
+							<?= $product->id ?>-<span class="product-code_sku"><?= $selected_sku->id ?></span>
+						<?php else : ?>
+							<?= $product->id ?>
+						<?php endif; ?>
+					</div>
+
+					<div class="product-amount">В наличии: <span><?= isset($selected_sku) ? $selected_sku->leftover : $product->leftover ?></span></div>
+
+					<?php if ($product->sales) : ?>
+						<div class="product-sales">Купили: <span><?= $product->sales ?></span></div>
+					<?php endif; ?>
+				</div>
+
+				<?php
+				$urlWhatsApp = Phpr::$config->get('TEXT_WHATSAPP_QUESTION_PRODUCT');
+				$urlWhatsApp .= $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+				?>
+
+				<div class="btn-question">
+					<a href="<?= $urlWhatsApp ?>" target="_blank">
+						<img src="/resources/images/icons/social/whatsapp.svg" alt="whatsapp">
+						<span>Задать вопрос по данному товару</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	<? else : ?>
+		<h2>Товар не найден</h2>
+	<? endif; ?>
+</div>
 <? Phpr_View::endBlock() ?>

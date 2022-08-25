@@ -1,8 +1,9 @@
 <?
+
 /** @var Core_FrontendController $this */ ?>
 <meta charset="utf-8" />
 <title><?= h(site_title($title)) ?></title>
-<meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>
+<meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;" />
 <meta http-equiv="x-ua-compatible" content="IE=edge">
 <meta name="application-name" content="БЛЭКБОКС">
 <meta name="currency" content="ruble">
@@ -10,7 +11,7 @@
 
 <?php $partsURI = explode("/", $_SERVER['REQUEST_URI']); ?>
 
-<?php if(isset($partsURI[1]) && $partsURI[1] != "catalog"): ?>
+<?php if (isset($partsURI[1]) && $partsURI[1] != "catalog") : ?>
 	<meta name="description" content="<?= site_description() ?>" />
 
 	<meta property="og:title" content="БЛЭКБОКС - Аксессуары для гаджетов, компьютеров, автомобилей и дома" />
@@ -43,6 +44,13 @@
 <?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
 <![endif]-->
 
+
+<?= Core_Html::css(
+	$this->getAsset('css/swiper-bundle.min.css'),
+	$this->getAsset('css/fancybox.min.css'),
+	$this->getAsset('css/styles.css')
+) ?>
+
 <script src="/resources/js/axios.min.js"></script>
 
 <?= Core_Html::js(
@@ -51,16 +59,14 @@
 	'/phproad/resources/javascript/ufo.ajax.js',
 	'/modules/shop/resources/js/client.js',
 	$this->getAsset('js/swiper-bundle.min.js'),
+	$this->getAsset('js/fancybox.umd.js'),
 	$this->getAsset('js/cookie.js'),
 	$this->getAsset('js/helpers.js'),
 	$this->getAsset('js/search.js'),
 	$this->getAsset('js/common.js')
 ) ?>
 
-<?= Core_Html::css(
-	$this->getAsset('css/swiper-bundle.min.css'),
-	$this->getAsset('css/styles.css')
-) ?>
+
 
 <?= Phpr_View::block('head') ?>
 <?= Core_Html::ga_tracker() ?>
