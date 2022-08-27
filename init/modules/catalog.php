@@ -8,7 +8,7 @@ Phpr::$router->addPrefix("catalog-prefix", "catalog");
 $route = Phpr::$router->addRule('$catalog-prefix/product/:product_id', "catalog_product")
     ->controller('catalog')
     ->action('product');
-    
+
 $route = Phpr::$router->addRule('$catalog-prefix', "catalog_index")
     ->controller('catalog')
     ->action('index');
@@ -30,7 +30,7 @@ $APP_CONF['CATALOG_CATEGORIES_PANEL_NAME'] = 'Категории';
 $APP_CONF['CATALOG_PRODUCTS_PANEL_NAME'] = 'Продукты';
 $APP_CONF['CATALOG_MANUAL_PRODUCT_SORTING'] = false;
 $APP_CONF['CATALOG_ENABLE_PDF_EXPORT_BUTTON'] = false;
-$APP_CONF['CATALOG_ENABLE_PRODUCT_SHORT_DESCRIPTION'] = false; // Включить краткое описание
+$APP_CONF['CATALOG_ENABLE_PRODUCT_SHORT_DESCRIPTION'] = true; // Включить краткое описание
 $APP_CONF['CATALOG_MAX_CATEGORY_NESTING_LEVEL'] = 5; // Максимальный уровень вложенности категорий, null означает неограниченную вложенность
 $APP_CONF['CATALOG_ENABLE_CATEGORY_CODES'] = false; // Включает коды категорий
 $APP_CONF['CATALOG_ENABLE_IS_NEW_FLAG'] = true; //отображать чекбокс "Новинка"
@@ -62,12 +62,14 @@ $APP_CONF['CATALOG_PRODUCT_COPY_FIELDS'] = [ // Список полей для �
     'start_discount_date',
     'deleted',
     'photos',
-    'skus'];
+    'skus'
+];
 // Включить возможность импорта данных, указанных ниже полей, из выбранного продукта в текущий продукт
 $APP_CONF['CATALOG_PRODUCT_IMPORT_ENABLE'] = false;
 $APP_CONF['CATALOG_PRODUCT_IMPORT_FIELDS'] = [ // Список полей для импорта
     'description',
-    'photos'];
+    'photos'
+];
 //template to sitemap.xml urls
 //available placeholders:
 // :id - id of the product

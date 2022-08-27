@@ -1,24 +1,26 @@
 <?
-	class App_Catalog{
+class App_Catalog
+{
 
-		private static $categories;
+	private static $categories;
 
-		public function __construct()
-		{
-			self::$categories = self::getCategories();
-		}
+	public function __construct()
+	{
+		self::$categories = self::getCategories();
+	}
 
-		/**
-		 * Категории 
-		 *
-		 * @return array
-		 */
+	/**
+	 * Категории 
+	 *
+	 * @return array
+	 */
 
-		public static function getCategories(){
+	public static function getCategories()
+	{
 
-			$categories_arr_assoc = [];
+		$categories_arr_assoc = [];
 
-			$categories = Db_DbHelper::objectArray("SELECT 
+		$categories = Db_DbHelper::objectArray("SELECT 
 				cc.id, cc.name, cc.hot, cc.title_sku, cc.level, cc.parent_id, cc.path, cc.title_sku,
 				f.id as image_id, f.disk_name as image_path
                 FROM catalog_categories cc
@@ -26,88 +28,94 @@
                 WHERE cc.deleted is null 
 				AND cc.hidden is null");
 
-			
-			foreach($categories as $category){
-				$categories_arr_assoc[$category->id] = $category;
+
+		foreach ($categories as $category) {
+			$categories_arr_assoc[$category->id] = $category;
+		}
+
+		return $categories_arr_assoc;
+	}
+
+	/**
+	 * Категория
+	 *
+	 * @return object
+	 */
+
+	public static function getCategory($id)
+	{
+		$category = self::$categories[$id];
+		return $category;
+	}
+
+	public static function getRootCategories()
+	{
+
+		$rootCategories = [];
+
+		foreach (self::$categories as $category) {
+			if ($category->level == 1) {
+				$hotCategories = self::getHotCategories($category->id);
+				$category->hot_categories = $hotCategories;
+
+				array_push($rootCategories, $category);
 			}
-
-			return $categories_arr_assoc;
 		}
 
-		/**
-		 * Категория
-		 *
-		 * @return object
-		 */
+		return $rootCategories;
+	}
 
-		public static function getCategory($id){
-			$category = self::$categories[$id];
-			return $category;
-		}
 
-		public static function getRootCategories(){
+	public static function getChildCategories($parentCategory)
+	{
 
-			$rootCategories = [];
+		$categories = [];
 
-			foreach(self::$categories as $category){
-				if($category->level == 1){
-					$hotCategories = self::getHotCategories($category->id);
-					$category->hot_categories = $hotCategories;
-
-					array_push($rootCategories, $category);
-				}
+		foreach (self::$categories as $category) {
+			if ($category->parent_id == $parentCategory->id) {
+				array_push($categories, $category);
 			}
-
-			return $rootCategories;
 		}
 
+		return $categories;
+	}
 
-		public static function getChildCategories($parentCategory){
+	public static function getParentCategories($path)
+	{
 
-			$categories = [];
-			
-			foreach(self::$categories as $category){
-				if($category->parent_id == $parentCategory->id){
-					array_push($categories, $category);
-				}
-			}
+		$categories = [];
+		$idCategories = explode(".", $path);
 
-			return $categories;
+		array_pop($idCategories);
+
+		foreach ($idCategories as $id) {
+			array_push($categories, self::getCategory($id));
 		}
 
-		public static function getParentCategories($path){
-
-			$categories = [];
-			$idCategories = explode(".", $path);
-
-			array_pop($idCategories);
-
-			foreach($idCategories as $id){
-				array_push($categories, self::getCategory($id));
-			}
-
-			return $categories;
-		}
+		return $categories;
+	}
 
 
-		private static function getHotCategories($idCategory, $limit = 2){
-			return Db_DbHelper::objectArray("SELECT id, name
+	private static function getHotCategories($idCategory, $limit = 2)
+	{
+		return Db_DbHelper::objectArray("SELECT id, name
 				FROM catalog_categories
 				WHERE hidden is null AND deleted is null AND hot is not null AND path LIKE '%$idCategory%'
 				ORDER BY sort_order asc 
 				LIMIT $limit");
-		}
+	}
 
 
-		public static function getProducts($where = null, $limit = null, $offset = null, $order = null){
+	public static function getProducts($where = null, $limit = null, $offset = null, $order = null)
+	{
 
-			$offset = $offset == 0 ? null : "OFFSET " . $limit * $offset;
+		$offset = $offset == 0 ? null : "OFFSET " . $limit * $offset;
 
-			if($where) $where = "AND " . $where;
-			if($limit) $limit = "LIMIT " . $limit;
-			if(!$order) $order = "cp.id asc";
-			
-			$products = Db_DbHelper::objectArray("SELECT 
+		if ($where) $where = "AND " . $where;
+		if ($limit) $limit = "LIMIT " . $limit;
+		if (!$order) $order = "cp.id asc";
+
+		$products = Db_DbHelper::objectArray("SELECT 
 				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price,
 
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
@@ -129,18 +137,19 @@
 				$limit
 				$offset");
 
-			foreach($products as $product){
-				self::imagesProduct($product);
-				self::skusProduct($product);
-			}
-
-			return $products;
+		foreach ($products as $product) {
+			self::imagesProduct($product);
+			self::skusProduct($product);
 		}
 
-		public static function getProduct($productId){
+		return $products;
+	}
 
-			$product = Db_DbHelper::object("SELECT 
-				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, cp.sales, cp.title_sku, cp.category_id, cp.leftover,
+	public static function getProduct($productId)
+	{
+
+		$product = Db_DbHelper::object("SELECT 
+				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, cp.short_description, cp.sales, cp.title_sku, cp.category_id, cp.leftover,
 
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 
@@ -159,113 +168,116 @@
 					AND cp.deleted is null
 					AND cp.leftover > 0", [$productId]);
 
-			self::imagesProduct($product);
-			self::skusProduct($product);
+		self::imagesProduct($product);
+		self::skusProduct($product);
 
-			return $product;
-		}
+		return $product;
+	}
 
-		/**
-		 * фото продукта
-		 *
-		 * @param object
-		 */
+	/**
+	 * фото продукта
+	 *
+	 * @param object
+	 */
 
-		private static function imagesProduct($product){
-			$product->images = null;
+	private static function imagesProduct($product)
+	{
+		$product->images = null;
 
-			if(strlen($product->photos)){
+		if (strlen($product->photos)) {
 
-				$photos = explode("----", $product->photos);
-				$index_photo = 0;
+			$photos = explode("----", $product->photos);
+			$index_photo = 0;
 
-				foreach($photos as $photo){
-					$values = explode(",", $photo);
+			foreach ($photos as $photo) {
+				$values = explode(",", $photo);
 
-					if(isset($values[0]) && isset($values[1])){
+				if (isset($values[0]) && isset($values[1])) {
 
-						$img = (new LWImageManipulator($values[0], $values[1]));
+					$img = (new LWImageManipulator($values[0], $values[1]));
 
-						$product->images[isset($values[2]) && $values[2] ? 'main_photo': 'photo_' . $index_photo] = $img;
+					$product->images[isset($values[2]) && $values[2] ? 'main_photo' : 'photo_' . $index_photo] = $img;
 
-						if(!isset($values[2]) || isset($values[2]) && !$values[2]){
-							$index_photo++;
-						}
+					if (!isset($values[2]) || isset($values[2]) && !$values[2]) {
+						$index_photo++;
 					}
 				}
 			}
-
-			unset($product->photos);
 		}
 
+		unset($product->photos);
+	}
 
-		/**
-		 * артикулы продукта
-		 *
-		 * @param object
-		 */
 
-		private static function skusProduct($product){
-			if($product->skus){
-				$skus = explode("----", $product->skus);
+	/**
+	 * артикулы продукта
+	 *
+	 * @param object
+	 */
 
-				$product->skus = [];
+	private static function skusProduct($product)
+	{
+		if ($product->skus) {
+			$skus = explode("----", $product->skus);
 
-				foreach($skus as $sku){
+			$product->skus = [];
 
-					$values = explode("---", $sku);
-					$sku = new stdClass();
-		
-					$sku->id = $values[0] ?? null;
-					$sku->name = $values[1] ?? null;
-					$sku->leftover = $values[2] ?? null;
-					$sku->price = $values[3] ?? null;
+			foreach ($skus as $sku) {
 
-					array_push($product->skus, $sku);
-				}
+				$values = explode("---", $sku);
+				$sku = new stdClass();
+
+				$sku->id = $values[0] ?? null;
+				$sku->name = $values[1] ?? null;
+				$sku->leftover = $values[2] ?? null;
+				$sku->price = $values[3] ?? null;
+
+				array_push($product->skus, $sku);
 			}
-		}
-
-
-		public static function imageProduct($images){
-
-			$image = '/resources/images/icons/no-image.svg';
-
-			if(isset($images) && count($images)){
-				
-				if(isset($images["main_photo"])){
-					$imgSrc = $images["main_photo"];
-	
-				}elseif(isset($images["photo_0"])){
-					$imgSrc = $images["photo_0"];
-				}
-	
-				if(isset($imgSrc)){
-					$image = $imgSrc->getThumb(450, 'auto');
-				}
-			}
-
-			return $image;
-		}
-
-
-		public static function pagination($where, $count_products_page, $number_current_page){
-
-			if($where) $where = "AND " . $where;
-
-			$count_products = Db_DbHelper::scalar("SELECT COUNT(id) FROM catalog_products
-				WHERE hidden is null AND deleted is null AND leftover > 0 $where");
-
-			$count_pages = ceil($count_products / $count_products_page);
-
-			$pagination = new stdClass();
-
-			$pagination->count_products = $count_products;
-			$pagination->count_pages = $count_pages;
-			$pagination->number_current_page = $number_current_page;
-
-			//traceLog($pagination);
-
-			return $pagination;
 		}
 	}
+
+
+	public static function imageProduct($images)
+	{
+
+		$image = '/resources/images/icons/no-image.svg';
+
+		if (isset($images) && count($images)) {
+
+			if (isset($images["main_photo"])) {
+				$imgSrc = $images["main_photo"];
+			} elseif (isset($images["photo_0"])) {
+				$imgSrc = $images["photo_0"];
+			}
+
+			if (isset($imgSrc)) {
+				$image = $imgSrc->getThumb(450, 'auto');
+			}
+		}
+
+		return $image;
+	}
+
+
+	public static function pagination($where, $count_products_page, $number_current_page)
+	{
+
+		if ($where) $where = "AND " . $where;
+
+		$count_products = Db_DbHelper::scalar("SELECT COUNT(id) FROM catalog_products
+				WHERE hidden is null AND deleted is null AND leftover > 0 $where");
+
+		$count_pages = ceil($count_products / $count_products_page);
+
+		$pagination = new stdClass();
+
+		$pagination->count_products = $count_products;
+		$pagination->count_pages = $count_pages;
+		$pagination->number_current_page = $number_current_page;
+
+		//traceLog($pagination);
+
+		return $pagination;
+	}
+}

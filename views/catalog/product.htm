@@ -105,9 +105,18 @@
 						</div>
 					<?php endif; ?>
 
-					<div class="catalog-product_description" data-formatted-text>
-						<?= $product->description ?>
+					<div class="catalog-product_short-description" data-formatted-text>
+						<?= nl2br($product->short_description) ?>
 					</div>
+
+					<?php $description = $product->description ?>
+
+					<?php if($description): ?>
+						<div class="catalog-product_description">
+							<div class="text" data-formatted-text><?= $product->description ?></div>
+							<div class="btn-more">Показать всё</div>
+						</div>
+					<?php endif;?>
 				</div>
 			</div>
 

@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (productSlidersTypeList) {
 
 			let settings = defaultSliderSettings;
-	
+
 			settings.breakpoints = {
 				0: {
 					slidesPerView: 1,
@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			}
 
-			
-	
+
+
 			initSliders(productSlidersTypeList, settings);
 		}
 	}
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					let text = null;
 
-					switch(deliveryCode){
+					switch (deliveryCode) {
 						case 'pickup':
 							text = 'Самовывоз';
 							break;
@@ -652,9 +652,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 	// ВЫБОР АРТИКУЛА
-	function selectSku(){
-		
-		function dataExtra(sku){
+	function selectSku() {
+
+		function dataExtra(sku) {
 			const btnAddToCart = productPage.querySelector(".add-to-cart-btn");
 
 			let id = sku.value,
@@ -664,7 +664,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			btnAddToCart.setAttribute('data-extra', JSON.stringify(extra));
 		}
 
-		function price(sku){
+		function price(sku) {
 			let price = sku.getAttribute('data-price');
 
 			const priceProduct = productPage.querySelector(".catalog-product_buy-price .actual");
@@ -672,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			priceProduct.textContent = price;
 		}
 
-		function productsOtherInfo(sku){
+		function productsOtherInfo(sku) {
 			const blockProductsOtherInfo = productPage.querySelector(".product-other-info");
 			const productAmount = blockProductsOtherInfo.querySelector(".product-amount");
 			const productCode = blockProductsOtherInfo.querySelector(".product-code_sku");
@@ -687,10 +687,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		let productPage = document.querySelector('.catalog-product');
 
-		if(productPage){
+		if (productPage) {
 			let skus = productPage.querySelectorAll("input[name='product-sku']");
 
-			if(skus){
+			if (skus) {
 				skus.forEach(sku => sku.addEventListener("change", ev => {
 					let sku = ev.target;
 
@@ -703,4 +703,24 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	selectSku();
+
+
+	// развернуть полное описание товара
+
+
+	function productDescription() {
+
+		let descriptionSection = document.querySelector('.catalog-product_description');
+
+		if (!descriptionSection) return;
+
+		let btn = descriptionSection.querySelector('.btn-more');
+
+		btn.addEventListener('click', function () {
+			descriptionSection.classList.toggle('active');
+			btn.textContent = descriptionSection.classList.contains('active') ? 'Свернуть' : 'Показать всё';
+		})
+	}
+
+	productDescription();
 });
