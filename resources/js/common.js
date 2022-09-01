@@ -706,11 +706,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 	// развернуть полное описание товара
-
-
 	function productDescription() {
 
-		let descriptionSection = document.querySelector('.catalog-product_description');
+		let descriptionSection = document.querySelector('.catalog-product_description-hidden');
 
 		if (!descriptionSection) return;
 

@@ -105,15 +105,24 @@
 						</div>
 					<?php endif; ?>
 
-					<div class="catalog-product_short-description" data-formatted-text>
-						<?= nl2br($product->short_description) ?>
-					</div>
+					<?php 
+						$short_description = $product->short_description;
+						$description = $product->description;
+					?>
 
-					<?php $description = $product->description ?>
+					<?php if($short_description): ?>
+						<div class="catalog-product_short-description">
+							<?= nl2br($short_description) ?>
+						</div>
+					<?php elseif(!$short_description && $description): ?>
+						<div class="catalog-product_description" data-formatted-text>
+							<?= $description ?>
+						</div>
+					<?php endif;?>
 
-					<?php if($description): ?>
-						<div class="catalog-product_description">
-							<div class="text" data-formatted-text><?= $product->description ?></div>
+					<?php if($short_description && $description): ?>
+						<div class="catalog-product_description-hidden">
+							<div class="text" data-formatted-text><?= $description ?></div>
 							<div class="btn-more">Показать всё</div>
 						</div>
 					<?php endif;?>
