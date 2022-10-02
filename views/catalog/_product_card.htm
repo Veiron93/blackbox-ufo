@@ -3,7 +3,9 @@
 	if(in_array($product->id, $idsProductsCart)) $added = true; 
 ?>
 
-<div class="product-card">
+<div class="product-card <?= (isset($added) && $added) ? 'added': '' ?>" 
+	data-id="<?=$product->id?>"
+>
 	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
 		
 		<a href="<?= u("catalog_product", $product->id); ?>">
@@ -11,21 +13,7 @@
 			<img src="<?= $image ?>" alt="<?= $product->name?>" />
 		</a>
 
-		<?php if($product->old_price):?>
-			<div class="product-card_flags">
-				<?php if (isset($added) && $added): ?> 
-					<div class="added-to-cart" title="Товар уже добавлен">
-						<img src="/resources/images/icons/white-box-close.svg" alt="">
-					</div>
-				<?php endif ?>
-
-				<?php if($product->old_price): ?>
-					<div class="discount-percentage" title="Товар со скидкой">
-						- <?= App_Helper::getDiscountPercentage($product->old_price, $product->price);?>%
-					</div>
-				<?php endif ?>
-			</div>
-		<?php endif; ?>
+		<?php $this->renderPartial($this->getViewsDir() . "/catalog/_flags_product.htm", [ 'discount' => $product->old_price ? [$product->old_price, $product->price] : null ]);?>
 	</div>
 
 	<div class="product-card_info">

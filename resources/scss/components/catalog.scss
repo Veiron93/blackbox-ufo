@@ -437,6 +437,15 @@
 			box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 		}
 
+		// статус то что товар уже добавлен в корзину
+		&.added{
+			.product-card_flags{
+				.added-to-cart{
+					display: flex;
+				}
+			}
+		}
+
 		&_photo {
 			margin-bottom: 5px;
 			flex: none;
@@ -504,9 +513,10 @@
 					color: #fff;
 					height: 28px;
 					width: 54px;
-					display: flex;
+					
 					align-items: center;
 					justify-content: center;
+					display: none;
 					
 					img{
 						height: 18px;
@@ -516,6 +526,8 @@
 				.discount-percentage {
 					background: #ff0000;
 					color: #fff;
+					text-align: center;
+					display: block;
 				}
 			}
 		}
@@ -615,6 +627,14 @@
 			box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 		}
 
+		&.added{
+			.product-card_flags{
+				.added-to-cart{
+					display: flex;
+				}
+			}
+		}
+
 		&_photo {
 			flex: none;
 
@@ -684,7 +704,7 @@
 					color: #fff;
 					height: 24px;
 					width: 54px;
-					display: flex;
+					display: none;
 					align-items: center;
 					justify-content: center;
 					

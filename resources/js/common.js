@@ -2,8 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	///////////// SLIDERS /////////////
-
+	// SLIDERS
 	// главный слайдер
 	new Swiper(".main-slider", {
 		loop: true,
@@ -162,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// 	arrows: true,
 	// });
 
-	///////////// КАТАЛОГ МЕНЮ (МОБИЛЬНАЯ ВЕРСИЯ) /////////////
+	// КАТАЛОГ МЕНЮ (МОБИЛЬНАЯ ВЕРСИЯ)
 	function mobileCatalogMenu() {
 
 		function stateCatalogMenu() {
@@ -234,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	mobileCatalogMenu();
 
 
-	///////////// НАВИГАЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ) /////////////
+	// НАВИГАЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
 	function mobileNavigation() {
 
 		function statusNav() {
@@ -251,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	mobileNavigation();
 
 
-	///////////// КОРЗИНА /////////////
+	// КОРЗИНА
 
 	function quantityCart() {
 
@@ -606,28 +605,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-	///////////// КНОПКА ДОБАВИТЬ В КОРЗИНУ /////////////
+	// КНОПКА ДОБАВИТЬ В КОРЗИНУ
+	function productAddToCart() {
 
-	// function productAddToCart() {
-	// 	let btns = document.querySelectorAll('.btn-buy');
+		const url = location.pathname;
+		const page = url.split('/')[2] == 'product' ? 'product' : 'catalog';
 
-	// 	if (btns) {
-	// 		btns.forEach(btn => {
-	// 			btn.querySelector('a').addEventListener('click', function () {
+		let btns = document.querySelectorAll('.btn-buy');
+		let products = [];
 
-	// 				let id = this.parentElement.getAttribute('id')
-	// 				let products = document.querySelectorAll('#' + id)
+		if (page == 'product') {
+			let product = document.querySelector('.catalog-product');
+			products.push(product);
+		} else {
+			products = document.querySelectorAll('.product-card');
+		}
 
-	// 				products.forEach(product => product.setAttribute('data-added', true))
-	// 			})
-	// 		})
-	// 	}
-	// }
+		if (btns && products) {
+			btns.forEach(btn => {
+				btn.querySelector('a').addEventListener('click', function () {
+					let id = this.parentElement.getAttribute('data-id');
 
-	//productAddToCart();
+					products.forEach(product => {
+						if (product.getAttribute('data-id') == id) {
+							product.classList.add('added')
+						}
+					})
+				})
+			})
+		}
+	}
+
+	productAddToCart();
 
 
-	///////////// КНОПКА ВВЕРХ /////////////
+	// КНОПКА ВВЕРХ
 	{
 		function trackScroll() {
 			let scrolled = window.pageYOffset,
