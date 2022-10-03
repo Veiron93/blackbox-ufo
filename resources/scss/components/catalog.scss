@@ -746,6 +746,29 @@
 				}
 			}
 
+			&-state{
+				border-radius: 14px;
+				color: #fff;
+				text-align: center;
+				font-size: 13px;
+				height: 34px;
+				width: 60px;
+
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				margin-bottom: 4px;
+				margin-right: 64px;
+
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				span{
+					display: none;
+				}
+			}
+
 			&-buy {
 				display: flex;
 				align-items: center;
@@ -985,6 +1008,7 @@
 		}
 
 		.info {
+			width: 100%;
 
 			.catalog-product_skus{
 				margin-bottom: 20px;
@@ -1028,6 +1052,55 @@
 							&:hover{
 								background: $color3;
 							}
+						}
+					}
+				}
+			}
+
+			.catalog-product_usesed-divice-description{
+				//border: 1px solid red;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+				margin-bottom: 15px;
+				padding-bottom: 15px;
+				border-bottom: 1px solid $gray;
+
+				.item{
+				
+					&-flag{
+						border-radius: $brs;
+						padding: 5px 10px;
+						color: #fff;
+						font-size: 16px;
+						background: $accent;
+					}
+
+					&-state_battery{
+						background: #0a86cf;
+					}
+
+					&-state_defect{
+						background: #cd0303;
+					}
+
+					&-state_is-complect{
+						background: #08a10c;
+					}
+
+					&-state_is-complect-non{
+						background: #cd0303;
+					}
+
+					&-text{
+						width: 100%;
+
+						span{
+							font-weight: 500;
+						}
+
+						div{
+							margin-top: 3px;
 						}
 					}
 				}
@@ -1272,6 +1345,15 @@
 				margin-top: 20px;
 				padding-left: 15px;
 				padding-right: 15px;
+
+				.catalog-product_usesed-divice-description{
+	
+					.item{
+						&-flag{
+							font-size: 13px;
+						}
+					}
+				}
 			}
 		}
 

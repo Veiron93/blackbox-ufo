@@ -104,6 +104,48 @@
 						</div>
 					<?php endif; ?>
 
+					<?php if($product->is_useded_device): ?>
+						<div class="catalog-product_usesed-divice-description">
+							<?php if($product->state_device_useded_device): ?>
+								<div class="item item-flag" style="background: <?=App_Catalog::colorStateProduct($product->state_device_useded_device)?>">Состояние <?=$product->state_device_useded_device?> из 10</div>
+							<?php endif; ?>
+
+							<?php if($product->state_battery_useded_device): ?>
+								<div class="item item-flag item-state_battery">Аккумулятор <?=$product->state_battery_useded_device?> из 100</div>
+							<?php endif; ?>
+
+							<?php if($product->guarantee_useded_devicet): ?>
+								<div class="item item-flag item-state_guarantee">Гарантия до <?=$product->guarantee_useded_devicet?></div>
+							<?php endif; ?>
+
+							<?php if($product->defect_screen_useded_device): ?>
+								<div class="item item-flag item-state_defect">Дефекты на экране</div>
+							<?php endif; ?>
+
+							<?php if($product->defect_body_useded_device): ?>
+								<div class="item item-flag item-state_defect">Дефекты на корпусе</div>
+							<?php endif; ?>
+
+							<?php if($product->complect_useded_device): ?>
+								<div class="item item-flag item-state_is-complect">Полный комплект</div>
+							<?php elseif($product->complect_non_elements_useded_device):?>	
+								<div class="item item-flag item-state_is-complect-non">Неполный комплект</div>
+
+								<div class="item item-text">
+									<span>Отстуствует:</span>
+									<div><?=$product->complect_non_elements_useded_device?></div>
+								</div>
+							<?php endif; ?>
+
+							<?php if($product->added_acsessuares_useded_device): ?>
+								<div class="item item-text">
+									<span>Дополнительные аксессуары:</span>
+									<div><?=$product->added_acsessuares_useded_device?></div>
+								</div>
+							<?php endif; ?>
+						</div>
+					<?php endif;?>
+
 					<?php 
 						$short_description = $product->short_description;
 						$description = $product->description;

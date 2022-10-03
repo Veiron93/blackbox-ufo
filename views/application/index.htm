@@ -97,6 +97,16 @@
 			[
 				'show'=> true,
 				'name' => 'product_grid', 
+				'products' => $usededProducts ?? [],
+				'params' => [
+					'title' => 'Б/У товары',
+					'view_type' => 'list',
+					'link' => '/sale/'
+				]
+			],
+			[
+				'show'=> true,
+				'name' => 'product_grid', 
 				'products' => $productSale ?? [],
 				'params' => [
 					'title' => 'Товары со скидкой',

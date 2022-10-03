@@ -149,7 +149,11 @@ class App_Catalog
 	{
 
 		$product = Db_DbHelper::object("SELECT 
-				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, cp.short_description, cp.sales, cp.title_sku, cp.category_id, cp.leftover,
+				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, 
+				cp.short_description, cp.sales, cp.title_sku, cp.category_id, cp.leftover, 
+				cp.is_useded_device, cp.state_device_useded_device, cp.state_battery_useded_device,
+				cp.guarantee_useded_devicet, cp.defect_screen_useded_device, cp.defect_body_useded_device,
+				cp.complect_useded_device, cp.complect_non_elements_useded_device, cp.added_acsessuares_useded_device,
 
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 
@@ -279,5 +283,21 @@ class App_Catalog
 		//traceLog($pagination);
 
 		return $pagination;
+	}
+
+	public static function colorStateProduct($state)
+	{
+
+		if ($state < 4) {
+			$bg = "#c31830";
+		} elseif ($state >= 4 && $state <= 6) {
+			$bg = "#dd6c0c";
+		} elseif ($state >= 7 && $state <= 8) {
+			$bg = "#75b100";
+		} else {
+			$bg = "#49b100";
+		}
+
+		return $bg;
 	}
 }

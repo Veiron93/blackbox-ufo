@@ -7,6 +7,9 @@ class Application extends App_Controller
 	{
 		// $this->layout = 'index';
 
+		// Б/У товары
+		$this->viewData['usededProducts'] = $this->catalog::getProducts("cp.is_useded_device is not null && cp.show_block_useded_device", 6);
+
 		// Товары со скидкой
 		$this->viewData['productSale'] = $this->catalog::getProducts("cp.is_sale is not null", 6);
 

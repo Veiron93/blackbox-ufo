@@ -23,17 +23,8 @@
 		</div>
 
 		<?php if($product->is_useded_device): ?>
-			<?php 
-				if($product->state_device_useded_device < 5){
-					$bg = "#e60a29";
-				}elseif($product->state_device_useded_device >= 5 && $product->state_device_useded_device < 8){
-					$bg = "#ddd30c";
-				}else{
-					$bg = "#52c104";
-				}
-			?>
-			<div class="product-card_info-state" style="background: <?=$bg?>">
-				Состояние <?=$product->state_device_useded_device ?> из 10
+			<div class="product-card_info-state" title="Состояние товара" style="background: <?=App_Catalog::colorStateProduct($product->state_device_useded_device)?>">
+				<span>Состояние</span> <?=$product->state_device_useded_device ?> из 10
 			</div>
 		<?php endif; ?>
 
