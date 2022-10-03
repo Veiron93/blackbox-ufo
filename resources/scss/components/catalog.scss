@@ -555,6 +555,15 @@
 				}
 			}
 
+			&-state{
+				border-radius: $brs;
+				padding: 5px;
+				margin: 0 15px 5px;
+				color: #fff;
+				text-align: center;
+				font-size: 13px;
+			}
+
 			&-buy {
 				display: flex;
 				align-items: center;

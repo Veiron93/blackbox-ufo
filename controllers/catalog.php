@@ -16,22 +16,25 @@
 /**
  * Class Catalog
  */
-class Catalog extends App_Controller {
+class Catalog extends App_Controller
+{
 
 	const productsPerPage = 40;
 
-	public function index() {
+	public function index()
+	{
 		$this->setTitle("Каталог");
 	}
 
-	public function category($categoryId, $pageIndex) {
+	public function category($categoryId, $pageIndex)
+	{
 		try {
 			$category = $this->catalog->getCategory($categoryId);
-			
-			if(!$category) $this->throw404();
 
-			if(!$pageIndex) $pageIndex = 1;
-			
+			if (!$category) $this->throw404();
+
+			if (!$pageIndex) $pageIndex = 1;
+
 			$this->viewData['category'] = $category;
 			$this->viewData['products'] = $this->catalog->getProducts("cp.category_id = $categoryId", self::productsPerPage, $pageIndex - 1, self::sorting());
 			$this->viewData['pagination'] = $this->catalog->pagination("category_id = $categoryId", self::productsPerPage, $pageIndex);
@@ -45,12 +48,13 @@ class Catalog extends App_Controller {
 	}
 
 
-	public function product($productId) {
+	public function product($productId)
+	{
 		try {
 
 			$product = $this->catalog->getProduct($productId);
-			
-			
+
+
 			if (!$product) {
 				$this->throw404();
 			}
@@ -59,8 +63,8 @@ class Catalog extends App_Controller {
 
 			$this->viewData['product'] = $product;
 			$this->viewData['category'] = $category;
-			
-			
+
+
 			// if(isset($product_hidden) && !$product_hidden || !count($product->skus) && $product->leftover){
 			// 	$this->viewData['product'] = $product;
 			// 	$this->viewData['category'] = $product->category;
@@ -76,40 +80,42 @@ class Catalog extends App_Controller {
 	}
 
 
-	public function all_products($pageIndex = null){
+	public function all_products($pageIndex = null)
+	{
 
-		if(!$pageIndex) $pageIndex = 1;
+		if (!$pageIndex) $pageIndex = 1;
 
 		$this->viewData['allProducts'] = $this->catalog::getProducts(null, self::productsPerPage, $pageIndex - 1);
 		$this->viewData['pagination'] = $this->catalog->pagination(null, self::productsPerPage, $pageIndex);
 	}
 
 	//СОРТИРОВКА
-	public function sorting(){
+	public function sorting()
+	{
 		$sorting = 'sales desc';
 		$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
-		if(isset($partsURI['query'])){
+		if (isset($partsURI['query'])) {
 
 			parse_str($partsURI['query'], $query);
 
-			if(isset($query['order'])){
-				switch($query['order']){
+			if (isset($query['order'])) {
+				switch ($query['order']) {
 					case 'name':
 						$sorting = 'name';
-					break;
+						break;
 
 					case 'new':
 						$sorting = 'id desc';
-					break;
+						break;
 
 					case '-price':
 						$sorting = 'price desc';
-					break;
+						break;
 
 					case 'price':
 						$sorting = 'price asc';
-					break;
+						break;
 				}
 			}
 		}
@@ -118,11 +124,12 @@ class Catalog extends App_Controller {
 	}
 
 
-	private function filters($filters){
+	private function filters($filters)
+	{
 		$filtersId = [];
 		$where = '';
 
-		foreach($filters as $key => $filter){
+		foreach ($filters as $key => $filter) {
 			array_push($filtersId, $key);
 
 			//traceLog($filter);
@@ -131,11 +138,11 @@ class Catalog extends App_Controller {
 
 		$products = Db_DbHelper::objectArray("SELECT *
 			FROM catalog_attribute_values as cav 
-			WHERE cav.attribute_id in (?)", [$filtersId]);	
+			WHERE cav.attribute_id in (?)", [$filtersId]);
 
-		foreach($products as $product){
+		foreach ($products as $product) {
 
-			foreach($filters as $key => $filter){
+			foreach ($filters as $key => $filter) {
 				//array_push($filtersId, $key);
 			}
 			//$product
@@ -150,13 +157,14 @@ class Catalog extends App_Controller {
 
 
 
-	private function applyBaseFilter(Catalog_Product $stmt, Catalog_Category $from) {
+	private function applyBaseFilter(Catalog_Product $stmt, Catalog_Category $from)
+	{
 		$filtersCount = 0;
 		$stmtWhere = new Db_Where();
 		foreach ($from->filters as $filter) {
 			$values = Phpr::$request->getFromArray("prop.{$filter->id}", null);
 			if (!is_null($values)) {
-				switch($filter->data_type) {
+				switch ($filter->data_type) {
 					case Catalog_Attribute::typeBool:
 						if ($values == "yes") {
 							$stmtWhere->orWhere("cav.attribute_id = ? and cav.value = 1", $filter->id);
@@ -182,8 +190,12 @@ class Catalog extends App_Controller {
 						if (is_array($values)) {
 							if (array_key_exists("from", $values) && is_numeric($values["from"])) {
 								if (array_key_exists("to", $values) && is_numeric($values["to"])) {
-									$stmtWhere->orWhere("cav.attribute_id = ? and cav.value between CAST(? as DECIMAL) and CAST(? as DECIMAL)",
-										$filter->id, (float) $values["from"], (float) $values["to"]);
+									$stmtWhere->orWhere(
+										"cav.attribute_id = ? and cav.value between CAST(? as DECIMAL) and CAST(? as DECIMAL)",
+										$filter->id,
+										(float) $values["from"],
+										(float) $values["to"]
+									);
 								} else {
 									$stmtWhere->orWhere("cav.attribute_id = ? and cav.value >= CAST(? as DECIMAL)", $filter->id, (float) $values["from"]);
 								}

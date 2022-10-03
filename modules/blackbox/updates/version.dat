@@ -4,3 +4,5 @@
 #4 add sales in catalog_products
 #5 add title_sku in catalog_products
 #6 add title_sku in catalog_categories
+#7 add columns used devices
+#8 add column is_useded_device in product
