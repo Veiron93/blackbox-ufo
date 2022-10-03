@@ -85,7 +85,7 @@ class Catalog extends App_Controller
 
 		if (!$pageIndex) $pageIndex = 1;
 
-		$this->viewData['allProducts'] = $this->catalog::getProducts(null, self::productsPerPage, $pageIndex - 1);
+		$this->viewData['allProducts'] = $this->catalog::getProducts(null, self::productsPerPage, $pageIndex - 1, "cp.id desc");
 		$this->viewData['pagination'] = $this->catalog->pagination(null, self::productsPerPage, $pageIndex);
 	}
 
