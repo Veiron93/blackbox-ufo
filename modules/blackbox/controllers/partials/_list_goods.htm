@@ -1,0 +1,28 @@
+<div class="order__list-googs">
+    <?php $orderItems = $form_model->items; ?>
+
+    <?php for($i = 0; $i <= count($orderItems) - 1; $i++): ?>
+        <div class="item">
+            <span><?= $i+1 ?>.</span>
+            <a href="/admin/catalog/manage/edit/<?= $orderItems[$i]->product->id ?>/" target="_blank"><?= $orderItems[$i]->product->name ?></a>
+            
+            <?php if($orderItems[$i]->sku_id): ?>
+                <span class='sku'>[<?=$orderItems[$i]->sku->name ?>]</span>
+            <?php endif; ?>
+        </div>
+    <?php endfor;?>
+</div>
+
+<style>
+    .order__list-googs .item:not(:last-child){
+        margin-bottom: 8px;
+    }
+
+    .order__list-googs .item .sku{
+        font-weight: bold;
+    }
+
+    .order__list-googs .item a{
+        text-decoration: none;
+    }
+</style>
