@@ -6,6 +6,12 @@ body.search-active{
 
         .widget-search{
             display: block;
+
+            .search-form_btns{
+                .btn-search{
+                    display: none;
+                }
+            }
         }
     }
 }
@@ -62,7 +68,7 @@ body.search-active{
                         }
 
                         img {
-                            height: 11px;
+                            height: 16px;
                         }
 
                         &:after{
@@ -89,7 +95,7 @@ body.search-active{
                     }
 
                     img {
-                        opacity: .5;
+                        opacity: .7;
                         transition: opacity .2s ease-in-out;
                     }
                 }
@@ -223,6 +229,54 @@ body.search-active{
                     }
                 }
             }
+
+            &_all{
+                display: none;
+                align-items: center;
+                column-gap: 15px;
+                
+                padding: 15px 30px 15px 15px;
+                margin: 0 15px 15px;
+
+                border-radius: $brs;
+                background-color: rgba($accentHover, .1);
+                background-image: url(/resources/images/icons/right-arrow.svg);
+                background-position: center right 10px;
+                background-repeat: no-repeat;
+                background-size: 14px;
+                cursor: pointer;
+
+                font-size: 14px;
+                user-select: none;
+                transition: background .2s;
+
+                &:hover{
+                    background-color: rgba($accentHover, .2);
+                }
+
+                &.active{
+                    display: flex;
+                }
+
+                .all-results_title{
+                    font-weight: 500;
+                    color: $accent;
+                }
+
+                .all-results_list{
+                    display: flex;
+                    column-gap: 15px;
+                }
+
+                .all-results_categories, .all-results_products{
+                    display: none;
+                    flex: none;
+
+                    &.active{
+                        display: block;
+                    }
+                }
+            }
         }
     }
 
@@ -287,25 +341,7 @@ body.search-active{
                         }
 
                         img {
-                            height: 15px;
-                        }
-
-                        &:after{
-                            content: "";
-                            display: block;
-                            height: 15px;
-                            width: 1px;
-                            background: #969696;
-                            position: absolute;
-                            right: 0;
-                        }
-                    }
-
-                    &:nth-child(2){
-                        border-radius: 0px 6px 6px 0;
-
-                        img {
-                            height: 24px;
+                            height: 18px;
                         }
                     }
 
@@ -313,14 +349,14 @@ body.search-active{
                         display: flex;
                         padding: 0;
                         width: auto;
-                        font-weight: 600;
+                        font-weight: 500;
                         font-size: 16px;
                         color: $accentHover;
                         margin-left: 8px;
                     }
 
                     img {
-                        opacity: .5;
+                        opacity: .7;
                         transition: opacity .2s ease-in-out;
                     }
                 }
@@ -373,25 +409,28 @@ body.search-active{
             &_categories{
                 &-list{
                     >div{
+                        //border: 1px solid red;
                         padding: 8px 0;
+                        display: flex;
+                        align-items: flex-start;
 
                         span{
                             &:nth-child(1){
                                 font-weight: 500;
                                 font-size: 15px;
+                                width: 50%;
+                                flex: none;
+
+                                //border: 1px solid red;
                             }
 
                             &:nth-child(2){
                                 margin-left: 8px;
-
-                                &:before{
-                                    content: "/";
-                                    margin-right: 8px;
-                                }
                             }
 
                             &:nth-child(3){
                                 margin-left: auto;
+                                white-space: nowrap;
                             }
 
                             &:nth-child(2), &:nth-child(3){
@@ -447,6 +486,52 @@ body.search-active{
 
                     &:focus{
                         color: $accentHover;
+                    }
+                }
+            }
+
+            &_all{
+                display: none;
+                align-items: center;
+                column-gap: 15px;
+                
+                padding: 15px 30px 15px 15px;
+
+                border-radius: $brs;
+                background-color: rgba($accentHover, .1);
+                background-image: url(/resources/images/icons/right-arrow.svg);
+                background-position: center right 15px;
+                background-repeat: no-repeat;
+                background-size: 14px;
+                cursor: pointer;
+
+                font-size: 14px;
+                user-select: none;
+                transition: background .2s;
+
+                &:hover{
+                    background-color: rgba($accentHover, .2);
+                }
+
+                &.active{
+                    display: flex;
+                }
+
+                .all-results_title{
+                    display: none;
+                }
+
+                .all-results_list{
+                    display: flex;
+                    column-gap: 20px;
+                }
+
+                .all-results_categories, .all-results_products{
+                    display: none;
+                    white-space: nowrap;
+
+                    &.active{
+                        display: block;
                     }
                 }
             }

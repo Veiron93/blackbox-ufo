@@ -513,7 +513,6 @@
 					color: #fff;
 					height: 28px;
 					width: 54px;
-					
 					align-items: center;
 					justify-content: center;
 					display: none;
@@ -525,6 +524,13 @@
 
 				.discount-percentage {
 					background: #ff0000;
+					color: #fff;
+					text-align: center;
+					display: block;
+				}
+				
+				.bestseller{
+					background: $accent;
 					color: #fff;
 					text-align: center;
 					display: block;
@@ -725,6 +731,13 @@
 				.discount-percentage {
 					background: #ff0000;
 					color: #fff;
+				}
+
+				.bestseller{
+					background: $accent;
+					color: #fff;
+					text-align: center;
+					display: block;
 				}
 			}
 		}

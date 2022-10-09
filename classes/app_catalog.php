@@ -116,7 +116,7 @@ class App_Catalog
 		if (!$order) $order = "cp.id asc";
 
 		$products = Db_DbHelper::objectArray("SELECT 
-				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.is_useded_device, cp.state_device_useded_device,
+				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.is_useded_device, cp.state_device_useded_device, cp.best_seller,
 
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 
