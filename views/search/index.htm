@@ -12,11 +12,15 @@
 			</div>
 
 
-			<?/*
+			<?/**/?>
 			<?php if(count($categories)): ?>
-				<?php $this->renderPartial($this->getViewsDir() . "catalog/_categories_list.htm");?>
+				<div class="catalog-categories-list">
+					<?php foreach ($categories as $category) : ?>
+						<?php $this->renderPartial($this->getViewsDir() . "catalog/item_catalog_category_single.htm", ['category' => $category]);?>
+					<?php endforeach ?>
+				</div>
 			<?php endif; ?>
-			*/?>
+			
 
 			<?php if (count($products)): ?>
 				<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list="grid">

@@ -15,7 +15,7 @@ class App_Catalog
 	 * @return array
 	 */
 
-	public static function getCategories()
+	public static function getCategories($where = null)
 	{
 
 		$categories_arr_assoc = [];
@@ -25,8 +25,9 @@ class App_Catalog
 				f.id as image_id, f.disk_name as image_path
                 FROM catalog_categories cc
 				LEFT JOIN db_files f ON f.master_object_id = cc.id and f.master_object_class ='Catalog_Category'
-                WHERE cc.deleted is null 
-				AND cc.hidden is null");
+                WHERE 
+					cc.deleted is null 
+					AND cc.hidden is null" . $where);
 
 
 		foreach ($categories as $category) {

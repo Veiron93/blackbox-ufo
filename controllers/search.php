@@ -24,7 +24,6 @@ class Search extends App_Controller
             }
 
             // CATEGORIES
-
             $categories = Db_DbHelper::objectArray("SELECT 
                 c.id, c.name, c.level,
                 pc.name AS parent_name, pc.level AS parent_level, 
@@ -41,7 +40,6 @@ class Search extends App_Controller
 
 
             // PRODUCTS
-
             $productsAll = Db_DbHelper::objectArray("SELECT p.id, p.name, p.price, df.id AS image_id, df.disk_name AS image_path 
                 FROM 
                     catalog_products as p
@@ -95,23 +93,15 @@ class Search extends App_Controller
             }
 
             // CATEGORIES
-
-            $this->viewData['categories'] = $categories = Db_DbHelper::objectArray("SELECT c.id, c.name, pc.name AS parent_name, COUNT(cp.id) AS products_count
-                FROM 
-                    catalog_categories AS c
-                LEFT JOIN 
-                    catalog_categories pc ON pc.id = c.parent_id
-                LEFT JOIN  
-                    catalog_products cp ON cp.category_id = c.id
-                WHERE
-                    lower(c.name) LIKE '%{$query}%' AND c.hidden IS NULL AND c.deleted IS NULL AND cp.hidden IS NULL AND cp.deleted IS NULL
-                GROUP BY c.id LIMIT 5") ?: [];
+            $whereCategories = " AND lower(cc.name) LIKE '%{$query}%'";
+            $categories = $this->catalog->getCategories($whereCategories);
+            $this->viewData['categories'] = $categories;
 
 
             // PRODUCTS
             $whereProducts = "lower(cp.name) LIKE '%{$query}%' AND cp.hidden IS NULL AND cp.deleted IS NULL";
-
-            $this->viewData['products'] = $products = $this->catalog->getProducts($whereProducts, self::productsPerPage, $pageIndex - 1);
+            $products = $this->catalog->getProducts($whereProducts, self::productsPerPage, $pageIndex - 1);
+            $this->viewData['products'] = $products;
 
             $this->viewData["query"] = "?q=" . h(urlencode(Phpr::$request->getField("q")));
         } catch (Exception $ex) {

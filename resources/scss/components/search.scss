@@ -560,9 +560,12 @@ body.search-active{
     }
 
     &_text-inform{
-        //border: 1px solid red;
         font-size: 30px;
         font-weight: bold;
+    }
+
+    .catalog-categories-list{
+        margin-bottom: 20px;
     }
 
     @include screen_sm_down{
