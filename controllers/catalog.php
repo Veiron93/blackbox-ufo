@@ -35,18 +35,21 @@ class Catalog extends App_Controller
 
 			if (!$pageIndex) $pageIndex = 1;
 
+			$seo = self::get_seo($category->id, 'Catalog_Category');
+
+			if ($seo) {
+				$category->seo = $seo;
+			}
+
 			$this->viewData['category'] = $category;
 			$this->viewData['products'] = $this->catalog->getProducts("cp.category_id = $categoryId", self::productsPerPage, $pageIndex - 1, self::sorting());
 			$this->viewData['pagination'] = $this->catalog->pagination("category_id = $categoryId", self::productsPerPage, $pageIndex);
 
 			$this->setTitle($category->name);
-			//Admin_SeoPlugin::apply($category);
-
 		} catch (Exception $ex) {
 			$this->viewData['error'] = $ex->getMessage();
 		}
 	}
-
 
 	public function product($productId)
 	{
@@ -121,6 +124,16 @@ class Catalog extends App_Controller
 		}
 
 		return $sorting;
+	}
+
+
+	private static function get_seo($id, $class)
+	{
+		$seo = Db_DbHelper::object("SELECT seo_title, seo_description, seo_keywords, seo_metatags
+                FROM seo_record_params
+                WHERE parent_object_id = ? AND parent_object_class = ?", [$id, $class]);
+
+		return $seo;
 	}
 
 

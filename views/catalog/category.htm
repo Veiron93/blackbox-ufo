@@ -1,3 +1,30 @@
+<? Phpr_View::beginBlock("head") ?>
+	<?php if(isset($category) && $category): ?>
+
+		<?php
+			$seo_keywords = '';
+			$seo_description = '';
+
+			if($category->seo && $category->seo->seo_keywords){
+				$seo_keywords = $category->seo->seo_keywords;
+			}else{
+				$words = [];
+				array_push($words, ...['купить ' . $category->name, $category->name, 'в южно-сахалинске']);
+				$seo_keywords = implode(', ', $words);
+			}
+
+			if($category->seo && $category->seo->seo_description){
+				$seo_description = $category->seo->seo_description;
+			}else{
+				$seo_description = "Купить " . $category->name . " по самым выгодным ценам в интернет магазине БЛЭКБОКС (bb65.ru). Большой выбор товаров с доставкой по городу Южно-Сахалинск и острову Сахалин";
+			}			
+		?>		
+
+		<meta name="keywords" content="<?= $seo_keywords ?>">
+		<meta name="description" content="<?= $seo_description ?>">
+	<?php endif; ?>
+<? Phpr_View::endBlock(true) ?>
+
 <?php if (isset($category) && $category): ?>
 
 	<?php $subCategories = $this->catalog->getChildCategories($category); ?>
