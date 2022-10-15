@@ -1,19 +1,18 @@
 <?php $topBanners = App_Helper::getBanners('top_banner') ?>
 
-<?php if(isset($topBanners) && count($topBanners)): ?>
-	
+<?php if (isset($topBanners) && count($topBanners)) : ?>
+
 	<?php $topBannerType = $topBanners[0]->banner_type; ?>
 
-	<div class="top-banner top-banner-<?=$topBannerType?>" 
-		style="background: <?=$topBannerType == 'text' && $topBanners[0]->bg_color ? $topBanners[0]->bg_color:''?>">
+	<div class="top-banner top-banner-<?= $topBannerType ?>" style="background: <?= $topBannerType == 'text' && $topBanners[0]->bg_color ? $topBanners[0]->bg_color : '' ?>">
 		<div class="container">
-			<?php if($topBannerType == 'image'): ?>
+			<?php if ($topBannerType == 'image') : ?>
 				<?php $topBannerImage = $topBanners[0]->image->getPath(); ?>
-				<img src="<?=$topBannerImage?>" alt="">
-			<?php elseif($topBannerType == 'text'): ?>
+				<img src="<?= $topBannerImage ?>" alt="Баннер сверху">
+			<?php elseif ($topBannerType == 'text') : ?>
 				<?php $topBannerText = $topBanners[0]->banner_text; ?>
-				<?=$topBannerText?>
+				<?= $topBannerText ?>
 			<?php endif; ?>
 		</div>
 	</div>
-<?php endif;?>
+<?php endif; ?>

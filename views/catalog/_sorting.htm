@@ -4,46 +4,46 @@
 
 		<div class="sorting-mode_title">Сортировать:</div>
 
-		<?php 
-			$sorting = null;
-			$partsURI = parse_url($_SERVER['REQUEST_URI']);
+		<?php
+		$sorting = null;
+		$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
-			if(isset($partsURI['query'])){
-				parse_str($partsURI['query'], $query);
+		if (isset($partsURI['query'])) {
+			parse_str($partsURI['query'], $query);
 
-				if(isset($query['order'])){
-					if($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price'){
-						$sorting = $query['order'];
-					}
+			if (isset($query['order'])) {
+				if ($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price') {
+					$sorting = $query['order'];
 				}
 			}
+		}
 		?>
 
 		<div class="sorting-mode_list">
-			<div class="item <?= !$sorting ? 'active':''?>">
-				<a href="/<?=$url?>">По популярности</a>
+			<div class="item <?= !$sorting ? 'active' : '' ?>">
+				<a href="/<?= $url ?>">По популярности</a>
 			</div>
-			<div class="item <?= $sorting == 'name'? 'active':''?>">
-				<a href="/<?=$url?>/?order=name">По наименованию</a>
+			<div class="item <?= $sorting == 'name' ? 'active' : '' ?>">
+				<a href="/<?= $url ?>/?order=name">По наименованию</a>
 			</div>
-			<div class="item <?= $sorting == 'new'? 'active':''?>">
-				<a href="/<?=$url?>/?order=new">Сначала новые</a>
+			<div class="item <?= $sorting == 'new' ? 'active' : '' ?>">
+				<a href="/<?= $url ?>/?order=new">Сначала новые</a>
 			</div>
-			<div class="item <?= $sorting == 'price'? 'active':''?>">
-				<a href="/<?=$url?>/?order=price">По возрастанию цены</a>
+			<div class="item <?= $sorting == 'price' ? 'active' : '' ?>">
+				<a href="/<?= $url ?>/?order=price">По возрастанию цены</a>
 			</div>
-			<div class="item <?= $sorting == '-price'? 'active':''?>">
-				<a href="/<?=$url?>/?order=-price">По убыванию цены</a>
+			<div class="item <?= $sorting == '-price' ? 'active' : '' ?>">
+				<a href="/<?= $url ?>/?order=-price">По убыванию цены</a>
 			</div>
 		</div>
 	</div>
 
 	<div class="view-mode">
-		<div class="item <?= $viewModeProductsList == 'grid' ?'active':''?>" data-type="grid">
-			<img src="/resources/images/icons/grid.svg" alt="grid">
+		<div class="item <?= $viewModeProductsList == 'grid' ? 'active' : '' ?>" data-type="grid">
+			<img src="/resources/images/icons/grid.svg" alt="Сетка">
 		</div>
-		<div class="item <?= $viewModeProductsList == 'list' ?'active':''?>" data-type="list">
-			<img src="/resources/images/icons/listing.svg" alt="list">
+		<div class="item <?= $viewModeProductsList == 'list' ? 'active' : '' ?>" data-type="list">
+			<img src="/resources/images/icons/listing.svg" alt="Список">
 		</div>
 	</div>
 </div>

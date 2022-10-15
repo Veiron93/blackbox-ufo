@@ -1,7 +1,7 @@
 <div class="mobile-menu-catalog">
 
 	<div class="mobile-menu-catalog__header">
-		
+
 		<div class="logo">
 			<a href="/">
 				<span class="text-1">БЛЭК</span>
@@ -17,27 +17,27 @@
 
 	<div class="mobile-menu-catalog__categories">
 
-		<?php foreach($catalogRootCategories as $category): ?>
+		<?php foreach ($catalogRootCategories as $category) : ?>
 
-			<div class="main-category">	
+			<div class="main-category">
 
-				<?php 
-					$categoryId = $category->id;
-					$categoryName = $category->name;
-					$categoryImg = '/resources/images/icons/box-2.svg';
+				<?php
+				$categoryId = $category->id;
+				$categoryName = $category->name;
+				$categoryImg = '/resources/images/icons/box-2.svg';
 
-					if(isset($category->image_id) && isset($category->image_path)){
-						$categoryImg = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
-					}
+				if (isset($category->image_id) && isset($category->image_path)) {
+					$categoryImg = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+				}
 
-					$categories_level_2 = $this->catalog->getChildCategories($category);
+				$categories_level_2 = $this->catalog->getChildCategories($category);
 				?>
 
-				<?php if (count($categories_level_2)): ?>
+				<?php if (count($categories_level_2)) : ?>
 
 					<div class="main-category_wrapper">
 						<div class="main-category_icon">
-							<img src="<?= $categoryImg ?>" />
+							<img src="<?= $categoryImg ?>" alt="<?= $categoryName ?>" />
 						</div>
 
 						<div class="main-category_name">
@@ -45,7 +45,7 @@
 						</div>
 
 						<div class="main-category_arrow">
-							<img src="/resources/images/icons/right-arrow.svg" alt="">
+							<img src="/resources/images/icons/right-arrow.svg" alt="Раскрыть категорию">
 						</div>
 					</div>
 
@@ -53,53 +53,53 @@
 
 						<div class="categories-level-2_header">
 							<div class="link-back">
-								<img src="/resources/images/icons/slider-arrow-left.svg" alt="">
+								<img src="/resources/images/icons/slider-arrow-left.svg" alt="<?= $categoryName ?>">
 								<span><?= $categoryName ?></span>
 							</div>
 
 							<div class="btn-catalog-menu-mobile">
-								<img src="/resources/images/icons/close-white.svg" alt="Закрыть каталог">
+								<img src="/resources/images/icons/close-white.svg" alt="Закрыть меню каталога">
 							</div>
 						</div>
 
 						<div class="categories-level-2_list">
-							<?php foreach($categories_level_2 as $category_level_2): ?>
+							<?php foreach ($categories_level_2 as $category_level_2) : ?>
 
-								<?php 
-									$category_level_2_name = $category_level_2->name;
-									$categories_level_3 = $this->catalog->getChildCategories($category_level_2);
+								<?php
+								$category_level_2_name = $category_level_2->name;
+								$categories_level_3 = $this->catalog->getChildCategories($category_level_2);
 								?>
 
-								<?php if(count($categories_level_3)): ?>
+								<?php if (count($categories_level_3)) : ?>
 									<div class="category-level-2">
 										<div class="category-level-2_name">
 											<?= $category_level_2_name ?>
 										</div>
 
 										<div class="category-level-2_arrow">
-											<img src="/resources/images/icons/arrow-bottom-black.svg" alt="">
+											<img src="/resources/images/icons/arrow-bottom-black.svg" alt="Раскрыть категорию">
 										</div>
 
 										<div class="categories-level-3_list">
-											<?php foreach($categories_level_3 as $category_level_3): ?>
+											<?php foreach ($categories_level_3 as $category_level_3) : ?>
 												<div class="category-level-3">
 													<a href="/catalog/<?= $category_level_3->id ?>"><?= $category_level_3->name ?></a>
 												</div>
-											<?php endforeach ?>	
+											<?php endforeach ?>
 										</div>
 									</div>
-								<?php else: ?>
+								<?php else : ?>
 									<a href="/catalog/<?= $category_level_2->id ?>" class="category-level-2--link">
 										<div class="category-level-2_name">
 											<?= $category_level_2_name ?>
 										</div>
 									</a>
 								<?php endif ?>
-							<?php endforeach ?>	
-						</div>	
+							<?php endforeach ?>
+						</div>
 					</div>
 
-				<?php else: ?>
+				<?php else : ?>
 					<?/*
 					<a href="/catalog/<?= $mainCategoryId ?>" class="main-category_wrapper-link">
 						<div class="main-category_icon">
@@ -110,7 +110,7 @@
 							<?= $mainCategoryName ?>
 						</div>
 					</a>
-					*/?>
+					*/ ?>
 				<?php endif ?>
 			</div>
 		<?php endforeach ?>
@@ -118,7 +118,7 @@
 
 	<div class="mobile-menu-catalog__footer">
 		<a href="tel:<?= $phone ?>">
-			<?= $phone?>
+			<?= $phone ?>
 		</a>
 	</div>
 </div>

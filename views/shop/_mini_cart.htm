@@ -1,91 +1,93 @@
-<? /** @var Shop_Cart $cart */ ?>
-<?php
-	if (!isset($cart) || !$cart) {
-		$cart = Shop_Cart::getCart();
-	}
+<?
 
-	$products_mini_cart = $cart->getItems();
-	$count_products_mini_cart = $cart->getItemsCount();
-	$total_price_mini_cart = cartTotalPrice($products_mini_cart);
+/** @var Shop_Cart $cart */ ?>
+<?php
+if (!isset($cart) || !$cart) {
+	$cart = Shop_Cart::getCart();
+}
+
+$products_mini_cart = $cart->getItems();
+$count_products_mini_cart = $cart->getItemsCount();
+$total_price_mini_cart = cartTotalPrice($products_mini_cart);
 ?>
 
 <div id="mini-cart" class="mini-cart">
 	<a href="<?= u('shop_cart', []) ?>">
 		<div class="icon">
-			<img src="/resources/images/icons/white-box.svg" alt="">
+			<img src="/resources/images/icons/white-box.svg" alt="Коробка">
 		</div>
 
-		<?php if($count_products_mini_cart): ?>
+		<?php if ($count_products_mini_cart) : ?>
 			<div class="count">
-				<?= $count_products_mini_cart ?>	
+				<?= $count_products_mini_cart ?>
 			</div>
-		<?php endif; ?>	
+		<?php endif; ?>
 
 		<div class="price">
-			<?php if($count_products_mini_cart): ?>
+			<?php if ($count_products_mini_cart) : ?>
 				<?= Core_Number::formatNumber($total_price_mini_cart) ?>
 				<span>р.</span>
-			<?php else:?>
+			<?php else : ?>
 				<span>Коробка</span>
-			<?php endif; ?>	
+			<?php endif; ?>
 		</div>
 	</a>
 
-	<?php if($count_products_mini_cart): ?>
+	<?php if ($count_products_mini_cart) : ?>
 		<div class="mini-cart-dropdown">
 
 			<div class="mini-cart-dropdown_title">Коробка</div>
 
 			<?= Phpr_Form::openTag(["id" => "test", "action" => "/shop"]) ?>
-				<div class="mini-cart-dropdown_list">
+			<div class="mini-cart-dropdown_list">
 
-					<?php foreach ($products_mini_cart as $item): ?>
+				<?php foreach ($products_mini_cart as $item) : ?>
 
-						<?php $product = $item->getProduct() ?>
+					<?php $product = $item->getProduct() ?>
 
-						<div class="item">
+					<div class="item">
 
-							<? if ($photo = $product->findMainPhoto()): ?>
-								<div class="photo <?= $product->regular_photo ? 'photo--regular':''?>">
-									<a href="<?= $product->getUrl() ?>">
-										<?php 
-											$width = $height = ($product->regular_photo) ? 80 : 60;
-											$img = $photo->getThumb($width, $height,  Phpr_ImageManipulator::keepRatio);
-										?>
-
-										<img src="<?= $img ?>" alt="<?= $product->name ?>"/>
-									</a>
-								</div>
-							<? endif ?>
-
-							<div class="name">
+						<? if ($photo = $product->findMainPhoto()) : ?>
+							<div class="photo <?= $product->regular_photo ? 'photo--regular' : '' ?>">
 								<a href="<?= $product->getUrl() ?>">
-									<?= $product->name ?>
-								</a>
+									<?php
+									$width = $height = ($product->regular_photo) ? 80 : 60;
+									$img = $photo->getThumb($width, $height,  Phpr_ImageManipulator::keepRatio);
+									?>
 
-								<?php if($sku = $item->getSku()): ?>
-									<span><?=$sku->name ?></span>
-								<?php endif; ?>
-							</div>
-
-							<div class="price">
-								<?php 
-									$product_price = cartProductPrice($item);
-									$product_total_price = cartProductPrice($item, true);
-								?>
-
-								<p class="price-product"><span><?= Core_Number::formatNumber($product_total_price) ?></span></p>
-								<p class="summa"><span><?= $item->getQuantity() ?></span> шт. &#215; <span><?= Core_Number::formatNumber($product_price) ?></span></p>
-							</div>
-
-							<div class="del">
-								<a href="#" data-handler="onDeleteProductCart" data-extra="<?= extra(["id" => $item->getId(), 'page' => $_SERVER['REQUEST_URI']]) ?>" title="Удалить">
-									<img src="/resources/images/icons/delete.svg" alt="Удалить">
+									<img src="<?= $img ?>" alt="<?= $product->name ?>" />
 								</a>
 							</div>
+						<? endif ?>
+
+						<div class="name">
+							<a href="<?= $product->getUrl() ?>">
+								<?= $product->name ?>
+							</a>
+
+							<?php if ($sku = $item->getSku()) : ?>
+								<span><?= $sku->name ?></span>
+							<?php endif; ?>
 						</div>
-					<?php endforeach ?>
-				</div>
+
+						<div class="price">
+							<?php
+							$product_price = cartProductPrice($item);
+							$product_total_price = cartProductPrice($item, true);
+							?>
+
+							<p class="price-product"><span><?= Core_Number::formatNumber($product_total_price) ?></span></p>
+							<p class="summa"><span><?= $item->getQuantity() ?></span> шт. &#215; <span><?= Core_Number::formatNumber($product_price) ?></span></p>
+						</div>
+
+						<div class="del">
+							<a href="#" data-handler="onDeleteProductCart" data-extra="<?= extra(["id" => $item->getId(), 'page' => $_SERVER['REQUEST_URI']]) ?>" title="Удалить">
+								<img src="/resources/images/icons/delete.svg" alt="Удалить">
+							</a>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
 			<? Phpr_Form::closeTag() ?>
 
 			<div class="mini-cart-dropdown_footer">
@@ -98,5 +100,5 @@
 				</div>
 			</div>
 		</div>
-	<?php endif; ?>	
+	<?php endif; ?>
 </div>

@@ -1,13 +1,13 @@
-<?php 
-	$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
-	$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
-	$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+<?php
+$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
 ?>
 
 <header>
 	<div class="header-top-section">
 		<div class="header-wrapper">
-			<div class="<?= Phpr::$request->getCurrentUri() === '/' ? 'logo-index':'logo'?>">
+			<div class="<?= Phpr::$request->getCurrentUri() === '/' ? 'logo-index' : 'logo' ?>">
 				<a href="/">
 					<span class="text-1">БЛЭК</span>
 					<img src="/resources/images/logo.svg" alt="БЛЭКБОКС">
@@ -21,18 +21,18 @@
 				<a href="tel:<?= $phone ?>"><?= $phone ?></a>
 			</div>
 
-			<?php if($address): ?>
+			<?php if ($address) : ?>
 				<div class="header-address">
 					<a href="<?= $address_link ?>" target="_blank"><?= $address ?></a>
 				</div>
 			<?php endif; ?>
 
 			<div class="btn-status-search">
-				<img src="/resources/images/icons/search.svg" alt="">
+				<img src="/resources/images/icons/search.svg" alt="Поиск">
 			</div>
 
 			<div class="header-socials">
-				<a href="whatsapp://api.whatsapp.com/send?phone=<?=Phpr::$config->get('PHONE')?>" target="_blank" title="WhatsApp">
+				<a href="whatsapp://api.whatsapp.com/send?phone=<?= Phpr::$config->get('PHONE') ?>" target="_blank" title="WhatsApp">
 					<img src="/resources/images/icons/social/whatsapp.svg" alt="WhatsApp">
 				</a>
 
@@ -50,7 +50,7 @@
 	<div class="header-bottom-section">
 		<div class="header-wrapper">
 
-			<?php if(isset($catalogRootCategories)) $this->renderLayout('_dynamic_menu_catalog', ['catalogRootCategories' => $catalogRootCategories]); ?>
+			<?php if (isset($catalogRootCategories)) $this->renderLayout('_dynamic_menu_catalog', ['catalogRootCategories' => $catalogRootCategories]); ?>
 
 			<div class="btn-catalog-menu-mobile">
 				<img src="/resources/images/icons/menu.svg" alt="Меню" />
@@ -74,5 +74,4 @@
 	</div>
 </header>
 
-<?php if(isset($catalogRootCategories)) $this->renderLayout('_dynamic_menu_catalog_mobile', ['phone' => $phone]);?>
-
+<?php if (isset($catalogRootCategories)) $this->renderLayout('_dynamic_menu_catalog_mobile', ['phone' => $phone]); ?>
