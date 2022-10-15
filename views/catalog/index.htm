@@ -1,11 +1,42 @@
-<? /* @var $categories Catalog_Category */ ?>
+<? Phpr_View::beginBlock("head") ?>
+
+<?php
+$seo_title = "Каталог товаров | БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома";
+$seo_description = "⭐️ Магазин аксессуаров для гаджетов, компьютеров, автомобилей и дома - Блэкбокс г. Южно-Сахалинск: Зарядки, кабели, наушники, чехлы, автосканеры и многое другое";
+?>
+
+<title><?= $seo_title ?></title>
+<meta name="keywords" content="купить в южно-сахалинске, купить не дорого, аксессуары для смартфонов, аксессуары для компьютеров, купить автоаксессуары, каталог Блэкбокс, интернет магазин аксессуаров, цены на товары, интернет магазин электроники Южно-Сахалинск">
+<meta name="description" content="<?= $seo_description ?>">
+
+<meta property="og:title" content="<?= $seo_title ?>" />
+<meta property="og:description" content="<?= $seo_description ?>" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<meta name="twitter:title" content="<?= $seo_title ?>" />
+<meta name="twitter:description" content="<?= $seo_description ?>" />
+
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Каталог товаров БЛЭКБОКС",
+			"item": "https://bb65.ru/catalog/"
+		}]
+	}
+</script>
+<? Phpr_View::endBlock(true) ?>
 
 <div class="catalog-categories-index container">
-	<?php if($catalogRootCategories):?>
-		<div class="catalog-categories-index_title">Каталог товаров БЛЭКБОКС</div>
+	<?php if ($catalogRootCategories) : ?>
+		<h1 class="catalog-categories-index_title">Каталог товаров БЛЭКБОКС</h1>
 		<div class="catalog-categories-index_list">
-			<?php foreach ($catalogRootCategories as $category): ?>
-				<?php $this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_multi.htm", ['category'=>$category]);?>
+			<?php foreach ($catalogRootCategories as $category) : ?>
+				<?php $this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_multi.htm", ['category' => $category]); ?>
 			<?php endforeach; ?>
 		</div>
 	<?php endif ?>

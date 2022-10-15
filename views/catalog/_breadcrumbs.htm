@@ -1,28 +1,36 @@
-<?php 
-	if($category->path){
-		$categories = $this->catalog->getParentCategories($category->path);
-		$parentCategory = $categories[count($categories) - 1];
-	}
+<?php
+if ($category->path) {
+	$categories = $this->catalog->getParentCategories($category->path);
+	$parentCategory = $categories[count($categories) - 1];
+}
 
-	$linkBack = isset($parentCategory) ? u("catalog_category", $parentCategory->id) : u("catalog_index", []);
+$linkBack = isset($parentCategory) ? u("catalog_category", $parentCategory->id) : u("catalog_index", []);
 ?>
 
 <div class="breadcrumbs">
-	<ul>
-		<li>
-			<a href="<?= $linkBack ?>">
+	<ul itemscope itemtype="https://schema.org/BreadcrumbList">
+		<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+			<a itemprop="item" href="<?= $linkBack ?>">
 				<img src="/resources/images/icons/left-arrow.svg" alt="">
+				<span itemprop="name"><?= isset($parentCategory) ? $parentCategory->name : "Каталог" ?></span>
+				<meta itemprop="position" content="<?= isset($parentCategory) ? $parentCategory->level + 1 : 1 ?>" />
 			</a>
 		</li>
 
-		<li>
-			<a href="<?= Phpr::$router->url("catalog_index") ?>">Каталог</a>
+		<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+			<a itemprop="item" href="<?= Phpr::$router->url("catalog_index") ?>">
+				<span itemprop="name">Каталог</span>
+				<meta itemprop="position" content="1" />
+			</a>
 		</li>
 
-		<?php if(isset($categories)): ?>
-			<?php foreach ($categories as $category):?>
-				<li>
-					<a href="<?= u("catalog_category", $category->id)?>"><?= $category->name?></a>
+		<?php if (isset($categories)) : ?>
+			<?php foreach ($categories as $category) : ?>
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+					<a itemprop="item" href="<?= u("catalog_category", $category->id) ?>">
+						<span itemprop="name"><?= $category->name ?></span>
+						<meta itemprop="position" content="<?= $category->level + 1 ?>" />
+					</a>
 				</li>
 			<?php endforeach; ?>
 		<?php endif; ?>

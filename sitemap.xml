@@ -1,1338 +1,2512 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
 <url>
-  <loc>http://bb65.ru/</loc>
+  <loc>https://bb65.ru/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/delivery/</loc>
+  <loc>https://bb65.ru/delivery/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/about/</loc>
+  <loc>https://bb65.ru/about/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog</loc>
+  <loc>https://bb65.ru/catalog/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/1</loc>
+  <loc>https://bb65.ru/catalog/1/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/13</loc>
+  <loc>https://bb65.ru/catalog/13/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/24</loc>
+  <loc>https://bb65.ru/catalog/24/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/5</loc>
+  <loc>https://bb65.ru/catalog/5/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/14</loc>
+  <loc>https://bb65.ru/catalog/14/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/15</loc>
+  <loc>https://bb65.ru/catalog/15/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/36</loc>
+  <loc>https://bb65.ru/catalog/36/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/6</loc>
+  <loc>https://bb65.ru/catalog/47/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/32</loc>
+  <loc>https://bb65.ru/catalog/6/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/19</loc>
+  <loc>https://bb65.ru/catalog/19/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20</loc>
+  <loc>https://bb65.ru/catalog/20/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/21</loc>
+  <loc>https://bb65.ru/catalog/21/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/22</loc>
+  <loc>https://bb65.ru/catalog/23/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/23</loc>
+  <loc>https://bb65.ru/catalog/28/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/7</loc>
+  <loc>https://bb65.ru/catalog/32/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/26</loc>
+  <loc>https://bb65.ru/catalog/7/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/27</loc>
+  <loc>https://bb65.ru/catalog/25/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/25</loc>
+  <loc>https://bb65.ru/catalog/26/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/11</loc>
+  <loc>https://bb65.ru/catalog/27/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/12</loc>
+  <loc>https://bb65.ru/catalog/11/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/17</loc>
+  <loc>https://bb65.ru/catalog/12/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/18</loc>
+  <loc>https://bb65.ru/catalog/17/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/35</loc>
+  <loc>https://bb65.ru/catalog/18/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/2</loc>
+  <loc>https://bb65.ru/catalog/52/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/8</loc>
+  <loc>https://bb65.ru/catalog/2/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/9</loc>
+  <loc>https://bb65.ru/catalog/8/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/43</loc>
+  <loc>https://bb65.ru/catalog/9/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/44</loc>
+  <loc>https://bb65.ru/catalog/43/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/3</loc>
+  <loc>https://bb65.ru/catalog/44/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/29</loc>
+  <loc>https://bb65.ru/catalog/48/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/30</loc>
+  <loc>https://bb65.ru/catalog/54/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/38</loc>
+  <loc>https://bb65.ru/catalog/55/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/39</loc>
+  <loc>https://bb65.ru/catalog/57/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/40</loc>
+  <loc>https://bb65.ru/catalog/56/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/41</loc>
+  <loc>https://bb65.ru/catalog/60/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/42</loc>
+  <loc>https://bb65.ru/catalog/61/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/4</loc>
+  <loc>https://bb65.ru/catalog/62/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/10</loc>
+  <loc>https://bb65.ru/catalog/3/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/37</loc>
+  <loc>https://bb65.ru/catalog/30/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/45</loc>
+  <loc>https://bb65.ru/catalog/51/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/shop/cart/</loc>
+  <loc>https://bb65.ru/catalog/38/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/28</loc>
+  <loc>https://bb65.ru/catalog/39/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/</loc>
+  <loc>https://bb65.ru/catalog/40/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/free-delivery/</loc>
+  <loc>https://bb65.ru/catalog/41/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/sale/</loc>
+  <loc>https://bb65.ru/catalog/42/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/337</loc>
+  <loc>https://bb65.ru/catalog/50/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/281</loc>
+  <loc>https://bb65.ru/catalog/4/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/171</loc>
+  <loc>https://bb65.ru/catalog/10/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/159</loc>
+  <loc>https://bb65.ru/catalog/37/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/145</loc>
+  <loc>https://bb65.ru/catalog/45/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/113</loc>
+  <loc>https://bb65.ru/catalog/53/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/96</loc>
+  <loc>https://bb65.ru/free-delivery/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/44</loc>
+  <loc>https://bb65.ru/shop/cart/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/5</loc>
+  <loc>https://bb65.ru/catalog/all-products/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/117</loc>
+  <loc>https://bb65.ru/cashback100/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/109</loc>
+  <loc>https://bb65.ru/sale/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/107</loc>
+  <loc>https://bb65.ru/catalog/product/118/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/30</loc>
+  <loc>https://bb65.ru/catalog/product/345/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/12</loc>
+  <loc>https://bb65.ru/catalog/product/614/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/6</loc>
+  <loc>https://bb65.ru/catalog/product/626/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/1/</loc>
+  <loc>https://bb65.ru/catalog/product/645/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/5/</loc>
+  <loc>https://bb65.ru/catalog/product/682/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/14/</loc>
+  <loc>https://bb65.ru/catalog/product/119/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/15/</loc>
+  <loc>https://bb65.ru/catalog/product/195/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/24/</loc>
+  <loc>https://bb65.ru/catalog/product/210/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/36/</loc>
+  <loc>https://bb65.ru/catalog/product/282/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/6/</loc>
+  <loc>https://bb65.ru/catalog/product/519/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/32/</loc>
+  <loc>https://bb65.ru/catalog/product/659/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/19/</loc>
+  <loc>https://bb65.ru/catalog/product/637/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20/</loc>
+  <loc>https://bb65.ru/catalog/product/663/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/21/</loc>
+  <loc>https://bb65.ru/catalog/product/665/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/22/</loc>
+  <loc>https://bb65.ru/catalog/product/667/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/23/</loc>
+  <loc>https://bb65.ru/catalog/product/676/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/28/</loc>
+  <loc>https://bb65.ru/catalog/product/681/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/7/</loc>
+  <loc>https://bb65.ru/catalog/31/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/26/</loc>
+  <loc>https://bb65.ru/catalog/33/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/27/</loc>
+  <loc>https://bb65.ru/catalog/34/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/25/</loc>
+  <loc>https://bb65.ru/catalog/13/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/11/</loc>
+  <loc>https://bb65.ru/catalog/13/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/12/</loc>
+  <loc>https://bb65.ru/catalog/13/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/13/</loc>
+  <loc>https://bb65.ru/catalog/13/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/17/</loc>
+  <loc>https://bb65.ru/catalog/product/341/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/18/</loc>
+  <loc>https://bb65.ru/catalog/product/4/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/35/</loc>
+  <loc>https://bb65.ru/catalog/product/632/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/2/</loc>
+  <loc>https://bb65.ru/catalog/product/599/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/8/</loc>
+  <loc>https://bb65.ru/catalog/product/530/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/9/</loc>
+  <loc>https://bb65.ru/catalog/product/529/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/43/</loc>
+  <loc>https://bb65.ru/catalog/product/37/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/44/</loc>
+  <loc>https://bb65.ru/catalog/product/36/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/3/</loc>
+  <loc>https://bb65.ru/catalog/product/254/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/29/</loc>
+  <loc>https://bb65.ru/catalog/product/633/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/30/</loc>
+  <loc>https://bb65.ru/catalog/24/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/38/</loc>
+  <loc>https://bb65.ru/catalog/24/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/39/</loc>
+  <loc>https://bb65.ru/catalog/24/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/40/</loc>
+  <loc>https://bb65.ru/catalog/24/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/41/</loc>
+  <loc>https://bb65.ru/catalog/product/658/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/42/</loc>
+  <loc>https://bb65.ru/catalog/product/531/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/4/</loc>
+  <loc>https://bb65.ru/catalog/product/418/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/10/</loc>
+  <loc>https://bb65.ru/catalog/product/533/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/37/</loc>
+  <loc>https://bb65.ru/catalog/product/472/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/45/</loc>
+  <loc>https://bb65.ru/catalog/product/471/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/31/</loc>
+  <loc>https://bb65.ru/catalog/product/475/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/33/</loc>
+  <loc>https://bb65.ru/catalog/product/441/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/34/</loc>
+  <loc>https://bb65.ru/catalog/product/438/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/13/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/402/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/13/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/584/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/13/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/583/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/13/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/679/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/4</loc>
+  <loc>https://bb65.ru/catalog/product/473/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/262</loc>
+  <loc>https://bb65.ru/catalog/product/474/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/36</loc>
+  <loc>https://bb65.ru/catalog/product/678/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/37</loc>
+  <loc>https://bb65.ru/catalog/product/677/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/253</loc>
+  <loc>https://bb65.ru/catalog/product/532/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/254</loc>
+  <loc>https://bb65.ru/catalog/product/604/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/24/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/534/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/24/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/603/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/24/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/602/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/24/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/582/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/165</loc>
+  <loc>https://bb65.ru/catalog/product/470/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/166</loc>
+  <loc>https://bb65.ru/catalog/product/168/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/167</loc>
+  <loc>https://bb65.ru/catalog/product/389/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/168</loc>
+  <loc>https://bb65.ru/catalog/product/400/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/169</loc>
+  <loc>https://bb65.ru/catalog/product/404/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/170</loc>
+  <loc>https://bb65.ru/catalog/product/405/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/172</loc>
+  <loc>https://bb65.ru/catalog/product/408/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/14/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/429/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/14/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/432/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/14/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/442/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/14/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/463/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/274</loc>
+  <loc>https://bb65.ru/catalog/product/465/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/275</loc>
+  <loc>https://bb65.ru/catalog/product/466/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/276</loc>
+  <loc>https://bb65.ru/catalog/product/467/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/277</loc>
+  <loc>https://bb65.ru/catalog/product/468/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/278</loc>
+  <loc>https://bb65.ru/catalog/product/469/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/279</loc>
+  <loc>https://bb65.ru/catalog/24/2/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/280</loc>
+  <loc>https://bb65.ru/catalog/14/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/282</loc>
+  <loc>https://bb65.ru/catalog/14/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/15/?order=name</loc>
+  <loc>https://bb65.ru/catalog/14/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/15/?order=new</loc>
+  <loc>https://bb65.ru/catalog/14/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/15/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/277/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/15/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/550/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/338</loc>
+  <loc>https://bb65.ru/catalog/product/456/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/339</loc>
+  <loc>https://bb65.ru/catalog/product/549/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/36/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/451/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/36/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/453/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/36/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/551/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/36/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/476/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/263</loc>
+  <loc>https://bb65.ru/catalog/product/462/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/264</loc>
+  <loc>https://bb65.ru/catalog/product/552/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/301</loc>
+  <loc>https://bb65.ru/catalog/product/461/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/336</loc>
+  <loc>https://bb65.ru/catalog/product/460/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/149</loc>
+  <loc>https://bb65.ru/catalog/product/459/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/150</loc>
+  <loc>https://bb65.ru/catalog/product/458/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/151</loc>
+  <loc>https://bb65.ru/catalog/product/457/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/156</loc>
+  <loc>https://bb65.ru/catalog/product/455/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/157</loc>
+  <loc>https://bb65.ru/catalog/product/454/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/32/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/452/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/32/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/450/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/32/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/449/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/32/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/444/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/553/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20/?order=new</loc>
+  <loc>https://bb65.ru/catalog/15/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20/?order=price</loc>
+  <loc>https://bb65.ru/catalog/15/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/15/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/45</loc>
+  <loc>https://bb65.ru/catalog/15/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/46</loc>
+  <loc>https://bb65.ru/catalog/product/339/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/47</loc>
+  <loc>https://bb65.ru/catalog/product/445/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/48</loc>
+  <loc>https://bb65.ru/catalog/product/446/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/49</loc>
+  <loc>https://bb65.ru/catalog/product/447/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/50</loc>
+  <loc>https://bb65.ru/catalog/product/448/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/51</loc>
+  <loc>https://bb65.ru/catalog/36/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/52</loc>
+  <loc>https://bb65.ru/catalog/36/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/53</loc>
+  <loc>https://bb65.ru/catalog/36/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/54</loc>
+  <loc>https://bb65.ru/catalog/36/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/55</loc>
+  <loc>https://bb65.ru/catalog/product/44/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/56</loc>
+  <loc>https://bb65.ru/catalog/product/151/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/57</loc>
+  <loc>https://bb65.ru/catalog/product/613/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/58</loc>
+  <loc>https://bb65.ru/catalog/product/150/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/59</loc>
+  <loc>https://bb65.ru/catalog/product/156/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/60</loc>
+  <loc>https://bb65.ru/catalog/product/157/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/61</loc>
+  <loc>https://bb65.ru/catalog/product/263/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/62</loc>
+  <loc>https://bb65.ru/catalog/product/301/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/63</loc>
+  <loc>https://bb65.ru/catalog/47/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/64</loc>
+  <loc>https://bb65.ru/catalog/47/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/65</loc>
+  <loc>https://bb65.ru/catalog/47/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/66</loc>
+  <loc>https://bb65.ru/catalog/47/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/67</loc>
+  <loc>https://bb65.ru/catalog/product/506/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/68</loc>
+  <loc>https://bb65.ru/catalog/product/348/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/69</loc>
+  <loc>https://bb65.ru/catalog/product/349/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/70</loc>
+  <loc>https://bb65.ru/catalog/product/352/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/71</loc>
+  <loc>https://bb65.ru/catalog/product/350/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/72</loc>
+  <loc>https://bb65.ru/catalog/product/351/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/73</loc>
+  <loc>https://bb65.ru/catalog/product/353/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/74</loc>
+  <loc>https://bb65.ru/catalog/20/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/75</loc>
+  <loc>https://bb65.ru/catalog/20/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/76</loc>
+  <loc>https://bb65.ru/catalog/20/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/77</loc>
+  <loc>https://bb65.ru/catalog/20/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/78</loc>
+  <loc>https://bb65.ru/catalog/product/45/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/79</loc>
+  <loc>https://bb65.ru/catalog/product/60/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/80</loc>
+  <loc>https://bb65.ru/catalog/product/58/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/81</loc>
+  <loc>https://bb65.ru/catalog/product/57/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/82</loc>
+  <loc>https://bb65.ru/catalog/product/56/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/83</loc>
+  <loc>https://bb65.ru/catalog/product/50/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/84</loc>
+  <loc>https://bb65.ru/catalog/product/49/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/20/2/</loc>
+  <loc>https://bb65.ru/catalog/product/48/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/23/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/47/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/23/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/46/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/23/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/70/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/23/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/21/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/285</loc>
+  <loc>https://bb65.ru/catalog/21/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/26/?order=name</loc>
+  <loc>https://bb65.ru/catalog/21/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/26/?order=new</loc>
+  <loc>https://bb65.ru/catalog/21/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/26/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/522/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/26/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/520/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/38</loc>
+  <loc>https://bb65.ru/catalog/product/521/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/108</loc>
+  <loc>https://bb65.ru/catalog/product/523/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/25/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/524/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/25/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/525/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/25/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/526/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/25/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/23/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/286</loc>
+  <loc>https://bb65.ru/catalog/23/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/287</loc>
+  <loc>https://bb65.ru/catalog/23/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/288</loc>
+  <loc>https://bb65.ru/catalog/23/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/289</loc>
+  <loc>https://bb65.ru/catalog/product/480/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/290</loc>
+  <loc>https://bb65.ru/catalog/product/285/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/12/?order=name</loc>
+  <loc>https://bb65.ru/catalog/28/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/12/?order=new</loc>
+  <loc>https://bb65.ru/catalog/28/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/12/?order=price</loc>
+  <loc>https://bb65.ru/catalog/28/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/12/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/28/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/283</loc>
+  <loc>https://bb65.ru/catalog/product/32/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/284</loc>
+  <loc>https://bb65.ru/catalog/product/656/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/94</loc>
+  <loc>https://bb65.ru/catalog/product/33/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/17/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/183/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/17/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/657/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/17/?order=price</loc>
+  <loc>https://bb65.ru/catalog/32/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/17/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/32/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/256</loc>
+  <loc>https://bb65.ru/catalog/32/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/260</loc>
+  <loc>https://bb65.ru/catalog/32/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/261</loc>
+  <loc>https://bb65.ru/catalog/product/340/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/34</loc>
+  <loc>https://bb65.ru/catalog/25/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/35</loc>
+  <loc>https://bb65.ru/catalog/25/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/300</loc>
+  <loc>https://bb65.ru/catalog/25/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/255</loc>
+  <loc>https://bb65.ru/catalog/25/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/18/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/286/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/18/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/572/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/18/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/573/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/18/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/574/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/265</loc>
+  <loc>https://bb65.ru/catalog/product/575/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/266</loc>
+  <loc>https://bb65.ru/catalog/product/576/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/267</loc>
+  <loc>https://bb65.ru/catalog/product/577/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/268</loc>
+  <loc>https://bb65.ru/catalog/product/578/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/269</loc>
+  <loc>https://bb65.ru/catalog/product/579/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/265/</loc>
+  <loc>https://bb65.ru/catalog/product/580/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/266/</loc>
+  <loc>https://bb65.ru/catalog/product/571/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/267/</loc>
+  <loc>https://bb65.ru/catalog/product/569/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/268/</loc>
+  <loc>https://bb65.ru/catalog/product/287/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/270</loc>
+  <loc>https://bb65.ru/catalog/product/288/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/271</loc>
+  <loc>https://bb65.ru/catalog/product/289/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/114</loc>
+  <loc>https://bb65.ru/catalog/product/290/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/115</loc>
+  <loc>https://bb65.ru/catalog/product/563/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/116</loc>
+  <loc>https://bb65.ru/catalog/product/564/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/195</loc>
+  <loc>https://bb65.ru/catalog/product/565/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/196</loc>
+  <loc>https://bb65.ru/catalog/product/567/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/197</loc>
+  <loc>https://bb65.ru/catalog/product/568/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/198</loc>
+  <loc>https://bb65.ru/catalog/product/581/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/199</loc>
+  <loc>https://bb65.ru/catalog/26/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/200</loc>
+  <loc>https://bb65.ru/catalog/26/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/201</loc>
+  <loc>https://bb65.ru/catalog/26/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/202</loc>
+  <loc>https://bb65.ru/catalog/26/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/203</loc>
+  <loc>https://bb65.ru/catalog/product/38/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/204</loc>
+  <loc>https://bb65.ru/catalog/product/107/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/35/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/108/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/35/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/638/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/35/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/683/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/35/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/27/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/31</loc>
+  <loc>https://bb65.ru/catalog/27/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/187</loc>
+  <loc>https://bb65.ru/catalog/27/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/188</loc>
+  <loc>https://bb65.ru/catalog/27/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/8/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/505/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/8/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/628/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/8/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/629/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/8/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/664/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/257</loc>
+  <loc>https://bb65.ru/catalog/product/666/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/39</loc>
+  <loc>https://bb65.ru/catalog/12/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/40</loc>
+  <loc>https://bb65.ru/catalog/12/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/41</loc>
+  <loc>https://bb65.ru/catalog/12/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/42</loc>
+  <loc>https://bb65.ru/catalog/12/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/43</loc>
+  <loc>https://bb65.ru/catalog/product/30/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/153</loc>
+  <loc>https://bb65.ru/catalog/product/31/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/154</loc>
+  <loc>https://bb65.ru/catalog/product/283/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/158</loc>
+  <loc>https://bb65.ru/catalog/product/284/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/160</loc>
+  <loc>https://bb65.ru/catalog/product/94/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/163</loc>
+  <loc>https://bb65.ru/catalog/product/615/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/164</loc>
+  <loc>https://bb65.ru/catalog/17/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/175</loc>
+  <loc>https://bb65.ru/catalog/17/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/176</loc>
+  <loc>https://bb65.ru/catalog/17/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/177</loc>
+  <loc>https://bb65.ru/catalog/17/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/178</loc>
+  <loc>https://bb65.ru/catalog/product/482/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/179</loc>
+  <loc>https://bb65.ru/catalog/product/483/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/180</loc>
+  <loc>https://bb65.ru/catalog/product/609/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/181</loc>
+  <loc>https://bb65.ru/catalog/product/481/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/9/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/487/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/9/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/488/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/9/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/490/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/9/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/18/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/272</loc>
+  <loc>https://bb65.ru/catalog/18/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/119</loc>
+  <loc>https://bb65.ru/catalog/18/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/120</loc>
+  <loc>https://bb65.ru/catalog/18/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/121</loc>
+  <loc>https://bb65.ru/catalog/product/618/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/122</loc>
+  <loc>https://bb65.ru/catalog/product/639/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/123</loc>
+  <loc>https://bb65.ru/catalog/product/342/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/124</loc>
+  <loc>https://bb65.ru/catalog/product/593/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/125</loc>
+  <loc>https://bb65.ru/catalog/product/115/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/126</loc>
+  <loc>https://bb65.ru/catalog/product/114/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/127</loc>
+  <loc>https://bb65.ru/catalog/product/559/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/128</loc>
+  <loc>https://bb65.ru/catalog/product/479/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/129</loc>
+  <loc>https://bb65.ru/catalog/product/343/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/130</loc>
+  <loc>https://bb65.ru/catalog/product/655/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/131</loc>
+  <loc>https://bb65.ru/catalog/product/265/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/190</loc>
+  <loc>https://bb65.ru/catalog/product/200/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/191</loc>
+  <loc>https://bb65.ru/catalog/product/594/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/43/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/595/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/43/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/198/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/43/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/625/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/43/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/635/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/302</loc>
+  <loc>https://bb65.ru/catalog/product/636/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/303</loc>
+  <loc>https://bb65.ru/catalog/product/196/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/189</loc>
+  <loc>https://bb65.ru/catalog/product/654/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/44/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/586/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/44/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/562/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/44/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/269/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/44/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/270/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/291</loc>
+  <loc>https://bb65.ru/catalog/product/271/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/29/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/266/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/29/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/203/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/29/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/556/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/29/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/557/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/162</loc>
+  <loc>https://bb65.ru/catalog/product/558/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/186</loc>
+  <loc>https://bb65.ru/catalog/product/202/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/30/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/267/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/30/?order=new</loc>
+  <loc>https://bb65.ru/catalog/52/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/30/?order=price</loc>
+  <loc>https://bb65.ru/catalog/52/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/30/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/52/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/110</loc>
+  <loc>https://bb65.ru/catalog/52/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/111</loc>
+  <loc>https://bb65.ru/catalog/product/560/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/112</loc>
+  <loc>https://bb65.ru/catalog/8/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/38/?order=name</loc>
+  <loc>https://bb65.ru/catalog/8/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/38/?order=new</loc>
+  <loc>https://bb65.ru/catalog/8/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/38/?order=price</loc>
+  <loc>https://bb65.ru/catalog/8/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/38/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/40/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/132</loc>
+  <loc>https://bb65.ru/catalog/product/42/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/133</loc>
+  <loc>https://bb65.ru/catalog/product/43/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/134</loc>
+  <loc>https://bb65.ru/catalog/product/39/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/135</loc>
+  <loc>https://bb65.ru/catalog/product/491/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/136</loc>
+  <loc>https://bb65.ru/catalog/product/178/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/137</loc>
+  <loc>https://bb65.ru/catalog/product/177/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/138</loc>
+  <loc>https://bb65.ru/catalog/product/160/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/139</loc>
+  <loc>https://bb65.ru/catalog/product/159/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/140</loc>
+  <loc>https://bb65.ru/catalog/product/154/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/141</loc>
+  <loc>https://bb65.ru/catalog/product/257/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/142</loc>
+  <loc>https://bb65.ru/catalog/product/612/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/143</loc>
+  <loc>https://bb65.ru/catalog/product/611/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/144</loc>
+  <loc>https://bb65.ru/catalog/product/597/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/146</loc>
+  <loc>https://bb65.ru/catalog/product/153/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/147</loc>
+  <loc>https://bb65.ru/catalog/product/181/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/148</loc>
+  <loc>https://bb65.ru/catalog/product/180/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/192</loc>
+  <loc>https://bb65.ru/catalog/product/179/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/39/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/176/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/39/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/175/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/39/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/163/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/39/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/651/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/335</loc>
+  <loc>https://bb65.ru/catalog/9/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/155</loc>
+  <loc>https://bb65.ru/catalog/9/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/40/?order=name</loc>
+  <loc>https://bb65.ru/catalog/9/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/40/?order=new</loc>
+  <loc>https://bb65.ru/catalog/9/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/40/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/190/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/40/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/518/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/273</loc>
+  <loc>https://bb65.ru/catalog/product/272/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/161</loc>
+  <loc>https://bb65.ru/catalog/product/131/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/41/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/128/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/41/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/127/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/41/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/634/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/41/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/668/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/298</loc>
+  <loc>https://bb65.ru/catalog/product/675/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/299</loc>
+  <loc>https://bb65.ru/catalog/43/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/173</loc>
+  <loc>https://bb65.ru/catalog/43/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/174</loc>
+  <loc>https://bb65.ru/catalog/43/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/193</loc>
+  <loc>https://bb65.ru/catalog/43/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/194</loc>
+  <loc>https://bb65.ru/catalog/product/302/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/42/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/598/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/42/?order=new</loc>
+  <loc>https://bb65.ru/catalog/44/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/42/?order=price</loc>
+  <loc>https://bb65.ru/catalog/44/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/42/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/44/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/185</loc>
+  <loc>https://bb65.ru/catalog/44/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/10/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/291/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/10/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/555/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/10/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/554/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/10/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/product/648/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/95</loc>
+  <loc>https://bb65.ru/catalog/48/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/97</loc>
+  <loc>https://bb65.ru/catalog/48/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/98</loc>
+  <loc>https://bb65.ru/catalog/48/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/99</loc>
+  <loc>https://bb65.ru/catalog/48/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/100</loc>
+  <loc>https://bb65.ru/catalog/product/194/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/101</loc>
+  <loc>https://bb65.ru/catalog/product/588/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/102</loc>
+  <loc>https://bb65.ru/catalog/54/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/103</loc>
+  <loc>https://bb65.ru/catalog/54/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/105</loc>
+  <loc>https://bb65.ru/catalog/54/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/106</loc>
+  <loc>https://bb65.ru/catalog/54/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/37/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/589/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/37/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/596/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/37/?order=price</loc>
+  <loc>https://bb65.ru/catalog/55/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/37/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/55/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/118</loc>
+  <loc>https://bb65.ru/catalog/55/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/45/?order=name</loc>
+  <loc>https://bb65.ru/catalog/55/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/45/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/605/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/45/?order=price</loc>
+  <loc>https://bb65.ru/catalog/56/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/45/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/56/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/292</loc>
+  <loc>https://bb65.ru/catalog/56/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/293</loc>
+  <loc>https://bb65.ru/catalog/56/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/294</loc>
+  <loc>https://bb65.ru/catalog/product/617/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/295</loc>
+  <loc>https://bb65.ru/catalog/60/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/296</loc>
+  <loc>https://bb65.ru/catalog/60/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/297</loc>
+  <loc>https://bb65.ru/catalog/60/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/28/?order=name</loc>
+  <loc>https://bb65.ru/catalog/60/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/28/?order=new</loc>
+  <loc>https://bb65.ru/catalog/product/622/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/28/?order=price</loc>
+  <loc>https://bb65.ru/catalog/product/623/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/28/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/61/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/32</loc>
+  <loc>https://bb65.ru/catalog/61/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/33</loc>
+  <loc>https://bb65.ru/catalog/61/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/182</loc>
+  <loc>https://bb65.ru/catalog/61/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/183</loc>
+  <loc>https://bb65.ru/catalog/product/640/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/catalog/product/184</loc>
+  <loc>https://bb65.ru/catalog/product/641/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/sale</loc>
+  <loc>https://bb65.ru/catalog/product/671/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/sale/?order=name</loc>
+  <loc>https://bb65.ru/catalog/product/672/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/sale/?order=new</loc>
+  <loc>https://bb65.ru/catalog/62/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/sale/?order=price</loc>
+  <loc>https://bb65.ru/catalog/62/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/sale/?order=-price</loc>
+  <loc>https://bb65.ru/catalog/62/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/uploaded/c6/58/75/778_1000x800_fit-1411688643.jpg</loc>
+  <loc>https://bb65.ru/catalog/62/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/uploaded/28/c4/95/775_1000x800_fit-3560294478.jpg</loc>
+  <loc>https://bb65.ru/catalog/product/644/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/uploaded/46/b4/1c/776_1000x800_fit-4020010885.jpg</loc>
+  <loc>https://bb65.ru/catalog/product/673/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://bb65.ru/uploaded/9b/3c/00/777_1000x800_fit-507761101.jpg</loc>
+  <loc>https://bb65.ru/catalog/product/674/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
+<url>
+  <loc>https://bb65.ru/catalog/30/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/30/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/30/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/30/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/113/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/112/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/111/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/110/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/344/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/548/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/51/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/51/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/51/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/51/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/499/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/546/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/545/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/544/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/543/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/542/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/540/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/539/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/538/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/515/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/513/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/512/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/510/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/503/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/502/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/500/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/547/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/38/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/38/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/38/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/38/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/141/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/145/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/137/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/133/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/148/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/139/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/140/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/138/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/144/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/136/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/146/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/147/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/192/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/39/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/39/?order=new</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/39/?order=price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/39/?order=-price</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/155/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/product/643/</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://bb65.ru/catalog/40/?order=name</loc>
+  <lastmod>2022-10-15T03:34:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>

@@ -1,118 +1,121 @@
 <? Phpr_View::beginBlock("head") ?>
-	<?php if(isset($category) && $category): ?>
+<?php if (isset($category) && $category) : ?>
 
-		<?php
-			$seo_keywords = '';
-			$seo_description = '';
+	<?php
+	$seo_keywords = '';
+	$seo_description = '';
+	$seo_title = "Купить " . $category->name . " в интернет магазине БЛЭКБОКС. Большой выбор, самые низкие цены." . ($pagination->count_pages > 1 ? ' - страница ' . $pagination->number_current_page . ' из ' . $pagination->count_pages : '');
 
-			if(isset($category->seo) && $category->seo->seo_keywords){
-				$seo_keywords = $category->seo->seo_keywords;
-			}else{
-				$words = [];
-				array_push($words, ...['купить ' . $category->name, $category->name, 'в южно-сахалинске']);
-				$seo_keywords = implode(', ', $words);
-			}
+	if (isset($category->seo) && $category->seo->seo_keywords) {
+		$seo_keywords = $category->seo->seo_keywords;
+	} else {
+		$words = [];
+		array_push($words, ...['купить ' . $category->name, $category->name, 'в южно-сахалинске']);
+		$seo_keywords = implode(', ', $words);
+	}
 
-			if(isset($category->seo) && $category->seo->seo_description){
-				$seo_description = $category->seo->seo_description;
-			}else{
-				$seo_description = "Купить " . $category->name . " по самым выгодным ценам в интернет магазине БЛЭКБОКС (bb65.ru). Большой выбор товаров с доставкой по городу Южно-Сахалинск и острову Сахалин";
-			}			
-		?>		
+	if (isset($category->seo) && $category->seo->seo_description) {
+		$seo_description = $category->seo->seo_description;
+	} else {
+		$seo_description = "⭐️ Купить " . $category->name . " по самым выгодным ценам в интернет магазине БЛЭКБОКС (bb65.ru). Большой выбор товаров с доставкой по городу Южно-Сахалинск и острову Сахалин";
+	}
+	?>
 
-		<meta name="keywords" content="<?= $seo_keywords ?>">
-		<meta name="description" content="<?= $seo_description ?>">
-	<?php endif; ?>
+	<title><?= $seo_title ?></title>
+	<meta name="keywords" content="<?= $seo_keywords ?>">
+	<meta name="description" content="<?= $seo_description ?>">
+
+
+	<meta property="og:title" content="<?= $seo_title ?>" />
+	<meta property="og:description" content="<?= $seo_description ?>" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+	<meta name="twitter:title" content="<?= $seo_title ?>" />
+	<meta name="twitter:description" content="<?= $seo_description ?>" />
+<?php endif; ?>
 <? Phpr_View::endBlock(true) ?>
 
-<?php if (isset($category) && $category): ?>
+<?php if (isset($category) && $category) : ?>
 
 	<?php $subCategories = $this->catalog->getChildCategories($category); ?>
 
-	<div class="container <?= $subCategories ? 'catalog-categories': 'catalog-products'?>">
+	<div class="container <?= $subCategories ? 'catalog-categories' : 'catalog-products' ?>">
 
 		<?php $this->renderPartial('breadcrumbs', array('category' => $category)) ?>
 
-		<?php if(count($subCategories)): ?>
+		<?php if (count($subCategories)) : ?>
 
-			<?/* --- КАТЕГОРИИ --- */?>
+			<?/* --- КАТЕГОРИИ --- */ ?>
 
-			<div class="catalog-categories-title"><?= $category->name; ?></div>
+			<h1 class="catalog-categories-title"><?= $category->name; ?></h1>
 
 			<div class="catalog-categories-list">
 				<?php
-					foreach ($subCategories as $subCategory){
+				foreach ($subCategories as $subCategory) {
 
-						$typeItem = count($this->catalog->getChildCategories($subCategory)) ? 'multi': 'single';
+					$typeItem = count($this->catalog->getChildCategories($subCategory)) ? 'multi' : 'single';
 
-						$this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_".$typeItem.".htm", ['category'=>$subCategory]);
-					}
+					$this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_" . $typeItem . ".htm", ['category' => $subCategory]);
+				}
 				?>
 			</div>
-		<?php else: ?>
+		<?php else : ?>
 
-			<?/* --- ТОВАРЫ --- */?>
+			<?/* --- ТОВАРЫ --- */ ?>
 
 			<div class="heading-page">
-				<h1><?= $category->name?></h1>
+				<h1><?= $category->name ?></h1>
 			</div>
 
 			<div class="catalog-products_wrapper">
 
-				<?php //$this->renderPartial('filters') ?>
+				<?php //$this->renderPartial('filters') 
+				?>
 
-				<?php if (isset($products) && count($products)): ?>
+				<?php if (isset($products) && count($products)) : ?>
 					<div class="catalog-products_list">
-						<?php 
-							$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
-							$this->renderPartial('sorting', ['viewModeProductsList'=>$viewModeProductsList, 'url'=>'catalog/'.$category->id]);
+						<?php
+						$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
+						$this->renderPartial('sorting', ['viewModeProductsList' => $viewModeProductsList, 'url' => 'catalog/' . $category->id]);
 						?>
 
 						<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
-							<?php foreach ($products as $product): ?>
+							<?php foreach ($products as $product) : ?>
 
-								<?php 
-									if($product->skus){
-										foreach($product->skus as $sku){
+								<?php
+								if ($product->skus) {
+									foreach ($product->skus as $sku) {
 
-											$product_hidden = true;
-	
-											if($sku->leftover){
-												$product_hidden = false;
-												break;
-											}
+										$product_hidden = true;
+
+										if ($sku->leftover) {
+											$product_hidden = false;
+											break;
 										}
 									}
+								}
 
-									if(!$product->skus || !$product_hidden){
-										$this->renderPartial("product_card", ['product'=>$product]);
-									}
+								if (!$product->skus || !$product_hidden) {
+									$this->renderPartial("product_card", ['product' => $product]);
+								}
 								?>
 							<?php endforeach; ?>
-						</div>	
+						</div>
 					</div>
-				<?php else: ?>
+				<?php else : ?>
 					<div class="catalog-no-products">
 						<div class="catalog-no-products_text">Весь товар закончился, но скоро появится новый :)</div>
 						<div class="catalog-no-products_btn">
 							<a href="/catalog">Посмотреть другие крутые товары</a>
 						</div>
 					</div>
-				<?php endif; ?>	
+				<?php endif; ?>
 			</div>
-		<?php endif;?>
+		<?php endif; ?>
 
 		<?php $this->renderPartial("pagination", ["route" => "catalog_category"]) ?>
 	</div>
-<?php else: ?>
+<?php else : ?>
 	<div class="catalog-no-category">Категория не найдена</div>
 <?php endif; ?>
-		
-	
-		
-
-
-
-
-
-
