@@ -1,29 +1,29 @@
 <div class="container">
-	<div class="index-top-section">	
+	<div class="index-top-section">
 
-		<?php if(isset($catalogRootCategories) && count($catalogRootCategories)): ?>
+		<?php if (isset($catalogRootCategories) && count($catalogRootCategories)) : ?>
 			<div class="catalog-menu">
 				<ul>
-					<?php foreach ($catalogRootCategories as $category): ?>
+					<?php foreach ($catalogRootCategories as $category) : ?>
 						<li>
-							<a href="/catalog/<?= $category->id ?>">
+							<a href="/catalog/<?= $category->id ?>/">
 								<?php
-									if(isset($category->image_id) && isset($category->image_path)){
-										$image = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
-									}else{
-										$image = "/resources/images/icons/no-image.svg";
-									}
+								if (isset($category->image_id) && isset($category->image_path)) {
+									$image = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+								} else {
+									$image = "/resources/images/icons/no-image.svg";
+								}
 								?>
 
-								<img src="<?=$image?>" alt="<?= $category->name?>" />
+								<img src="<?= $image ?>" alt="<?= $category->name ?>" />
 								<span><?= $category->name ?></span>
 							</a>
 
-							<?php if(isset($category->hot_categories) && count($category->hot_categories)):?>
+							<?php if (isset($category->hot_categories) && count($category->hot_categories)) : ?>
 								<div class="hot-categories">
-									<?php foreach($category->hot_categories as $hotCategory): ?>
-										<a href="/catalog/<?= $hotCategory->id?>"><?= $hotCategory->name?></a>
-									<?php endforeach ?>	
+									<?php foreach ($category->hot_categories as $hotCategory) : ?>
+										<a href="/catalog/<?= $hotCategory->id ?>"><?= $hotCategory->name ?></a>
+									<?php endforeach ?>
 								</div>
 							<?php endif ?>
 						</li>
@@ -33,110 +33,110 @@
 				<div class="btns">
 					<div class="btn">
 						<a href="/catalog/">Все категории</a>
-					</div>	
-					
+					</div>
+
 					<div class="btn">
-						<a href="/catalog/all-products">Все товары</a>
+						<a href="/catalog/all-products/">Все товары</a>
 					</div>
 				</div>
 			</div>
-		<?php endif;?>
+		<?php endif; ?>
 
-		<?php 
-			$mainSlider = App_Helper::getBanners('main_slider');
-			$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
+		<?php
+		$mainSlider = App_Helper::getBanners('main_slider');
+		$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
 		?>
 
-		<?php if(isset($mainSlider) && count($mainSlider)): ?>
+		<?php if (isset($mainSlider) && count($mainSlider)) : ?>
 			<div class="main-slider swiper">
 				<div class="button-prev"></div>
 				<div class="button-next"></div>
 
 				<div class="swiper-wrapper">
-					<?php foreach ($mainSlider as $banner): ?>
-						
+					<?php foreach ($mainSlider as $banner) : ?>
+
 						<?php $imgBanner = $banner->image->getPath(); ?>
 
-						<?php if($imgBanner): ?>
-							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>);" title="<?= $banner->name ?>">
-								<?php if($banner->link || $banner->link_page_id): ?>
-									<a href="<?= ($banner->link_type == 'page') ? $banner->page_code : $banner->link?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>></a>
-								<?php endif;?>
-							</div>		
+						<?php if ($imgBanner) : ?>
+							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>)" title="<?= $banner->name ?>">
+								<?php if ($banner->link_type !== 'no_link') : ?>
+									<a href="<?= ($banner->link_type == 'page') ? $banner->page_code : $banner->link ?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>></a>
+								<?php endif; ?>
+							</div>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
 			</div>
-		<?php endif;?>
+		<?php endif; ?>
 
-		<?php if(isset($mainSliderMobile) && count($mainSliderMobile)): ?>
+		<?php if (isset($mainSliderMobile) && count($mainSliderMobile)) : ?>
 			<div class="main-slider-mobile swiper">
 				<div class="swiper-wrapper">
-					<?php foreach ($mainSliderMobile as $bannerMobile): ?>
+					<?php foreach ($mainSliderMobile as $bannerMobile) : ?>
 
 						<?php $imgBanner = $bannerMobile->image->getPath(); ?>
 
-						<?php if($imgBanner): ?>
-							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>);" title="<?= $bannerMobile->name ?>">
-								<?php if($bannerMobile->link || $bannerMobile->link_page_id): ?>
-									<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>></a>
-								<?php endif;?>
-							</div>		
+						<?php if ($imgBanner) : ?>
+							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>)" title="<?= $bannerMobile->name ?>">
+								<?php if ($banner->link_type !== 'no_link') : ?>
+									<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link ?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>></a>
+								<?php endif; ?>
+							</div>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
 			</div>
 			<div class="main-slider-mobile-pagination"></div>
-		<?php endif;?>
+		<?php endif; ?>
 	</div>
 
-	<?php 
-		$pathBlocks = $this->getViewsDir() . "/catalog/blocks/";
+	<?php
+	$pathBlocks = $this->getViewsDir() . "/catalog/blocks/";
 
-		$blocks = [
-			[
-				'show'=> true,
-				'name' => 'product_grid', 
-				'products' => $usededProducts ?? [],
-				'params' => [
-					'title' => 'Б/У товары',
-					'view_type' => 'list',
-					'link' => '/sale/'
-				]
-			],
-			[
-				'show'=> true,
-				'name' => 'product_grid', 
-				'products' => $productSale ?? [],
-				'params' => [
-					'title' => 'Товары со скидкой',
-					'link' => '/sale/'
-				]
-			],
-			[
-				'show'=> true,
-				'name' => 'product_grid', 
-				'products' => $productBestsellers ?? [],
-				'params' => [
-					'title' => 'Топ продаж',
-					'view_type' => 'list'
-				]
-			],
-			[
-				'show'=> true,
-				'name' => 'product_slider', 
-				'products' => $productNew ?? [],
-				'params' => [
-					'title' => 'Новинки',
-					'view_type' => 'list'
-				]
+	$blocks = [
+		[
+			'show' => true,
+			'name' => 'product_grid',
+			'products' => $usededProducts ?? [],
+			'params' => [
+				'title' => 'Б/У товары',
+				'view_type' => 'list',
+				'link' => '/sale/'
 			]
-		];
+		],
+		[
+			'show' => true,
+			'name' => 'product_grid',
+			'products' => $productSale ?? [],
+			'params' => [
+				'title' => 'Товары со скидкой',
+				'link' => '/sale/'
+			]
+		],
+		[
+			'show' => true,
+			'name' => 'product_grid',
+			'products' => $productBestsellers ?? [],
+			'params' => [
+				'title' => 'Топ продаж',
+				'view_type' => 'list'
+			]
+		],
+		[
+			'show' => true,
+			'name' => 'product_slider',
+			'products' => $productNew ?? [],
+			'params' => [
+				'title' => 'Новинки',
+				'view_type' => 'list'
+			]
+		]
+	];
 
-		foreach($blocks as $block){
-			if($block['show']){
-				$this->renderPartial($pathBlocks . $block['name'] . ".htm", array_merge(['products' => $block['products']], $block['params']));
-			}
+	foreach ($blocks as $block) {
+		if ($block['show']) {
+			$this->renderPartial($pathBlocks . $block['name'] . ".htm", array_merge(['products' => $block['products']], $block['params']));
 		}
+	}
 	?>
 </div>
