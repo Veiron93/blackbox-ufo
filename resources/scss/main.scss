@@ -383,8 +383,6 @@ footer{
 		width: 850px;
 		flex: none;
 
-		
-
 		.swiper-slide{
 			background-repeat: no-repeat;
 			background-position: center;
@@ -467,6 +465,10 @@ footer{
 
 		.main-slider{
 			width: 720px;
+
+			.swiper-slide{
+				background-size: contain;
+			}
 		}
 	}
 
@@ -522,6 +524,11 @@ footer{
 
 		.main-slider{
 			margin-bottom: 20px;
+			max-width: 100%;
+			
+			.swiper-slide{
+				background-size: contain;
+			}
 		}
 	}
 
@@ -591,8 +598,7 @@ footer{
 		.main-slider-mobile{
 			display: block;
 			height: 150px;
-			width: 100%;
-			border-radius: 14px;		
+			width: 100%;		
 			
 			.swiper-slide{
 				background-repeat: no-repeat;

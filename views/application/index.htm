@@ -49,8 +49,11 @@
 
 		<?php if (isset($mainSlider) && count($mainSlider)) : ?>
 			<div class="main-slider swiper">
-				<div class="button-prev"></div>
-				<div class="button-next"></div>
+
+				<?php if (count($mainSlider) > 1) : ?>
+					<div class="button-prev"></div>
+					<div class="button-next"></div>
+				<?php endif; ?>
 
 				<div class="swiper-wrapper">
 					<?php foreach ($mainSlider as $banner) : ?>
@@ -86,6 +89,7 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
+
 			<div class="main-slider-mobile-pagination"></div>
 		<?php endif; ?>
 	</div>
