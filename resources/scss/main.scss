@@ -383,11 +383,17 @@ footer{
 		width: 850px;
 		flex: none;
 
-		//border: 1px solid red;
+		
 
 		.swiper-slide{
 			background-repeat: no-repeat;
 			background-position: center;
+			background-size: cover;
+
+			a{
+				display: block;
+				height: 100%;
+			}
 		}
 
 		.button-prev{
@@ -592,6 +598,11 @@ footer{
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: cover;
+
+				a{
+					display: block;
+					height: 100%;
+				}
 			}
 		}
 
