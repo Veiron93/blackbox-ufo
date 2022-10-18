@@ -1,26 +1,25 @@
 <? Phpr_View::beginBlock("head") ?>
-<meta property="og:type" content="article" />
-<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-<meta property="og:site_name" content="<?= h(site_title()) ?>" />
+
 
 <?php if (isset($product) && $product) : ?>
+
 	<?php
 	$metaTitle = h(strip_tags($product->name));
-	$metaDescription = "Купить $metaTitle в интернет магазине БЛЭКБОКС (bb65.ru)"
+	$metaDescription = "Купить $metaTitle в интернет-магазине БЛЭКБОКС. Отличные цены, скидки, большой выбор, доставка по г. Южно-Сахалинск и другие города.";
+	$image = $this->catalog->imageProduct($product->images);
 	?>
 
+	<title><?= $metaTitle ?> - Купить в интернет-магазине БЛЭКБОКС, по отличной цене, доставка по г. Южно-Сахалинск</title>
 	<meta name="description" content="<?= $metaDescription ?>">
 
 	<meta property="og:title" content="<?= $metaTitle ?>" />
 	<meta property="og:description" content="<?= $metaDescription ?>" />
+	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
 
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
 	<meta name="twitter:title" content="<?= $metaTitle ?>" />
 	<meta name="twitter:description" content="<?= $metaDescription ?>" />
-
-	<?php $image = $this->catalog->imageProduct($product->images); ?>
-	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
 	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
 <?php endif ?>
 

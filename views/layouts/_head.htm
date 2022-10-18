@@ -13,15 +13,17 @@
 	<title><?= h(site_title($title)) ?></title>
 	<meta name="keywords" content="<?= site_keywords() ?>" />
 	<meta name="description" content="<?= site_description() ?>" />
+
 	<meta property="og:title" content="БЛЭКБОКС - Аксессуары для гаджетов, компьютеров, автомобилей и дома" />
 	<meta property="og:description" content="Большой ассортимент аксессуаров для гаджетов, компьютеров, автомобилей и дома в интернет-магазине БЛЭКБОКС (bb65.ru). Бесплатная доставка по г. Южно-Сахалинск" />
+	<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+
 <?php endif; ?>
 
+<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:type" content="website">
-<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>">
-<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
-<meta property="og:site_name" content="БЛЭКБОКС">
+<meta property="og:site_name" content="bb65.ru">
 
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
