@@ -1,37 +1,37 @@
 <? Phpr_View::beginBlock("head") ?>
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-	<meta property="og:site_name" content="<?= h(site_title()) ?>" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<meta property="og:site_name" content="<?= h(site_title()) ?>" />
 
-	<?php if (isset($product) && $product) : ?>
-		<?php
-			$metaTitle = h(strip_tags($product->name));
-			$metaDescription = "Купить $metaTitle в интернет магазине БЛЭКБОКС (bb65.ru)"
-		?>
+<?php if (isset($product) && $product) : ?>
+	<?php
+	$metaTitle = h(strip_tags($product->name));
+	$metaDescription = "Купить $metaTitle в интернет магазине БЛЭКБОКС (bb65.ru)"
+	?>
 
-		<meta name="description" content="<?= $metaDescription ?>">
+	<meta name="description" content="<?= $metaDescription ?>">
 
-		<meta property="og:title" content="<?= $metaTitle ?>" />
-		<meta property="og:description" content="<?= $metaDescription ?>" />
+	<meta property="og:title" content="<?= $metaTitle ?>" />
+	<meta property="og:description" content="<?= $metaDescription ?>" />
 
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-		<meta name="twitter:title" content="<?= $metaTitle ?>" />
-		<meta name="twitter:description" content="<?= $metaDescription ?>" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+	<meta name="twitter:title" content="<?= $metaTitle ?>" />
+	<meta name="twitter:description" content="<?= $metaDescription ?>" />
 
-		<?php $image = $this->catalog->imageProduct($product->images); ?>
-		<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
-		<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
-	<?php endif ?>
+	<?php $image = $this->catalog->imageProduct($product->images); ?>
+	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+<?php endif ?>
 
 <? Phpr_View::endBlock(true) ?>
 
 <?php Phpr_View::beginBlock("view") ?>
 <div class="catalog-product container">
 
-	<?php $this->renderPartial('breadcrumbs', array('category' => $category, 'product' => $product)) ?>
-
 	<?php if (isset($product) && $product) : ?>
+
+		<?php $this->renderPartial('breadcrumbs', array('category' => $category, 'product' => $product)) ?>
 
 		<?php if (isset($product->skus)) $selected_sku = $product->skus[0]; ?>
 
@@ -104,69 +104,69 @@
 						</div>
 					<?php endif; ?>
 
-					<?php if($product->is_useded_device): ?>
+					<?php if ($product->is_useded_device) : ?>
 						<div class="catalog-product_usesed-divice-description">
-							<?php if($product->state_device_useded_device): ?>
-								<div class="item item-flag" style="background: <?=App_Catalog::colorStateProduct($product->state_device_useded_device)?>">Состояние <?=$product->state_device_useded_device?> из 10</div>
+							<?php if ($product->state_device_useded_device) : ?>
+								<div class="item item-flag" style="background: <?= App_Catalog::colorStateProduct($product->state_device_useded_device) ?>">Состояние <?= $product->state_device_useded_device ?> из 10</div>
 							<?php endif; ?>
 
-							<?php if($product->state_battery_useded_device): ?>
-								<div class="item item-flag item-state_battery">Аккумулятор <?=$product->state_battery_useded_device?> из 100</div>
+							<?php if ($product->state_battery_useded_device) : ?>
+								<div class="item item-flag item-state_battery">Аккумулятор <?= $product->state_battery_useded_device ?> из 100</div>
 							<?php endif; ?>
 
-							<?php if($product->guarantee_useded_devicet): ?>
-								<div class="item item-flag item-state_guarantee">Гарантия до <?=$product->guarantee_useded_devicet?></div>
+							<?php if ($product->guarantee_useded_devicet) : ?>
+								<div class="item item-flag item-state_guarantee">Гарантия до <?= $product->guarantee_useded_devicet ?></div>
 							<?php endif; ?>
 
-							<?php if($product->defect_screen_useded_device): ?>
+							<?php if ($product->defect_screen_useded_device) : ?>
 								<div class="item item-flag item-state_defect">Дефекты на экране</div>
 							<?php endif; ?>
 
-							<?php if($product->defect_body_useded_device): ?>
+							<?php if ($product->defect_body_useded_device) : ?>
 								<div class="item item-flag item-state_defect">Дефекты на корпусе</div>
 							<?php endif; ?>
 
-							<?php if($product->complect_useded_device): ?>
+							<?php if ($product->complect_useded_device) : ?>
 								<div class="item item-flag item-state_is-complect">Полный комплект</div>
-							<?php elseif($product->complect_non_elements_useded_device):?>	
+							<?php elseif ($product->complect_non_elements_useded_device) : ?>
 								<div class="item item-flag item-state_is-complect-non">Неполный комплект</div>
 
 								<div class="item item-text">
 									<span>Отстуствует:</span>
-									<div><?=$product->complect_non_elements_useded_device?></div>
+									<div><?= $product->complect_non_elements_useded_device ?></div>
 								</div>
 							<?php endif; ?>
 
-							<?php if($product->added_acsessuares_useded_device): ?>
+							<?php if ($product->added_acsessuares_useded_device) : ?>
 								<div class="item item-text">
 									<span>Дополнительные аксессуары:</span>
-									<div><?=$product->added_acsessuares_useded_device?></div>
+									<div><?= $product->added_acsessuares_useded_device ?></div>
 								</div>
 							<?php endif; ?>
 						</div>
-					<?php endif;?>
+					<?php endif; ?>
 
-					<?php 
-						$short_description = $product->short_description;
-						$description = $product->description;
+					<?php
+					$short_description = $product->short_description;
+					$description = $product->description;
 					?>
 
-					<?php if($short_description): ?>
+					<?php if ($short_description) : ?>
 						<div class="catalog-product_short-description">
 							<?= nl2br($short_description) ?>
 						</div>
-					<?php elseif(!$short_description && $description): ?>
+					<?php elseif (!$short_description && $description) : ?>
 						<div class="catalog-product_description" data-formatted-text>
 							<?= $description ?>
 						</div>
-					<?php endif;?>
+					<?php endif; ?>
 
-					<?php if($short_description && $description): ?>
+					<?php if ($short_description && $description) : ?>
 						<div class="catalog-product_description-hidden">
 							<div class="text" data-formatted-text><?= $description ?></div>
 							<div class="btn-more">Показать всё</div>
 						</div>
-					<?php endif;?>
+					<?php endif; ?>
 				</div>
 			</div>
 

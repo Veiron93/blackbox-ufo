@@ -2,11 +2,14 @@
 
 class Application extends App_Controller
 {
+	public static $infinity_products_list;
+
+	protected $globalHandlers = [
+		"onGetRandomProducts"
+	];
 
 	public function index()
 	{
-		// $this->layout = 'index';
-
 		// Б/У товары
 		$this->viewData['usededProducts'] = $this->catalog::getProducts("cp.is_useded_device is not null && cp.show_block_useded_device", 6);
 
@@ -18,5 +21,17 @@ class Application extends App_Controller
 
 		// Новинки
 		$this->viewData['productNew'] = $this->catalog::getProducts("cp.is_new is not null", 12);
+
+		// рандомные товары
+		// $this->infinity_products_list = new Infinity_Products_List();
+		// $this->viewData['randomProducts'] = $this->infinity_products_list::$products;
 	}
+
+
+	// public function onGetRandomProducts()
+	// {
+	// 	$products = $this->infinity_products_list::getProducts();
+
+	// 	//traceLog($products);
+	// }
 }

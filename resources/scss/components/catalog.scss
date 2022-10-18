@@ -1506,13 +1506,19 @@
 		line-height: 1em;
 	}
 
-	
-
 	@include screen_lg_up {
 		.wrapper-products{
 			.product-card{
 				&:nth-child(6){
 					display: none;
+				}
+
+				&_photo{
+					.product-card_flags{
+						.bestseller{
+							display: none;
+						}
+					}
 				}
 			}
 		}
@@ -1520,6 +1526,39 @@
 
 	@include screen_sm_down {
 		margin-top: 35px;
+	}
+}
+
+
+// бесконечный список
+.infinity-products-list{
+	//border: 1px solid red;
+	margin-top: 45px;
+
+	.title {
+		margin-bottom: 12px;
+		font-size: 22px;
+		font-weight: 500;
+		line-height: 1em;
+	}
+
+	.btn-more-products{
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+		border-radius: 14px;
+		height: 40px;
+		width: 250px;
+		background: $accent;
+		transition: background .2s;
+		cursor: pointer;
+		margin-top: 30px;
+
+		&:hover{
+			background: $accentHover;
+		}
 	}
 }
 

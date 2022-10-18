@@ -1,0 +1,24 @@
+<?php if (isset($products) && count($products)) : ?>
+    <div class="infinity-products-list">
+        <div class="title">
+            <?php if (isset($link) && $link) : ?>
+                <a href="<?= $link ?>"><?= $title ?></a>
+            <?php else : ?>
+                <?= $title ?>
+            <?php endif ?>
+        </div>
+
+        <div class="wrapper-products wrapper-products--default lg-5 md-3 sm-2" data-view-list="grid">
+            <?php foreach ($products as $product) : ?>
+                <?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product' => $product]); ?>
+            <?php endforeach ?>
+        </div>
+
+
+
+        <!-- <div class="btn-more-products">Хочу ещё</div> -->
+        <form>
+            <a class="btn-more-products" href="#" data-handler="onGetRandomProducts">Хочу ещё</a>
+        </form>
+    </div>
+<?php endif ?>

@@ -1,22 +1,20 @@
-<?php 
-	// проверка добавлен ли товар в корзину
-	if(in_array($product->id, $idsProductsCart)) $added = true; 
+<?php
+// проверка добавлен ли товар в корзину
+if (in_array($product->id, $idsProductsCart)) $added = true;
 ?>
 
-<div class="product-card <?= (isset($added) && $added) ? 'added': '' ?>" 
-	data-id="<?=$product->id?>"
->
-	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular': 'product-card_photo--normal'?>">
-		
+<div class="product-card <?= (isset($added) && $added) ? 'added' : '' ?>" data-id="<?= $product->id ?>">
+	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular' : 'product-card_photo--normal' ?>">
+
 		<a href="<?= u("catalog_product", $product->id); ?>">
 			<?php $image = $this->catalog->imageProduct($product->images); ?>
-			<img src="<?= $image ?>" alt="<?= $product->name?>" />
+			<img src="<?= $image ?>" alt="<?= $product->name ?>" loading="lazy" />
 		</a>
 
-		<?php $this->renderPartial($this->getViewsDir() . "/catalog/_flags_product.htm", [ 
+		<?php $this->renderPartial($this->getViewsDir() . "/catalog/_flags_product.htm", [
 			'discount' => $product->old_price ? [$product->old_price, $product->price] : null,
 			'bestseller' => $product->best_seller
-			]);?>
+		]); ?>
 	</div>
 
 	<div class="product-card_info">
@@ -25,31 +23,31 @@
 			<a href="<?= u("catalog_product", $product->id); ?>" title="<?= $product->name ?>"><?= $product->name ?></a>
 		</div>
 
-		<?php if($product->is_useded_device): ?>
-			<div class="product-card_info-state" title="Состояние товара" style="background: <?=App_Catalog::colorStateProduct($product->state_device_useded_device)?>">
-				<span>Состояние</span> <?=$product->state_device_useded_device ?> из 10
+		<?php if ($product->is_useded_device) : ?>
+			<div class="product-card_info-state" title="Состояние товара" style="background: <?= App_Catalog::colorStateProduct($product->state_device_useded_device) ?>">
+				<span>Состояние</span> <?= $product->state_device_useded_device ?> из 10
 			</div>
 		<?php endif; ?>
 
 		<div class="product-card_info-buy">
-			<?php if(isset($product->skus)): ?>
+			<?php if (isset($product->skus)) : ?>
 
-				<?php  
-					$prices = [];
+				<?php
+				$prices = [];
 
-					foreach($product->skus as $sku){
+				foreach ($product->skus as $sku) {
 
-						if($sku->price > 0 && $sku->leftover){
-							array_push($prices, round($sku->price));
-						}
+					if ($sku->price > 0 && $sku->leftover) {
+						array_push($prices, round($sku->price));
 					}
+				}
 
-					array_push($prices, round($product->price));
+				array_push($prices, round($product->price));
 				?>
 
 				<div class="price">
 					<div class="price-actual">
-						<?php if(count($prices) > 1): ?>
+						<?php if (count($prices) > 1) : ?>
 							<span>от</span>
 						<?php endif ?>
 
@@ -57,11 +55,11 @@
 					</div>
 				</div>
 
-			<?php else: ?>
+			<?php else : ?>
 
-				<?php if($product->price): ?>
+				<?php if ($product->price) : ?>
 					<div class="price">
-						<?php if($product->old_price): ?>
+						<?php if ($product->old_price) : ?>
 							<div class="price-old"><?= Phpr::$lang->num($product->old_price) ?></div>
 						<?php endif ?>
 
@@ -70,19 +68,19 @@
 				<?php endif; ?>
 
 				<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
-					
-					<?php 
-						$viewData = [
-							'withQuantity' => true,
-							'initialQuantity' => 1,
-							'item' => $product,
-							'type' => 'product',
-							'idPrefix' => "atc-product-{$product->id}",
-							'idsProductsCart' => $idsProductsCart
-						];
-					?>
 
-					<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData);?>
+				<?php
+				$viewData = [
+					'withQuantity' => true,
+					'initialQuantity' => 1,
+					'item' => $product,
+					'type' => 'product',
+					'idPrefix' => "atc-product-{$product->id}",
+					'idsProductsCart' => $idsProductsCart
+				];
+				?>
+
+				<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData); ?>
 				<? Phpr_Form::closeTag(); ?>
 			<?php endif; ?>
 		</div>

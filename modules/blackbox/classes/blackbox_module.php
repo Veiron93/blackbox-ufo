@@ -46,24 +46,25 @@ class Blackbox_Module extends Core_ModuleBase
             }
 
             if ($model instanceof Catalog_Product) {
-                $model->addFormField("regular_photo", "left")->sortOrder(60)->tab(Catalog_Product::$generalTabTitle);
                 $model->addFormField("sales", "left")->sortOrder(50)->tab(Catalog_Product::$generalTabTitle);
-                $model->addFormField("title_sku", "left")->sortOrder(10)->tab("Дополнительно");
-                $model->addFormField("is_sale", "left")->sortOrder(90)->tab(Catalog_Product::$generalTabTitle);
+                $model->addFormField("regular_photo", "left")->sortOrder(70)->tab(Catalog_Product::$generalTabTitle);
+                $model->addFormField("is_sale", "left")->sortOrder(80)->tab(Catalog_Product::$generalTabTitle);
+                $model->addFormField("title_sku", "left")->sortOrder(90)->tab("Дополнительно");
+
 
                 // расширение для Б/У товаров
                 $tab = self::tabs['usedProducts'];
 
-                $model->addFormField("is_useded_device", "left")->sortOrder(10)->tab($tab);
-                $model->addFormField("show_block_useded_device", "left")->sortOrder(20)->tab($tab);
-                $model->addFormField("state_device_useded_device", "left")->sortOrder(30)->tab($tab);
-                $model->addFormField("state_battery_useded_device", "left")->sortOrder(40)->tab($tab);
-                $model->addFormField("guarantee_useded_devicet", "left")->sortOrder(50)->tab($tab);
-                $model->addFormField("defect_screen_useded_device", "left")->sortOrder(60)->tab($tab);
-                $model->addFormField("defect_body_useded_device", "left")->sortOrder(70)->tab($tab);
-                $model->addFormField("complect_useded_device", "left")->sortOrder(80)->tab($tab);
-                $model->addFormField("complect_non_elements_useded_device", "left")->sortOrder(90)->tab($tab);
-                $model->addFormField("added_acsessuares_useded_device", "left")->sortOrder(100)->tab($tab);
+                $model->addFormField("is_useded_device", "left")->sortOrder(110)->tab($tab);
+                $model->addFormField("show_block_useded_device", "left")->sortOrder(120)->tab($tab);
+                $model->addFormField("state_device_useded_device", "left")->sortOrder(130)->tab($tab);
+                $model->addFormField("state_battery_useded_device", "left")->sortOrder(140)->tab($tab);
+                $model->addFormField("guarantee_useded_devicet", "left")->sortOrder(150)->tab($tab);
+                $model->addFormField("defect_screen_useded_device", "left")->sortOrder(160)->tab($tab);
+                $model->addFormField("defect_body_useded_device", "left")->sortOrder(170)->tab($tab);
+                $model->addFormField("complect_useded_device", "left")->sortOrder(180)->tab($tab);
+                $model->addFormField("complect_non_elements_useded_device", "left")->sortOrder(190)->tab($tab);
+                $model->addFormField("added_acsessuares_useded_device", "left")->sortOrder(200)->tab($tab);
             }
 
             if ($model instanceof Shop_Order) {

@@ -68,7 +68,6 @@
 @mixin btn($bg: $accent, $bgHover: $accentHover, $color: #fff){
 	border-radius: 14px;
 	height: 40px;
-	background: $accent;
 	background: $bg;
 	transition: background .2s;
 
