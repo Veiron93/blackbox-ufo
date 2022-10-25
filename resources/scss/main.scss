@@ -99,14 +99,6 @@ footer{
 				}
 			}
 
-			// &:last-child{
-			// 	color: #848484;
-
-			// 	a{
-			// 		color: #848484;
-			// 	}
-			// }
-
 			&:not(:first-child, :last-child){
 				margin-right: 8px;
 
@@ -140,15 +132,6 @@ footer{
 
 				&:after{
 					display: none;
-				}
-
-				&:last-child{
-					background: $accentHover;
-					color: #fff;
-
-					a{
-						color: #fff;
-					}
 				}
 			}
 		}

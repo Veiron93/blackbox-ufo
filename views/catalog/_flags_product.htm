@@ -1,14 +1,11 @@
 <div class="product-card_flags">
-
-	
-
-	<?php if($discount): ?>
+	<?php if ($discount) : ?>
 		<div class="discount-percentage active" title="Товар со скидкой">
-			- <?= App_Helper::getDiscountPercentage($discount[0], $discount[1]);?>%
+			- <?= App_Helper::getDiscountPercentage($discount[0], $discount[1]); ?>%
 		</div>
 	<?php endif ?>
 
-	<?php if(isset($bestseller)): ?>
+	<?php if (isset($bestseller)) : ?>
 		<div class="bestseller" title="Топ продаж">Топ</div>
 	<?php endif ?>
 

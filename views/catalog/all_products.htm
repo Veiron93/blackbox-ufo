@@ -1,5 +1,38 @@
+<? Phpr_View::beginBlock("head") ?>
+
+<?php
+$seo_title = "Каталог товаров | БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома";
+$seo_description = "⭐️ Магазин аксессуаров для гаджетов, компьютеров, автомобилей и дома - Блэкбокс г. Южно-Сахалинск: Зарядки, кабели, наушники, чехлы, автосканеры и многое другое";
+?>
+
+<title><?= $seo_title ?></title>
+<meta name="keywords" content="купить в южно-сахалинске, купить не дорого, аксессуары для смартфонов, аксессуары для компьютеров, купить автоаксессуары, каталог Блэкбокс, интернет магазин аксессуаров, цены на товары, интернет магазин электроники Южно-Сахалинск">
+<meta name="description" content="<?= $seo_description ?>">
+
+<meta property="og:title" content="<?= $seo_title ?>" />
+<meta property="og:description" content="<?= $seo_description ?>" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<meta name="twitter:title" content="<?= $seo_title ?>" />
+<meta name="twitter:description" content="<?= $seo_description ?>" />
+
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Все товары",
+			"item": "https://bb65.ru/catalog/all-products/"
+		}]
+	}
+</script>
+<? Phpr_View::endBlock(true) ?>
+
 <div class="container">
-	<?php if (isset($allProducts) && $allProducts): ?>
+	<?php if (isset($allProducts) && $allProducts) : ?>
 		<div class="all-products">
 			<div class="heading-page">
 				<h1>Все товары</h1>
@@ -10,24 +43,14 @@
 			</div>
 
 			<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list='grid'>
-				<?php foreach ($allProducts as $product): ?>
-					<?php $this->renderPartial("product_card", ['product'=>$product]);?>
+				<?php foreach ($allProducts as $product) : ?>
+					<?php $this->renderPartial("product_card", ['product' => $product]); ?>
 				<?php endforeach; ?>
 			</div>
 
 			<?php $this->renderPartial("pagination", ["route" => "catalog_all_products"]) ?>
 		</div>
-	<?php else: ?>
+	<?php else : ?>
 		<div class="catalog-no-category">Нет товаров</div>
 	<?php endif; ?>
 </div>
-
-		
-	
-		
-
-
-
-
-
-

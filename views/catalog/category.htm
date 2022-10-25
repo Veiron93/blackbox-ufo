@@ -1,37 +1,17 @@
 <? Phpr_View::beginBlock("head") ?>
+
 <?php if (isset($category) && $category) : ?>
+	<title><?= $category->seo->seo_title ?></title>
+	<meta name="description" content="<?= $category->seo->seo_description ?>">
+	<meta name="keywords" content="<?= $category->seo->seo_keywords ?>">
 
-	<?php
-	$seo_keywords = '';
-	$seo_description = '';
-	$seo_title = "Купить " . $category->name . " в интернет магазине БЛЭКБОКС. Большой выбор, самые низкие цены." . ($pagination->count_pages > 1 ? ' - страница ' . $pagination->number_current_page . ' из ' . $pagination->count_pages : '');
-
-	if (isset($category->seo) && $category->seo->seo_keywords) {
-		$seo_keywords = $category->seo->seo_keywords;
-	} else {
-		$words = [];
-		array_push($words, ...['купить ' . $category->name, $category->name, 'в южно-сахалинске']);
-		$seo_keywords = implode(', ', $words);
-	}
-
-	if (isset($category->seo) && $category->seo->seo_description) {
-		$seo_description = $category->seo->seo_description;
-	} else {
-		$seo_description = "⭐️ Купить " . $category->name . " по самым выгодным ценам в интернет магазине БЛЭКБОКС (bb65.ru). Большой выбор товаров с доставкой по городу Южно-Сахалинск и острову Сахалин";
-	}
-	?>
-
-	<title><?= $seo_title ?></title>
-	<meta name="keywords" content="<?= $seo_keywords ?>">
-	<meta name="description" content="<?= $seo_description ?>">
-
-	<meta property="og:title" content="<?= $seo_title ?>" />
-	<meta property="og:description" content="<?= $seo_description ?>" />
+	<meta property="og:title" content="<?= $category->seo->seo_title ?>" />
+	<meta property="og:description" content="<?= $category->seo->seo_description ?>" />
 
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-	<meta name="twitter:title" content="<?= $seo_title ?>" />
-	<meta name="twitter:description" content="<?= $seo_description ?>" />
+	<meta name="twitter:title" content="<?= $category->seo->seo_title ?>" />
+	<meta name="twitter:description" content="<?= $category->seo->seo_description ?>" />
 <?php endif; ?>
 <? Phpr_View::endBlock(true) ?>
 
@@ -41,7 +21,7 @@
 
 	<div class="container <?= $subCategories ? 'catalog-categories' : 'catalog-products' ?>">
 
-		<?php $this->renderPartial('breadcrumbs', array('category' => $category)) ?>
+		<?php $this->renderPartial('breadcrumbs', ['current_category' => $category]) ?>
 
 		<?php if (count($subCategories)) : ?>
 

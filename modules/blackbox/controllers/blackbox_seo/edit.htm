@@ -1,0 +1,27 @@
+<? Phpr_View::beginBlock("breadcrumb") ?>
+<a href="<?= url('catalog/seo') ?>">Прайсы</a>
+<span class="current"><?= $this->app_page_title ?></span>
+<? Phpr_View::endBlock() ?>
+
+<? Phpr_View::beginBlock("view") ?>
+
+<?= flash() ?>
+
+<? if (!isset($fatalError)) : ?>
+
+	<div class="form700">
+		<?= Phpr_Form::openTag() ?>
+
+		<? $this->formRender() ?>
+		<a href="#" class="btn btn-primary" data-handler="edit_onSave">Сохранить</a>
+		<a href="#" class="btn" data-handler="edit_onCancel">Отмена</a>
+		<? $priceUrl = $this->getPriceUrl($form_model->filename); ?>
+		<? if ($priceUrl) : ?>
+			<a href="<?= $priceUrl ?>" target="_blank" class="btn pull-right">Показать прайс</a>
+		<? endif; ?>
+		<? Phpr_Form::closeTag(); ?>
+	</div>
+<? else : ?>
+	<p><a href="<?= url('catalog/seo') ?>">Вернуться в список</a></p>
+<? endif ?>
+<? Phpr_View::endBlock() ?>

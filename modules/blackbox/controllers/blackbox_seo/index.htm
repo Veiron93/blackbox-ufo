@@ -1,0 +1,12 @@
+<? Phpr_View::beginBlock("view") ?>
+
+<?= flash() ?>
+
+<div class="control-panel">
+	<a href="<?= url('pharmacy/prices/create') ?>" class="btn btn-primary"><i class="icon-plus"></i> Добавить информацию о прайсе</a>
+</div>
+<div class="clear"></div>
+
+<? $this->listRender() ?>
+
+<? Phpr_View::endBlock() ?>

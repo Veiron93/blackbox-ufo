@@ -22,13 +22,13 @@ class App_Catalog
 
 		$categories = Db_DbHelper::objectArray("SELECT 
 				cc.id, cc.name, cc.hot, cc.title_sku, cc.level, cc.parent_id, cc.path, cc.title_sku,
+				cc.seo_title_add_postfix, cc.seo_description_add_postfix,
 				f.id as image_id, f.disk_name as image_path
                 FROM catalog_categories cc
 				LEFT JOIN db_files f ON f.master_object_id = cc.id and f.master_object_class ='Catalog_Category'
                 WHERE 
 					cc.deleted is null 
 					AND cc.hidden is null" . $where);
-
 
 		foreach ($categories as $category) {
 			$categories_arr_assoc[$category->id] = $category;
@@ -83,14 +83,13 @@ class App_Catalog
 
 	public static function getParentCategories($path)
 	{
-
 		$categories = [];
 		$idCategories = explode(".", $path);
 
-		array_pop($idCategories);
-
 		foreach ($idCategories as $id) {
-			array_push($categories, self::getCategory($id));
+			if ($id) {
+				array_push($categories, self::getCategory($id));
+			}
 		}
 
 		return $categories;
@@ -155,6 +154,7 @@ class App_Catalog
 				cp.is_useded_device, cp.state_device_useded_device, cp.state_battery_useded_device,
 				cp.guarantee_useded_devicet, cp.defect_screen_useded_device, cp.defect_body_useded_device,
 				cp.complect_useded_device, cp.complect_non_elements_useded_device, cp.added_acsessuares_useded_device,
+				cp.seo_title_add_postfix, cp.seo_description_add_postfix,
 
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 

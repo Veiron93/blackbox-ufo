@@ -1,21 +1,23 @@
-<? /** @var Application $this */ ?>
+<?
+
+/** @var Application $this */ ?>
 <? Phpr_View::beginBlock("head") ?>
-<? Phpr_View::endBlock()?>
+<? Phpr_View::endBlock() ?>
 
 <? Phpr_View::beginBlock("view") ?>
 <?
-	$menus = Admin_Menu::create()->find_all();
-	$menu = null;
-	$item = null;
-	$uri = Phpr::$request->getCurrentUri();
-	
-	foreach($menus as &$cmenu) {
-		$item = Admin_MenuItem::find_current_item($cmenu, $uri);
-		if($item && $item->text_block_id) {
-			$menu = $cmenu;
-			break;
-		}
-	} 
+$menus = Admin_Menu::create()->find_all();
+$menu = null;
+$item = null;
+$uri = Phpr::$request->getCurrentUri();
+
+foreach ($menus as &$cmenu) {
+	$item = Admin_MenuItem::find_current_item($cmenu, $uri);
+	if ($item && $item->text_block_id) {
+		$menu = $cmenu;
+		break;
+	}
+}
 ?>
 
 <div class="about-page container static-page">
@@ -27,12 +29,20 @@
 		<?= $block->get_filtered_text() ?>
 	</div>
 
-	<?php 
-		$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+	<?php
+	$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
 	?>
-	
+
 	<div class="about-page_map">
 		<iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=78924383125" width="100%" height="500" frameborder="0"></iframe>
 	</div>
 </div>
-<? Phpr_View::endBlock()?>
+
+<?php
+$this->menuItems->getTextBlock('postfix_seo_title_category', 'Категория - Постфикс - TITLE', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+$this->menuItems->getTextBlock('postfix_seo_description_category', 'Категория - Постфикс - DESCRIPTION', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+
+$this->menuItems->getTextBlock('postfix_seo_title_product', 'Товар - Постфикс - TITLE', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+$this->menuItems->getTextBlock('postfix_seo_description_product', 'Товар - Постфикс - DESCRIPTION', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+?>
+<? Phpr_View::endBlock() ?>

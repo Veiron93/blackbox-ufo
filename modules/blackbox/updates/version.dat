@@ -7,3 +7,4 @@
 #7 add columns used devices
 #8 add column is_useded_device in product
 #9 add column show_block_useded_device in product
+#10 add column seo_title_add_postfix && seo_description_add_postfix in catalog_category, catalog_products

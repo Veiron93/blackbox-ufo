@@ -1,6 +1,11 @@
 <?php
-if ($category->path) {
-	$categories = $this->catalog->getParentCategories($category->path);
+if ($current_category->path) {
+
+	if (isset($current_category_show) && $current_category_show) {
+		$current_category->path .= $category->id;
+	}
+
+	$categories = $this->catalog->getParentCategories($current_category->path);
 	$parentCategory = $categories[count($categories) - 1];
 }
 

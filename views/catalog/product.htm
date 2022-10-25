@@ -1,28 +1,22 @@
 <? Phpr_View::beginBlock("head") ?>
-
-
 <?php if (isset($product) && $product) : ?>
 
-	<?php
-	$metaTitle = h(strip_tags($product->name));
-	$metaDescription = "Купить $metaTitle в интернет-магазине БЛЭКБОКС. Отличные цены, скидки, большой выбор, доставка по г. Южно-Сахалинск и другие города.";
-	$image = $this->catalog->imageProduct($product->images);
-	?>
+	<?php $image = $this->catalog->imageProduct($product->images); ?>
 
-	<title><?= $metaTitle ?> - Купить в интернет-магазине БЛЭКБОКС, по отличной цене, доставка по г. Южно-Сахалинск</title>
-	<meta name="description" content="<?= $metaDescription ?>">
+	<title><?= $product->seo->seo_title ?></title>
+	<meta name="description" content="<?= $product->seo->seo_description ?>">
+	<meta name="keywords" content="<?= $product->seo->seo_keywords ?>">
 
-	<meta property="og:title" content="<?= $metaTitle ?>" />
-	<meta property="og:description" content="<?= $metaDescription ?>" />
+	<meta property="og:title" content="<?= $product->seo->seo_title ?>" />
+	<meta property="og:description" content="<?= $product->seo->seo_description ?>" />
 	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
 
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
-	<meta name="twitter:title" content="<?= $metaTitle ?>" />
-	<meta name="twitter:description" content="<?= $metaDescription ?>" />
+	<meta name="twitter:title" content="<?= $product->seo->seo_title ?>" />
+	<meta name="twitter:description" content="<?= $product->seo->seo_description ?>" />
 	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
 <?php endif ?>
-
 <? Phpr_View::endBlock(true) ?>
 
 <?php Phpr_View::beginBlock("view") ?>
@@ -30,7 +24,7 @@
 
 	<?php if (isset($product) && $product) : ?>
 
-		<?php $this->renderPartial('breadcrumbs', array('category' => $category, 'product' => $product)) ?>
+		<?php $this->renderPartial('breadcrumbs', ['current_category' => $category, 'current_category_show' => true]) ?>
 
 		<?php if (isset($product->skus)) $selected_sku = $product->skus[0]; ?>
 
