@@ -12,6 +12,8 @@
 	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
 	<meta name="twitter:title" content="<?= $category->seo->seo_title ?>" />
 	<meta name="twitter:description" content="<?= $category->seo->seo_description ?>" />
+
+	<link href="https://bb65.ru/catalog/<?= $category->id ?>/" rel="canonical">
 <?php endif; ?>
 <? Phpr_View::endBlock(true) ?>
 

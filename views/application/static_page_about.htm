@@ -2,6 +2,7 @@
 
 /** @var Application $this */ ?>
 <? Phpr_View::beginBlock("head") ?>
+<link href="https://bb65.ru/about/" rel="canonical">
 <? Phpr_View::endBlock() ?>
 
 <? Phpr_View::beginBlock("view") ?>
@@ -39,10 +40,10 @@ foreach ($menus as &$cmenu) {
 </div>
 
 <?php
-$this->menuItems->getTextBlock('postfix_seo_title_category', 'Категория - Постфикс - TITLE', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
-$this->menuItems->getTextBlock('postfix_seo_description_category', 'Категория - Постфикс - DESCRIPTION', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+// $this->menuItems->getTextBlock('postfix_seo_title_category', 'Категория - Постфикс - TITLE', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+// $this->menuItems->getTextBlock('postfix_seo_description_category', 'Категория - Постфикс - DESCRIPTION', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
 
-$this->menuItems->getTextBlock('postfix_seo_title_product', 'Товар - Постфикс - TITLE', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
-$this->menuItems->getTextBlock('postfix_seo_description_product', 'Товар - Постфикс - DESCRIPTION', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+// $this->menuItems->getTextBlock('postfix_seo_title_product', 'Товар - Постфикс - TITLE', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
+// $this->menuItems->getTextBlock('postfix_seo_description_product', 'Товар - Постфикс - DESCRIPTION', Admin_TextBlock::TYPE_PLAIN, '', 'SEO каталог')->content;
 ?>
 <? Phpr_View::endBlock() ?>

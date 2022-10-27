@@ -16,6 +16,8 @@
 	<meta name="twitter:title" content="<?= $product->seo->seo_title ?>" />
 	<meta name="twitter:description" content="<?= $product->seo->seo_description ?>" />
 	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+
+	<link href="https://bb65.ru/catalog/product/<?= $product->id ?>/" rel="canonical">
 <?php endif ?>
 <? Phpr_View::endBlock(true) ?>
 
