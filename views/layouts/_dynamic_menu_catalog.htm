@@ -2,10 +2,10 @@
 
 	<div class="menu-catalog-btn">
 		<img src="/resources/images/icons/menu.svg" alt="Меню" />
-		<a href="/catalog">Каталог товаров</a>
+		<a href="/catalog/">Каталог товаров</a>
 	</div>
 
-	<div class="menu-catalog-categories" style="visibility: hidden"> 
+	<div class="menu-catalog-categories" style="visibility: hidden">
 
 		<div class="categories-list">
 			<?php foreach ($catalogRootCategories as $category) : ?>
@@ -14,24 +14,24 @@
 
 					<div class="icon">
 						<?php
-							$categoryImg = '';
-									
-							if(isset($category->image_id) && isset($category->image_path)){
-								$categoryImg = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
-							}
+						$categoryImg = '';
+
+						if (isset($category->image_id) && isset($category->image_path)) {
+							$categoryImg = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+						}
 						?>
-				
+
 						<img src="<?= $categoryImg ?>" alt="<?= $category->name ?>" />
 					</div>
 
 					<div>
-						<a href="/catalog/<?= $category->id ?>"><?= $category->name ?></a>
+						<a href="/catalog/<?= $category->id ?>/"><?= $category->name ?></a>
 
 						<?php if (isset($category->hot_categories) && count($category->hot_categories)) : ?>
 							<div class="hot-categories">
-								<?php foreach($category->hot_categories as $hotCategory): ?>
-									<a href="/catalog/<?= $hotCategory->id?>"><?= $hotCategory->name?></a>
-								<?php endforeach ?>	
+								<?php foreach ($category->hot_categories as $hotCategory) : ?>
+									<a href="/catalog/<?= $hotCategory->id ?>/"><?= $hotCategory->name ?></a>
+								<?php endforeach ?>
 							</div>
 						<?php endif ?>
 					</div>
@@ -43,24 +43,24 @@
 						<?php if ($categories_level_2 = $this->catalog->getChildCategories($category)) : ?>
 
 							<div class="categories-level-2-list">
-								<?php foreach ($categories_level_2 as $category) : ?>
+								<?php foreach ($categories_level_2 as $category_level_2) : ?>
 
 									<div class="categories-level-2-list-category">
 										<div class="category-level-2">
-											<a href="/catalog/<?= $category->id ?>"><?= $category->name ?></a>
+											<a href="/catalog/<?= $category_level_2->id ?>/"><?= $category_level_2->name ?></a>
 										</div>
 
-										<?php if ($categories_level_3 = $this->catalog->getChildCategories($category)) : ?>
-											
+										<?php if ($categories_level_3 = $this->catalog->getChildCategories($category_level_2)) : ?>
+
 											<?php $i = 0 ?>
-											
+
 											<div class="categories-level-3">
-												<?php foreach ($categories_level_3 as $category) : ?>
+												<?php foreach ($categories_level_3 as $category_level_3) : ?>
 													<?php if ($i < 6) : ?>
-														<a href="/catalog/<?= $category->id ?>"><?= $category->name ?></a>
+														<a href="/catalog/<?= $category_level_3->id ?>/"><?= $category_level_3->name ?></a>
 														<?php $i++ ?>
 													<?php else : ?>
-														<a href="">Все категории <span>></span></a>
+														<a href="/catalog/<?= $category_level_2->id ?>/">Все категории <span>></span></a>
 														<?php break ?>
 													<?php endif ?>
 												<?php endforeach ?>
@@ -70,7 +70,7 @@
 								<?php endforeach ?>
 							</div>
 						<?php endif ?>
-					
+
 						<?/*
 							<div class="categories-ads">
 								<div class="item">
@@ -79,9 +79,9 @@
 									</a>
 								</div>
 							</div>
-						*/?>
+						*/ ?>
 					</div>
-					
+
 				</div>
 			<?php endforeach ?>
 		</div>

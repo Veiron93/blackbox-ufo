@@ -83,13 +83,13 @@
 										<div class="categories-level-3_list">
 											<?php foreach ($categories_level_3 as $category_level_3) : ?>
 												<div class="category-level-3">
-													<a href="/catalog/<?= $category_level_3->id ?>"><?= $category_level_3->name ?></a>
+													<a href="/catalog/<?= $category_level_3->id ?>/"><?= $category_level_3->name ?></a>
 												</div>
 											<?php endforeach ?>
 										</div>
 									</div>
 								<?php else : ?>
-									<a href="/catalog/<?= $category_level_2->id ?>" class="category-level-2--link">
+									<a href="/catalog/<?= $category_level_2->id ?>/" class="category-level-2--link">
 										<div class="category-level-2_name">
 											<?= $category_level_2_name ?>
 										</div>

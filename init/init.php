@@ -18,7 +18,7 @@ Phpr::$session->start();
  */
 $backendRoot = isset($CONFIG['BACKEND_URL']) ? $CONFIG['BACKEND_URL'] : '/admin';
 if (substr($backendRoot, 0, 1) == '/')
-	$backendRoot = substr($backendRoot, 1);
+    $backendRoot = substr($backendRoot, 1);
 
 $route = Phpr::$router->addRule("sitemap.xml");
 $route->folder('modules/admin/controllers');
@@ -45,10 +45,10 @@ $route->def('param4', null);
 $route->convert('controller', '/^.*$/', ':module_$0');
 
 $route = Phpr::$router->addRule('site_get_file/:param1/:param2')
-	->controller('application')
-	->action('site_get_file')
-	->check('param1', '/^[0-9]+$/')
-	->def('param2', null);
+    ->controller('application')
+    ->action('site_get_file')
+    ->check('param1', '/^[0-9]+$/')
+    ->def('param2', null);
 
 /*
  *
@@ -123,13 +123,13 @@ $APP_CONF['THUMBNAIL_SAVE_ORIGINAL_PATH'] = true;
 $APP_CONF['PAGINATION_GO_AWAY_ONE'] = true; // убирать номер страницы из url для первой страницы в пагинаторе
 
 $APP_CONF['DELIVERY'] = [
-    ['name' => 'Самовывоз', 'price' => '0', 'code' => 'pickup', 'checked'=>true],
+    ['name' => 'Самовывоз', 'price' => '0', 'code' => 'pickup', 'checked' => true],
     ['name' => 'Посылкой', 'price' => '0', 'code' => 'tk'],
-    ['name' => 'по Южно-Сахалинску', 'code' => 'ys','price' => '200'],
-    ['name' => 'Дальнее, Луговое', 'code' => 'sector-1','price' => '250'],
-    ['name' => 'Троицкое, Новотроицкое, Ново-Александровск, Хомутово', 'code' => 'sector-2','price' => '300']
+    ['name' => 'по Южно-Сахалинску', 'code' => 'ys', 'price' => '200'],
+    ['name' => 'Дальнее, Луговое', 'code' => 'sector-1', 'price' => '250'],
+    ['name' => 'Троицкое, Новотроицкое, Ново-Александровск, Хомутово', 'code' => 'sector-2', 'price' => '300']
 ];
 
 $APP_CONF['PHONE'] = $phone = "79624192078";
 
-$APP_CONF['TEXT_WHATSAPP_QUESTION_PRODUCT'] = "whatsapp://api.whatsapp.com/send?phone=$phone&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC%D1%83%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%83%20";
+$APP_CONF['TEXT_WHATSAPP_QUESTION_PRODUCT'] = "whatsapp://api.whatsapp.com/send?phone=$phone&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC%D1%83%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%83%20/";
