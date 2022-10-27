@@ -2,7 +2,7 @@
 
 /** @var Core_FrontendController $this */ ?>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, user-scalable=0" />
 <meta http-equiv="x-ua-compatible" content="IE=edge">
 <meta name="application-name" content="БЛЭКБОКС">
 <meta name="currency" content="ruble">
@@ -14,10 +14,9 @@
 	<meta name="keywords" content="<?= site_keywords() ?>" />
 	<meta name="description" content="<?= site_description() ?>" />
 
-	<meta property="og:title" content="БЛЭКБОКС - Аксессуары для гаджетов, компьютеров, автомобилей и дома" />
-	<meta property="og:description" content="Большой ассортимент аксессуаров для гаджетов, компьютеров, автомобилей и дома в интернет-магазине БЛЭКБОКС (bb65.ru). Бесплатная доставка по г. Южно-Сахалинск" />
+	<meta property="og:title" content="БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома" />
+	<meta property="og:description" content="Большой ассортимент аксессуаров для гаджетов, компьютеров, автомобилей и дома в магазине БЛЭКБОКС | Доставка по г. Южно-Сахалинск, низкие цены" />
 	<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
-
 <?php endif; ?>
 
 <meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>">
@@ -52,7 +51,7 @@
 	$this->getAsset('css/styles.css')
 ) ?>
 
-<script src="/resources/js/axios.min.js"></script>
+<script src="/resources/js/axios.min.js" defer></script>
 
 <?= Core_Html::js(
 	$this->getAsset('js/jquery.min.js'),
@@ -60,7 +59,6 @@
 	'/phproad/resources/javascript/ufo.ajax.js',
 	'/modules/shop/resources/js/client.js',
 	$this->getAsset('js/swiper-bundle.min.js'),
-	$this->getAsset('js/fancybox.umd.js'),
 	$this->getAsset('js/cookie.js'),
 	$this->getAsset('js/helpers.js'),
 	$this->getAsset('js/search.js'),
