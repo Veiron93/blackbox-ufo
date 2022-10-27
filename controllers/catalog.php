@@ -170,7 +170,7 @@ class Catalog extends App_Controller
 		}
 
 		if ($pagination && $pagination->count_pages > 1) {
-			$seo->seo_title .= ' - страница ' . $pagination->number_current_page . ' из ' . $pagination->count_pages;
+			$seo->seo_title .= ' | страница ' . $pagination->number_current_page . ' из ' . $pagination->count_pages;
 		}
 
 		// description
@@ -198,11 +198,11 @@ class Catalog extends App_Controller
 		$seo_templates = self::get_seo_templates();
 
 		if ($seo->seo_title && $product->seo_title_add_postfix) {
-			$seo->seo_title .= ' | ' . $seo_templates['postfix_seo_title_product'] . ' - ' . $product->id;
+			$seo->seo_title .= ' | ' . $seo_templates['postfix_seo_title_product'] . ' | ' . $product->id;
 		}
 
 		if (!$seo->seo_title) {
-			$seo->seo_title = $product->name . ' | ' . $seo_templates['postfix_seo_title_product'] . ' - ' . $product->id;
+			$seo->seo_title = $product->name . ' | ' . $seo_templates['postfix_seo_title_product'] . ' | ' . $product->id;
 		}
 
 		if ($seo->seo_description && $product->seo_description_add_postfix) {

@@ -81,7 +81,7 @@
 
 						<?php if ($imgBanner) : ?>
 							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>)" title="<?= $bannerMobile->name ?>">
-								<?php if ($banner->link_type !== 'no_link') : ?>
+								<?php if ($bannerMobile->link_type !== 'no_link') : ?>
 									<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link ?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>></a>
 								<?php endif; ?>
 							</div>

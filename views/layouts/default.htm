@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<? $this->renderLayout('_head') ?>
-	</head>
-	<body>
-		<? $this->renderLayout('_for_old_browsers') ?>
-		
-		<div class='wrapper'>
-			<? $this->renderLayout('_top_banner') ?>
-			<? $this->renderLayout('_header') ?>
-			
-			<div class="content">
-				<?= Phpr_View::block('view') ?>		
-			</div>
+<html lang="ru">
 
-			<? $this->renderLayout('_mobile_bottom_navigation') ?>
-			<? $this->renderLayout('_footer') ?>
+<head>
+	<? $this->renderLayout('_head') ?>
+</head>
+
+<body>
+	<? $this->renderLayout('_for_old_browsers') ?>
+
+	<div class='wrapper'>
+		<? $this->renderLayout('_top_banner') ?>
+		<? $this->renderLayout('_header') ?>
+
+		<div class="content">
+			<?= Phpr_View::block('view') ?>
 		</div>
 
-		<? $this->renderLayout("_footer_scripts"); ?>
-	</body>
+		<? $this->renderLayout('_mobile_bottom_navigation') ?>
+		<? $this->renderLayout('_footer') ?>
+	</div>
+
+	<? $this->renderLayout("_footer_scripts"); ?>
+</body>
+
 </html>

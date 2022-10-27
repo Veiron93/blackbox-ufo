@@ -242,6 +242,12 @@ footer{
 		}
 	}
 
+	&-years{
+		margin-top: 5px;
+		text-align: center;
+		font-size: 12px;
+	}
+
 	@include screen_sm_down{
 		padding-bottom: 75px;
 		margin-top: 20px;

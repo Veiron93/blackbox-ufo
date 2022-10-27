@@ -8,10 +8,12 @@
 	</div>
 
 	<div class="footer-description">
-		<?php if(Phpr::$request->getCurrentUri() === '/'): ?>
+		<?php if (Phpr::$request->getCurrentUri() === '/') : ?>
 			<h1>Аксессуары для гаджетов, компьютеров, автомобилей и дома</h1>
-		<?php else: ?>
+		<?php else : ?>
 			<p>Аксессуары для гаджетов, компьютеров, автомобилей и дома</p>
 		<?php endif; ?>
 	</div>
+
+	<div class="footer-years"><?= Core_String::copyrightRange(2022) ?></div>
 </footer>
