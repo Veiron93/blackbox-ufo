@@ -1,17 +1,23 @@
-<?php 
-	if(!isset($view_type)){
-		$view_type = "grid";
-	}
+<?php
+if (!isset($view_type)) {
+	$view_type = "grid";
+}
 ?>
 
 <?php if (isset($products) && count($products)) : ?>
-	<div class="block-product-grid block-product-grid__<?= $view_type?>">
-	
+	<div class="block-product-grid block-product-grid__<?= $view_type ?>">
+
 		<div class="title">
-			<?php if(isset($link) && $link): ?>
-				<a href="<?=$link?>"><?=$title?></a>
-			<?php else: ?>
-				<?=$title?>
+			<?php if (isset($link) && $link) : ?>
+				<a href="<?= $link ?>">
+					<span><?= $title ?></span>
+
+					<div class="icon">
+						<img src="/resources/images/icons/arrow-bottom-black.svg" alt="">
+					</div>
+				</a>
+			<?php else : ?>
+				<span><?= $title ?></span>
 			<?php endif ?>
 		</div>
 

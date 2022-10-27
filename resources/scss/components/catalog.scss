@@ -1501,9 +1501,37 @@
 
 	.title {
 		margin-bottom: 12px;
-		font-size: 22px;
-		font-weight: 500;
+		
 		line-height: 1em;
+		display: flex;
+		align-items: center;
+
+		span{
+			font-size: 22px;
+			font-weight: 500;
+		}
+
+		a{
+			display: flex;
+			align-items: center;
+			column-gap: 10px;
+
+			.icon{
+				height: 24px;
+				width: 24px;
+
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				@include style-block;
+
+				img{
+					height: 11px;
+					transform: rotate(-90deg);
+				}
+			}
+		}
 	}
 
 	@include screen_lg_up {
