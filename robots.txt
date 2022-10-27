@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /uploaded/
 Disallow: /admin/
 
-Sitemap: http://bb65.ru/sitemap.xml
+Sitemap: https://bb65.ru/sitemap.xml
