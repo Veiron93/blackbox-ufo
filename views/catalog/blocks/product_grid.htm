@@ -10,14 +10,14 @@ if (!isset($view_type)) {
 		<div class="title">
 			<?php if (isset($link) && $link) : ?>
 				<a href="<?= $link ?>">
-					<span><?= $title ?></span>
+					<h2><?= $title ?></h2>
 
 					<div class="icon">
 						<img src="/resources/images/icons/arrow-bottom-black.svg" alt="Смотреть все товары в данной категории">
 					</div>
 				</a>
 			<?php else : ?>
-				<span><?= $title ?></span>
+				<h2><?= $title ?></h2>
 			<?php endif ?>
 		</div>
 
