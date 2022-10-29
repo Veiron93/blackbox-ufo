@@ -2,7 +2,7 @@
 	<?php if (!isset($cart) || !$cart) $cart = Shop_Cart::getCart() ?>
 
 	<a href="<?= u('shop_cart', []) ?>">
-		<img src="/resources/images/icons/mobile-nav-bottom/shopping-bag-3-line.svg" alt="Корзина">
+		<img src="/resources/images/icons/mobile-nav-bottom/shopping-bag-3-line.svg" alt="Иконка корзины">
 
 		<?php if ($count_products_mini_cart = $cart->getItemsCount()) : ?>
 			<div class="count">

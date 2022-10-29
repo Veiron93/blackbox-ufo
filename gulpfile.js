@@ -38,7 +38,7 @@ var nameProject = 'blackbox-ufo';
 // gulp new-project
 
 
-////////////////////////////////////////////
+// ------------------------- //
 // Экспорт модулей
 const fs = require('fs');
 
@@ -48,7 +48,7 @@ let gulp = require('gulp'),
 	sass = require('gulp-sass')(require('sass')),
 	less = require('gulp-less'),
 	autoprefixer = require('gulp-autoprefixer'),
-	rename  = require('gulp-rename'),
+	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),
 	gulpif = require('gulp-if'),
 	del = require('del'),
@@ -56,31 +56,33 @@ let gulp = require('gulp'),
 	touch = require('gulp-touch-cmd'),
 	notify = require("gulp-notify"),
 	csso = require('gulp-csso'),
-	ftp = require( 'vinyl-ftp' ),
+	babel = require('gulp-babel'),
+	uglify = require('gulp-uglify'),
+	ftp = require('vinyl-ftp'),
 	zip = require('gulp-zip');
 
 
 
-var customFilePath = "./custom-gulpfile.js";	// путь к файлу индивидуальной настройки
-var styleFiles = ['styles','tinymce'];		// файлы стилей для препроцессора для отдельной сборки
+let customFilePath = "./custom-gulpfile.js";	// путь к файлу индивидуальной настройки
+let styleFiles = ['styles', 'tinymce'];		// файлы стилей для препроцессора для отдельной сборки
 
-if(fs.existsSync(customFilePath)){
+if (fs.existsSync(customFilePath)) {
 	var customGulpfile = require(customFilePath);
-}else{
+} else {
 	customGulpfile = {
 		watchFiles: ["views/**/**/**/*.+(html|htm)"], // ФАЙЛЫ ЗА КОТОРЫМИ НУЖНО СЛЕДИТЬ (для автоматической перезагрузки страницы)
 		styleHotReload: false, 	// АВТООБНОВЛЕНИЕ СТИЛЕЙ
-		tasks: function(){return false;}
+		tasks: function () { return false; }
 	}
 }
 
 // Удаляет ненужную папку стилей
-gulp.task('new-project', function(done){
+gulp.task('new-project', function (done) {
 	let del_preprocessor = "";
-	if(preprocessor == 'scss'){
+	if (preprocessor == 'scss') {
 		del_preprocessor = 'less';
 	}
-	else{
+	else {
 		del_preprocessor = 'scss';
 	};
 
@@ -90,49 +92,74 @@ gulp.task('new-project', function(done){
 });
 
 // Перезагрузка страницы после изменения исходных файлов
-gulp.task('browser-sync-start', function(done){
+gulp.task('browser-sync-start', function (done) {
+
 	browserSync.init({
 		proxy: "http://" + nameProject + ".web",
-		//proxy: { target: nameProject + ".web"},
 		notify: true,
 		open: false
 	});
-	if(customGulpfile.styleHotReload){
-		gulp.watch(customGulpfile.watchFiles, gulp.parallel(['browser-sync-reload']));
-	}
+
 	done();
-	
 });
 
+// if (customGulpfile.styleHotReload) {
+// 	gulp.watch(customGulpfile.watchFiles, gulp.parallel(['browser-sync-reload']));
+// }
 
-gulp.task('browser-sync-reload', function(){
+
+gulp.task('browser-sync-reload', function () {
 	browserSync.reload();
-	gulp.watch(customGulpfile.watchFiles, gulp.parallel(['browser-sync-reload']));
 });
+
+// слежение за файлами
+gulp.task('watch-files', function () {
+
+	if (customGulpfile.styleHotReload) {
+		gulp.watch(customGulpfile.watchFiles, gulp.parallel('browser-sync-reload'));
+	}
+
+	gulp.watch('resources/' + preprocessor + '/**/**/*.' + preprocessor, gulp.parallel('style'));
+	gulp.watch('resources/js/*.js', gulp.parallel('scripts'));
+});
+
 
 // ТАБЛИЦЫ СТИЛЕЙ SASS/LESS
-gulp.task('style', function(){
-	styleFiles.forEach(function(styleFile, n, styleFiles){
+gulp.task('style', function () {
+	styleFiles.forEach(function (styleFile, n, styleFiles) {
 		gulp.src(['resources/' + preprocessor + "/" + styleFile + "." + preprocessor])
-			.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+			.pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
 			.pipe(gulpif(preprocessor == 'scss', sass(), less()))
-			.pipe(rename({dirname: ''}))
+			.pipe(rename({ dirname: '' }))
 			.pipe(concat(styleFile + '.css'))
 			.pipe(autoprefixer({
 				browsers: ['last 10 versions'],
 				cascade: true
 			}))
 			.pipe(csso())
-			.pipe(gulp.dest('resources/css'))
-			.pipe(browserSync.reload({stream:true}))
+			.pipe(gulp.dest('resources/dist'))
+			.pipe(browserSync.reload({ stream: true }))
 			.pipe(touch())
 	});
 	gulp.watch('resources/' + preprocessor + '/**/**/*.' + preprocessor, gulp.parallel(['style']));
 });
 
+
+// SCRIPTS
+gulp.task('scripts', done => {
+
+	gulp.src('resources/js/*.js')
+		.pipe(concat('common.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('resources/dist'))
+		.pipe(browserSync.reload({ stream: true }))
+
+	done();
+})
+
 // создание custom gulpfiles
-var templateCastomGulpfile = 
-`module.exports = {
+var templateCastomGulpfile =
+	`module.exports = {
 
 	// ФАЙЛЫ ЗА КОТОРЫМИ НУЖНО СЛЕДИТЬ (для автоматической перезагрузки страницы)
 	watchFiles: ["views/**/**/**/*.+(html|htm)"],
@@ -148,29 +175,29 @@ var templateCastomGulpfile =
 	}
 };`;
 
-gulp.task('custom-gulpfile', function(done){
-	fs.writeFile(customFilePath, templateCastomGulpfile, function(err) {
-	    if(err) {
-	        return console.log(err);
-	    }
-	    console.log("Файл " + customFilePath + " успешно создан!");
+gulp.task('custom-gulpfile', function (done) {
+	fs.writeFile(customFilePath, templateCastomGulpfile, function (err) {
+		if (err) {
+			return console.log(err);
+		}
+		console.log("Файл " + customFilePath + " успешно создан!");
 	});
 	done();
 });
 
 
 // Дефолтный таск
-gulp.task('default', gulp.parallel('browser-sync-start', 'style'), function(){
+gulp.task('default', gulp.parallel('browser-sync-start', 'style', 'scripts', 'watch-files'), function () {
 	return true;
-}); 
+});
 
 
 
 
-////////////////// DEPLOY //////////////////
+// DEPLOY
 
 // BUILD
-gulp.task('build', ()=>{
+gulp.task('build', () => {
 
 	const ignoredFiles = [
 		'.DS_Store',
@@ -181,6 +208,7 @@ gulp.task('build', ()=>{
 		'logs/**',
 		'node_modules/**',
 		'resources/scss/**',
+		'resources/js/**',
 		'temp/**',
 		'uploaded/**',
 		'.gitignore',
@@ -193,32 +221,32 @@ gulp.task('build', ()=>{
 		'ftp.example'
 	]
 
-	return gulp.src(['.*','*', '*/**'], { base: './', ignore: ignoredFiles})
+	return gulp.src(['.*', '*', '*/**'], { base: './', ignore: ignoredFiles })
 		.pipe(zip('build.zip'))
 		.pipe(gulp.dest('./dist'))
-		.on('end', ()=>console.log('👌 Проект собран'));
-}); 
+		.on('end', () => console.log('👌 Проект собран'));
+});
 
 
 // FTP
-gulp.task('ftp', ()=>{
+gulp.task('ftp', () => {
 
 	let ftpConfig = require('./ftp.js')
 
-	function getConn(){
+	function getConn() {
 		console.log("🌍 Подключение к серверу");
-		return ftp.create({...ftpConfig});
+		return ftp.create({ ...ftpConfig });
 	}
 
 	const conn = getConn()
 
-	return gulp.src(['./dist/build.zip'], {buffer:false, dot:true})
+	return gulp.src(['./dist/build.zip'], { buffer: false, dot: true })
 		.pipe(conn.dest('./www/bb65.ru/'))
-		.on('end', ()=>console.log('👌 Файлы загружены на сервер'));
-}); 
+		.on('end', () => console.log('👌 Файлы загружены на сервер'));
+});
 
 // RUN DEPLOY
-gulp.task('deploy', gulp.series('build', 'ftp'), function(){
+gulp.task('deploy', gulp.series('build', 'ftp'), function () {
 	return true;
 })
 

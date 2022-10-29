@@ -45,25 +45,44 @@
 <?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
 <![endif]-->
 
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+
+<?/* 
+	на случай если заблокируют CDN
+	<script src="/resources/dist/axios.min.js" defer></script>
+	<script src="/resources/dist/swiper-bundle.min.js" defer></script>
+	<link media="screen" rel="stylesheet" href="/resources/dist/swiper-bundle.min.css">
+*/ ?>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
 <?= Core_Html::css(
-	$this->getAsset('css/swiper-bundle.min.css'),
-	$this->getAsset('css/styles.css')
-) ?>
+	$this->getAsset('dist/tinymce.css'),
+	$this->getAsset('dist/styles.css')
+)
+?>
 
-<script src="/resources/js/axios.min.js" defer></script>
-<script src="/resources/js/jquery.min.js" defer></script>
-<script src="/resources/js/swiper-bundle.min.js" defer></script>
-
+<script src="/resources/dist/jquery-3.0.0.min.js" defer></script>
 <script src="/phproad/resources/javascript/ufo.ajax.common.js" defer></script>
 <script src="/phproad/resources/javascript/ufo.ajax.js" defer></script>
 <script src="/modules/shop/resources/js/client.js" defer></script>
 
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+<?= Core_Html::js($this->getAsset('dist/common.min.js')) ?>
+
+<?/*
 <?= Core_Html::js(
 	$this->getAsset('js/cookie.js'),
 	$this->getAsset('js/helpers.js'),
 	$this->getAsset('js/search.js'),
 	$this->getAsset('js/common.js')
 ) ?>
+*/ ?>
 
 <?= Phpr_View::block('head') ?>
 <?= Core_Html::ga_tracker() ?>
