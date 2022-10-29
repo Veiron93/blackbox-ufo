@@ -1,21 +1,27 @@
-<? Phpr_View::beginBlock("head") ?>
-
 <?php
 $seo_title = "Все товары | БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома";
 $seo_description = "⭐️ Каталог всех товаров магазина БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома | Южно-Сахалинск | Зарядки, кабели, наушники, чехлы, автосканеры и многое другое";
 ?>
 
+<?php Phpr_View::beginBlock("meta") ?>
 <title><?= $seo_title ?></title>
-<meta name="keywords" content="все товары, купить в южно-сахалинске, купить не дорого, аксессуары для смартфонов, аксессуары для компьютеров, купить автоаксессуары, каталог Блэкбокс, интернет магазин аксессуаров, цены на товары, интернет магазин электроники Южно-Сахалинск">
 <meta name="description" content="<?= $seo_description ?>">
+<meta name="keywords" content="все товары, купить в южно-сахалинске, купить не дорого, аксессуары для смартфонов, аксессуары для компьютеров, купить автоаксессуары, каталог Блэкбокс, интернет магазин аксессуаров, цены на товары, интернет магазин электроники Южно-Сахалинск">
+<?php Phpr_View::endBlock() ?>
 
+<?php Phpr_View::beginBlock("og") ?>
 <meta property="og:title" content="<?= $seo_title ?>" />
 <meta property="og:description" content="<?= $seo_description ?>" />
+<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+<?php Phpr_View::endBlock() ?>
 
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<?php Phpr_View::beginBlock("twitter") ?>
 <meta name="twitter:title" content="<?= $seo_title ?>" />
 <meta name="twitter:description" content="<?= $seo_description ?>" />
+<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg">
+<?php Phpr_View::endBlock() ?>
+
+<?php Phpr_View::beginBlock("head") ?>
 
 <link href="https://bb65.ru/catalog/all-products/" rel="canonical">
 

@@ -10,7 +10,7 @@ RewriteRule (/readme.txt$) index.php [L]
 RewriteRule \.php$ index.php
 RewriteRule (^site_get_file) index.php
 RewriteRule (^sitemap.xml) index.php
-RewriteRule !(\.(ico|js|jpg|gif|css|png|swf|txt|xml|xls|rtf|doc|docx|bmp|mp3|woff|ttf|svg|eot|zip|odt|zip|rar)$)|(^resources/)|(^phproad/thirdpart/.*)|(modules/admin/uploaded/thumbnails/.*$) index.php [NC]
+RewriteRule !(\.(ico|js|jpg|gif|css|png|swf|txt|xml|xls|rtf|doc|docx|bmp|mp3|woff|woff2|ttf|svg|eot|zip|odt|zip|rar)$)|(^resources/)|(^phproad/thirdpart/.*)|(modules/admin/uploaded/thumbnails/.*$) index.php [NC]
 
 ErrorDocument 404 "File not found"
 

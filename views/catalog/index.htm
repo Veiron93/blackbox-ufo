@@ -1,21 +1,27 @@
-<? Phpr_View::beginBlock("head") ?>
-
 <?php
 $seo_title = "Каталог товаров | Большой выбор, низкие цены, доставка по Южно-Сахалинску | БЛЭКБОКС";
 $seo_description = "Магазин электроники и аксессуаров для 📱 гаджетов, 🖥 компьютеров, 🚘 автомобилей, 🏠 дома | БЛЭКБОКС | Южно-Сахалинск | Зарядки, кабели, наушники, чехлы, автосканеры и многое др.";
 ?>
 
+<?php Phpr_View::beginBlock("meta") ?>
 <title><?= $seo_title ?></title>
 <meta name="description" content="<?= $seo_description ?>">
 <meta name="keywords" content="каталог блэкбокс, интернет магазин электроники, цены блэкбокс, адрес блэкбокс, режим работы блэкбокс, блэкбокс южно-сахалинск, бб65, blackbox, аксуссуары для смартфонов, аксессуары для компьютеров, автоаксессуары">
+<?php Phpr_View::endBlock() ?>
 
+<?php Phpr_View::beginBlock("og") ?>
 <meta property="og:title" content="<?= $seo_title ?>" />
 <meta property="og:description" content="<?= $seo_description ?>" />
+<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+<?php Phpr_View::endBlock() ?>
 
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<?php Phpr_View::beginBlock("twitter") ?>
 <meta name="twitter:title" content="<?= $seo_title ?>" />
 <meta name="twitter:description" content="<?= $seo_description ?>" />
+<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg">
+<?php Phpr_View::endBlock() ?>
+
+<?php Phpr_View::beginBlock("head") ?>
 
 <link href="https://bb65.ru/catalog/" rel="canonical">
 
@@ -31,7 +37,7 @@ $seo_description = "Магазин электроники и аксессуар�
 		}]
 	}
 </script>
-<? Phpr_View::endBlock(true) ?>
+<?php Phpr_View::endBlock(true) ?>
 
 <div class="catalog-categories-index container">
 	<?php if ($catalogRootCategories) : ?>

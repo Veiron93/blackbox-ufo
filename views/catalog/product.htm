@@ -1,29 +1,42 @@
-<? Phpr_View::beginBlock("head") ?>
 <?php if (isset($product) && $product) : ?>
 
 	<?php $image = $this->catalog->imageProduct($product->images); ?>
 
+	<?php Phpr_View::beginBlock("meta") ?>
 	<title><?= $product->seo->seo_title ?></title>
 	<meta name="description" content="<?= $product->seo->seo_description ?>">
 	<meta name="keywords" content="<?= $product->seo->seo_keywords ?>">
+	<?php Phpr_View::endBlock() ?>
 
+	<?php Phpr_View::beginBlock("og") ?>
 	<meta property="og:title" content="<?= $product->seo->seo_title ?>" />
 	<meta property="og:description" content="<?= $product->seo->seo_description ?>" />
-	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>" />
+	<?php Phpr_View::endBlock() ?>
 
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+
+	<?php Phpr_View::beginBlock("twitter") ?>
 	<meta name="twitter:title" content="<?= $product->seo->seo_title ?>" />
 	<meta name="twitter:description" content="<?= $product->seo->seo_description ?>" />
 	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
+	<?php Phpr_View::endBlock() ?>
 
+	<? Phpr_View::beginBlock("head") ?>
 	<link href="https://bb65.ru/catalog/product/<?= $product->id ?>/" rel="canonical">
 
 	<!-- fancybox -->
 	<link media="screen" rel="stylesheet" href="/resources/css/fancybox.min.css">
 	<script type="text/javascript" src="/resources/js/fancybox.umd.js" defer></script>
+	<? Phpr_View::endBlock(true) ?>
+
+<?php else : ?>
+	<?php Phpr_View::beginBlock("meta") ?>
+	<title>БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома | Южно-Сахалинск</title>
+	<meta name="description" content="<?= site_description() ?>">
+	<meta name="keywords" content="<?= site_keywords() ?>">
+	<?php Phpr_View::endBlock() ?>
 <?php endif ?>
-<? Phpr_View::endBlock(true) ?>
+
 
 <?php Phpr_View::beginBlock("view") ?>
 <div class="catalog-product container">

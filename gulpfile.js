@@ -201,7 +201,9 @@ gulp.task('build', () => {
 
 	const ignoredFiles = [
 		'.DS_Store',
+		'ftp.example',
 		'ftp.js',
+		'humans.txt',
 		'.git',
 		'config/**',
 		'dist/**',
@@ -209,6 +211,7 @@ gulp.task('build', () => {
 		'node_modules/**',
 		'resources/scss/**',
 		'resources/js/**',
+		'resources/fonts/**',
 		'temp/**',
 		'uploaded/**',
 		'.gitignore',
