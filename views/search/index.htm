@@ -1,28 +1,71 @@
+<?php
+$search_query = h(Phpr::$request->getField('q'));
+$seo_title = ($search_query ? "Результаты поиска «" . $search_query . "»" : "Поиск по каталогу товаров") . "| Магазин БЛЭКБОКС";
+$seo_description = "Каталог товаров со скидкой. Каждую неделю новые скидки | БЛЭКБОКС | Южно-Сахалинск | Магазин электроники и аксессуаров для 📱 гаджетов, 🖥 компьютеров, 🚘 автомобилей, 🏠 дома";
+?>
+
+<?php Phpr_View::beginBlock("meta") ?>
+<title><?= $seo_title ?></title>
+<meta name="description" content="<?= $seo_description ?>">
+<meta name="keywords" content="товары по скидке, скидка, каталог блэкбокс, интернет магазин электроники, блэкбокс южно-сахалинск, бб65, blackbox, аксуссуары для смартфонов, аксессуары для компьютеров, автоаксессуары">
+<?php Phpr_View::endBlock() ?>
+
+
+<?php Phpr_View::beginBlock("og") ?>
+<meta property="og:title" content="<?= $seo_title ?>" />
+<meta property="og:description" content="<?= $seo_description ?>" />
+<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+<?php Phpr_View::endBlock() ?>
+
+<?php Phpr_View::beginBlock("twitter") ?>
+<meta name="twitter:title" content="<?= $seo_title ?>" />
+<meta name="twitter:description" content="<?= $seo_description ?>" />
+<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg">
+<?php Phpr_View::endBlock() ?>
+
+<?php Phpr_View::beginBlock("head") ?>
+
+<link href="https://bb65.ru/search/" rel="canonical">
+
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Результаты поиска",
+			"item": "https://bb65.ru/search/"
+		}]
+	}
+</script>
+<? Phpr_View::endBlock(true) ?>
+
 <div class="search-page container">
 
-	<?php if (!isset($error)): ?>
+	<?php if (!isset($error)) : ?>
 
-		<?php if (isset($products) && count($products) || isset($categories) && count($categories)): ?>
+		<?php if (isset($products) && count($products) || isset($categories) && count($categories)) : ?>
 			<div class="search-page_heading">
-				<div class="query">Результаты поиска по запросу <span>«<?= h(Phpr::$request->getField('q')) ?>»</span></div>
-				
-				<?php if(1 > 2):?>
-					<div class="count">Найдено: <?=$count?></div>
+				<div class="query">Результаты поиска по запросу <span>«<?= $search_query ?>»</span></div>
+
+				<?php if (1 > 2) : ?>
+					<div class="count">Найдено: <?= $count ?></div>
 				<?php endif; ?>
 			</div>
 
 
-			<?/**/?>
-			<?php if(count($categories)): ?>
+			<?/**/ ?>
+			<?php if (count($categories)) : ?>
 				<div class="catalog-categories-list">
 					<?php foreach ($categories as $category) : ?>
-						<?php $this->renderPartial($this->getViewsDir() . "catalog/item_catalog_category_single.htm", ['category' => $category]);?>
+						<?php $this->renderPartial($this->getViewsDir() . "catalog/item_catalog_category_single.htm", ['category' => $category]); ?>
 					<?php endforeach ?>
 				</div>
 			<?php endif; ?>
-			
 
-			<?php if (count($products)): ?>
+
+			<?php if (count($products)) : ?>
 				<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list="grid">
 					<?php foreach ($products as $product) : ?>
 						<?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product' => $product]); ?>
@@ -31,18 +74,19 @@
 			<?php endif ?>
 
 			<?php /** @var $pagination Phpr_Pagination */ ?>
-			<?php if (isset($pagination)): ?>
+			<?php if (isset($pagination)) : ?>
 				<div class="pagination-block">
-					<?//= $pagination->format(new Phpr_PrimePaginationFormatter(), u("search_page", array()) . "%d/" . str_replace("%", "%%", $query)) ?>
+					<? //= $pagination->format(new Phpr_PrimePaginationFormatter(), u("search_page", array()) . "%d/" . str_replace("%", "%%", $query)) 
+					?>
 				</div>
 			<?php endif; ?>
 
-		<?php else: ?>
+		<?php else : ?>
 			<div class="search-page_text-inform">
 				К сожалению, по вашему запросу ничего не найдено.
 			</div>
 		<?php endif; ?>
-	<?php else: ?>
+	<?php else : ?>
 		<div class="search-page_text-inform">
 			<?= $error ?>
 		</div>
