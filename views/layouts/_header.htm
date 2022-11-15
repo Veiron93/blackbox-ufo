@@ -17,32 +17,31 @@ $address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - с�
 
 			<div class="header-description">Аксессуары для гаджетов, компьютеров, автомобилей и дома</div>
 
-			<div class="header-phone">
+			<address class="header-phone">
 				<a href="tel:<?= $phone ?>"><?= $phone ?></a>
-			</div>
+			</address>
 
 			<?php if ($address) : ?>
-				<div class="header-address">
-					<a href="<?= $address_link ?>" target="_blank"><?= $address ?></a>
-				</div>
+				<address class="header-address">
+					<a href="<?= $address_link ?>" target="_blank"><?= nl2br($address) ?></a>
+				</address>
 			<?php endif; ?>
 
 			<div class="btn-status-search">
 				<img src="/resources/images/icons/search.svg" alt="Поиск">
 			</div>
 
-			<div class="header-socials">
-				<a href="whatsapp://api.whatsapp.com/send?phone=<?= Phpr::$config->get('PHONE') ?>" target="_blank" title="WhatsApp" rel="nofollow">
-					<img src="/resources/images/icons/social/whatsapp.svg" alt="WhatsApp">
-				</a>
-
-				<a href="https://t.me/Veiron93/" target="_blank" title="Telegram" rel="nofollow">
-					<img src="/resources/images/icons/social/telegram.svg" alt="Telegram">
-				</a>
-			</div>
+			<?php $this->renderLayout('_social_list') ?>
 
 			<nav>
-				<? $this->renderLayout('_dynamic_menu') ?>
+				<?php $this->renderLayout('_dynamic_menu') ?>
+				<?php $this->renderLayout('_social_list') ?>
+
+				<?php if ($address) : ?>
+					<address class="address">
+						<a href="<?= $address_link ?>" target="_blank"><?= nl2br($address) ?></a>
+					</address>
+				<?php endif; ?>
 			</nav>
 		</div>
 	</div>

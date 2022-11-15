@@ -606,6 +606,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 	// КНОПКА ДОБАВИТЬ В КОРЗИНУ
+	// function productAddToCart() {
+
+	// 	const url = location.pathname;
+	// 	const page = url.split('/')[2] == 'product' ? 'product' : 'catalog';
+
+	// 	let btns = document.querySelectorAll('.btn-buy');
+	// 	let products = [];
+
+	// 	if (page == 'product') {
+	// 		let product = document.querySelector('.catalog-product');
+	// 		products.push(product);
+	// 	} else {
+	// 		products = document.querySelectorAll('.product-card');
+	// 	}
+
+	// 	if (btns && products) {
+	// 		btns.forEach(btn => {
+	// 			btn.querySelector('a').addEventListener('click', function () {
+	// 				let id = this.parentElement.getAttribute('data-id');
+
+	// 				products.forEach(product => {
+	// 					if (product.getAttribute('data-id') == id) {
+	// 						product.classList.add('added')
+	// 					}
+	// 				})
+	// 			})
+	// 		})
+	// 	}
+	// }
+
 	function productAddToCart() {
 
 		const url = location.pathname;
@@ -621,16 +651,54 @@ document.addEventListener("DOMContentLoaded", function () {
 			products = document.querySelectorAll('.product-card');
 		}
 
+		let config = {
+			headers: {
+				'UFO-AJAX-HANDLER': 'ev{onAddToCart}',
+				'UFO-REQUEST': 1
+			}
+		}
+
+		let miniCartWrapper = document.getElementById('mini-cart'),
+			miniCartMobileWrapper = document.getElementById('mini-cart-mobile');
+
+
 		if (btns && products) {
 			btns.forEach(btn => {
-				btn.querySelector('a').addEventListener('click', function () {
-					let id = this.parentElement.getAttribute('data-id');
+				btn.addEventListener('click', function () {
 
-					products.forEach(product => {
-						if (product.getAttribute('data-id') == id) {
-							product.classList.add('added')
-						}
-					})
+					let id = this.getAttribute('data-id'),
+						type = this.getAttribute('data-type'),
+						quantity = this.getAttribute('data-quantity'),
+						id_sku = this.getAttribute('data-id-sku');
+
+
+					axios.post('/shop/', {
+						id: id,
+						type: type,
+						quantity: quantity,
+						id_sku: id_sku
+					}, config)
+						.then(response => {
+
+							let updatedMiniCart = response.data.response['#mini-cart'],
+								updatedMiniCartMobile = response.data.response['#mini-cart-mobile'];
+
+
+							console.log(updatedMiniCart)
+
+
+							if (updatedMiniCart && updatedMiniCartMobile) {
+								miniCartWrapper.innerHTML = updatedMiniCart;
+								miniCartMobileWrapper.innerHTML = updatedMiniCartMobile;
+
+
+								products.forEach(product => {
+									if (product.getAttribute('data-id') == id) {
+										product.classList.add('added')
+									}
+								})
+							}
+						})
 				})
 			})
 		}
@@ -733,4 +801,54 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	productDescription();
+
+
+
+	function onInfinityProductsList() {
+		let infinityProductsList = document.querySelector('.infinity-products-list');
+
+		if (!infinityProductsList) {
+			return;
+		}
+
+		let btnMore = infinityProductsList.querySelector('.btn-more-products');
+		let wrapperProductsList = infinityProductsList.querySelector('.wrapper-products');
+
+		let config = {
+			headers: {
+				'UFO-AJAX-HANDLER': 'ev{onGetRandomProducts}',
+				'UFO-REQUEST': 1
+			}
+		}
+
+		let products = wrapperProductsList.querySelectorAll('.product-card');
+		let ids = [];
+
+		if (products) {
+			products.forEach(product => ids.push(product.getAttribute('data-id')))
+		}
+
+		btnMore.addEventListener('click', () => {
+
+			axios.post('/', {
+				ids: ids
+			}, config)
+				.then(response => {
+
+					if (!response.data.response) {
+						return;
+					}
+
+					let newProductsIds = response.data.response.newProductsIds,
+						newProducts = response.data.response.newProducts;
+
+					wrapperProductsList.insertAdjacentHTML('beforeend', newProducts);
+					newProductsIds.forEach(id => ids.push(id));
+
+					productAddToCart();
+				})
+		})
+	}
+
+	onInfinityProductsList();
 });

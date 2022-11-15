@@ -10,15 +10,11 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 24px;
+	cursor: pointer;
 
 	&:hover {
 		background-color: #526194;
 		background-image: url('/resources/images/icons/white-box.svg');
-	}
-
-	a {
-		display: block;
-		height: 100%;
 	}
 
 	&[data-added='true'] {
@@ -28,27 +24,8 @@
 		&:hover {
 			background-color: #526194;
 		}
-
-		.add-to-cart-btn {
-			display: none;
-		}
-
-		.to-cart-btn {
-			display: block;
-		}
-	}
-
-	.to-cart-btn {
-		display: none;
 	}
 }
-
-// все товары
-// .all-products {
-// 	.list-products {
-// 		row-gap: 15px;
-// 	}
-// }
 
 // количество товаров
 .count-products {
@@ -1577,12 +1554,12 @@
 		justify-content: center;
 		color: #fff;
 		border-radius: 14px;
-		height: 40px;
-		width: 250px;
+		height: 50px;
+		width: 200px;
 		background: $accent;
 		transition: background .2s;
 		cursor: pointer;
-		margin-top: 30px;
+		margin-top: 35px;
 
 		&:hover{
 			background: $accentHover;

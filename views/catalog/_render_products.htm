@@ -1,0 +1,3 @@
+<?php foreach ($products as $product) : ?>
+    <?php $this->renderPartial($this->getViewsDir() . "catalog/_product_card.htm", ['product' => $product]); ?>
+<?php endforeach ?>

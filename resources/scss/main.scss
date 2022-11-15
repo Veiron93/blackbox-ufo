@@ -32,9 +32,9 @@ a{
 	}
 }
 
-// img{
-// 	max-width: 100%;
-// }
+address{
+	font-style: normal;
+}
 
 .container{
 	max-width: 1170px;
@@ -1447,23 +1447,38 @@ form{
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	padding: 10px 13px;
+	padding: 10px 0;
 	z-index: 100;
 
 	background: #fff;
+	box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
 
 	display: none;
-	justify-content: space-between;
+	column-gap: 20px;
+	justify-content: center;
 
-	box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+	@include screen_sm_down{
+		display: flex;
+	}
 
 	.item{
 		flex: none;
+		//border: 1px solid red;
+		width: 55px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: center;
+
+		> a{
+			line-height: 0;
+		}
 
 		img{
 			height: 20px;
 			display: block;
-			margin: 0 auto 0;
+			margin: 0 auto 3px;
 		}
 
 		span{
@@ -1481,14 +1496,19 @@ form{
 				right: 0;
 				margin-top: -5px;
 				margin-right: 5px;
+				padding: 0 4px;
+
 				position: absolute;
 				background: $accentHover;
 				color: #fff;
 				font-size: 11px;
-				padding: 2px 5px;
 				border-radius: 4px;
+
 				min-width: 16px;
-				text-align: center;
+				height: 13px;
+
+				display: flex;
+				align-items: center;
 			}
 		}
 	}
@@ -1512,10 +1532,6 @@ form{
 	}
 
 	.btn-mobile-nav{
-		.open{
-
-		}
-
 		.close{
 			display: none;
 		}
@@ -1527,12 +1543,10 @@ form{
 	
 			.close{
 				display: block;
+				height: 15px;
+				margin-bottom: 5px;
 			}
 		}
-	}
-
-	@include screen_sm_down{
-		display: flex;
 	}
 }
 

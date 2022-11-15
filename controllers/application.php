@@ -2,7 +2,6 @@
 
 class Application extends App_Controller
 {
-	public static $infinity_products_list;
 
 	protected $globalHandlers = [
 		"onGetRandomProducts"
@@ -22,16 +21,32 @@ class Application extends App_Controller
 		// Новинки
 		$this->viewData['productNew'] = $this->catalog::getProducts("cp.is_new is not null", 12);
 
-		// рандомные товары
-		// $this->infinity_products_list = new Infinity_Products_List();
-		// $this->viewData['randomProducts'] = $this->infinity_products_list::$products;
+		// бесконечный список товаров
+		$this->viewData['infinitiListProducts'] = App_Catalog::getProducts(null, 3, null, 'RAND()');
 	}
 
 
-	// public function onGetRandomProducts()
-	// {
-	// 	$products = $this->infinity_products_list::getProducts();
+	public function onGetRandomProducts()
+	{
+		$inputJSON = file_get_contents('php://input');
+		$ids = json_decode($inputJSON, TRUE)['ids'];
+		$ids = implode(',', $ids);
 
-	// 	//traceLog($products);
-	// }
+		$new_products = $this->catalog::getProducts("cp.id NOT IN ($ids)", 3, null, 'RAND()');
+		$new_products_ids = [];
+
+		foreach ($new_products as $new_product) {
+			array_push($new_products_ids, $new_product->id);
+		}
+
+		$block = "__temporary_block";
+
+		Phpr_View::beginBlock($block);
+		$this->renderPartial($this->getViewsDir() . "catalog/_render_products.htm", ['products' => $new_products]);
+		Phpr_View::endBlock();
+
+		$products_partial = Phpr_View::block($block);
+
+		$this->ajaxResponse(['newProducts' => $products_partial, 'newProductsIds' => $new_products_ids]);
+	}
 }

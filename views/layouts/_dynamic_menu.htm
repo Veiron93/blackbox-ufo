@@ -1,9 +1,13 @@
 <?php $items = $this->menuItems->getRootItemsInMenu('main'); ?>
 
-<?php if ($items !== null): ?>
-	<?php foreach ($items as $idx => $item): ?>
-		<?php if (!$item->is_hidden_in_menu): ?>
-			<a href="<?= $item->getUrl() ?>"><?= $item->title ?></a>
-		<?php endif; ?>
-	<?php endforeach; ?>
+<?php if ($items !== null) : ?>
+	<ul class="navigation">
+		<?php foreach ($items as $idx => $item) : ?>
+			<?php if (!$item->is_hidden_in_menu) : ?>
+				<li>
+					<a href="<?= $item->getUrl() ?>"><?= $item->title ?></a>
+				</li>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	</ul>
 <? endif; ?>

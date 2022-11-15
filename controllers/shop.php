@@ -20,7 +20,6 @@ class Shop extends App_Controller
 
     public function index()
     {
-
     }
 
     public function cart_print()
@@ -48,10 +47,22 @@ class Shop extends App_Controller
     protected function onAddToCart()
     {
         try {
-            $id = post('id');
-            $quantity = post('quantity', 1);
-            $type = post('type');
-            
+
+            $inputJSON = file_get_contents('php://input');
+            $data = json_decode($inputJSON, TRUE);
+
+
+            $id = $data['id'];
+            $quantity = $data['quantity'];
+            $type = $data['type'];
+
+            //traceLog($data);
+
+
+            // $id = post('id');
+            // $quantity = post('quantity', 1);
+            // $type = post('type');
+
             if (!$id || !$type) {
                 throw new Phpr_ApplicationException("Illegal request");
             }
@@ -70,10 +81,11 @@ class Shop extends App_Controller
                 if ($this->checkLeftover($product, $quantity)) {
                     $cart->addProduct($product, $quantity);
                 }
-
             } else if ($type == "sku") {
 
-                $id_sku = post('id_sku');
+                //$id_sku = post('id_sku');
+                $id_sku = $data['id_sku'];
+
 
                 /** @var Catalog_Sku $sku */
                 $sku = Catalog_Sku::create()->find($id_sku);
@@ -84,7 +96,7 @@ class Shop extends App_Controller
 
                 if ($this->checkLeftover($sku, $quantity)) {
 
-                    if(!$sku->price){
+                    if (!$sku->price) {
                         $product = Catalog_Product::create()->where('hidden is null')->find($id);
 
                         $sku->price = $product->price;
@@ -135,13 +147,13 @@ class Shop extends App_Controller
 
                     $newQuantity = (int)$quantity[$item->getId()];
 
-                    if($newQuantity <= $leftoverProduct){ 
+                    if ($newQuantity <= $leftoverProduct) {
                         $item->setQuantity((int)$quantity[$item->getId()]);
-                    }elseif($newQuantity > $leftoverProduct){
+                    } elseif ($newQuantity > $leftoverProduct) {
                         $item->setQuantity($leftoverProduct);
-                    }else if($newQuantity < 1){
+                    } else if ($newQuantity < 1) {
                         $cart->deleteItem($item);
-                    }         
+                    }
                 }
             }
 
@@ -186,7 +198,7 @@ class Shop extends App_Controller
 
             $cartItems = $cart->getItems();
 
-            foreach($cartItems as $item){
+            foreach ($cartItems as $item) {
                 $cart->deleteItem($item);
             }
 
@@ -218,16 +230,16 @@ class Shop extends App_Controller
         }
     }
 
-    protected function onRecalculationCart(){
-        try{  
-                
-            if(App_Controller::$statusUpdateCart){
+    protected function onRecalculationCart()
+    {
+        try {
+
+            if (App_Controller::$statusUpdateCart) {
                 throw new Phpr_ApplicationException("Упс... Обновите корзину, у некоторых товаров изменилась цена или количество в наличии меньше чем Вы выбрали");
-            }else{
+            } else {
                 $this->onPlaceOrder();
             }
-
-        }catch (\Exception $ex) {
+        } catch (\Exception $ex) {
             $this->ajaxError($ex);
         }
     }
@@ -247,17 +259,17 @@ class Shop extends App_Controller
             $this->validation->add("phone", "Телефон")->required("Укажите свой номер телефон");
             $this->validation->add("comment", "Комментарий")->fn("trim");
 
-            if($delivery['code'] != 'pickup'){
+            if ($delivery['code'] != 'pickup') {
                 $this->validation->add("customer-address", "Адрес")->required("Укажите адрес");
 
-				$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content; 
+                $freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content;
 
-                if($freeDelivery && $delivery['code'] === 'ys' && $freeDelivery <= $cart->getTotalPrice()){
+                if ($freeDelivery && $delivery['code'] === 'ys' && $freeDelivery <= $cart->getTotalPrice()) {
                     $delivery['price'] = 'Бесплатно';
                 }
 
                 $deliveryDescription = "Район: " . $delivery['name'] . PHP_EOL . "Стоимость доставки: " . $delivery['price'];
-            }else{
+            } else {
                 $deliveryDescription = "Самовывоз";
             }
 
@@ -274,18 +286,18 @@ class Shop extends App_Controller
             $order->customer_phone = $values['phone'];
             $order->customer_email = $values['customer-email'];
 
-            if($delivery['code'] != 'pickup'){
+            if ($delivery['code'] != 'pickup') {
                 $order->customer_address = $deliveryDescription . PHP_EOL . "Адрес: " . $values['customer-address'];
-            }else{
+            } else {
                 $order->customer_address = $deliveryDescription;
             }
-            
+
             $order->comment = $values['comment'];
             $order->cart_id = $cart->cart_id;
             $order->save();
 
             $cart_items = $cart->getItems();
-            
+
             foreach ($cart_items as $item) {
                 $orderItem = Shop_OrderItem::createFromCartItem($item);
                 $orderItem->order_id = $order->id;
@@ -299,8 +311,7 @@ class Shop extends App_Controller
             $this->setSalesProducts($cart_items);
             $this->setLeftoverProducts($cart_items);
 
-            Phpr::$response->redirect("/shop/success"); 
-
+            Phpr::$response->redirect("/shop/success");
         } catch (\Exception $ex) {
             $this->ajaxError($ex);
         }
@@ -312,7 +323,7 @@ class Shop extends App_Controller
         foreach ($products_cart as $product) {
             Db_DbHelper::query("UPDATE catalog_products SET sales = IF(sales, sales + $product->quantity , $product->quantity) WHERE id = $product->productId");
         }
-	}
+    }
 
     // остаток товара
     protected function setLeftoverProducts($products_cart)
@@ -321,9 +332,9 @@ class Shop extends App_Controller
         $products = [];
 
         foreach ($products_cart as $product) {
-            if($product->skuId){
+            if ($product->skuId) {
                 array_push($skus, $product);
-            }else{
+            } else {
                 array_push($products, $product);
             }
         }
@@ -342,7 +353,6 @@ class Shop extends App_Controller
 
     public function success()
     {
-
     }
 
     public function payment($orderId, $hash)
@@ -384,9 +394,10 @@ class Shop extends App_Controller
         }
     }
 
-    public static function getSavedCustomerField($field) {
+    public static function getSavedCustomerField($field)
+    {
         $values = Phpr::$request->cookie(self::COOKIE_DATA);
-        
+
         if (!$values) return null;
 
         $values = unserialize($values);
@@ -394,7 +405,7 @@ class Shop extends App_Controller
         if (isset($values[$field])) return $values[$field];
 
         if ($field == 'save_order_info' && count($values)) return true;
-    
+
         return null;
     }
 }
