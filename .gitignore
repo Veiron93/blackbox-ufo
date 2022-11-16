@@ -16,5 +16,5 @@ phproad
 scripts
 cache/*
 ftp.js
-dist
+/dist
 !modules/blackbox
