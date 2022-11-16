@@ -31,6 +31,30 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 
+	// КНОПКА ВВЕРХ
+	{
+		function trackScroll() {
+			let scrolled = window.pageYOffset,
+				coords = document.documentElement.clientHeight;
+
+			if (scrolled > coords) {
+				btns.forEach(btn => btn.classList.add('active'))
+			} else {
+				btns.forEach(btn => btn.classList.remove('active'))
+			}
+		}
+
+		function backToTop() {
+			if (window.pageYOffset > 0) window.scrollBy(0, - window.pageYOffset);
+		}
+
+		window.addEventListener('scroll', trackScroll);
+
+		let btns = document.querySelectorAll('.btn-up-page');
+		btns.forEach(btn => btn.addEventListener('click', backToTop))
+	}
+
+
 	// товары
 	function productsSliders() {
 
@@ -114,45 +138,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			}
 
-
-
 			initSliders(productSlidersTypeList, settings);
 		}
 	}
 
 	productsSliders();
-
-
-	// слайдер в просмотре продукта
-
-	let swiper = new Swiper(".catalog-product-slider .mySwiper", {
-		breakpoints: {
-			0: {
-				slidesPerView: 3,
-				spaceBetween: 5,
-			},
-			768: {
-				slidesPerView: 3,
-				spaceBetween: 20,
-			},
-			991: {
-				slidesPerView: 4,
-				spaceBetween: 10,
-			}
-		},
-	});
-
-	new Swiper(".catalog-product-slider .mySwiper2", {
-		loop: true,
-		navigation: {
-			nextEl: ".button-next",
-			prevEl: ".button-prev",
-		},
-		thumbs: {
-			swiper: swiper,
-		},
-	});
-
 
 	// фирменная упаковка в корзине
 	// $('.branded-packaging_slider').not('.slick-initialized').slick({
@@ -250,132 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	mobileNavigation();
 
 
-	// КОРЗИНА
-
-	function quantityCart() {
-
-		function quantityMinus(quantityNum) {
-			if (quantityNum.value > 1) {
-				quantityNum.value = +quantityNum.value - 1;
-			}
-		}
-
-		function quantityPlus(quantityNum) {
-			quantityNum.value = +quantityNum.value + 1;
-		}
-
-		let cart = document.querySelector('.cart-wrapper');
-
-		if (cart) {
-			let quantityBtns = cart.querySelectorAll('.btn-quantity-cart'),
-				quantityNums = cart.querySelectorAll('.quantity-num');
-
-			quantityBtns.forEach(function (e) {
-
-				e.addEventListener('click', function () {
-					let quantityNum = e.parentElement.querySelector('.quantity-num');
-
-					if (e.classList.contains('btn-quantity-minus') || quantityNum.value < quantityNum.getAttribute("max")) {
-						if (e.classList.contains('btn-quantity-minus')) {
-							quantityMinus(quantityNum);
-						} else {
-							quantityPlus(quantityNum);
-						}
-
-						$('#cart-form').sendForm('onUpdateQuantity', {});
-					}
-				})
-			})
-
-			quantityNums.forEach(function (e) {
-				e.addEventListener('change', function () {
-					e.value = e.value >= 1 ? e.value : 1;
-					$('#cart-form').sendForm('onUpdateQuantity', {});
-				})
-			})
-		}
-	}
-
-	quantityCart();
-
-
-	function cartDelivery() {
-
-		let cart = document.querySelector('.cart-wrapper');
-
-		if (cart) {
-
-			// стоимость доставки
-			function setTotalPriceDelivery(deliveryItem) {
-
-				let deviveryPriceBlock = cart.querySelector('.devivery-price').querySelector('span'),
-					deliveryPrice = deliveryItem.getAttribute('data-price'),
-					deliveryCode = deliveryItem.getAttribute('data-code');
-
-				if (deliveryPrice == 0) {
-
-					let text = null;
-
-					switch (deliveryCode) {
-						case 'pickup':
-							text = 'Самовывоз';
-							break;
-						case 'tk':
-							text = 'Бесплатно до ТК';
-							break;
-						default:
-							text = 'Бесплатно';
-					}
-
-					deviveryPriceBlock.textContent = text;
-				} else {
-					deviveryPriceBlock.textContent = deliveryPrice;
-				}
-			}
-
-			// общая сумма заказа
-			function setTotalPrice(deliveryItem) {
-				let totalPriceBlock = cart.querySelector('.total-price').querySelector('span'),
-					goodsPrice = cart.querySelector('.goods-price').querySelector('span');
-
-				totalPriceBlock.textContent = Number(deliveryItem.getAttribute('data-price')) + Number(goodsPrice.getAttribute('data-summ'));
-			}
-
-			function statusSectionAddress(deliveryItem) {
-				let address = cart.querySelector('.section-address');
-
-				if (deliveryItem.getAttribute('data-code') != 'pickup' && !address.classList.contains('active')) {
-					address.classList.add('active')
-				} else if (deliveryItem.getAttribute('data-code') == 'pickup') {
-					address.classList.remove('active')
-				}
-			}
-
-			let deliveryItems = cart.querySelectorAll('input[name="delivery"]');
-
-			deliveryItems.forEach(function (deliveryItem) {
-
-				if (deliveryItem.hasAttribute('checked')) {
-					setTotalPriceDelivery(deliveryItem);
-					setTotalPrice(deliveryItem);
-					statusSectionAddress(deliveryItem);
-				}
-
-				// изменение способа доставки
-				deliveryItem.addEventListener('change', function () {
-					setTotalPriceDelivery(deliveryItem);
-					setTotalPrice(deliveryItem);
-					statusSectionAddress(deliveryItem);
-				})
-			})
-		}
-	}
-
-	cartDelivery()
-
-
-	///////////// ВИД СПИСКА ТОВАРОВ /////////////
-
+	// ВИД СПИСКА ТОВАРОВ
 	function viewProductList() {
 		let viewProductListBlock = document.querySelector('.catalog-products-sorting .view-mode');
 
@@ -414,228 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	viewProductList();
 
 
-	// КАТАЛОГ - ФИЛЬТРЫ
-	function viewFilterList() {
-		let filterList = document.querySelector('.catalog-filters-wrapper');
-
-		if (filterList) {
-
-			let filters = filterList.querySelectorAll('.filter'),
-				btnSubmit = filterList.querySelector('.btn-submit'),
-				btnsResetFilters = filterList.querySelectorAll('.btn-reset'),
-				selectFilters = getSelectedFilters();
-
-			filters.forEach(function (filter, key) {
-
-				// свернуть фильтр
-				filter.querySelector('.filter-head').addEventListener('click', function () {
-					filter.classList.toggle('active');
-				})
-
-				let filterId = filter.getAttribute("data-filter-id"),
-					filterAttributes = filter.querySelectorAll('.filter-list .list-attribites > *'),
-					filterBtnClear = filter.querySelector('.filter-clear')
-
-				filterAttributes.forEach(function (attribute) {
-
-					attribute.querySelector('input').addEventListener("click", function () {
-
-						let filterAttributeValue = attribute.querySelector('input').value
-
-
-
-						if (this.checked) {
-
-							selectFilters.forEach((f) => {
-
-								if (f.idFilter == filterId) {
-									f.selectAttributes.push(filterAttributeValue)
-								}
-
-								// else{
-								// 	selectFilters.push({
-								// 		'idFilter': filterId,
-								// 		'selectAttributes': [filterAttributeValue]
-								// 	})
-								// }
-							})
-
-
-
-
-
-
-							if (selectFilters.length > 0) {
-
-								selectFilters.forEach((f) => {
-
-									if (f.idFilter == filterId) {
-										f.selectAttributes.push(filterAttributeValue)
-									} else {
-										selectFilters.push({
-											'idFilter': filterId,
-											'selectAttributes': [filterAttributeValue]
-										})
-									}
-								})
-
-
-							}
-
-							else {
-								selectFilters.push({
-									'idFilter': filterId,
-									'selectAttributes': [filterAttributeValue]
-								})
-							}
-
-						} else {
-							selectFilters.forEach((f, keyFilter) => {
-								f.selectAttributes.forEach(function (a, keyAttribute) {
-									if (filterAttributeValue == a) {
-										f.selectAttributes.splice(keyAttribute, 1)
-
-										if (f.selectAttributes.length == 0) {
-											selectFilters.splice(keyFilter, 1)
-										}
-									}
-								})
-							})
-						}
-
-						console.log(selectFilters)
-
-						//console.log(selectFilters);
-
-						// статус кнопки сбросить
-						//selectFilter.selectAttributes.length > 0 ? filterBtnClear.classList.add("active") : filterBtnClear.classList.remove("active");
-					})
-				})
-
-				// сбросить фильтр
-				filterBtnClear.addEventListener('click', function () {
-					filterAttributes.forEach(e => e.querySelector('input').checked = false)
-					selectFilter.selectAttributes.length = 0;
-					filterBtnClear.classList.remove("active")
-				})
-			})
-
-			// получает из url какие фильтры активны
-			function getSelectedFilters() {
-
-				// ищет нужный get параметр
-				function get(name) {
-					if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
-						return decodeURIComponent(name[1]);
-				}
-
-				let getActiveFilters = get('f'),
-					selectFilters = [];
-
-				if (getActiveFilters) {
-					activeFiltersArr = getActiveFilters.slice(1, -1).split(';');
-
-					activeFiltersArr.forEach(function (activeFilter) {
-						let filterId = activeFilter.split('=')[0],
-							filterSelectAttributes = activeFilter.split('=')[1].split(',')
-
-						let selectFilter = {
-							'idFilter': filterId,
-							'selectAttributes': filterSelectAttributes
-						};
-
-						selectFilters.push(selectFilter)
-					})
-				}
-
-				return selectFilters;
-			}
-
-
-			// применить фильтры
-			function applyFilters() {
-				let urlFilters = '';
-
-				selectFilters.forEach(filter => {
-
-					if (filter.selectAttributes.length > 0) {
-						let attributes = filter.selectAttributes.join(',')
-						urlFilters += filter.idFilter + "=" + attributes + ";"
-					}
-				})
-
-				urlFilters = `f=[${urlFilters.slice(0, -1)}]`;
-
-				//console.log(urlFilters)
-			}
-
-
-
-			// сбросить все фильтры
-			function clearFiltres(filters) {
-				filters.forEach(function (filter) {
-					let filterAttributes = filter.querySelectorAll('.filter-list .list-attribites > *');
-
-					filterAttributes.forEach(function (attribute) {
-						attribute.querySelector('input').checked = false;
-					})
-				})
-
-				selectFilters.forEach(function (filter) {
-					filter.selectAttributes.length = 0;
-				})
-			}
-
-			// получение активных фильтров из url
-			//getSelectedFilters()
-
-			// кнопка применить фильтры
-			btnSubmit.addEventListener('click', () => applyFilters())
-
-			// кнопка очистить все фильтры
-			btnsResetFilters.forEach((btn) => {
-				btn.addEventListener('click', () => clearFiltres(filters))
-			})
-
-
-		}
-	}
-
-	//viewFilterList();
-
-
-
-	// КНОПКА ДОБАВИТЬ В КОРЗИНУ
-	// function productAddToCart() {
-
-	// 	const url = location.pathname;
-	// 	const page = url.split('/')[2] == 'product' ? 'product' : 'catalog';
-
-	// 	let btns = document.querySelectorAll('.btn-buy');
-	// 	let products = [];
-
-	// 	if (page == 'product') {
-	// 		let product = document.querySelector('.catalog-product');
-	// 		products.push(product);
-	// 	} else {
-	// 		products = document.querySelectorAll('.product-card');
-	// 	}
-
-	// 	if (btns && products) {
-	// 		btns.forEach(btn => {
-	// 			btn.querySelector('a').addEventListener('click', function () {
-	// 				let id = this.parentElement.getAttribute('data-id');
-
-	// 				products.forEach(product => {
-	// 					if (product.getAttribute('data-id') == id) {
-	// 						product.classList.add('added')
-	// 					}
-	// 				})
-	// 			})
-	// 		})
-	// 	}
-	// }
-
+	// ДОБАВИТЬ В КОРЗИНУ
 	function productAddToCart() {
 
 		const url = location.pathname;
@@ -683,14 +327,9 @@ document.addEventListener("DOMContentLoaded", function () {
 							let updatedMiniCart = response.data.response['#mini-cart'],
 								updatedMiniCartMobile = response.data.response['#mini-cart-mobile'];
 
-
-							console.log(updatedMiniCart)
-
-
 							if (updatedMiniCart && updatedMiniCartMobile) {
 								miniCartWrapper.innerHTML = updatedMiniCart;
 								miniCartMobileWrapper.innerHTML = updatedMiniCartMobile;
-
 
 								products.forEach(product => {
 									if (product.getAttribute('data-id') == id) {
@@ -707,103 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	productAddToCart();
 
 
-	// КНОПКА ВВЕРХ
-	{
-		function trackScroll() {
-			let scrolled = window.pageYOffset,
-				coords = document.documentElement.clientHeight;
-
-			if (scrolled > coords) {
-				btns.forEach(btn => btn.classList.add('active'))
-			} else {
-				btns.forEach(btn => btn.classList.remove('active'))
-			}
-		}
-
-		function backToTop() {
-			if (window.pageYOffset > 0) window.scrollBy(0, - window.pageYOffset);
-		}
-
-		window.addEventListener('scroll', trackScroll);
-
-		let btns = document.querySelectorAll('.btn-up-page');
-		btns.forEach(btn => btn.addEventListener('click', backToTop))
-	}
-
-
-	// ВЫБОР АРТИКУЛА
-	function selectSku() {
-
-		function dataExtra(sku) {
-			const btnAddToCart = productPage.querySelector(".add-to-cart-btn");
-
-			let id = sku.value,
-				extra = JSON.parse(btnAddToCart.getAttribute('data-extra'));
-
-			extra.id_sku = id;
-			btnAddToCart.setAttribute('data-extra', JSON.stringify(extra));
-		}
-
-		function price(sku) {
-			let price = sku.getAttribute('data-price');
-
-			const priceProduct = productPage.querySelector(".catalog-product_buy-price .actual");
-
-			priceProduct.textContent = price;
-		}
-
-		function productsOtherInfo(sku) {
-			const blockProductsOtherInfo = productPage.querySelector(".product-other-info");
-			const productAmount = blockProductsOtherInfo.querySelector(".product-amount");
-			const productCode = blockProductsOtherInfo.querySelector(".product-code_sku");
-
-			let leftover = sku.getAttribute('data-leftover');
-			let skuId = sku.value;
-
-			productAmount.querySelector("span").textContent = leftover;
-			productCode.textContent = skuId;
-		}
-
-
-		let productPage = document.querySelector('.catalog-product');
-
-		if (productPage) {
-			let skus = productPage.querySelectorAll("input[name='product-sku']");
-
-			if (skus) {
-				skus.forEach(sku => sku.addEventListener("change", ev => {
-					let sku = ev.target;
-
-					dataExtra(sku);
-					price(sku);
-					productsOtherInfo(sku);
-				}))
-			}
-		}
-	}
-
-	selectSku();
-
-
-	// развернуть полное описание товара
-	function productDescription() {
-
-		let descriptionSection = document.querySelector('.catalog-product_description-hidden');
-
-		if (!descriptionSection) return;
-
-		let btn = descriptionSection.querySelector('.btn-more');
-
-		btn.addEventListener('click', function () {
-			descriptionSection.classList.toggle('active');
-			btn.textContent = descriptionSection.classList.contains('active') ? 'Свернуть' : 'Показать всё';
-		})
-	}
-
-	productDescription();
-
-
-
+	// БЛОК БЕСКОНЕЧНЫЙ СПИСОК ТОВАРОВ
 	function onInfinityProductsList() {
 		let infinityProductsList = document.querySelector('.infinity-products-list');
 

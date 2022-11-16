@@ -14,20 +14,22 @@
 	<meta property="og:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>" />
 	<?php Phpr_View::endBlock() ?>
 
-
 	<?php Phpr_View::beginBlock("twitter") ?>
 	<meta name="twitter:title" content="<?= $product->seo->seo_title ?>" />
 	<meta name="twitter:description" content="<?= $product->seo->seo_description ?>" />
 	<meta name="twitter:image" content="<?= Phpr::$request->getRootUrl() ?><?= $image ?>">
 	<?php Phpr_View::endBlock() ?>
 
-	<? Phpr_View::beginBlock("head") ?>
+	<?php Phpr_View::beginBlock("head") ?>
 	<link href="https://bb65.ru/catalog/product/<?= $product->id ?>/" rel="canonical">
 
 	<!-- fancybox -->
 	<link media="screen" rel="stylesheet" href="/resources/dist/fancybox.css">
 	<script type="text/javascript" src="/resources/dist/fancybox.umd.js" defer></script>
-	<? Phpr_View::endBlock(true) ?>
+
+	<?= Core_Html::js($this->getAsset('dist/product-show.min.js')) ?>
+
+	<?php Phpr_View::endBlock(true) ?>
 
 <?php else : ?>
 	<?php Phpr_View::beginBlock("meta") ?>

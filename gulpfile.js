@@ -64,7 +64,8 @@ let gulp = require('gulp'),
 
 
 let customFilePath = "./custom-gulpfile.js";	// путь к файлу индивидуальной настройки
-let styleFiles = ['styles', 'tinymce'];		// файлы стилей для препроцессора для отдельной сборки
+let styleFiles = ['styles', 'tinymce'];			// файлы стилей для препроцессора для отдельной сборки
+let scriptFiles = ['cart', 'product-show'];		// файлы js для отдельной сборки
 
 if (fs.existsSync(customFilePath)) {
 	var customGulpfile = require(customFilePath);
@@ -102,11 +103,6 @@ gulp.task('browser-sync-start', function (done) {
 
 	done();
 });
-
-// if (customGulpfile.styleHotReload) {
-// 	gulp.watch(customGulpfile.watchFiles, gulp.parallel(['browser-sync-reload']));
-// }
-
 
 gulp.task('browser-sync-reload', function () {
 	browserSync.reload();
@@ -148,11 +144,29 @@ gulp.task('style', function () {
 // SCRIPTS
 gulp.task('scripts', done => {
 
-	gulp.src('resources/js/*.js')
+	let pathJsFiles = 'resources/js/';
+	let ignoreFiles = [];
+
+	scriptFiles.forEach(script => {
+		let ignoreFile = '!' + pathJsFiles + script + '.js';
+		ignoreFiles.push(ignoreFile);
+	})
+
+	gulp.src(['resources/js/*.js', ...ignoreFiles])
 		.pipe(concat('common.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest('resources/dist'))
 		.pipe(browserSync.reload({ stream: true }))
+
+
+
+	scriptFiles.forEach(function (scriptFile, n, scriptFiles) {
+		gulp.src([pathJsFiles + scriptFile + ".js"])
+			.pipe(concat(scriptFile + '.min.js'))
+			.pipe(uglify())
+			.pipe(gulp.dest('resources/dist'))
+			.pipe(browserSync.reload({ stream: true }))
+	});
 
 	done();
 })
