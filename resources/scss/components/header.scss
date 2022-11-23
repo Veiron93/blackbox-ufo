@@ -19,7 +19,6 @@ header {
 			height: 50px;
 
 			.logo-index {
-				margin-right: 35px;
 				position: relative;
 				width: 126px;
 
@@ -98,27 +97,12 @@ header {
 				}
 			}
 
-			.logo{
-				margin-right: 35px;
-			}
-
-			.header-description, .header-address {
-				font-size: 13px;
-				margin-right: 20px;
-				line-height: 1.1em;
-				flex: none;
-			}
-
-			.header-description{
-				width: 230px;
-			}
-
 			.header-phone {
 				flex: none;
 				border-radius: 10px;
 				transition: background .2s;
 				overflow: hidden;
-				margin-left: auto;
+				margin-left: 46px;
 
 				&:hover {
 					background: rgba($accentHover, .1);
@@ -136,8 +120,11 @@ header {
 				}
 			}
 
-			.header-address{
-				margin-left: auto;
+			.header-address {
+				font-size: 13px;
+				margin-left: 25px;
+				line-height: 1.1em;
+				flex: none;
 			}
 
 			.btn-status-search-mobile{
@@ -152,7 +139,7 @@ header {
 				column-gap: 12px;
 
 				padding: 0;
-				margin: 0 40px;
+				margin: 0 40px 0 auto;
 
 				li{
 					a{
@@ -681,28 +668,14 @@ header {
 
 	@include screen_lg{
 		.header-top-section {
-			.header-wrapper {
-
-				.logo-index, .logo{
-					margin-right: 15px;
-				}
-
-				.header-description, .header-address {
-					font-size: 11px;
-				}
-
-				.header-description{
-					width: 186px;
-					margin-right: 15px;
-				}
-
-				// .header-phone{
-				// 	margin-left: auto;
-				// }
+			.header-wrapper {	
 
 				.social-list{
-					margin-left: 15px;
-					margin-right: 20px;
+					display: none;
+				}
+
+				nav{
+					margin-left: auto;
 				}
 			}
 		}
@@ -723,16 +696,17 @@ header {
 		.header-top-section {
 			.header-wrapper {
 
-				.header-description {
+				.header-address{
 					display: none;
 				}
 
-				nav {
-					.navigation{
-						column-gap: 15px;
-						li{
-							a {
-								font-size: 12px;
+				.social-list{
+					column-gap: 20px;
+
+					li{
+						a{
+							img{
+								height: 28px;
 							}
 						}
 					}
@@ -825,14 +799,6 @@ header {
 			.header-wrapper {
 				height: 54px;
 
-				.header-description{
-					display: none;
-				}
-
-				.logo-index, .logo {
-					margin-right: 20px;
-				}
-
 				.btn-status-search{
 					display: flex;
 					align-items: center;
@@ -844,11 +810,7 @@ header {
 					}
 				}
 
-				.header-address{
-					display: none;
-				}
-
-				.social-list{
+				.header-address, .social-list{
 					display: none;
 				}
 

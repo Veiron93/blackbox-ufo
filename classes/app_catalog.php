@@ -28,7 +28,8 @@ class App_Catalog
 				LEFT JOIN db_files f ON f.master_object_id = cc.id and f.master_object_class ='Catalog_Category'
                 WHERE 
 					cc.deleted is null 
-					AND cc.hidden is null" . $where);
+					AND cc.hidden is null $where 
+				ORDER BY cc.sort_order");
 
 		foreach ($categories as $category) {
 			$categories_arr_assoc[$category->id] = $category;

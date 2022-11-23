@@ -68,7 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			navigation: {
 				nextEl: null,
 				prevEl: null,
-			}
+			},
+
+			loop: true
 		};
 
 		function initSliders(sliders, settings) {

@@ -15,7 +15,7 @@ $address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - с�
 				</a>
 			</div>
 
-			<div class="header-description">Аксессуары для гаджетов, компьютеров, автомобилей и дома</div>
+			<!-- <div class="header-description">Аксессуары для гаджетов, компьютеров, автомобилей и дома</div> -->
 
 			<address class="header-phone">
 				<a href="tel:<?= $phone ?>"><?= $phone ?></a>
@@ -23,7 +23,7 @@ $address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - с�
 
 			<?php if ($address) : ?>
 				<address class="header-address">
-					<a href="<?= $address_link ?>" target="_blank"><?= nl2br($address) ?></a>
+					<a href="<?= $address_link ?>" target="_blank"><?= $address ?></a>
 				</address>
 			<?php endif; ?>
 
