@@ -15,6 +15,16 @@ class Application extends App_Controller
 		// Товары со скидкой
 		$this->viewData['productSale'] = $this->catalog::getProducts("cp.is_sale is not null", 6);
 
+		$this->viewData['countProductsDiscount'] = Db_DbHelper::scalar(
+			"SELECT COUNT(id)
+			FROM catalog_products
+			WHERE 
+				old_price is not null
+				AND hidden is null 
+				AND deleted is null
+				AND leftover > 0"
+		);
+
 		// Хиты продаж
 		$this->viewData['productBestsellers'] = $this->catalog::getProducts("cp.best_seller is not null", 6);
 
@@ -22,7 +32,7 @@ class Application extends App_Controller
 		$this->viewData['productNew'] = $this->catalog::getProducts("cp.is_new is not null", 12, null, "cp.id desc");
 
 		// бесконечный список товаров
-		$this->viewData['infinitiListProducts'] = App_Catalog::getProducts(null, 3, null, 'RAND()');
+		$this->viewData['infinitiListProducts'] = App_Catalog::getProducts(null, 30, null, 'RAND()');
 	}
 
 

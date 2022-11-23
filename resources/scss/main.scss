@@ -617,7 +617,7 @@ footer{
 
 .index-navigation{
 	margin-top: 30px;
-	margin-bottom: -5px;
+	margin-bottom: -10px;
 	display: flex;
 	gap: 20px;
 	flex-wrap: wrap;
@@ -640,12 +640,32 @@ footer{
 
 			img{
 				height: 50px;
+				width: 50px;
 				display: block;
+				flex: none;
 			}
 
 			span{
 				font-weight: 500;
 				font-size: 16px;
+			}
+		}
+	}
+
+	@include screen_lg{
+		.item{
+			a{
+				column-gap: 10px;
+				padding: 10px;
+
+				img{
+					height: 44px;
+					width: 44px;
+				}
+
+				span{
+					font-size: 14px;
+				}
 			}
 		}
 	}
@@ -670,10 +690,26 @@ footer{
 
 				img{
 					height: 40px;
+					width: 40px;
 				}
 
 				span{
 					font-size: 14px;
+				}
+			}
+		}
+	}
+
+	@include screen_xs{
+		.item{
+			a{
+				img{
+					height: 36px;
+					width: 36px;
+				}
+
+				span{
+					font-size: 12px;
 				}
 			}
 		}
