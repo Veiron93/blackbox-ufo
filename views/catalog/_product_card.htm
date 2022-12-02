@@ -36,13 +36,18 @@ if (in_array($product->id, $idsProductsCart)) $added = true;
 				$prices = [];
 
 				foreach ($product->skus as $sku) {
-
-					if ($sku->price > 0 && $sku->leftover) {
-						array_push($prices, round($sku->price));
+					if ($sku->leftover) {
+						$price = $sku->price == 0 ? $product->price : $sku->price;
+						array_push($prices, round($price));
 					}
 				}
 
-				array_push($prices, round($product->price));
+				traceLog($prices);
+
+				// if ($product->price) {
+				// 	array_push($prices, round($product->price));
+				// }
+
 				?>
 
 				<div class="price">

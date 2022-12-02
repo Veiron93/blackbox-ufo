@@ -35,14 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // ВЫБОР АРТИКУЛА
     function selectSku() {
 
-        function dataExtra(sku) {
-            const btnAddToCart = productPage.querySelector(".add-to-cart-btn");
-
-            let id = sku.value,
-                extra = JSON.parse(btnAddToCart.getAttribute('data-extra'));
-
-            extra.id_sku = id;
-            btnAddToCart.setAttribute('data-extra', JSON.stringify(extra));
+        function setDataIdSku(sku) {
+            const btnAddToCart = productPage.querySelector(".btn-buy");
+            btnAddToCart.setAttribute('data-id-sku', sku.value);
         }
 
         function price(sku) {
@@ -75,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 skus.forEach(sku => sku.addEventListener("change", ev => {
                     let sku = ev.target;
 
-                    dataExtra(sku);
+                    setDataIdSku(sku);
                     price(sku);
                     productsOtherInfo(sku);
                 }))

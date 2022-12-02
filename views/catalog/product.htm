@@ -108,10 +108,14 @@
 
 							<div class="skus-list">
 								<?php foreach ($product->skus as $sku) : ?>
-									<div class="item">
-										<input type="radio" id="sku-<?= $sku->id ?>" name="product-sku" <?= $selected_sku->id == $sku->id ? "checked" : "" ?> data-price="<?= Phpr::$lang->num(($sku->price) ? $sku->price : $product->price) ?>" data-leftover="<?= $sku->leftover ?>" value="<?= $sku->id ?>">
 
-										<label for="sku-<?= $sku->id ?>"><?= $sku->name ?></label>
+									<div class="item">
+										<?php if ($sku->leftover) : ?>
+											<input type="radio" id="sku-<?= $sku->id ?>" name="product-sku" <?= $selected_sku->id == $sku->id ? "checked" : "" ?> data-price="<?= Phpr::$lang->num($sku->price) ?>" data-leftover="<?= $sku->leftover ?>" value="<?= $sku->id ?>">
+											<label for="sku-<?= $sku->id ?>" title="Цена: <?= Phpr::$lang->num($sku->price) ?> &#013;Количество: <?= $sku->leftover ?>"><?= $sku->name ?></label>
+										<?php else : ?>
+											<label class="sku-none" title="нет в наличии"><?= $sku->name ?></label>
+										<?php endif; ?>
 									</div>
 								<?php endforeach; ?>
 							</div>

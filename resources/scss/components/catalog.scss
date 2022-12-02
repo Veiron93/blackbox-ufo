@@ -992,6 +992,7 @@
 
 				img {
 					max-width: 100%;
+					max-height: 400px;
 				}
 			}
 		}
@@ -1005,7 +1006,7 @@
 				.skus-title{
 					margin-bottom: 10px;
 					font-weight: 500;
-					font-size: 14px;
+					font-size: 16px;
 				}	
 
 				.skus-list{
@@ -1023,23 +1024,33 @@
 						}
 		
 						label{
-							border: 1px solid #dfe4ed;
+							height: 34px;
 							min-width: 60px;
-							padding: 5px 10px;
-							border-radius: $brs;
-							cursor: pointer;
-							font-size: 13px;
+
 							display: flex;
 							align-items: center;
 							justify-content: center;
-							height: 1em;
-							height: 30px;
-							user-select: none;
-							font-weight: 500;
-							transition: background .2s;
+			
+							padding: 0 10px;
+							border-radius: $brs;
 
-							&:hover{
-								background: $color3;
+							font-size: 14px;
+							user-select: none;
+
+							&:not(&.sku-none){
+								cursor: pointer;
+								transition: background .2s;
+								border: 1px solid $color3;
+	
+								&:hover{
+									background: $color3;
+								}
+							}
+
+							&.sku-none{
+								border: 1px solid #f4f4f4;
+								background: #f4f4f4;
+								color: $gray2;
 							}
 						}
 					}
@@ -1143,8 +1154,6 @@
 		flex: none;
 		align-self: flex-start;
 
-		//border: 1px solid red;
-
 		&-price {
 			text-align: center;
 
@@ -1169,8 +1178,9 @@
 
 			.actual {
 				line-height: 1em;
-				font-size: 40px;
+				font-size: 38px;
 				font-weight: bold;
+				white-space: nowrap;
 			}
 		}
 

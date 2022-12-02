@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /uploaded/
 Disallow: /admin/
+Disallow: /search/
+Disallow: /shop/cart/
 
 Sitemap: https://bb65.ru/sitemap.xml

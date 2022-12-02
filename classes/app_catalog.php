@@ -148,7 +148,6 @@ class App_Catalog
 
 	public static function getProduct($productId)
 	{
-
 		$product = Db_DbHelper::object("SELECT 
 				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, 
 				cp.short_description, cp.sales, cp.title_sku, cp.category_id, cp.leftover, 
@@ -157,10 +156,9 @@ class App_Catalog
 				cp.complect_useded_device, cp.complect_non_elements_useded_device, cp.added_acsessuares_useded_device,
 				cp.seo_title_add_postfix, cp.seo_description_add_postfix,
 
-				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
+				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, IF(cs.leftover is null, 0, cs.leftover), cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 
-					WHERE cs.product_id = cp.id
-					AND cs.leftover > 0) as skus,
+					WHERE cs.product_id = cp.id) as skus,		
 
 				(SELECT GROUP_CONCAT(CONCAT_WS(',', id, disk_name, is_main) ORDER BY sort_order asc SEPARATOR '----')
 					FROM db_files 
@@ -225,7 +223,6 @@ class App_Catalog
 	{
 		if ($product->skus) {
 			$skus = explode("----", $product->skus);
-
 			$product->skus = [];
 
 			foreach ($skus as $sku) {
@@ -236,7 +233,7 @@ class App_Catalog
 				$sku->id = $values[0] ?? null;
 				$sku->name = $values[1] ?? null;
 				$sku->leftover = $values[2] ?? null;
-				$sku->price = $values[3] ?? null;
+				$sku->price = (!isset($values[3]) || (isset($values[3]) && $values[3] == 0)) ? $product->price : $values[3];
 
 				array_push($product->skus, $sku);
 			}
