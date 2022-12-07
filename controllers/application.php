@@ -42,7 +42,7 @@ class Application extends App_Controller
 		$ids = json_decode($inputJSON, TRUE)['ids'];
 		$ids = implode(',', $ids);
 
-		$new_products = $this->catalog::getProducts("cp.id NOT IN ($ids)", 3, null, 'RAND()');
+		$new_products = $this->catalog::getProducts("cp.id NOT IN ($ids)", 30, null, 'RAND()');
 		$new_products_ids = [];
 
 		foreach ($new_products as $new_product) {

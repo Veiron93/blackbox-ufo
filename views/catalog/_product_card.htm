@@ -41,19 +41,17 @@ if (in_array($product->id, $idsProductsCart)) $added = true;
 						array_push($prices, round($price));
 					}
 				}
-
-				traceLog($prices);
-
-				// if ($product->price) {
-				// 	array_push($prices, round($product->price));
-				// }
-
 				?>
 
 				<div class="price">
 					<div class="price-actual">
 						<?php if (count($prices) > 1) : ?>
-							<span>от</span>
+							<?php foreach ($prices as $price) : ?>
+								<?php if ($price != $product->price) : ?>
+									<span>от</span>
+									<?php break; ?>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						<?php endif ?>
 
 						<?= Phpr::$lang->num(min($prices)) ?>
