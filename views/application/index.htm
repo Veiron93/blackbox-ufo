@@ -1,3 +1,5 @@
+<!-- prettier-ignore -->
+
 <div class="container">
 	<div class="index-top-section">
 
@@ -131,10 +133,21 @@
 		</div>
 	</div>
 
+	
 	<?php
+
 	$pathBlocks = $this->getViewsDir() . "/catalog/blocks/";
 
 	$blocks = [
+		[
+			'show' => true,
+			'name' => 'product_slider',
+			'products' => $productNew ?? [],
+			'params' => [
+				'title' => 'Новинки',
+				'view_type' => 'list'
+			]
+		],
 		[
 			'show' => true,
 			'name' => 'product_grid',
@@ -162,15 +175,7 @@
 				'view_type' => 'list'
 			]
 		],
-		[
-			'show' => true,
-			'name' => 'product_slider',
-			'products' => $productNew ?? [],
-			'params' => [
-				'title' => 'Новинки',
-				'view_type' => 'list'
-			]
-		],
+		
 		[
 			'show' => true,
 			'name' => '_infinity_products_list',

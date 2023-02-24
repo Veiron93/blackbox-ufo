@@ -1,70 +1,68 @@
 <meta charset="utf-8" />
 
 <?= Phpr_View::block('meta') ?>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="IE=edge">
-<meta name="application-name" content="БЛЭКБОКС">
-<meta name="currency" content="ruble">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="x-ua-compatible" content="IE=edge" />
+<meta name="application-name" content="БЛЭКБОКС" />
+<meta name="currency" content="ruble" />
 
 <?php $partsURI = explode("/", $_SERVER['REQUEST_URI']); ?>
 
 <?php if (isset($partsURI[1]) && $partsURI[1] != "catalog" && $partsURI[1] != "sale") : ?>
-	<title><?= h(site_title($title)) ?></title>
-	<meta name="description" content="<?= site_description() ?>" />
-	<meta name="keywords" content="<?= site_keywords() ?>" />
+<title><?= h(site_title($title)) ?></title>
+<meta name="description" content="<?= site_description() ?>" />
+<meta name="keywords" content="<?= site_keywords() ?>" />
 
-	<meta property="og:title" content="<?= h(site_title($title)) ?>" />
-	<meta property="og:description" content="<?= site_description() ?>" />
-	<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+<meta property="og:title" content="<?= h(site_title($title)) ?>" />
+<meta property="og:description" content="<?= site_description() ?>" />
+<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
 
-	<meta name="twitter:title" content="<?= h(site_title($title)) ?>" />
-	<meta name="twitter:description" content="<?= site_description() ?>" />
-	<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg">
+<meta name="twitter:title" content="<?= h(site_title($title)) ?>" />
+<meta name="twitter:description" content="<?= site_description() ?>" />
+<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg" />
 <?php endif; ?>
 
 <?= Phpr_View::block('og') ?>
-<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>">
-<meta property="og:locale" content="ru_RU">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="bb65.ru">
+<meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bb65.ru" />
 
 <?= Phpr_View::block('twitter') ?>
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
 
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-<meta name="currency" content="ruble">
-<meta name="application-name" content="БЛЭКБОКС">
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="currency" content="ruble" />
+<meta name="application-name" content="БЛЭКБОКС" />
 
-<link rel="shortcut icon" type="image/ico" href="/resources/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/ico" href="/resources/images/favicon/favicon.ico" />
 <link rel="icon" type="image/png" href="/resources/images/favicon/favicon.png" />
 <link rel="icon" type="image/x-icon" href="/resources/images/favicon/favicon.svg" />
 
 <meta name="yandex-verification" content="ac10f210c4c80b28" />
-<meta name='wmail-verification' content='b985167df8f768b4c68dc88717539f48' />
+<meta name="wmail-verification" content="b985167df8f768b4c68dc88717539f48" />
 <meta name="google-site-verification" content="c6gDw2zAv1MBMG2zyGdKCvGZJwi1ChCqTVYdxsIuIUk" />
 
 <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
 
 <!--[if lte IE 10]>
-<?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
+	<?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
 <![endif]-->
 
-<?/* */ ?>
+<?/* 
 <!-- на случай если заблокируют CDN -->
-<script src="/resources/dist/axios.min.js" defer></script>
+<!-- <script src="/resources/dist/axios.min.js" defer></script>
 <script src="/resources/dist/swiper-bundle.min.js" defer></script>
-<link media="screen" rel="stylesheet" href="/resources/dist/swiper-bundle.min.css">
+<link media="screen" rel="stylesheet" href="/resources/dist/swiper-bundle.min.css"> -->
 
+*/ ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
 <?= Core_Html::css(
-	$this->getAsset('dist/tinymce.css'),
-	$this->getAsset('dist/styles.css')
-)
-?>
+	$this->getAsset('dist/tinymce.css'), $this->getAsset('dist/styles.css') ) ?>
 
 <script src="/resources/dist/jquery-3.0.0.min.js" defer></script>
 <script src="/phproad/resources/javascript/ufo.ajax.common.js" defer></script>
@@ -73,7 +71,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script>
-
 
 <?= Core_Html::js($this->getAsset('dist/common.min.js')) ?>
 

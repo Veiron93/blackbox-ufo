@@ -117,7 +117,7 @@
 
 					<?php if ($freeDelivery && $freeDelivery > $cart_total_price) : ?>
 						<div class="free-delivery-cart">
-							Для бесплатной доставки по г. Южно-Сахалинск, добавьте ещё товаров на <span><?= Core_Number::formatNumber($freeDelivery - $cart_total_price) ?> р.</span>
+							Для бесплатной доставки по г. Южно-Сахалинск, добавьте товаров ещё на <span><?= Core_Number::formatNumber($freeDelivery - $cart_total_price) ?> р.</span>
 						</div>
 					<?php endif; ?>
 

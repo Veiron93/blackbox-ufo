@@ -42,6 +42,7 @@ class Catalog extends App_Controller
 			$pagination = $this->catalog->pagination("category_id = $categoryId", self::productsPerPage, $pageIndex);
 
 			$category->seo = self::seo_category($category, $pagination);
+			$category->filters = self::get_category_filters($categoryId);
 
 			$this->viewData['category'] = $category;
 			$this->viewData['products'] = $this->catalog->getProducts("cp.category_id = $categoryId", self::productsPerPage, $pageIndex - 1, self::sorting());
@@ -220,6 +221,37 @@ class Catalog extends App_Controller
 		}
 
 		return $seo;
+	}
+
+
+	private static function get_category_filters($category_id){
+
+		$attributes = [];
+
+		$ids_attributes = Db_DbHelper::scalarArray("SELECT attribute_id
+			FROM catalog_category_filters
+			WHERE category_id = ?", [$category_id]);
+
+		if($ids_attributes){
+			$attributes = Db_DbHelper::objectArray("SELECT * 
+				FROM catalog_attributes
+				WHERE id IN (?)", [$ids_attributes]);
+		}
+
+		if(!isset($attributes) && !$attributes){
+			return $attributes;
+		}
+
+		foreach($attributes as $attribute){
+			$values = explode("\n", $attribute->value_template);
+			$attribute->values = $values;			
+		}
+
+		return $attributes;
+	}
+
+	private static function filters(){
+
 	}
 
 

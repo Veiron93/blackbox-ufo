@@ -1,0 +1,28 @@
+<?php 
+/** 
+ * @var Payment_Backend $backend 
+ * @var Payment_Payment $payment 
+ * @var Payment $this 
+ */ 
+
+?>
+<div class="payment success-paid">
+	<?php if (isset($error)): ?>
+		<p class="error"><?= $error ?></p>
+	<?php else: ?>
+
+		<?php if($payment->status == Payment_Payment::statusPaid):?>
+
+			<h1>Оплата произведена успешно</h1>
+			<p>
+				Способ оплаты: <?= $backend->getId() ?> (<?= $backend->getName() ?>)<br />
+				Сумма: <?= $payment->amount ?> <br />
+				Статус: <?= $payment->status ?> <br />
+				Доп. информация: <?= var_export($payment->extra, true) ?>
+			</p>
+		<?php else: ?>
+
+
+		<?php endif?>
+	<?php endif ?>
+</div>

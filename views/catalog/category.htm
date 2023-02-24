@@ -1,116 +1,95 @@
 <?php if (isset($category) && $category) : ?>
 
-	<?php Phpr_View::beginBlock("meta") ?>
-	<title><?= $category->seo->seo_title ?></title>
-	<meta name="description" content="<?= $category->seo->seo_description ?>">
-	<meta name="keywords" content="<?= $category->seo->seo_keywords ?>">
-	<?php Phpr_View::endBlock() ?>
+<?php Phpr_View::beginBlock("meta") ?>
+<title><?= $category->seo->seo_title ?></title>
+<meta name="description" content="<?= $category->seo->seo_description ?>" />
+<meta name="keywords" content="<?= $category->seo->seo_keywords ?>" />
+<?php Phpr_View::endBlock() ?>
 
-	<?php Phpr_View::beginBlock("og") ?>
-	<meta property="og:title" content="<?= $category->seo->seo_title ?>" />
-	<meta property="og:description" content="<?= $category->seo->seo_description ?>" />
-	<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
-	<?php Phpr_View::endBlock() ?>
+<?php Phpr_View::beginBlock("og") ?>
+<meta property="og:title" content="<?= $category->seo->seo_title ?>" />
+<meta property="og:description" content="<?= $category->seo->seo_description ?>" />
+<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+<?php Phpr_View::endBlock() ?>
 
-	<?php Phpr_View::beginBlock("twitter") ?>
-	<meta name="twitter:title" content="<?= $category->seo->seo_title ?>" />
-	<meta name="twitter:description" content="<?= $category->seo->seo_description ?>" />
-	<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg">
-	<?php Phpr_View::endBlock() ?>
+<?php Phpr_View::beginBlock("twitter") ?>
+<meta name="twitter:title" content="<?= $category->seo->seo_title ?>" />
+<meta name="twitter:description" content="<?= $category->seo->seo_description ?>" />
+<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg" />
+<?php Phpr_View::endBlock() ?>
 
-	<?php Phpr_View::beginBlock("head") ?>
-	<link href="https://bb65.ru/catalog/<?= $category->id ?>/" rel="canonical">
-	<?php Phpr_View::endBlock(true) ?>
+<?php Phpr_View::beginBlock("head") ?>
+<link href="https://bb65.ru/catalog/<?= $category->id ?>/" rel="canonical" />
+<?php Phpr_View::endBlock(true) ?>
 
 <?php else : ?>
-	<?php Phpr_View::beginBlock("meta") ?>
-	<title>БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома | Южно-Сахалинск</title>
-	<meta name="description" content="<?= site_description() ?>">
-	<meta name="keywords" content="<?= site_keywords() ?>">
-	<?php Phpr_View::endBlock() ?>
+<?php Phpr_View::beginBlock("meta") ?>
+<title>БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома | Южно-Сахалинск</title>
+<meta name="description" content="<?= site_description() ?>" />
+<meta name="keywords" content="<?= site_keywords() ?>" />
+<?php Phpr_View::endBlock() ?>
 <?php endif; ?>
-
 
 <?php if (isset($category) && $category) : ?>
 
-	<?php $subCategories = $this->catalog->getChildCategories($category); ?>
+<?php $subCategories = $this->catalog->getChildCategories($category); ?>
 
-	<div class="container <?= $subCategories ? 'catalog-categories' : 'catalog-products' ?>">
+<div class="container <?= $subCategories ? 'catalog-categories' : 'catalog-products' ?>">
+	<?php $this->renderPartial('breadcrumbs', ['current_category' => $category]) ?>
 
-		<?php $this->renderPartial('breadcrumbs', ['current_category' => $category]) ?>
+	<?php if (count($subCategories)) : ?>
 
-		<?php if (count($subCategories)) : ?>
+	<?/* --- КАТЕГОРИИ --- */ ?>
 
-			<?/* --- КАТЕГОРИИ --- */ ?>
+	<h1 class="catalog-categories-title"><?= $category->name; ?></h1>
 
-			<h1 class="catalog-categories-title"><?= $category->name; ?></h1>
-
-			<div class="catalog-categories-list">
-				<?php
+	<div class="catalog-categories-list">
+		<?php
 				foreach ($subCategories as $subCategory) {
 
-					$typeItem = count($this->catalog->getChildCategories($subCategory)) ? 'multi' : 'single';
+					$typeItem = count($this->catalog->getChildCategories($subCategory)) ? 'multi' : 'single'; $this->renderPartial($this->getViewsDir() .
+		"/catalog/item_catalog_category_" . $typeItem . ".htm", ['category' => $subCategory]); } ?>
+	</div>
+	<?php else : ?>
 
-					$this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_" . $typeItem . ".htm", ['category' => $subCategory]);
-				}
-				?>
-			</div>
-		<?php else : ?>
+	<?/* --- ТОВАРЫ --- */ ?>
 
-			<?/* --- ТОВАРЫ --- */ ?>
+	<div class="heading-page">
+		<h1><?= $category->name ?></h1>
+	</div>
 
-			<div class="heading-page">
-				<h1><?= $category->name ?></h1>
-			</div>
+	<div class="catalog-products_wrapper">
+		<?php $this->renderPartial('filters') ?>
 
-			<div class="catalog-products_wrapper">
-
-				<?php //$this->renderPartial('filters') 
-				?>
-
-				<?php if (isset($products) && count($products)) : ?>
-					<div class="catalog-products_list">
-						<?php
+		<?php if (isset($products) && count($products)) : ?>
+		<div class="catalog-products_list">
+			<?php
 						$viewModeProductsList = isset($_COOKIE['viewModeProductsList']) ? $_COOKIE['viewModeProductsList'] : "grid";
 						$this->renderPartial('sorting', ['viewModeProductsList' => $viewModeProductsList, 'url' => 'catalog/' . $category->id]);
-						?>
+			//$this->renderPartial("fast_filter"); ?>
 
-						<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list='<?= $viewModeProductsList ?>'>
-							<?php foreach ($products as $product) : ?>
+			<div class="wrapper-products wrapper-products--default lg-5 md-4 sm-2" data-view-list="<?= $viewModeProductsList ?>">
+				<?php foreach ($products as $product) : ?>
 
-								<?php
-								if ($product->skus) {
-									foreach ($product->skus as $sku) {
-
-										$product_hidden = true;
-
-										if ($sku->leftover) {
-											$product_hidden = false;
-											break;
-										}
-									}
-								}
-
-								if (!$product->skus || !$product_hidden) {
-									$this->renderPartial("product_card", ['product' => $product]);
-								}
-								?>
-							<?php endforeach; ?>
-						</div>
-					</div>
-				<?php else : ?>
-					<div class="catalog-no-products">
-						<div class="catalog-no-products_text">Весь товар закончился, но скоро появится новый :)</div>
-						<div class="catalog-no-products_btn">
-							<a href="/catalog">Посмотреть другие крутые товары</a>
-						</div>
-					</div>
-				<?php endif; ?>
+				<?php
+								if ($product->skus) { foreach ($product->skus as $sku) { $product_hidden = true; if ($sku->leftover) { $product_hidden = false; break; } } } if
+				(!$product->skus || !$product_hidden) { $this->renderPartial("product_card", ['product' => $product]); } ?>
+				<?php endforeach; ?>
 			</div>
+		</div>
+		<?php else : ?>
+		<div class="catalog-no-products">
+			<div class="catalog-no-products_text">Весь товар в данной категории закончился, но скоро появится новый :)</div>
+			<div class="catalog-no-products_btn">
+				<a href="/catalog">Посмотреть другие крутые товары</a>
+			</div>
+		</div>
 		<?php endif; ?>
-
-		<?php $this->renderPartial("pagination", ["route" => "catalog_category"]) ?>
 	</div>
+	<?php endif; ?>
+
+	<?php $this->renderPartial("pagination", ["route" => "catalog_category"]) ?>
+</div>
 <?php else : ?>
-	<div class="catalog-no-category">Категория не найдена</div>
+<div class="catalog-no-category">Категория не найдена</div>
 <?php endif; ?>
