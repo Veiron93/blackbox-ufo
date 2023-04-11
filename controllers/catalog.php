@@ -85,7 +85,7 @@ class Catalog extends App_Controller
 	//СОРТИРОВКА
 	public function sorting()
 	{
-		$sorting = 'sales desc';
+		$sorting = 'cp.sales desc, cp.id desc';
 		$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
 		if (isset($partsURI['query'])) {

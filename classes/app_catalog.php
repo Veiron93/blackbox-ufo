@@ -109,11 +109,9 @@ class App_Catalog
 
 	public static function getProducts($where = null, $limit = null, $offset = null, $order = null)
 	{
-
-		$offset = $offset == 0 ? null : "OFFSET " . $limit * $offset;
-
 		if ($where) $where = "AND " . $where;
-		if ($limit) $limit = "LIMIT " . $limit;
+		if ($limit) $limit = "LIMIT " . ($offset ? $limit * $offset .',' : NULL). $limit;
+
 		if (!$order) $order = "cp.id asc";
 
 		$products = Db_DbHelper::objectArray("SELECT 
@@ -129,14 +127,13 @@ class App_Catalog
 					WHERE master_object_id = cp.id 
 					AND master_object_class = 'Catalog_Product') AS photos
 
-				FROM catalog_products cp
+				FROM catalog_products as cp
 				WHERE cp.hidden is null 
 				AND cp.deleted is null
 				AND cp.leftover > 0
 				$where
 				ORDER BY $order
-				$limit
-				$offset");
+				$limit");
 
 		foreach ($products as $product) {
 			self::imagesProduct($product);
