@@ -1,0 +1,19 @@
+<div class="product-counters">
+    <div class="product-code">
+        Код:
+
+        <span>
+            <?php if (isset($selected_sku)) : ?>
+                <?= $product->id ?>-<span class="product-code_sku"><?= $selected_sku->id ?></span>
+            <?php else : ?>
+                <?= $product->id ?>
+            <?php endif; ?>
+        </span>
+    </div>
+
+    <div class="product-amount">В наличии: <span><?= isset($selected_sku) ? $selected_sku->leftover : $product->leftover ?></span></div>
+
+    <?php if ($product->sales) : ?>
+        <div class="product-sales">Купили: <span><?= $product->sales ?></span></div>
+    <?php endif; ?>
+</div>

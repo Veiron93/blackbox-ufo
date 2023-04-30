@@ -5,7 +5,6 @@
 ?>
 
 <?php
-// передаваемые данные о товаре
 $extra = ["id" => $item->id, "type" => $type];
 $quantity = 1;
 
@@ -14,11 +13,4 @@ if ($type == "sku") {
 }
 ?>
 
-
-<?/*
-<div class="btn-buy" data-id="<?= $extra['id'] ?>" id="<?= $idPrefix ?>-wrapper" title="<?= isset($added) && $added ? 'Перейти в коробку' : 'Добавить в коробку' ?>">
-	<a href="#" class="add-to-cart-btn" <? if ($withQuantity) : ?> data-quantity="#<?= $idPrefix ?>-quantity" <? endif ?> data-extra="<?= extra($extra) ?>" id="<?= $idPrefix ?>-btn"></a>
-</div>
-*/ ?>
-
-<div class="btn-buy" data-id="<?= $extra['id'] ?>" data-type="<?= $type ?>" data-quantity="<?= $quantity ?>" <?= $type == "sku" ? "data-id-sku='$id_sku'" : "" ?>></div>
+<div class="btn-add-cart <?= isset($size) ? $size : null ?>" data-id="<?= $extra['id'] ?>" data-type="<?= $type ?>" data-quantity="<?= $quantity ?>" <?= $type == "sku" ? "data-id-sku='$id_sku'" : "" ?>></div>

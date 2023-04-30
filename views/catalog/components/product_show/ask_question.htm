@@ -1,0 +1,22 @@
+<?php
+// ссылка на задать вопрос WhatsApp
+$urlWhatsApp = "whatsapp://send?phone=79624192078&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC%D1%83%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%83%20";
+$urlWhatsApp .= $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+?>
+
+
+<div class="product-questions">
+    <div class="product-questions_title">Задать вопрос по данному товару</div>
+
+    <div class="product-questions_btns">
+        <a href="<?= $urlWhatsApp ?>" class="whatsapp" target="_blank">
+            <img src="/resources/images/icons/social/whatsapp-white.svg" alt="whatsapp">
+            <span>WhatsApp</span>
+        </a>
+
+        <a href="https://t.me/blackbox65_support" class="telegram" target="_blank">
+            <img src="/resources/images/icons/social/telegram-white.svg" alt="telegram">
+            <span>Telegram</span>
+        </a>
+    </div>
+</div>

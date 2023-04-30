@@ -1,100 +1,84 @@
-'use strict'
+"use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
+	// ФОТО ТОВАРА
+	let params = null;
 
-    // ФОТО ТОВАРА
-    let swiper = new Swiper(".catalog-product-slider .mySwiper", {
-        breakpoints: {
-            0: {
-                slidesPerView: 3,
-                spaceBetween: 5,
-            },
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-            },
-            991: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-            }
-        },
-    });
+	if(window.innerWidth <= 768){
+		params = {
+			pagination: {
+				el: ".swiper-pagination",
+				type: "fraction",
+			},
+		}
+	}else{
+		let sliderThumbs = new Swiper(".catalog-product .product-gallery_thumbs", {
+			direction: 'vertical',
+			slidesPerView: 6,
+			spaceBetween: 10,
+		});
 
-    new Swiper(".catalog-product-slider .mySwiper2", {
-        loop: true,
-        navigation: {
-            nextEl: ".button-next",
-            prevEl: ".button-prev",
-        },
-        thumbs: {
-            swiper: swiper,
-        },
-    });
+		params = {
+			thumbs: {
+				swiper: sliderThumbs,
+			},
+		}
+	}
 
+	new Swiper(".catalog-product .product-gallery_big", {
+		loop: true,
+		//effect: "fade",
+		// navigation: {
+		// 	nextEl: ".button-next",
+		// 	prevEl: ".button-prev",
+		// },
+		...params
+	});
 
-    // ВЫБОР АРТИКУЛА
-    function selectSku() {
+	// ВЫБОР АРТИКУЛА
+	function selectSku() {
+		let productPage = document.querySelector(".catalog-product");
 
-        function setDataIdSku(sku) {
-            const btnAddToCart = productPage.querySelector(".btn-buy");
-            btnAddToCart.setAttribute('data-id-sku', sku.value);
-        }
+		if(!productPage){
+			return false;
+		}
 
-        function price(sku) {
-            let price = sku.getAttribute('data-price');
+		const skus = productPage.querySelectorAll("input[name='product-sku']");
+		const btnsAddToCart = productPage.querySelectorAll(".btn-add-cart");
+		const sectionsActualPriceProduct = productPage.querySelectorAll(".product-price .product-price_actual");
 
-            const priceProduct = productPage.querySelector(".catalog-product_buy-price .actual");
+		const sectionsProductCode = productPage.querySelectorAll(".product-code");
+		const sectionsProductAmount = productPage.querySelectorAll(".product-amount");
 
-            priceProduct.textContent = price;
-        }
+		function setDataIdSku(sku) {
+			btnsAddToCart.forEach(btn => btn.setAttribute("data-id-sku", sku.value));
+		}
 
-        function productsOtherInfo(sku) {
-            const blockProductsOtherInfo = productPage.querySelector(".product-other-info");
-            const productAmount = blockProductsOtherInfo.querySelector(".product-amount");
-            const productCode = blockProductsOtherInfo.querySelector(".product-code_sku");
+		function price(sku) {
+			let price = sku.getAttribute("data-price");
+			sectionsActualPriceProduct.forEach(priceProduct => priceProduct.textContent = price);
+		}
 
-            let leftover = sku.getAttribute('data-leftover');
-            let skuId = sku.value;
+		function productsOtherInfo(sku) {
+			let leftover = sku.getAttribute("data-leftover");
+			let skuId = sku.value;
 
-            productAmount.querySelector("span").textContent = leftover;
-            productCode.textContent = skuId;
-        }
+			sectionsProductCode.forEach(productCode => productCode.querySelector(".product-code_sku").textContent = skuId);
+			sectionsProductAmount.forEach(productAmount => productAmount.querySelector("span").textContent = leftover);
+		}
+		
+		if (skus) {
+			skus.forEach((sku) =>
+				sku.addEventListener("change", (ev) => {
+					let sku = ev.target;
 
+					setDataIdSku(sku);
+					price(sku);
+					productsOtherInfo(sku);
+				})
+			);
+		}
+	}
 
-        let productPage = document.querySelector('.catalog-product');
-
-        if (productPage) {
-            let skus = productPage.querySelectorAll("input[name='product-sku']");
-
-            if (skus) {
-                skus.forEach(sku => sku.addEventListener("change", ev => {
-                    let sku = ev.target;
-
-                    setDataIdSku(sku);
-                    price(sku);
-                    productsOtherInfo(sku);
-                }))
-            }
-        }
-    }
-
-    selectSku();
-
-
-    // РАЗВЕРНУТЬ ПОЛНОЕ ОПИСАНИЕ ТОВАРА
-    function productDescription() {
-
-        let descriptionSection = document.querySelector('.catalog-product_description-hidden');
-
-        if (!descriptionSection) return;
-
-        let btn = descriptionSection.querySelector('.btn-more');
-
-        btn.addEventListener('click', function () {
-            descriptionSection.classList.toggle('active');
-            btn.textContent = descriptionSection.classList.contains('active') ? 'Свернуть' : 'Показать всё';
-        })
-    }
-
-    productDescription();
+	selectSku();
 });

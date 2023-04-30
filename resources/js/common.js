@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const url = location.pathname;
 		const page = url.split('/')[2] == 'product' ? 'product' : 'catalog';
 
-		let btns = document.querySelectorAll('.btn-buy');
+		let btns = document.querySelectorAll('.btn-add-cart');
 		let products = [];
 
 		if (page == 'product') {

@@ -1,0 +1,17 @@
+<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+	<?php
+    $viewData = [
+        'withQuantity' => true,
+        'initialQuantity' => 1,
+        'item' => $product,
+        'type' => (isset($product->skus)) ? 'sku' : 'product',
+        'idPrefix' => "atc-product-{$product->id}"
+    ];
+
+    if (isset($product->skus)) {
+        $viewData["id_sku"] = $selected_sku->id;
+    }
+    ?>
+
+	<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData); ?>
+<?php Phpr_Form::closeTag(); ?>
