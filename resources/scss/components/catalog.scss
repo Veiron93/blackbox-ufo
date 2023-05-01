@@ -28,7 +28,7 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 24px;
-		background-color: $color3;
+		background-color: $color_2;
 
 		@media (hover: hover) {
 			&:hover{
@@ -61,7 +61,7 @@
 		font-weight: 600;
 		font-size: 50px;
 		margin-bottom: 16px;
-		color: #c7c7c7;
+		color: $color_4;
 		text-transform: uppercase;
 	}
 
@@ -74,7 +74,7 @@
 	@include screen_sm_down {
 		&_title {
 			margin-bottom: 15px;
-			font-size: 30px;
+			font-size: 24px;
 		}
 	}
 }
@@ -85,7 +85,7 @@
 		font-weight: 600;
 		font-size: 40px;
 		margin-bottom: 15px;
-		color: #c7c7c7;
+		color: $color_4;
 		text-transform: uppercase;
 	}
 
@@ -103,7 +103,7 @@
 
 	@include screen_sm_down {
 		&-title {
-			font-size: 30px;
+			font-size: 24px;
 		}
 
 		&-list {
@@ -124,12 +124,7 @@
 
 		a {
 			font-size: 20px;
-			text-transform: uppercase;
-			color: #646464;
-
-			&:hover {
-				color: $accentHover;
-			}
+			font-weight: 500;
 		}
 	}
 
@@ -165,10 +160,6 @@
 				a {
 					font-size: 20px;
 					font-weight: 500;
-
-					&:hover {
-						color: $accentHover;
-					}
 				}
 			}
 
@@ -183,10 +174,6 @@
 
 					&:not(:last-child) {
 						margin-bottom: 11px;
-					}
-
-					&:hover {
-						color: $accentHover;
 					}
 				}
 			}
@@ -260,12 +247,6 @@
 		text-align: center;
 		height: 10 0%;
 
-		&:hover {
-			span {
-				color: $accentHover;
-			}
-		}
-
 		img {
 			display: block;
 			height: 150px;
@@ -275,7 +256,6 @@
 		span {
 			font-size: 18px;
 			font-weight: 500;
-			transition: color 0.2s;
 		}
 	}
 
@@ -329,7 +309,7 @@
 
 			&_btn {
 				border-radius: 14px;
-				background: $accentHover;
+				background: $color;
 				max-width: 280px;
 				margin: 0 auto;
 				margin-top: 20px;
@@ -515,7 +495,7 @@
 				}
 
 				.discount-percentage {
-					background: #ff0000;
+					background: $red;
 					color: #fff;
 					text-align: center;
 					display: block;
@@ -546,10 +526,6 @@
 					font-size: 14px;
 					line-height: 1.35em;
 					display: inline-block;
-
-					&:hover {
-						color: #526194;
-					}
 				}
 			}
 
@@ -578,7 +554,7 @@
 						font-weight: normal;
 						display: flex;
 						align-items: center;
-						color: #b5b5b5;
+						color: $red;
 
 						font-size: 15px;
 						margin-top: -17px;
@@ -590,7 +566,7 @@
 							width: calc(100% + 6px);
 							display: block;
 							height: 1px;
-							background: #b5b5b5;
+							background: $red;
 							position: absolute;
 							left: -3px;
 						}
@@ -784,7 +760,7 @@
 					&-old {
 						display: flex;
 						align-items: center;
-						color: #b5b5b5;
+						color: $red;
 						font-size: 15px;
 						position: relative;
 						order: 2;
@@ -795,7 +771,7 @@
 							width: calc(100% + 6px);
 							display: block;
 							height: 1px;
-							background: #b5b5b5;
+							background: $red;
 							position: absolute;
 							left: -3px;
 						}
@@ -1122,7 +1098,7 @@
 								display: none;
 	
 								&:checked + label {
-									background: $color3;
+									background: $color_2;
 								}
 							}
 	
@@ -1143,17 +1119,17 @@
 								&:not(&.sku-none) {
 									cursor: pointer;
 									transition: background 0.2s;
-									border: 1px solid $color3;
+									border: 1px solid $color_2;
 	
 									&:hover {
-										background: $color3;
+										background: $color_2;
 									}
 								}
 	
 								&.sku-none {
-									border: 1px solid #f4f4f4;
-									background: #f4f4f4;
-									color: $gray2;
+									background: $color_2;
+									border: 1px solid $color_2;
+									opacity: .5;
 								}
 							}
 						}
@@ -1168,7 +1144,7 @@
 					gap: 14px;
 					margin-bottom: 25px;
 					padding-bottom: 15px;
-					border-bottom: 1px solid $gray;
+					border-bottom: 1px solid $color_4;
 	
 					.item {
 						&-flag {
@@ -1176,7 +1152,7 @@
 							padding: 5px 10px;
 							color: #fff;
 							font-size: 16px;
-							background: $accent;
+							background: $color;
 						}
 	
 						&-state_battery {
@@ -1441,6 +1417,7 @@
 
 					.buy-section-mobile{
 						margin-top: 30px;
+						margin-bottom: 25px;
 						display: flex;
 						flex-wrap: wrap;
 						align-items: center;
@@ -1722,13 +1699,13 @@
 		border-radius: 14px;
 		height: 50px;
 		width: 200px;
-		background: $accent;
+		background: $color;
 		transition: background 0.2s;
 		cursor: pointer;
 		margin-top: 35px;
 
 		&:hover {
-			background: $accentHover;
+			background: $color_4;
 		}
 	}
 }
@@ -1748,7 +1725,6 @@
 
 		&_title {
 			margin-right: 10px;
-			color: #888;
 		}
 
 		&_list {
@@ -1756,14 +1732,9 @@
 			column-gap: 15px;
 
 			.item {
-				a {
-					color: #5d5d5d;
-				}
-
-				&:hover,
 				&.active {
 					a {
-						color: $accentHover;
+						color: $color;
 					}
 				}
 			}
