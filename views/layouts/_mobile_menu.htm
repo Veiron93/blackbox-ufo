@@ -1,0 +1,23 @@
+<?php
+$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+?>
+
+<nav class="mobile-menu">
+    <div class="mobile-menu_navigation">
+        <?php $this->renderLayout('_dynamic_menu') ?>
+    </div>
+
+    <?php $this->renderLayout('_social_list') ?>
+
+    <address>
+        <?php if ($address) : ?>
+            <a class="address" href="<?= $address_link ?>" target="_blank"><?= nl2br($address) ?></a>
+        <?php endif; ?>
+
+        <?php if ($phone) : ?>
+            <a class="phone" href="<?= $phone ?>" target="_blank"><?= $phone ?></a>
+        <?php endif; ?>
+    </address>
+</nav>

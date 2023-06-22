@@ -153,76 +153,76 @@ function checkActualProductsCart()
 	$products_id = [];
 	$skus_id = [];
 
-	
+
 
 	foreach ($product_cart_items as $product_cart) {
 		array_push($products_id, $product_cart->productId);
 
-		if($product_cart->skuId){
+		if ($product_cart->skuId) {
 			array_push($skus_id, $product_cart->skuId);
 		}
 	}
 
 	// изменяет стоимость
-	if(!function_exists('setPriceProduct')) {
-		function setPriceProduct($product_cart, $actual_price, $cart, $status_update_cart){
-			if($product_cart->price != $actual_price){
+	if (!function_exists('setPriceProduct')) {
+		function setPriceProduct($product_cart, $actual_price, $cart, $status_update_cart)
+		{
+			if ($product_cart->price != $actual_price) {
 				$product_cart->setPrice($actual_price);
 				$cart->notifyCartUpdated();
 
-				if(!$status_update_cart) $status_update_cart = true;
+				if (!$status_update_cart) $status_update_cart = true;
 			}
 		}
 	}
 
 	// изменяет остаток
-	if(!function_exists('setLeftoverProduct')){
-		function setLeftoverProduct($product_cart, $actual_leftover, $cart, $status_update_cart){
-			if($product_cart->quantity > $actual_leftover){
+	if (!function_exists('setLeftoverProduct')) {
+		function setLeftoverProduct($product_cart, $actual_leftover, $cart, $status_update_cart)
+		{
+			if ($product_cart->quantity > $actual_leftover) {
 				$product_cart->setQuantity($actual_leftover);
 				$cart->notifyCartUpdated();
 
-				if(!$status_update_cart) $status_update_cart = true;
+				if (!$status_update_cart) $status_update_cart = true;
 			}
 		}
 	}
 
-	
+
 
 	if (count($products_id)) {
 
-		if(count($skus_id)){
+		if (count($skus_id)) {
 
 			$actual_products = Db_DbHelper::objectArray("SELECT p.id, p.leftover, p.price, s.id sku_id, s.price sku_price, s.leftover sku_leftover
 				FROM catalog_products as p
 				LEFT JOIN catalog_skus as s on s.product_id = p.id AND s.id IN (" . implode(',', $skus_id) . ")
 				WHERE p.id IN (" . implode(',', $products_id) . ")");
-
-		}else{
+		} else {
 			$actual_products = Db_DbHelper::objectArray("SELECT id, leftover, price
 				FROM catalog_products
 				WHERE id IN (" . implode(',', $products_id) . ")");
-		}	
+		}
 
 		foreach ($product_cart_items as $product_cart) {
-			foreach ($actual_products as $actual_product){
+			foreach ($actual_products as $actual_product) {
 
-				if($product_cart->skuId){
-					if($actual_product->sku_id == $product_cart->skuId){
+				if ($product_cart->skuId) {
+					if ($actual_product->sku_id == $product_cart->skuId) {
 						$actual_price = $actual_product->sku_price ? $actual_product->sku_price : $actual_product->price;
 
 						setPriceProduct($product_cart, $actual_price, $cart, $status_update_cart);
 						setLeftoverProduct($product_cart, $actual_product->sku_leftover, $cart, $status_update_cart);
 						break;
 					}
-				}else{
-					if($actual_product->id == $product_cart->productId){
+				} else {
+					if ($actual_product->id == $product_cart->productId) {
 						setPriceProduct($product_cart, $actual_product->price, $cart, $status_update_cart);
 						setLeftoverProduct($product_cart, $actual_product->leftover, $cart, $status_update_cart);
 						break;
 					}
 				}
-
 			}
 		}
 	}
@@ -234,7 +234,7 @@ function getProductsAddedCart()
 	$cart = Shop_Cart::getCart();
 	$items = $cart->getItems();
 	$products_cart_id = [];
-	
+
 	foreach ($items as $item) {
 		array_push($products_cart_id, $item->productId);
 	}
@@ -250,7 +250,7 @@ function getProductsAddedCart()
 // 	foreach ($product_skus as $s) {
 
 // 		if($s->leftover){
-			
+
 // 			$sku["id"] = $s->id;
 // 			$sku["product_id"] = $s->product_id;
 // 			$sku["name"] = $s->name;
@@ -270,29 +270,37 @@ function getProductsAddedCart()
 
 
 // стоимость товара в корзине
-function cartProductPrice($product, $total_price = false){
+function cartProductPrice($product, $total_price = false)
+{
 
-	if($product->skuId) $sku = $product->getSku();
+	if ($product->skuId) $sku = $product->getSku();
 
 	$price = isset($sku) && $sku->price ? $sku->price : $product->price;
 
-	if($total_price) $price = $product->quantity * $price;
-	
+	if ($total_price) $price = $product->quantity * $price;
+
 	return $price;
 }
 
 // стоимость товаров добавленных в корзину 
-function cartTotalPrice($products){
+function cartTotalPrice($products)
+{
 
 	$total_price = null;
-	
-	foreach($products as $product){
+
+	foreach ($products as $product) {
 
 		$sku = null;
 
-		if($product->skuId) $sku = $product->getSku();
+		if ($product->skuId) $sku = $product->getSku();
 		$total_price += $product->quantity * (isset($sku) && $sku->price ? $sku->price : $product->price);
 	}
 
 	return $total_price;
+}
+
+// проверка на мобильное устройство
+function isMobile()
+{
+	return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }

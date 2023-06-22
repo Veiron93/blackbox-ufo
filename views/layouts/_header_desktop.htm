@@ -1,0 +1,58 @@
+<?php
+$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+?>
+
+<header class="header-desktop">
+    <div class="header-section-top">
+        <div class="section-wrapper">
+
+            <div class="header-description">
+                <span>Аксeссуары</span> <br> для гаджетов, компьютеров, автомобилей и дома
+            </div>
+
+            <address class="header-phone">
+                <a href="tel:<?= $phone ?>"><?= $phone ?></a>
+            </address>
+
+            <?php if ($address) : ?>
+                <address class="header-address">
+                    <a href="<?= $address_link ?>" target="_blank" rel="nofollow noopener noreferrer">
+                        <?= nl2br($address) ?>
+                    </a>
+                </address>
+            <?php endif; ?>
+
+            <?php $this->renderLayout('_social_list') ?>
+
+            <nav>
+                <?php $this->renderLayout('_dynamic_menu') ?>
+            </nav>
+        </div>
+    </div>
+
+    <div class="header-section-bottom">
+        <div class="section-wrapper">
+            <?php $this->renderLayout('_logo') ?>
+
+            <a href="<?= u('catalog_index', []) ?>" class="btn-catalog">
+                <img src="/resources/images/icons/menu.svg" alt="Меню" />
+                <span>Каталог</span>
+            </a>
+
+            <div class="btn-state-search">
+                <img src="/resources/images/icons/search-white.svg" alt="Поиск">
+                <span>Поиск</span>
+            </div>
+
+            <?php $this->renderLayout($this->getViewsDir() . "search/widget.htm") ?>
+
+            <div class="btn-state-top-section" title="Показать больше информации">
+                <img src="/resources/images/icons/arrow-left-white.svg" alt="">
+            </div>
+
+            <?php Shop_Helper::renderMiniCart($this) ?>
+        </div>
+    </div>
+</header>

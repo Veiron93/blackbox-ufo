@@ -1,7 +1,7 @@
 <?php $items = $this->menuItems->getRootItemsInMenu('main'); ?>
 
 <?php if ($items !== null) : ?>
-	<ul class="navigation">
+	<ul>
 		<?php foreach ($items as $idx => $item) : ?>
 			<?php if (!$item->is_hidden_in_menu) : ?>
 				<li>

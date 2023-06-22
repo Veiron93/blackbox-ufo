@@ -1,5 +1,3 @@
-'use strict'
-
 document.addEventListener("DOMContentLoaded", function () {
 
     let localStorageName = 'search-history';
@@ -144,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             categoriesResult.forEach(category => {
                 if (category.products_count > 0) {
-                    categories += `<div data-href='/catalog/${category.id}'><span data-level="${category.level}">${category.name}</span> <span data-level="${category.parent_level}">${category.parent_name}</span> <span>${category.products_count} ${endingWord(words, 14)}</span></div>`;
+                    categories += `<div data-href='/catalog/${category.id}'><span data-level="${category.level}">${category.name}</span> <span data-level="${category.parent_level}">${category.parent_name}</span> <span>${category.products_count} ${endingWord(words, category.products_count)}</span></div>`;
                 }
 
                 i++;
@@ -341,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // МОБИЛЬНЫЙ ПОИСК
     function statusMobileSearch() {
-        let btnsStatusSearch = document.querySelectorAll('.btn-status-search');
+        let btnsStatusSearch = document.querySelectorAll('.btn-state-search');
 
         if (btnsStatusSearch) {
             btnsStatusSearch.forEach(btn => {

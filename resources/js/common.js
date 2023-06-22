@@ -205,6 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		let catalogMenu = document.querySelector('.mobile-menu-catalog');
 
 		let mainCategories = catalogMenu.querySelectorAll('.main-category_wrapper');
+		
 		let activeCategoriesLevel_2 = null;
 		let activeCategoriesLevel_3 = [];
 		let linksBackMainCategories = catalogMenu.querySelectorAll('.link-back');
@@ -228,15 +229,21 @@ document.addEventListener("DOMContentLoaded", function () {
 	// НАВИГАЦИЯ (МОБИЛЬНАЯ ВЕРСИЯ)
 	function mobileNavigation() {
 
-		function statusNav() {
-			document.body.classList.toggle('no-scroll');
-			nav.classList.toggle('active');
-			btnMobileNav.classList.toggle('active');
+		const menu = document.querySelector('.mobile-menu');
+		const btnMobileMenu = document.querySelector('.btn-mobile-menu');
+
+		if(!btnMobileMenu || !menu){
+			return false;
 		}
 
-		let nav = document.querySelector('header').querySelector('nav');
-		let btnMobileNav = document.querySelector('.btn-mobile-nav');
-		btnMobileNav.addEventListener('click', statusNav)
+
+		function stateMenu() {
+			document.body.classList.toggle('no-scroll');
+			menu.classList.toggle('active');
+			btnMobileMenu.classList.toggle('active');
+		}
+
+		btnMobileMenu.addEventListener('click', stateMenu)
 	}
 
 	mobileNavigation();
@@ -396,4 +403,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	onInfinityProductsList();
+
+
+	function stateTopSectionHeader(){
+		const btn = document.querySelector('.btn-state-top-section');
+
+		if(!btn){
+			return false;
+		}
+
+		const topSection = document.querySelector('.header-section-top');
+
+		btn.addEventListener('click', ()=>{
+			topSection.classList.toggle('active');
+			btn.classList.toggle('active');
+			btn.setAttribute('title', btn.classList.contains('active') ? 'Скрыть' : 'Показать больше информации')
+		})
+	}
+
+	stateTopSectionHeader();
 });

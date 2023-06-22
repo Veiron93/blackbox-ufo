@@ -1,6 +1,11 @@
 <!-- prettier-ignore -->
 
 <div class="container">
+
+	<?php //$this->renderLayout('_logo'); 
+	?>
+
+
 	<div class="index-top-section">
 
 		<?php if (isset($catalogRootCategories) && count($catalogRootCategories)) : ?>
@@ -133,7 +138,7 @@
 		</div>
 	</div>
 
-	
+
 	<?php
 
 	$pathBlocks = $this->getViewsDir() . "/catalog/blocks/";
@@ -175,7 +180,7 @@
 				'view_type' => 'list'
 			]
 		],
-		
+
 		[
 			'show' => true,
 			'name' => '_infinity_products_list',

@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     deviveryPriceBlock.textContent = text;
                 } else {
-                    deviveryPriceBlock.textContent = deliveryPrice;
+                    deviveryPriceBlock.textContent = deliveryPrice + ' ₽';
                 }
             }
 

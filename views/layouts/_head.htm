@@ -9,17 +9,17 @@
 <?php $partsURI = explode("/", $_SERVER['REQUEST_URI']); ?>
 
 <?php if (isset($partsURI[1]) && $partsURI[1] != "catalog" && $partsURI[1] != "sale") : ?>
-<title><?= h(site_title($title)) ?></title>
-<meta name="description" content="<?= site_description() ?>" />
-<meta name="keywords" content="<?= site_keywords() ?>" />
+	<title><?= h(site_title($title)) ?></title>
+	<meta name="description" content="<?= site_description() ?>" />
+	<meta name="keywords" content="<?= site_keywords() ?>" />
 
-<meta property="og:title" content="<?= h(site_title($title)) ?>" />
-<meta property="og:description" content="<?= site_description() ?>" />
-<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+	<meta property="og:title" content="<?= h(site_title($title)) ?>" />
+	<meta property="og:description" content="<?= site_description() ?>" />
+	<meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
 
-<meta name="twitter:title" content="<?= h(site_title($title)) ?>" />
-<meta name="twitter:description" content="<?= site_description() ?>" />
-<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg" />
+	<meta name="twitter:title" content="<?= h(site_title($title)) ?>" />
+	<meta name="twitter:description" content="<?= site_description() ?>" />
+	<meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg" />
 <?php endif; ?>
 
 <?= Phpr_View::block('og') ?>
@@ -47,10 +47,6 @@
 
 <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
 
-<!--[if lte IE 10]>
-	<?= Core_Html::css('/resources/css/arwm_ie6bar.css') ?>
-<![endif]-->
-
 <?/* 
 <!-- на случай если заблокируют CDN -->
 <!-- <script src="/resources/dist/axios.min.js" defer></script>
@@ -62,7 +58,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
 <?= Core_Html::css(
-	$this->getAsset('dist/tinymce.css'), $this->getAsset('dist/styles.css') ) ?>
+	$this->getAsset('dist/tinymce.css'),
+	$this->getAsset('dist/styles.css')
+) ?>
 
 <script src="/resources/dist/jquery-3.0.0.min.js" defer></script>
 <script src="/phproad/resources/javascript/ufo.ajax.common.js" defer></script>
