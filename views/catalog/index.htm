@@ -41,7 +41,10 @@ $seo_description = "Магазин электроники и аксессуар�
 
 <div class="catalog-categories-index container">
 	<?php if ($catalogRootCategories) : ?>
-		<h1 class="catalog-categories-index_title">Каталог товаров БЛЭКБОКС</h1>
+		<!-- <h1 class="catalog-categories-index_title">Каталог товаров </h1> -->
+
+		<!-- БЛЭКБОКС -->
+
 		<div class="catalog-categories-index_list">
 			<?php foreach ($catalogRootCategories as $category) : ?>
 				<?php $this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_multi.htm", ['category' => $category]); ?>

@@ -74,10 +74,9 @@ footer {
 		li {
 			display: flex;
 			align-items: center;
-			font-size: 14px;
 
 			&:first-child {
-				border-radius: $brs;
+				border-radius: $brsSmall;
 				margin-right: 14px;
 				background: #fff;
 				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
@@ -87,7 +86,7 @@ footer {
 					align-items: center;
 					justify-content: center;
 
-					height: 28px;
+					height: 34px;
 					width: 34px;
 
 					span {
@@ -95,7 +94,7 @@ footer {
 					}
 
 					img {
-						height: 12px;
+						height: 14px;
 					}
 				}
 			}
@@ -105,9 +104,13 @@ footer {
 
 				&:after {
 					content: ">";
-					font-size: 12px;
+					font-size: 16px;
 					margin-left: 8px;
 				}
+			}
+
+			&.current{
+				color: $color_4;
 			}
 		}
 	}
@@ -125,14 +128,31 @@ footer {
 			}
 
 			li {
-				flex: none;
-				font-size: 15px;
-				padding: 10px 15px;
+				&:first-child{
+					a{
+						width: 42px;
+					}
+				}
 
-				@include style-block();
+				&:not(:first-child){
+					flex: none;
+					font-size: 15px;
+					height: 42px;
+	
+					@include style-block();
+					padding: 0px 10px;
+					border-radius: $brsSmall;
 
-				&:after {
-					display: none;
+					&:after {
+						display: none;
+					}
+				}
+
+				&.current{
+					background: none;
+					box-shadow: none;
+					padding: 0;
+					margin-left: 5px;
 				}
 			}
 		}
@@ -175,7 +195,7 @@ footer {
 	margin-bottom: 15px;
 
 	> * {
-		font-weight: normal;
+		font-weight: 500;
 		margin: 0;
 		font-size: 34px;
 	}
@@ -1266,6 +1286,7 @@ footer {
 
 			.free-delivery-cart {
 				font-size: 14px;
+				text-align: left;
 			}
 
 			.shop-checkout {
@@ -1309,7 +1330,11 @@ footer {
 
 				form {
 					.bnt-order-buy {
-						height: 46px;
+						height: 52px;
+
+						a{
+							font-size: 20px;
+						}
 					}
 				}
 			}

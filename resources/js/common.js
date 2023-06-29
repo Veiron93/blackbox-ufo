@@ -155,6 +155,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// КАТАЛОГ МЕНЮ (МОБИЛЬНАЯ ВЕРСИЯ)
 	function mobileCatalogMenu() {
+		let catalogMenu = document.querySelector('.mobile-menu-catalog');
+
+		if(!catalogMenu){
+			return false;
+		}
 
 		function stateCatalogMenu() {
 			document.body.classList.toggle('no-scroll');
@@ -202,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		let btnsCatalogMenu = document.querySelectorAll('.btn-catalog-menu-mobile');
-		let catalogMenu = document.querySelector('.mobile-menu-catalog');
+		
 
 		let mainCategories = catalogMenu.querySelectorAll('.main-category_wrapper');
 		

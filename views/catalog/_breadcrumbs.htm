@@ -39,5 +39,11 @@ $linkBack = isset($parentCategory) ? u("catalog_category", $parentCategory->id) 
 				</li>
 			<?php endforeach; ?>
 		<?php endif; ?>
+
+		<?php if (isset($show_current) && $show_current) : ?>
+			<li class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+				<span itemprop="name"><?= $current_category->name ?></span>
+			</li>
+		<?php endif; ?>
 	</ul>
 </div>

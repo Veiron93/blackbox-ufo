@@ -58,11 +58,11 @@
 // ГЛАВНАЯ СТРАНИЦА КАТЕГОРИЙ
 .catalog-categories-index {
 	&_title {
-		font-weight: 600;
-		font-size: 50px;
+		font-weight: 500;
+		font-size: 20px;
 		margin-bottom: 16px;
 		color: $color_4;
-		text-transform: uppercase;
+		//text-transform: uppercase;
 	}
 
 	@include screen_md {
@@ -74,7 +74,7 @@
 	@include screen_sm_down {
 		&_title {
 			margin-bottom: 15px;
-			font-size: 24px;
+			font-size: 22px;
 		}
 	}
 }
@@ -82,11 +82,9 @@
 // СПИСОК КАТЕГОРИЙ
 .catalog-categories {
 	&-title {
-		font-weight: 600;
-		font-size: 40px;
+		font-weight: 500;
+		font-size: 34px;
 		margin-bottom: 15px;
-		color: $color_4;
-		text-transform: uppercase;
 	}
 
 	&-list {
@@ -120,10 +118,10 @@
 	flex: none;
 
 	.category_name {
-		margin-bottom: 12px;
+		margin-bottom: 15px;
 
 		a {
-			font-size: 20px;
+			font-size: 34px;
 			font-weight: 500;
 		}
 	}
@@ -1403,7 +1401,7 @@
 						}
 		
 						.skus-list {
-							gap: 15px;
+							//gap: 15px;
 		
 							.item {	
 								label {
@@ -1798,8 +1796,7 @@
 			align-items: center;
 			font-size: 14px;
 			@include style-block;
-			height: 40px;
-			padding: 0 10px;
+			padding: 15px;
 
 			&_title {
 				display: none;
@@ -1816,7 +1813,7 @@
 					flex: none;
 
 					a {
-						font-size: 12px;
+						font-size: 14px;
 					}
 				}
 			}
