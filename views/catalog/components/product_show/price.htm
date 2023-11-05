@@ -4,7 +4,7 @@
         <?= Phpr::$lang->num($actualPrice) ?>
     </div>
 
-    <?php if ($product->old_price) : ?>
+    <?php if ($product->old_price && !isset($selected_sku) && !$selected_sku) : ?>
         <div class="product-price_old">
             <div class="summ"><?= Phpr::$lang->num($product->old_price) ?></div>
             <div class="text">скидка <?= Phpr::$lang->num($product->old_price - $actualPrice) ?></div>

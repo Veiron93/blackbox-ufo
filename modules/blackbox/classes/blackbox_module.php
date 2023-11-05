@@ -5,8 +5,10 @@ class Blackbox_Module extends Core_ModuleBase
 
     protected function createModuleInfo()
     {
-        return new Core_ModuleInfo("Blackbox", "Ринамика", "Blackbox модуль");
+        return new Core_ModuleInfo('Blackbox', "Ринамика", "Blackbox модуль");
     }
+
+
 
     const tabs = [
         'usedProducts' => 'Товар Б/У',
@@ -35,6 +37,7 @@ class Blackbox_Module extends Core_ModuleBase
             if ($model instanceof Catalog_Product) {
                 $model->defineColumn("regular_photo", "Обычное фото");
                 $model->defineColumn("sales", "Продано");
+                $model->defineColumn("individual_price", "Индивидуальная цена");
                 $model->defineColumn("title_sku", "Заголовок у артикулов")->invisible();
                 $model->defineColumn("is_sale", "Добавить в блок - Товары со скидкой")->invisible();
 
@@ -68,10 +71,12 @@ class Blackbox_Module extends Core_ModuleBase
             }
 
             if ($model instanceof Catalog_Product) {
-                $model->addFormField("sales", "left")->sortOrder(50)->tab(Catalog_Product::$generalTabTitle);
-                $model->addFormField("regular_photo", "left")->sortOrder(70)->tab(Catalog_Product::$generalTabTitle);
-                $model->addFormField("is_sale", "left")->sortOrder(80)->tab(Catalog_Product::$generalTabTitle);
+                $model->addFormField("regular_photo", "left")->sortOrder(10)->tab('Фотографии');
                 $model->addFormField("title_sku", "left")->sortOrder(90)->tab("Дополнительно");
+
+                $model->addFormField("individual_price", "left")->sortOrder(50)->comment('На стоимость товара не повлияют другие факторы. Например: общая скидка, красивая цена', 'above')->tab(Catalog_Product::$generalTabTitle);
+                $model->addFormField("is_sale", "left")->sortOrder(70)->tab(Catalog_Product::$generalTabTitle);
+                $model->addFormField("sales")->sortOrder(110)->tab(Catalog_Product::$generalTabTitle);
 
 
                 // Б/У товары

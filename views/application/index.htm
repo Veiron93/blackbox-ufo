@@ -116,12 +116,14 @@
 			</a>
 		</div>
 
-		<div class="item">
-			<a href="/sale/">
-				<img src="/resources/images/icons/index-navigation/discount.svg" alt="товары со скидкой">
-				<span><?= $countProductsDiscount ?: $countProductsDiscount; ?> товаров со скидкой</span>
-			</a>
-		</div>
+		<?php if ($countProductsDiscount) : ?>
+			<div class="item">
+				<a href="/sale/">
+					<img src="/resources/images/icons/index-navigation/discount.svg" alt="товары со скидкой">
+					<span><?= $countProductsDiscount; ?> <?= Core_String::word_form($countProductsDiscount, ["товар", "товара", "товаров"]) ?> со скидкой</span>
+				</a>
+			</div>
+		<?php endif; ?>
 
 		<!-- <div class="item">
 			<a href="/cashback100/">

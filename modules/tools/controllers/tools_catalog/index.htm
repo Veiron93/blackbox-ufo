@@ -1,0 +1,69 @@
+<?php Phpr_View::beginBlock("view") ?>
+
+<?= flash() ?>
+
+<div class="tools-catalog">
+    <?= Phpr_Form::openTag() ?>
+
+    <div class="list-tools">
+        <div class="tool">
+            <a href="#" class="btn btn-primary" data-handler="onResetNew" data-confirm="Вы действительно хотите сбросить все Новинки?">Сбросить Новинки</a>
+
+            <div class="tool-desctiption">
+                <p>Сбросятся все Новинки</p>
+            </div>
+        </div>
+
+        <div class="tool">
+            <a href="#" class="btn btn-primary" data-handler="onResetBestSellers" data-confirm="Вы действительно хотите сбросить все Топ продаж?">Сбросить Топ продаж</a>
+
+            <div class="tool-desctiption">
+                <p>Сбросятся все Топ продаж</p>
+            </div>
+        </div>
+
+        <div class="tool">
+            <a href="#" class="btn btn-primary" data-handler="onResetDiscountIndex" data-confirm="Вы действительно хотите сбросить все товары со скидкой на главной?">Сбросить Скидки на главной</a>
+
+            <div class="tool-desctiption">
+                <p>Сбросятся товары со скидкой на главной</p>
+            </div>
+        </div>
+
+        <div class="tool">
+            <a href="#" class="btn btn-primary" data-handler="onResetIndividualPrices" data-confirm="Вы действительно хотите сбросить все индивидульные цены ?">Сбросить Индивид. цены </a>
+
+            <div class="tool-desctiption">
+                <p>Сбросятся все Индивидульные цены</p>
+            </div>
+        </div>
+
+        <div class="tool">
+            <div class="tool-form">
+                <input type="text" name="discount" placeholder="Скидка в %">
+                <a href="#" class="btn btn-danger" data-handler="onAddDiscounts" data-confirm="Вы действительно хотите добавить скидку ко всем товарам ?">Добавить скидку</a>
+                <br><br>
+                <a href="#" class="btn btn-primary" data-handler="onResetDiscounts" data-confirm="Вы действительно хотите сбросить все Скидки?">Сбросить Скидки</a>
+            </div>
+
+            <div class="tool-desctiption">
+                <p>Скидка применится ко всем товарам, за исключением товаров у которых стоит индивидуальная скидка</p>
+            </div>
+        </div>
+
+        <div class="tool">
+            <div class="tool-form">
+                <a href="#" class="btn btn-danger" data-handler="onBeautifulPrice" data-confirm="Вы действительно хотите добавить скидку ко всем товарам ?">+ Красивая цена</a>
+                <br><br>
+                <a href="#" class="btn btn-primary" data-handler="onResetBeautifulPrice" data-confirm="Вы действительно хотите добавить скидку ко всем товарам ?">- Красивая цена</a>
+            </div>
+
+            <div class="tool-desctiption">
+                <p>(Например: 1999)</p>
+            </div>
+        </div>
+    </div>
+    <?php Phpr_Form::closeTag(); ?>
+</div>
+
+<?php Phpr_View::endBlock() ?>

@@ -1,0 +1,35 @@
+.tools-catalog {
+	/* border: 1px solid red; */
+}
+
+.list-tools .tool:not(:last-child) {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.tool {
+	display: flex;
+	column-gap: 50px;
+}
+
+.tool .btn {
+	width: 180px;
+}
+
+.tool .tool-form input[type='text'] {
+	display: block;
+	width: 192px;
+}
+
+.tool .tool-desctiption {
+}
+
+.tool .tool-desctiption p {
+	margin-bottom: 0;
+	font-size: 15px;
+}
+
+.tool .tool-desctiption p:not(:last-child) {
+	margin-bottom: 10px;
+}
