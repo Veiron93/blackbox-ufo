@@ -1,81 +1,81 @@
-@mixin screen_xl{
-	@media screen and (min-width: 1200px){
-		@content; 
-	}
-}
-
-@mixin screen_lg{
-	@media screen and (min-width: 992px) and (max-width: 1199px){
+@mixin screen_xl {
+	@media screen and (min-width: 1200px) {
 		@content;
 	}
 }
 
-@mixin screen_lg_up{
-	@media screen and (min-width: 992px){
+@mixin screen_lg {
+	@media screen and (min-width: 992px) and (max-width: 1199px) {
 		@content;
 	}
 }
 
-@mixin screen_lg_down{
-	@media screen and (max-width: 1199px){
+@mixin screen_lg_up {
+	@media screen and (min-width: 992px) {
 		@content;
 	}
 }
 
-@mixin screen_md_up{
-	@media screen and (min-width: 768px){
+@mixin screen_lg_down {
+	@media screen and (max-width: 1199px) {
 		@content;
 	}
 }
 
-@mixin screen_md{
-	@media screen and (min-width: 768px) and (max-width: 991px){
-		@content;
-	}
-}		
-
-@mixin screen_sm{
-	@media screen and (min-width: 576px) and (max-width: 767px){
+@mixin screen_md_up {
+	@media screen and (min-width: 768px) {
 		@content;
 	}
 }
 
-@mixin screen_md_down{
-	@media screen and (max-width: 991px){
-		@content;
-	}
-}
-	
-@mixin screen_sm_down{
-	@media screen and (max-width: 767px){
-		@content;
-	}	
-}
-	
-@mixin screen_xs{
-	@media screen and (max-width: 360px){
+@mixin screen_md {
+	@media screen and (min-width: 768px) and (max-width: 991px) {
 		@content;
 	}
 }
 
-@mixin style-block{
-    background: #fff;
+@mixin screen_sm {
+	@media screen and (min-width: 576px) and (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin screen_md_down {
+	@media screen and (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin screen_sm_down {
+	@media screen and (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin screen_xs {
+	@media screen and (max-width: 360px) {
+		@content;
+	}
+}
+
+@mixin style-block {
+	background: #fff;
 	border-radius: 14px;
-	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 	overflow: hidden;
 }
 
-@mixin btn($bg: $accent, $bgHover: $accentHover, $color: #fff){
+@mixin btn($bg: $accent, $bgHover: $accentHover, $color: #fff) {
 	border-radius: 14px;
 	height: 40px;
 	background: $bg;
-	transition: background .2s;
+	transition: background 0.2s;
 
-	&:hover{
+	&:hover {
 		background: $accentHover;
 	}
 
-	a{
+	a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -84,4 +84,3 @@
 		color: $color;
 	}
 }
-	

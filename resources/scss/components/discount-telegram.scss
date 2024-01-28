@@ -1,0 +1,20 @@
+.discount-telegram {
+	border-radius: $brs;
+	background: #38b6e4;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+
+	a {
+		display: flex;
+		align-items: center;
+		column-gap: 10px;
+		padding: 7px;
+
+		img {
+			height: 30px;
+		}
+
+		span {
+			color: #fff;
+		}
+	}
+}

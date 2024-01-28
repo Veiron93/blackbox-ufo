@@ -12,13 +12,13 @@
 	<div class="container">
 
 		<div class="cart-heading">
-			<h1>Коробка</h1>
+			<h1>Корзина</h1>
 
 			<?php if ($cart->getItemsCount()) : ?>
 				<form>
 					<a href="#" data-handler="onClearCart" data-confirm="Очистить корзину?">
 						<img src="/resources/images/icons/delete.svg" alt="Удалить">
-						<span>Очистить коробку</span>
+						<span>Удалить всё</span>
 					</a>
 				</form>
 			<?php endif ?>
@@ -110,6 +110,7 @@
 						<? Phpr_Form::closeTag() ?>
 					</div>
 
+
 					<?php
 					$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content;
 					$cart_total_price = cartTotalPrice($cartItems, true);
@@ -117,7 +118,8 @@
 
 					<?php if ($freeDelivery && $freeDelivery > $cart_total_price) : ?>
 						<div class="free-delivery-cart">
-							Для бесплатной доставки по г. Южно-Сахалинск, добавьте товаров ещё на <span><?= Core_Number::formatNumber($freeDelivery - $cart_total_price) ?> р.</span>
+							<span><?= Core_Number::formatNumber($freeDelivery - $cart_total_price) ?> р.</span>
+							<span>До бесплатной доставки по городу</span>
 						</div>
 					<?php endif; ?>
 

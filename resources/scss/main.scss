@@ -794,6 +794,7 @@ footer {
 		.cart-list-products {
 			@include style-block;
 			align-self: flex-start;
+			margin-bottom: 20px;
 
 			form {
 				.cart-list-products-item {
@@ -973,24 +974,28 @@ footer {
 		}
 
 		.free-delivery-cart {
-			margin-top: 20px;
-			background: $color;
-			padding: 15px;
-			border-radius: 14px;
-
-			color: #fff;
-			font-size: 14px;
-			line-height: 1.4em;
-
-			text-align: center;
+			margin-top: 30px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 
 			span {
-				white-space: nowrap;
+				display: inline-block;
+				color: $gray2;
+
+				&:nth-child(1) {
+					font-size: 28px;
+					font-weight: bold;
+				}
+
+				&:nth-child(2) {
+					font-size: 18px;
+					margin-top: 3px;
+				}
 			}
 		}
 
 		.branded-packaging {
-			//border: 1px solid red;
 			margin-top: 40px;
 
 			&_title {
@@ -1464,7 +1469,7 @@ form {
 				width: 100%;
 				order: 3;
 				font-size: 13px;
-				border-radius: 6px;
+				border-radius: $brs;
 				background: $color_2;
 				line-height: 1.4em;
 

@@ -2,11 +2,11 @@
 @import 'mixins';
 @import 'vars';
 @import 'classes';
-@import 'components/header';
-@import 'components/catalog';
-@import 'components/search';
 @import 'main';
 @import 'tinymce';
 
-
-
+// components
+@import 'components/header';
+@import 'components/catalog';
+@import 'components/search';
+@import 'components/discount-telegram';

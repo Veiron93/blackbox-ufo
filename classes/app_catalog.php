@@ -115,7 +115,7 @@ class App_Catalog
 		if (!$order) $order = "cp.id asc";
 
 		$products = Db_DbHelper::objectArray("SELECT 
-				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.new_price,cp.price, cp.is_useded_device, cp.state_device_useded_device, cp.best_seller,
+				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.is_useded_device, cp.state_device_useded_device, cp.best_seller,
 
 				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, cs.leftover, cs.price) SEPARATOR '----') 
 					FROM catalog_skus cs 
@@ -146,7 +146,7 @@ class App_Catalog
 	public static function getProduct($productId)
 	{
 		$product = Db_DbHelper::object("SELECT 
-				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.new_price, cp.price, cp.description, 
+				cp.id, cp.name, cp.regular_photo, cp.old_price, cp.price, cp.description, 
 				cp.short_description, cp.sales, cp.title_sku, cp.category_id, cp.leftover, 
 				cp.is_useded_device, cp.state_device_useded_device, cp.state_battery_useded_device,
 				cp.guarantee_useded_devicet, cp.defect_screen_useded_device, cp.defect_body_useded_device,

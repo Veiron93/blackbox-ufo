@@ -103,7 +103,7 @@ class Tools_Catalog extends Admin_Controller
     protected function onResetDiscounts()
     {
         try {
-            Db_DbHelper::query("UPDATE catalog_products as cp SET price = (SELECT old_price FROM catalog_products WHERE id = cp.id), old_price = null WHERE old_price is not null AND individual_price is null");
+            Db_DbHelper::query("UPDATE catalog_products SET price = old_price, old_price = null WHERE old_price is not null AND individual_price is null");
 
             Phpr::$session->flash['success'] = $this->reset_discounts_flash;
             Phpr::$response->redirect($this->tools_catalog_redirect);
@@ -115,7 +115,7 @@ class Tools_Catalog extends Admin_Controller
     protected function onResetIndividualPrices()
     {
         try {
-            Db_DbHelper::query("UPDATE catalog_products as cp SET price = (SELECT old_price FROM catalog_products WHERE id = cp.id), old_price = null, individual_price = null WHERE old_price is not null AND individual_price is not null");
+            Db_DbHelper::query("UPDATE catalog_products SET price = old_price, old_price = null, individual_price = null WHERE old_price is not null AND individual_price is not null");
 
 
             Phpr::$session->flash['success'] = $this->reset_discounts_flash;
