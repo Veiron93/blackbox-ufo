@@ -305,7 +305,7 @@ footer {
 			padding: 0;
 
 			li {
-				border-radius: 14px;
+				border-radius: $brs;
 
 				&:hover {
 					background: $gray;
@@ -728,7 +728,7 @@ footer {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 10px;
+		margin-bottom: 12px;
 
 		h1 {
 			font-weight: normal;
@@ -1570,19 +1570,14 @@ form {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	padding: 10px 0;
+	padding: 12px 0;
 	z-index: 100;
 
-	background: #fff;
-	box-shadow: 0 -2px 8px rgba($color, 0.15);
+	background: #000;
 
 	display: none;
-	column-gap: 20px;
+	column-gap: 24px;
 	justify-content: center;
-
-	@include screen_sm_down {
-		display: flex;
-	}
 
 	.item {
 		flex: none;
@@ -1598,16 +1593,19 @@ form {
 		}
 
 		img {
-			height: 20px;
+			height: 24px;
 			display: block;
 			margin: 0 auto 3px;
+
+			filter: brightness(0) invert(1);
 		}
 
 		span {
-			font-size: 12px;
+			font-size: 13px;
 			text-align: center;
 			line-height: 1em;
 			font-weight: 500;
+			color: #fff;
 		}
 
 		&-cart {
@@ -1636,13 +1634,11 @@ form {
 	}
 
 	.btn-up-page {
-		width: 36px;
-		height: 36px;
+		width: 30px;
+		height: 40px;
 		display: none;
 		align-items: center;
 		justify-content: center;
-		border-radius: 8px;
-		background: $color_2;
 
 		&.active {
 			display: flex;
@@ -1668,6 +1664,30 @@ form {
 				height: 15px;
 				margin-bottom: 5px;
 			}
+		}
+	}
+
+	@include screen_sm_down {
+		display: flex;
+	}
+
+	@include screen_xs {
+		column-gap: 14px;
+
+		.item {
+			width: 54px;
+
+			img {
+				height: 22px;
+			}
+
+			span {
+				font-size: 12px;
+			}
+		}
+
+		.btn-up-page {
+			width: 28px;
 		}
 	}
 }

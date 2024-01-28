@@ -1,6 +1,10 @@
 .discount-telegram {
 	border-radius: $brs;
-	background: #38b6e4;
+	background: linear-gradient(
+		135deg,
+		rgba(41, 172, 237, 1) 0%,
+		rgba(24, 177, 242, 1) 100%
+	);
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 
 	a {
@@ -15,6 +19,38 @@
 
 		span {
 			color: #fff;
+		}
+	}
+
+	&--index {
+		margin-bottom: 10px;
+
+		a {
+			column-gap: 7px;
+
+			img {
+				height: 20px;
+			}
+
+			span {
+				font-size: 12px;
+			}
+		}
+	}
+
+	@include screen_sm_down {
+		&--index {
+			a {
+				column-gap: 7px;
+
+				img {
+					height: 30px;
+				}
+
+				span {
+					font-size: 18px;
+				}
+			}
 		}
 	}
 }

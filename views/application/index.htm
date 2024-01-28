@@ -1,14 +1,12 @@
 <!-- prettier-ignore -->
 
 <div class="container">
-
-	<?php //$this->renderLayout('_logo'); 
-	?>
-
 	<div class="index-top-section">
 
 		<?php if (isset($catalogRootCategories) && count($catalogRootCategories)) : ?>
 			<div class="catalog-menu">
+				<?php $this->renderPartial($this->getViewsDir() . "layouts/components/discount-telegram.htm", ['style_class' => 'discount-telegram--index']); ?>
+
 				<ul>
 					<?php foreach ($catalogRootCategories as $category) : ?>
 						<li>
@@ -35,16 +33,6 @@
 						</li>
 					<?php endforeach; ?>
 				</ul>
-
-				<!-- <div class="btns">
-					<div class="btn">
-						<a href="/catalog/">Все категории</a>
-					</div>
-
-					<div class="btn">
-						<a href="/catalog/all-products/">Все товары</a>
-					</div>
-				</div> -->
 			</div>
 		<?php endif; ?>
 
@@ -99,8 +87,6 @@
 			<div class="main-slider-mobile-pagination"></div>
 		<?php endif; ?>
 	</div>
-
-
 
 
 	<div class="index-navigation">
