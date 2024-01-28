@@ -249,29 +249,25 @@ footer {
 	margin-top: 100px;
 	padding-bottom: 15px;
 
-	&-copyright {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-		span {
-			text-align: center;
+	span {
+		&:nth-child(1) {
+			font-weight: 500;
+			letter-spacing: 0.5px;
+		}
 
-			&:nth-child(1) {
-				font-weight: 500;
-				letter-spacing: 0.5px;
-			}
-
-			&:nth-child(2) {
-				margin-top: 5px;
-				font-size: 12px;
-			}
+		&:nth-child(2) {
+			margin-top: 5px;
+			font-size: 12px;
 		}
 	}
 
 	@include screen_sm_down {
 		padding-bottom: 70px;
-		margin-top: 20px;
+		margin-top: 40px;
 	}
 }
 
