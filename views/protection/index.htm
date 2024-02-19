@@ -1,0 +1,189 @@
+<header>
+    <p class="header-phone">Защита для ваших устройств в г. Южно-Сахалинск</p>
+    <a class="header-phone" href="tel:89624192078">8 962 419 20 78</a>
+</header>
+
+<div class="video">
+    <div class="video-text">
+        Какой то текст о чем что о том то
+    </div>
+
+    <video playsinline autoplay muted loop>
+        <source src="/resources/protection/video/1.mp4" type="video/mp4">
+    </video>
+</div>
+
+
+<div class="container">
+    <div class="main-text">
+        Защитите свои устройства от царапин, потертостей и повреждений!
+    </div>
+
+    <div class="service-catalog-wrapper">
+
+        <div class="service-catalog">
+
+            <div class="service-catalog_header">
+                <h2>Рассчитать стоимость</h2>
+                <p>Стоимость указана с установкой</p>
+            </div>
+
+            <div class="service-catalog_body">
+                <div class="list-services-wrapper">
+                    <div class="categories">
+                        <?php foreach ($calculatorCategories as $key_calculatorCategory => $calculatorCategory) : ?>
+                            <?php if (!isset($calculatorCategory->hidden) || !$calculatorCategory->hidden) : ?>
+                                <div class="item <?= $key_calculatorCategory == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $key_calculatorCategory ?>"><?= $calculatorCategory->name ?></div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <?php foreach ($calculatorSections as $section) : ?>
+                        <?php if (!isset($calculatorCategories[$section->id]->hidden) || !$calculatorCategories[$section->id]->hidden) : ?>
+                            <div class="list-services <?= $section->id == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $section->id ?>">
+                                <?php foreach ($section->services as $service) : ?>
+                                    <?php if (!isset($service->hidden) || !$service->hidden) : ?>
+                                        <div class="service">
+                                            <div class="service_name">
+                                                <?= $service->name ?>
+                                            </div>
+
+                                            <select name="<?= $service->code ?>">
+                                                <option value="">Выберите сегмент</option>
+
+                                                <?php foreach ($service->segments as $segment_key => $segment) : ?>
+                                                    <?php if (!isset($segment->hidden) || !$segment->hidden) : ?>
+                                                        <?php foreach ($segment->prices as $price) : ?>
+                                                            <?php if (!isset($price->hidden) || !$price->hidden) : ?>
+                                                                <option value="<?= $price->price ?>"><?= $this->prefixService($segment_key) . $price->name ?> ≈ <?= $price->price ?> руб.</option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </select>
+
+                                            <button>Добавить</button>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="user-devices">
+                    <div class="user-devices_header">Ваши устройства</div>
+
+                    <div class="user-devices_body">
+                        <div class="user-devices_list hidden">
+                            <select name="user-devices">
+                                <!-- <option value="">iPhone 15 Pro Max</option>
+                            <option value="">Galaxy S24 Ultra</option> -->
+                            </select>
+
+                            <button class="btn-del-device">-</button>
+                        </div>
+
+                        <div class="user-devices_add">
+                            <input type="text" name="add-device" placeholder="Новое устройство">
+                            <button class="btn-add-device">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="test"></div> -->
+            </div>
+
+            <!-- <div class="service-catalog_footer">
+                <p>Цены указаны на примере техники Apple. В зависимости от вашего устройства, итоговая стоимость может незначительно отличаться. Точную стоимость сообщит менеджер после записи.</p>
+            </div> -->
+        </div>
+
+
+        <div class="cart">
+            <div class="cart_header">
+                <h2>Записаться онлайн</h2>
+            </div>
+
+            <div class="cart_services">
+                <div class="cart_services-list-devices">
+                    <!-- <div class="device">
+                        <div class="device-header">
+                            <div class="device-name">iPhone 14 Pro Max</div>
+                            <div class="device-btn-del"></div>
+                        </div>
+
+                        <div class="device-services">
+                            <div class="service">
+                                <div class="service-name">
+                                    <span>Плёнка на экран</span>
+                                    <span>💎 Премиум - глянец</span>
+                                </div>
+                                <div class="service-price">≈ 1200 руб.</div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="cart_services-total-price">
+                    Итого ≈<span>0</span> руб.
+                </div>
+            </div>
+
+            <div class="cart_form-order">
+                <form>
+                    <fieldset>
+                        <label for="">Телефон</label>
+                        <input type="text" name="phone" placeholder="Номер телефона">
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="">Имя</label>
+                        <input type="text" name="name" placeholder="Номер телефона">
+                    </fieldset>
+
+                    <!-- <fieldset>
+                    <label for="">Устройства</label>
+                    <textarea name="" id="" placeholder="Укажите модели ваших устройств которые будут в работе"></textarea>
+                </fieldset> -->
+
+                    <fieldset>
+                        <label for="">Выберите дату записи</label>
+                        <input type="date" name="" id="">
+                    </fieldset>
+
+                    <fieldset>
+                        <button>Записаться</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="brands">
+        <h2 class="heading--small">Мы используем материалы от лучших брендов</h2>
+
+        <div class="brands_slider">
+            <div class="item">
+                <img src="/resources/protection/img/brands/1.png" alt="">
+            </div>
+
+            <div class="item">
+                <img src="/resources/protection/img/brands/1.png" alt="">
+            </div>
+
+            <div class="item">
+                <img src="/resources/protection/img/brands/1.png" alt="">
+            </div>
+
+            <div class="item">
+                <img src="/resources/protection/img/brands/1.png" alt="">
+            </div>
+
+            <div class="item">
+                <img src="/resources/protection/img/brands/1.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>

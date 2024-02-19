@@ -1,8 +1,6 @@
 <?php
-
 class Application extends App_Controller
 {
-
 	protected $globalHandlers = [
 		"onGetRandomProducts"
 	];
@@ -17,12 +15,12 @@ class Application extends App_Controller
 
 		$this->viewData['countProductsDiscount'] = Db_DbHelper::scalar(
 			"SELECT COUNT(id)
-			FROM catalog_products
-			WHERE 
-				old_price is not null
-				AND hidden is null 
-				AND deleted is null
-				AND leftover > 0"
+				FROM catalog_products
+				WHERE 
+					old_price is not null
+					AND hidden is null 
+					AND deleted is null
+					AND leftover > 0"
 		);
 
 		// Хиты продаж

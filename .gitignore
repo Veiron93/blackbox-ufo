@@ -19,3 +19,4 @@ ftp.js
 /dist
 !modules/blackbox
 !modules/tools
+resources/protection/video

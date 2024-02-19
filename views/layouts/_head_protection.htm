@@ -1,0 +1,10 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="x-ua-compatible" content="IE=edge" />
+
+<?= Core_Html::css($this->getAsset('dist/protection.css')) ?>
+<?= Core_Html::js(
+    $this->getAsset('dist/service-catalog-protection.min.js'),
+    $this->getAsset('dist/cart-protection.min.js'),
+    $this->getAsset('dist/common-protection.min.js')
+) ?>
