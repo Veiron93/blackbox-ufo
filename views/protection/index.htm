@@ -29,7 +29,7 @@
             </div>
 
             <div class="service-catalog_body">
-                <div class="list-services-wrapper">
+                <div class="list-services-wrapper hidden">
                     <div class="categories">
                         <?php foreach ($calculatorCategories as $key_calculatorCategory => $calculatorCategory) : ?>
                             <?php if (!isset($calculatorCategory->hidden) || !$calculatorCategory->hidden) : ?>
@@ -55,14 +55,17 @@
                                                     <?php if (!isset($segment->hidden) || !$segment->hidden) : ?>
                                                         <?php foreach ($segment->prices as $price) : ?>
                                                             <?php if (!isset($price->hidden) || !$price->hidden) : ?>
-                                                                <option value="<?= $price->price ?>"><?= $this->prefixService($segment_key) . $price->name ?> ≈ <?= $price->price ?> руб.</option>
+                                                                <?php $name = $this->prefixService($segment_key) . $price->name ?>
+                                                                <option value="<?= $price->price ?>"><?= $name ?> ≈ <?= $price->price ?> руб.</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </select>
 
-                                            <button>Добавить</button>
+                                            <?/*
+                                            <button class="btn-event-service" data-status="add" data-code="<?= $service->code ?>">Добавить</button>
+                                            */ ?>
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
@@ -71,16 +74,18 @@
                     <?php endforeach; ?>
                 </div>
 
+                <div class="new-user">
+                    <p>Добавьте устройство</p>
+                </div>
+            </div>
+
+            <div class="service-catalog_footer">
                 <div class="user-devices">
                     <div class="user-devices_header">Ваши устройства</div>
 
                     <div class="user-devices_body">
                         <div class="user-devices_list hidden">
-                            <select name="user-devices">
-                                <!-- <option value="">iPhone 15 Pro Max</option>
-                            <option value="">Galaxy S24 Ultra</option> -->
-                            </select>
-
+                            <select name="user-devices"></select>
                             <button class="btn-del-device">-</button>
                         </div>
 
@@ -90,8 +95,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="test"></div> -->
             </div>
 
             <!-- <div class="service-catalog_footer">

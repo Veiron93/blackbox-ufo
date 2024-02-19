@@ -180,6 +180,8 @@ header {
 
 	&_body {
 		margin-top: 2rem;
+		margin-bottom: 2rem;
+		//position: relative;
 
 		.list-services-wrapper {
 			.categories {
@@ -221,9 +223,9 @@ header {
 				}
 
 				.service {
-					display: flex;
-					flex-wrap: wrap;
-					align-items: center;
+					// display: flex;
+					// flex-wrap: wrap;
+					// align-items: center;
 
 					&:not(:last-child) {
 						margin-bottom: 1.4rem;
@@ -237,7 +239,7 @@ header {
 
 					select {
 						height: 3.6rem;
-						width: calc(100% - 11rem);
+						width: 100%;
 						border: none;
 						padding: 0rem 1rem;
 						color: #000;
@@ -254,16 +256,47 @@ header {
 						margin-left: 1rem;
 						width: 10rem;
 						background: $color4;
+						pointer-events: none;
+						opacity: 0.7;
+
+						&.active {
+							pointer-events: all;
+							opacity: 1;
+						}
 					}
 				}
 			}
 		}
 
-		.user-devices {
-			background: $color3;
-			margin: 2rem -4rem 0;
-			padding: 2rem 4rem 3rem;
+		.new-user {
+			margin-bottom: -1rem;
 
+			p {
+				font-weight: bold;
+				font-size: 4rem;
+				color: $color3;
+			}
+
+			&:after {
+				content: '';
+				display: block;
+				width: 10rem;
+				height: 10rem;
+				margin-left: 2rem;
+
+				background-image: url(/resources/protection/img/icons/arrow-bottom.svg);
+				background-repeat: no-repeat;
+				background-size: 10rem;
+			}
+		}
+	}
+
+	&_footer {
+		background: $color3;
+		margin: 0 -4rem;
+		padding: 2rem 4rem 3rem;
+
+		.user-devices {
 			&_header {
 			}
 
@@ -300,18 +333,6 @@ header {
 					background: #5cb45c;
 				}
 			}
-		}
-	}
-
-	&_footer {
-		margin-top: 2rem;
-		margin-left: -4rem;
-		margin-right: -4rem;
-		background: $color3;
-		padding: 1.5rem 4rem;
-		p {
-			font-size: 1.3rem;
-			line-height: 1.5em;
 		}
 	}
 }

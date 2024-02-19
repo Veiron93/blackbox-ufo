@@ -61,7 +61,7 @@ class Protection extends App_Controller
             'services' => [
                 (object)[
                     'name' => 'Плёнка на экран',
-                    'code' => 'film-glass',
+                    'code' => 'film-glass-phone',
                     'hidden' => false,
                     'segments' => [
                         'premium' => (object)[
@@ -92,7 +92,7 @@ class Protection extends App_Controller
 
                 (object)[
                     'name' => 'Плёнка на заднюю панель',
-                    'code' => 'film-back',
+                    'code' => 'film-back-phone',
                     'hidden' => false,
                     'segments' => [
                         'premium' => (object)[

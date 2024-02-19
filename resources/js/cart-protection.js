@@ -22,10 +22,8 @@ class Cart {
 		)
 	}
 
-	initEvents() {}
-
 	getCartLocalStorage() {
-		localStorage.getItem('cartProtection')
+		return JSON.parse(localStorage.getItem('cartProtection'))
 	}
 
 	setCartLocalStorage() {
@@ -34,9 +32,23 @@ class Cart {
 
 	stateBtnService() {}
 
-	addCartDevice() {}
+	getDeviceCart() {}
 
-	delCartDevice() {}
+	add(device, service) {
+		let cart = this.getCartLocalStorage()
+
+		if (cart) {
+		} else {
+			cart = {
+				[device.id]: {
+					deviceName: device.name,
+					services: [service],
+				},
+			}
+		}
+
+		//console.log(cart)
+	}
 
 	getDevice(data) {
 		let services = []

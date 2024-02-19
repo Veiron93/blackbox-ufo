@@ -165,7 +165,7 @@ gulp.task('scripts', (done) => {
 	gulp
 		.src(['resources/js/*.js', ...ignoreFiles])
 		.pipe(concat('common.min.js'))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('resources/dist'))
 		.pipe(browserSync.reload({ stream: true }))
 
@@ -173,7 +173,7 @@ gulp.task('scripts', (done) => {
 		gulp
 			.src([pathJsFiles + scriptFile + '.js'])
 			.pipe(concat(scriptFile + '.min.js'))
-			.pipe(uglify())
+			//.pipe(uglify())
 			.pipe(gulp.dest('resources/dist'))
 			.pipe(browserSync.reload({ stream: true }))
 	})
