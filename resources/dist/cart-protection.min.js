@@ -3,11 +3,14 @@ class Cart {
 	cartNode = null
 	listDevices = null
 
+	cart = null
+
 	totalPriceNode = null
 	totalPriceValue = 0
 
 	constructor() {
 		this.initNodes()
+		this.renderCart()
 	}
 
 	initNodes() {
@@ -26,8 +29,8 @@ class Cart {
 		return JSON.parse(localStorage.getItem('cartProtection'))
 	}
 
-	setCartLocalStorage() {
-		localStorage.setItem('cartProtection', 1)
+	setCartLocalStorage(cart) {
+		localStorage.setItem('cartProtection', JSON.stringify(cart))
 	}
 
 	stateBtnService() {}
@@ -35,9 +38,19 @@ class Cart {
 	getDeviceCart() {}
 
 	add(device, service) {
+		console.log(device)
+		console.log(service)
+
 		let cart = this.getCartLocalStorage()
 
-		if (cart) {
+		if (cart && Object.keys(cart).length) {
+			let index = this.isServiceToCart(device.id, service.code)
+
+			if (index != -1) {
+				cart[device.id].services[index] = service
+			} else {
+				cart[device.id].services.push(service)
+			}
 		} else {
 			cart = {
 				[device.id]: {
@@ -47,7 +60,59 @@ class Cart {
 			}
 		}
 
+		//this.cart = cart
+
 		//console.log(cart)
+
+		this.setCartLocalStorage(cart)
+		this.renderCart()
+
+		//console.log(cart)
+	}
+
+	del(idDevice) {
+		let cart = this.getCartLocalStorage()
+
+		if (!cart) {
+			return null
+		}
+
+		delete cart[idDevice]
+
+		this.setCartLocalStorage(cart)
+		this.renderCart()
+	}
+
+	isServiceToCart(deviceId, serviceCode) {
+		function getCode(serviceCode) {
+			return serviceCode.split('~')[0]
+		}
+
+		let cart = this.getCartLocalStorage()
+
+		if (!cart && !Object.keys(cart).length) {
+			return null
+		}
+
+		let services = cart[deviceId].services
+
+		let index = Array.from(services).findIndex(
+			(service) => getCode(service.code) == getCode(serviceCode)
+		)
+
+		return index
+	}
+
+	renderCart() {
+		let cart = this.getCartLocalStorage()
+
+		let list = ''
+
+		for (let device in cart) {
+			list += this.getDevice(cart[device])
+		}
+
+		this.listDevices.innerHTML = list
 	}
 
 	getDevice(data) {
@@ -76,8 +141,21 @@ class Cart {
         </div>
         `
 
-		return device
+		return device.trim()
 	}
+
+	// recalculationTotalPrice() {
+	// 	let total = 0
+
+	// 	this.services.forEach((service) => {
+	// 		if (service.value) {
+	// 			total += Number(service.value)
+	// 		}
+	// 	})
+
+	// 	this.totalPriceValue = total
+	// 	this.totalPriceNode.textContent = total
+	// }
 
 	test() {
 		console.log(777)

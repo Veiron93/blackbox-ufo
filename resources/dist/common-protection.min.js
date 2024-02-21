@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-	window.services = new Services()
 	window.cart = new Cart()
+	window.services = new Services()
 
 	// console.log(
 	// 	cart.getDevice({

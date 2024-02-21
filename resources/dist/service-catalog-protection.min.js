@@ -11,9 +11,7 @@ class Services {
 	newUserWrapperNode = null
 
 	services = null
-
 	serviceListsNode = null
-	//btnsEvent = null
 
 	// user devices
 	userDevicesWrapperNode = null
@@ -21,15 +19,12 @@ class Services {
 	userDevicesListWrapperNode = null
 	userDevicesAddWrapperNode = null
 
-	userDevicesListNode = null
+	selectUserDevices = null
 	inputAddUserDevice = null
 
 	userDevices = []
 	btnDelDeviceClientDevice = null
 	btnAddDeviceClientDevice = null
-
-	// totalPriceNode = null
-	// totalPriceValue = 0
 
 	constructor() {
 		this.initNodes()
@@ -39,6 +34,9 @@ class Services {
 		this.changeServiceCatalog()
 
 		this.initUserDevices()
+		this.changeUserDevice()
+
+		this.initDeviceServices()
 	}
 
 	initNodes() {
@@ -55,9 +53,6 @@ class Services {
 
 		this.newUserWrapperNode =
 			this.servicesCatalogBodyNode.querySelector('.new-user')
-
-		// total price
-		//this.totalPriceNode = document.querySelector('.total-price span')
 	}
 
 	initServiceCatalog() {
@@ -71,97 +66,14 @@ class Services {
 		this.services = this.servicesCatalogBodyNode.querySelectorAll(
 			'.list-services select'
 		)
-
-		// this.btnsEvent =
-		// 	this.servicesCatalogBodyNode.querySelectorAll('.btn-event-service')
-
-		// this.btnsEvent.forEach((btn) =>
-		// 	btn.addEventListener('click', () => {
-		// 		this.validationServiceCatalog(btn.getAttribute('data-code'))
-		// 		this.onEventBtnEventServiceCatalog(btn)
-		// 	})
-		// )
-	}
-
-	// состояние кнопки
-	// statusBtnEventServiceCatalog(status, text, btn = null, code = null) {
-	// 	let button = btn
-
-	// 	if (!button && code) {
-	// 		button = this.getBtnEventsServiceCatalog(code)
-	// 	}
-
-	// 	if (!button && !code) {
-	// 		return
-	// 	}
-
-	// 	button.setAttribute('data-status', status)
-	// 	button.textContent = text
-	// }
-
-	// onEventBtnEventServiceCatalog(btn) {
-	// 	let status = btn.getAttribute('data-status')
-	// 	let code = btn.getAttribute('data-code')
-
-	// 	let newStatus = null
-	// 	let newText = null
-
-	// 	if (status == 'add') {
-	// 		this.addServiceCart(code)
-	// 		newStatus = 'del'
-	// 		newText = 'Удалить'
-	// 	} else if (status == 'del') {
-	// 		this.delServiceCart(code)
-	// 		newStatus = 'add'
-	// 		newText = 'Добавить'
-	// 	} else if (status == 'add') {
-	// 		newStatus = 'add'
-	// 		newText = 'Изменить'
-	// 	}
-
-	// 	this.statusBtnEventServiceCatalog(newStatus, newText, btn)
-	// }
-
-	validationServiceCatalog() {}
-
-	// getBtnEventsServiceCatalog(code) {
-	// 	return Array.from(this.btnsEvent).find(
-	// 		(btn) => btn.getAttribute('data-code') == code
-	// 	)
-	// }
-
-	// stateBntEventServiceCatalog(btnCode, state) {
-	// 	let btn = this.getBtnEventsServiceCatalog(btnCode)
-
-	// 	if (!btn) {
-	// 		return
-	// 	}
-
-	// 	if (state) {
-	// 		btn.classList.add('active')
-	// 	} else {
-	// 		btn.classList.remove('active')
-	// 	}
-	// }
-
-	// добавить услугу в корзину
-	addServiceCart(code) {
-		console.log(code)
-	}
-
-	// удалить услугу из корзины
-	delServiceCart(code) {
-		//cart.add(code)
-		//console.log(code)
 	}
 
 	addService(code) {
 		// device
 		let device = {
-			name: this.userDevicesListNode.options[
-				this.userDevicesListNode.selectedIndex
-			].text,
-			id: this.userDevicesListNode.value,
+			name: this.selectUserDevices.options[this.selectUserDevices.selectedIndex]
+				.text,
+			id: this.selectUserDevices.value,
 		}
 
 		// service
@@ -174,21 +86,20 @@ class Services {
 		let serviceType = serviceParent.querySelector('.service_name').textContent
 		serviceType = serviceType.trim()
 
-		let serviceName = serviceSelect.options[serviceSelect.selectedIndex].text
-		serviceName = serviceName.split('≈')[0].trim()
+		let serviceValue = serviceSelect.options[serviceSelect.selectedIndex].text
 
-		let servicePrice = serviceSelect.value
+		let serviceName = serviceValue.split('≈')[0].trim()
+		let serviceCode = serviceSelect.value
+		let servicePrice = serviceValue.split('≈')[1].trim().split(' ')[0]
 
 		let service = {
 			type: serviceType,
 			name: serviceName,
+			code: serviceCode,
 			price: servicePrice,
 		}
 
 		cart.add(device, service)
-
-		//console.log(service)
-		//console.log(serviceNode.value)
 	}
 
 	changeServiceCatalog() {
@@ -198,9 +109,8 @@ class Services {
 
 				if (state) {
 					this.addService(service.getAttribute('name'))
-					//this.addServiceCart(service.getAttribute('name'))
 				} else {
-					this.delServiceCart(service.getAttribute('name'))
+					// del
 				}
 			})
 		})
@@ -226,7 +136,7 @@ class Services {
 		this.userDevicesAddWrapperNode =
 			this.userDevicesWrapperNode.querySelector('.user-devices_add')
 
-		this.userDevicesListNode = this.userDevicesListWrapperNode.querySelector(
+		this.selectUserDevices = this.userDevicesListWrapperNode.querySelector(
 			'select[name="user-devices"]'
 		)
 
@@ -239,7 +149,7 @@ class Services {
 			this.userDevicesWrapperNode.querySelector('.btn-del-device')
 
 		this.btnDelDeviceClientDevice.addEventListener('click', () => {
-			this.delUserDevice(this.userDevicesListNode.value)
+			this.delUserDevice(this.selectUserDevices.value)
 		})
 
 		this.btnAddDeviceClientDevice =
@@ -273,8 +183,8 @@ class Services {
 				devices.push(option)
 
 				if (index == this.userDevices.length - 1) {
-					this.userDevicesListNode.innerHTML = ''
-					this.userDevicesListNode.append(...devices)
+					this.selectUserDevices.innerHTML = ''
+					this.selectUserDevices.append(...devices)
 					this.userDevicesListWrapperNode.classList.remove('hidden')
 				}
 			})
@@ -282,7 +192,7 @@ class Services {
 			this.stateListServiceCatalog(true)
 		} else {
 			this.userDevicesListWrapperNode.classList.add('hidden')
-			this.userDevicesListNode.innerHTML = ''
+			this.selectUserDevices.innerHTML = ''
 			this.stateListServiceCatalog(false)
 		}
 	}
@@ -323,24 +233,58 @@ class Services {
 		)
 
 		this.renderListUserDevices()
+		this.initDeviceServices()
+		cart.del(id)
 	}
 
-	// changeActiveUserDevice(){
-	// 	this.
-	// }
+	changeUserDevice() {
+		this.selectUserDevices.addEventListener('change', () => {
+			this.initDeviceServices()
+		})
+	}
 
-	// recalculationTotalPrice() {
-	// 	let total = 0
+	initDeviceServices() {
+		let cartLocalStorage = cart.getCartLocalStorage()
+		let deviceCode = this.selectUserDevices.value
 
-	// 	this.services.forEach((service) => {
-	// 		if (service.value) {
-	// 			total += Number(service.value)
-	// 		}
-	// 	})
+		if (!deviceCode) {
+			this.services.forEach((service) => (service.selectedIndex = 0))
+			return null
+		}
 
-	// 	this.totalPriceValue = total
-	// 	this.totalPriceNode.textContent = total
-	// }
+		if (!cartLocalStorage) {
+			return null
+		}
+
+		let deviceAddedCart = cartLocalStorage[deviceCode]
+
+		if (!deviceAddedCart) {
+			this.services.forEach((service) => (service.selectedIndex = 0))
+			return null
+		}
+
+		deviceAddedCart.services.forEach((service) => {
+			let selectService = Array.from(this.services).find(
+				(select) => select.getAttribute('name') == service.code.split('~')[0]
+			)
+
+			if (!selectService) {
+				return false
+			}
+
+			let options = selectService.querySelectorAll('option')
+
+			let optionIndex = Array.from(options).findIndex(
+				(option) => option.value == service.code
+			)
+
+			if (!optionIndex) {
+				return null
+			}
+
+			selectService.selectedIndex = optionIndex
+		})
+	}
 
 	onActiveCategoryServices() {
 		this.categoriesServicesNode.forEach((category, index) =>

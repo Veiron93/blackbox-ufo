@@ -53,10 +53,13 @@
 
                                                 <?php foreach ($service->segments as $segment_key => $segment) : ?>
                                                     <?php if (!isset($segment->hidden) || !$segment->hidden) : ?>
-                                                        <?php foreach ($segment->prices as $price) : ?>
+                                                        <?php foreach ($segment->prices as $price_key => $price) : ?>
                                                             <?php if (!isset($price->hidden) || !$price->hidden) : ?>
-                                                                <?php $name = $this->prefixService($segment_key) . $price->name ?>
-                                                                <option value="<?= $price->price ?>"><?= $name ?> ≈ <?= $price->price ?> руб.</option>
+                                                                <?php
+                                                                $name = $this->prefixService($segment_key) . $price->name;
+                                                                $code = $service->code . '~' . $segment_key . '~' . $price_key;
+                                                                ?>
+                                                                <option value="<?= $code ?>"><?= $name ?> ≈ <?= $price->price ?> руб.</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     <?php endif; ?>
