@@ -102,6 +102,12 @@ class Services {
 		cart.add(device, service)
 	}
 
+	resetServicesDevice(idDevice) {
+		if (idDevice == this.getIdActiveDevice()) {
+			this.services.forEach((service) => (service.selectedIndex = 0))
+		}
+	}
+
 	changeServiceCatalog() {
 		this.services.forEach((service) => {
 			service.addEventListener('change', () => {
@@ -111,6 +117,10 @@ class Services {
 					this.addService(service.getAttribute('name'))
 				} else {
 					// del
+					cart.delService(
+						this.getIdActiveDevice(),
+						service.getAttribute('name')
+					)
 				}
 			})
 		})
@@ -234,7 +244,7 @@ class Services {
 
 		this.renderListUserDevices()
 		this.initDeviceServices()
-		cart.del(id)
+		cart.delDevice(id)
 	}
 
 	changeUserDevice() {
@@ -247,12 +257,9 @@ class Services {
 		let cartLocalStorage = cart.getCartLocalStorage()
 		let deviceCode = this.selectUserDevices.value
 
-		if (!deviceCode) {
-			this.services.forEach((service) => (service.selectedIndex = 0))
-			return null
-		}
+		this.services.forEach((service) => (service.selectedIndex = 0))
 
-		if (!cartLocalStorage) {
+		if (!cartLocalStorage || !deviceCode) {
 			return null
 		}
 
@@ -284,6 +291,10 @@ class Services {
 
 			selectService.selectedIndex = optionIndex
 		})
+	}
+
+	getIdActiveDevice() {
+		return this.selectUserDevices.value
 	}
 
 	onActiveCategoryServices() {
