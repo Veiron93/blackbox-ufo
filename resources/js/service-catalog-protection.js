@@ -5,8 +5,9 @@ class Services {
 
 	serviceListWrapperNode = null
 	categoriesServicesNode = []
-	idActiveCategoryServices = null
-	indexActiveCategoryServices = 0
+
+	idActiveCategoryServices = 'phone' // -
+	indexActiveCategoryServices = 0 // -
 
 	newUserWrapperNode = null
 
@@ -21,6 +22,7 @@ class Services {
 
 	selectUserDevices = null
 	inputAddUserDevice = null
+	selectTypeUserDevices = null
 
 	userDevices = []
 	btnDelDeviceClientDevice = null
@@ -35,6 +37,7 @@ class Services {
 
 		this.initUserDevices()
 		this.changeUserDevice()
+		this.stateUserDevices()
 
 		this.initDeviceServices()
 	}
@@ -154,6 +157,10 @@ class Services {
 			'input[name="add-device"]'
 		)
 
+		this.selectTypeUserDevices = this.userDevicesAddWrapperNode.querySelector(
+			'select[name="type-device"]'
+		)
+
 		// btns
 		this.btnDelDeviceClientDevice =
 			this.userDevicesWrapperNode.querySelector('.btn-del-device')
@@ -170,6 +177,31 @@ class Services {
 		)
 
 		this.renderListUserDevices()
+	}
+
+	stateUserDevices() {
+		let devices = this.selectUserDevices.querySelectorAll('option')
+
+		if (!devices.length) {
+			return null
+		}
+
+		devices.forEach((device, index) => {
+			device.removeAttribute('disabled')
+			device.removeAttribute('selected')
+
+			if (device.getAttribute('data-type') != this.idActiveCategoryServices) {
+				device.setAttribute('disabled', true)
+			}
+		})
+
+		let activeDevices = Array.from(devices).filter(
+			(device) => !device.getAttribute('disabled')
+		)
+
+		if (activeDevices.length) {
+			activeDevices[0].setAttribute('selected', true)
+		}
 	}
 
 	// инициализация списка
@@ -189,6 +221,7 @@ class Services {
 				let option = document.createElement('option')
 				option.textContent = device.name
 				option.value = device.id
+				option.setAttribute('data-type', device.type)
 
 				devices.push(option)
 
@@ -217,6 +250,7 @@ class Services {
 		let newDevice = {
 			id: Math.random().toString(16).slice(2),
 			name: value,
+			type: this.selectTypeUserDevices.value,
 		}
 
 		this.userDevices.push(newDevice)
@@ -228,6 +262,7 @@ class Services {
 
 		this.inputAddUserDevice.value = ''
 		this.renderListUserDevices()
+		this.stateUserDevices()
 	}
 
 	delUserDevice(id) {
@@ -302,6 +337,8 @@ class Services {
 			category.addEventListener('click', () => {
 				let id = category.getAttribute('data-id')
 
+				this.idActiveCategoryServices = id
+
 				// категория
 				this.categoriesServicesNode.forEach((category) => {
 					if (category.getAttribute('data-id') != id) {
@@ -319,6 +356,9 @@ class Services {
 						list.classList.add('active')
 					}
 				})
+
+				this.stateUserDevices()
+				this.initDeviceServices()
 			})
 		)
 	}

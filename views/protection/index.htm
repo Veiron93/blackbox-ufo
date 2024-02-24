@@ -5,7 +5,7 @@
 
 <div class="video">
     <div class="video-text">
-        Какой то текст о чем что о том то
+        Лучшая цена
     </div>
 
     <video playsinline autoplay muted loop>
@@ -55,20 +55,18 @@
                                                     <?php if (!isset($segment->hidden) || !$segment->hidden) : ?>
                                                         <?php foreach ($segment->prices as $price_key => $price) : ?>
                                                             <?php if (!isset($price->hidden) || !$price->hidden) : ?>
+
                                                                 <?php
                                                                 $name = $this->prefixService($segment_key) . $price->name;
                                                                 $code = $service->code . '~' . $segment_key . '~' . $price_key;
                                                                 ?>
+
                                                                 <option value="<?= $code ?>"><?= $name ?> ≈ <?= $price->price ?> руб.</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </select>
-
-                                            <?/*
-                                            <button class="btn-event-service" data-status="add" data-code="<?= $service->code ?>">Добавить</button>
-                                            */ ?>
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
@@ -94,6 +92,11 @@
 
                         <div class="user-devices_add">
                             <input type="text" name="add-device" placeholder="Новое устройство">
+                            <select name="type-device">
+                                <option value="phone">Смартфон</option>
+                                <option value="tablet">Планшет</option>
+                                <option value="watch">Смарт-часы</option>
+                            </select>
                             <button class="btn-add-device">+</button>
                         </div>
                     </div>
@@ -167,29 +170,37 @@
     </div>
 
 
-    <div class="brands">
-        <h2 class="heading--small">Мы используем материалы от лучших брендов</h2>
+    <div class="guarantee">
+        <h2 class="heading">Гарантия</h2>
 
-        <div class="brands_slider">
-            <div class="item">
-                <img src="/resources/protection/img/brands/1.png" alt="">
-            </div>
-
-            <div class="item">
-                <img src="/resources/protection/img/brands/1.png" alt="">
-            </div>
-
-            <div class="item">
-                <img src="/resources/protection/img/brands/1.png" alt="">
-            </div>
-
-            <div class="item">
-                <img src="/resources/protection/img/brands/1.png" alt="">
-            </div>
-
-            <div class="item">
-                <img src="/resources/protection/img/brands/1.png" alt="">
-            </div>
+        <div class="guarantee-text">
+            <?= $this->menuItems->getTextBlock('guarantee_text_protected', 'Гарантия', Admin_TextBlock::TYPE_WYSIWYG, '', 'Защита устройств')->content; ?>
         </div>
     </div>
+
+    <div class="contacts">
+        <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/blekboks/78924383125/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Блэкбокс</a><a href="https://yandex.ru/maps/80/yuzhno-sakhalinsk/category/items_for_mobile_phones/52984923455/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Товары для мобильных телефонов в Южно‑Сахалинске</a><a href="https://yandex.ru/maps/80/yuzhno-sakhalinsk/category/electronics_store/184107835/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Магазин электроники в Южно‑Сахалинске</a><iframe src="https://yandex.ru/map-widget/v1/?ll=142.730306%2C46.957007&mode=search&oid=78924383125&ol=biz&sctx=ZAAAAAgBEAAaKAoSCTNTWn9L12FAEWfUfJV8ekdAEhIJ1nPS%2B8bXbj8RW3wKgPEMWj8iBgABAgMEBSgKOABAUEgBYiFtaWRkbGVfcG9zdGZpbHRlcl90aHJlc2hjaGFpbj0wLjViH21pZGRsZV9wb3N0ZmlsdGVyX3RocmVzaF9rej0wLjViHG1pZGRsZV9wb3N0ZmlsdGVyX3RocmVzaD0wLjViLnJlbGV2X3JhbmtpbmdfbXNlX2Zvcm11bGE9MS4wOm1zZV9kYzM4Nzc4NF9leHBiKXJlbGV2X2lycmVsX2ZpbHRlcj0xLjA6aXJyZWxfZGMzODE1MjVfZXhwYlByZWFycj1zY2hlbWVfTG9jYWwvR2VvL0J1c0dlb0Nob29zZS9UYWtlUnVicmljRmlyc3RTYW1lQnlSZXN1bHRzTXNlVGhyZXNob2xkPTAuNWI1cmVhcnI9c2NoZW1lX0xvY2FsL0dlby9Qb3N0ZmlsdGVyL0lycmVsVGhyZXNob2xkPTAuMTVqAnJ1nQHNzEw9oAEAqAEAvQF95svHwgEGlYeKgqYCggI30YPQu9C40YbQsCDQmtCw0YDQu9CwINCc0LDRgNC60YHQsCwgNTEg0LHQu9GN0LrQsdC%2B0LrRgYoCAJICAjgwmgIMZGVza3RvcC1tYXBz&sll=142.730306%2C46.957007&sspn=0.005706%2C0.002410&text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%2C%2051%20%D0%B1%D0%BB%D1%8D%D0%BA%D0%B1%D0%BE%D0%BA%D1%81&z=18.43&theme=dark&scroll=false" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe></div>
+    </div>
+
+    <?php if (isset($brands) && $brands) : ?>
+        <div class="brands">
+            <h2 class="heading--small">Мы используем материалы от лучших брендов</h2>
+
+            <div class="brands_slider swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($brands as $brand) : ?>
+                        <div class="item swiper-slide">
+                            <img src="/resources/protection/img/brands/<?= strtolower($brand) ?>.png" alt="<?= $brand ?>">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
 </div>
+
+
+<footer>
+    <span>БЛЭКБОКС</span>
+    <span>Работаем с 2019 года</span>
+</footer>
