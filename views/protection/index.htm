@@ -5,7 +5,7 @@
 
 <div class="video">
     <div class="video-text">
-        Лучшая цена
+        <a href="#catalog">Рассчитать стоимость</a>
     </div>
 
     <video playsinline autoplay muted loop>
@@ -19,25 +19,29 @@
         Защитите свои устройства от царапин, потертостей и повреждений!
     </div>
 
-    <div class="service-catalog-wrapper">
+    <div id="catalog" class="service-catalog-wrapper">
 
         <div class="service-catalog">
 
             <div class="service-catalog_header">
                 <h2>Рассчитать стоимость</h2>
-                <p>Стоимость указана с установкой</p>
+                <p>Стоимость указана с установкой, цены на розничную продажу отличаются, точную стоимость можете узнать у менеджера.</p>
             </div>
 
             <div class="service-catalog_body">
-                <div class="list-services-wrapper hidden">
-                    <div class="categories">
-                        <?php foreach ($calculatorCategories as $key_calculatorCategory => $calculatorCategory) : ?>
-                            <?php if (!isset($calculatorCategory->hidden) || !$calculatorCategory->hidden) : ?>
-                                <div class="item <?= $key_calculatorCategory == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $key_calculatorCategory ?>"><?= $calculatorCategory->name ?></div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
+                <div class="categories">
+                    <?php foreach ($calculatorCategories as $key_calculatorCategory => $calculatorCategory) : ?>
+                        <?php if (!isset($calculatorCategory->hidden) || !$calculatorCategory->hidden) : ?>
+                            <div class="item <?= $key_calculatorCategory == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $key_calculatorCategory ?>"><?= $calculatorCategory->name ?></div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
 
+                <div class="add-device-informer hidden">
+                    <p>Для просмотра услуг, добавьте устройство данного типа в список Ваших устройств</p>
+                </div>
+
+                <div class="list-services-wrapper hidden">
                     <?php foreach ($calculatorSections as $section) : ?>
                         <?php if (!isset($calculatorCategories[$section->id]->hidden) || !$calculatorCategories[$section->id]->hidden) : ?>
                             <div class="list-services <?= $section->id == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $section->id ?>">
@@ -75,9 +79,9 @@
                     <?php endforeach; ?>
                 </div>
 
-                <div class="new-user">
+                <!-- <div class="new-user">
                     <p>Добавьте устройство</p>
-                </div>
+                </div> -->
             </div>
 
             <div class="service-catalog_footer">

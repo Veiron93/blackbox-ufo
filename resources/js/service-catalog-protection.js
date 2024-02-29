@@ -9,7 +9,7 @@ class Services {
 	idActiveCategoryServices = 'phone' // -
 	indexActiveCategoryServices = 0 // -
 
-	newUserWrapperNode = null
+	addUserInformerNode = null
 
 	services = null
 	serviceListsNode = null
@@ -25,8 +25,16 @@ class Services {
 	selectTypeUserDevices = null
 
 	userDevices = []
+
+	// кнопка добавить устройство
 	btnDelDeviceClientDevice = null
+	// кнопка удалить устройство
 	btnAddDeviceClientDevice = null
+
+	// выбранные устройства
+	selectedPhone = null
+	selectedTablet = null
+	selectedWatch = null
 
 	constructor() {
 		this.initNodes()
@@ -54,8 +62,9 @@ class Services {
 		this.categoriesServicesNode =
 			this.servicesCatalogBodyNode.querySelectorAll('.categories .item')
 
-		this.newUserWrapperNode =
-			this.servicesCatalogBodyNode.querySelector('.new-user')
+		this.addUserInformerNode = this.servicesCatalogBodyNode.querySelector(
+			'.add-device-informer'
+		)
 	}
 
 	initServiceCatalog() {
@@ -129,13 +138,15 @@ class Services {
 		})
 	}
 
-	stateListServiceCatalog(state) {
+	stateListServiceCatalog() {
+		console.log(this.idActiveCategoryServices)
+
 		if (state) {
 			this.serviceListWrapperNode.classList.remove('hidden')
-			this.newUserWrapperNode.classList.add('hidden')
+			this.addUserInformerNode.classList.add('hidden')
 		} else {
 			this.serviceListWrapperNode.classList.add('hidden')
-			this.newUserWrapperNode.classList.remove('hidden')
+			this.addUserInformerNode.classList.remove('hidden')
 		}
 	}
 
@@ -226,18 +237,25 @@ class Services {
 				devices.push(option)
 
 				if (index == this.userDevices.length - 1) {
+					let sorteredDevices = this.sortingUserDevices(devices)
+
+					// let optionSelectDevice = document.createElement('option')
+					// optionSelectDevice.disabled = false
+					// optionSelectDevice.textContent = 'Добавьте устройство'
+
 					this.selectUserDevices.innerHTML = ''
-					this.selectUserDevices.append(...devices)
+					this.selectUserDevices.append(...sorteredDevices)
 					this.userDevicesListWrapperNode.classList.remove('hidden')
 				}
 			})
 
-			this.stateListServiceCatalog(true)
+			//this.stateListServiceCatalog(true)
 		} else {
 			this.userDevicesListWrapperNode.classList.add('hidden')
 			this.selectUserDevices.innerHTML = ''
-			this.stateListServiceCatalog(false)
 		}
+
+		this.stateListServiceCatalog()
 	}
 
 	addUserDevice(value) {
@@ -285,6 +303,7 @@ class Services {
 	changeUserDevice() {
 		this.selectUserDevices.addEventListener('change', () => {
 			this.initDeviceServices()
+			this.setSelectedDevice()
 		})
 	}
 
@@ -332,6 +351,115 @@ class Services {
 		return this.selectUserDevices.value
 	}
 
+	sortingUserDevices(devices) {
+		function groupName(type) {
+			let option = document.createElement('option')
+			option.disabled = true
+
+			let groupName = null
+
+			if (type == 'phone') {
+				groupName = 'Смартфоны'
+			}
+
+			if (type == 'tablet') {
+				groupName = 'Планшеты'
+			}
+
+			if (type == 'watch') {
+				groupName = 'Смарт-часы'
+			}
+
+			option.textContent = '----- ' + groupName.toUpperCase() + ' -----'
+
+			return option
+		}
+
+		let phones = []
+		let tablets = []
+		let watches = []
+
+		phones.push(groupName('phone'))
+		tablets.push(groupName('tablet'))
+		watches.push(groupName('watch'))
+
+		devices.forEach((device) => {
+			if (device.getAttribute('data-type') == 'phone') {
+				phones.push(device)
+			}
+
+			if (device.getAttribute('data-type') == 'tablet') {
+				tablets.push(device)
+			}
+
+			if (device.getAttribute('data-type') == 'watch') {
+				watches.push(device)
+			}
+		})
+
+		return [...phones, ...tablets, ...watches]
+	}
+
+	setSelectedDevice() {
+		//let index = this.selectUserDevices.selectedIndex
+		let id = this.selectUserDevices.value
+
+		// let devices = this.selectUserDevices.querySelectorAll('option')
+
+		// let currentDevice = devices[index]
+
+		//console.log(currentDevice.getAttribute('data-type'))
+		//console.log(this.idActiveCategoryServices)
+
+		if (this.idActiveCategoryServices == 'phone') {
+			this.selectedPhone = id
+		}
+
+		if (this.idActiveCategoryServices == 'tablet') {
+			this.selectedTablet = id
+		}
+
+		if (this.idActiveCategoryServices == 'watch') {
+			this.selectedWatch = id
+		}
+	}
+
+	initSelectedDevice() {
+		let devices = this.selectUserDevices.querySelectorAll('option')
+
+		let idCurrentDevice = null
+
+		if (this.idActiveCategoryServices == 'phone') {
+			idCurrentDevice = this.selectedPhone
+		}
+
+		if (this.idActiveCategoryServices == 'tablet') {
+			idCurrentDevice = this.selectedTablet
+		}
+
+		if (this.idActiveCategoryServices == 'watch') {
+			idCurrentDevice = this.selectedWatch
+		}
+
+		let indexCurrentDevice = Array.from(devices).findIndex(
+			(device) =>
+				device.getAttribute('data-type') == this.idActiveCategoryServices &&
+				device.value == idCurrentDevice
+		)
+
+		if (indexCurrentDevice == -1) {
+			return null
+		}
+
+		devices.forEach((divice) => divice.removeAttribute('selected'))
+		devices[indexCurrentDevice].selected = true
+
+		//console.log(currentDevice)
+
+		//this.userDevices[1].selected = true
+		//console.log(this.userDevices[1])
+	}
+
 	onActiveCategoryServices() {
 		this.categoriesServicesNode.forEach((category, index) =>
 			category.addEventListener('click', () => {
@@ -359,6 +487,7 @@ class Services {
 
 				this.stateUserDevices()
 				this.initDeviceServices()
+				this.initSelectedDevice()
 			})
 		)
 	}
