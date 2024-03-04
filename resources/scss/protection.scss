@@ -359,10 +359,18 @@ textarea {
 	border: 0.1rem solid #e7e7e7;
 	font-size: 1.4rem;
 	color: #000;
+	appearance: none;
 
 	&::placeholder {
 		font-size: 1.4rem;
 	}
+}
+
+select {
+	background-image: url(/resources/protection/img/icons/arrow-down.svg);
+	background-repeat: no-repeat;
+	background-position: center right 1rem;
+	background-size: 1.6rem;
 }
 
 textarea {

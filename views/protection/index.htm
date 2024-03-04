@@ -32,12 +32,12 @@
                 <div class="categories">
                     <?php foreach ($calculatorCategories as $key_calculatorCategory => $calculatorCategory) : ?>
                         <?php if (!isset($calculatorCategory->hidden) || !$calculatorCategory->hidden) : ?>
-                            <div class="item <?= $key_calculatorCategory == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $key_calculatorCategory ?>"><?= $calculatorCategory->name ?></div>
+                            <div tabindex="0" class="item <?= $key_calculatorCategory == $defaultActiveCategory ? 'active' : null ?>" data-id="<?= $key_calculatorCategory ?>"><?= $calculatorCategory->name ?></div>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
 
-                <div class="add-device-informer hidden">
+                <div class="add-device-informer">
                     <p>Для просмотра услуг, добавьте устройство данного типа в список Ваших устройств</p>
                 </div>
 
