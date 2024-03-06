@@ -8,6 +8,14 @@ class Cart {
 	totalPriceNode = null
 	totalPriceValue = 0
 
+	// form
+	form = null
+	btnSend = null
+
+	phone = null
+	name = null
+	date = null
+
 	constructor() {
 		this.initNodes()
 		this.renderCart()
@@ -24,6 +32,17 @@ class Cart {
 		this.totalPriceNode = this.cartNode.querySelector(
 			'.cart_services-total-price span'
 		)
+
+		this.form = this.cartNode.querySelector('form')
+		this.phone = this.form.querySelector('input[name="phone"]')
+		this.name = this.form.querySelector('input[name="name"]')
+		this.date = this.form.querySelector('input[name="date"]')
+
+		this.btnSend = document.getElementById('send-order-protection')
+
+		if (this.btnSend) {
+			this.btnSend.addEventListener('click', () => this.send())
+		}
 	}
 
 	getCartLocalStorage() {
@@ -144,7 +163,7 @@ class Cart {
                         <span>${service.type}</span>
                         <span>${service.name}</span>
                     </div>
-                    <div class="service-price">≈ ${service.price} руб.</div>
+                    <div class="service-price">${service.price} руб.</div>
                 </div>
             `)
 		})
@@ -192,5 +211,33 @@ class Cart {
 
 		this.totalPriceValue = total
 		this.totalPriceNode.textContent = total
+	}
+
+	// отправка формы
+	send() {
+		let cart = this.getCartLocalStorage()
+
+		fetch('/protection/', {
+			method: 'POST',
+			headers: {
+				'UFO-AJAX-HANDLER': 'ev{onOrderProtection}',
+				'UFO-REQUEST': 1,
+			},
+			body: JSON.stringify({
+				data: {
+					phone: this.phone.value,
+					name: this.name.value,
+					date: this.date.value,
+				},
+				cart: cart,
+			}),
+		})
+			.then((response) => response.json())
+			.then((response) => {
+				console.log(response)
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}
 }

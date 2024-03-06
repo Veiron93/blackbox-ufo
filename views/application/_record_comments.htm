@@ -1,0 +1,81 @@
+<?php if ( $comments_config->comments_type and $comments_config->comments_type != 'no' ): ?>
+<div id="feddcomments">
+<script type="text/javascript" src="/modules/globalcomments/resources/javascript/comments_client.js"></script>
+	<?php if($comments_config->comments_type == 'feedback'): ?>
+		<h3>Обратная связь</h3>
+	<?php else: ?>
+		<h3>Комментарии</h3>
+	<?php endif ?>
+	<?= Phpr_Form::openTag(array('id'=>'comment_form', 'onsubmit'=>'return comments_validate()', 'enctype'=>'multipart/form-data')) ?>
+		<?php $flash = flash(); ?>
+		<?php if ( $flash ): ?>
+			<h3 id="comment_flash"><?= $flash ?></h3>
+		<?php endif; ?>
+		<label>
+			<p>Имя, отчество, фамилия</p>
+			<input type="text" name="author_name" value="<?= h(post('author_name')) ?>" id="comment_author_name"/>
+		</label>
+
+		<label>
+			<p>Email</p>
+			<input type="text" name="author_email" id="comment_author_email" value="<?= h(post('author_email')) ?>"/>
+		</label>
+
+		<label>
+			<p>Телефон</p>
+			<input type="text" name="phone" id="comment_author_phone" value="<?= h(post('phone')) ?>"/>
+		</label>
+
+		<label>
+			<p>Сообщение</p>
+			<textarea name="comment" id="comment_text"><?= h(post('comment')) ?></textarea>
+		</label>
+
+		<?php if ($comments_config->comments_type == 'feedback' && $comments_config->comments_uploads_allowed): ?>
+			<ul class="comment_files" id="comments_file_list">
+				<?php for ($i=1; $i<=10; $i++): ?>
+					<li style="<?= $i > 1 ? 'display: none' : null ?>"><input type="file" name="comment_files[]"/></li>
+				<?php endfor ?>
+			</ul>
+			<a href="#" id="comment_add_file" onclick="return comments_add_file()">Добавить еще файл</a>
+		<?php endif ?>
+
+		<?php if ($comments_enable_captcha): ?>
+		<table>
+			<tr>
+				<td><img alt="" src="/comments_captcha_image" class="captcha" /></td>
+				<td>
+					<label for="captcha">
+						<p>Текст с картники</p>
+						<input value="" type="text" id="captcha" name="captcha" />
+					</label>
+				</td>
+			</tr>
+		</table>
+		<?php endif ?>
+
+		<input type="hidden" name="type" value="<?= $comments_config->comments_type ?>"/>
+		<input type="submit" name="post_comment" value="Отправить"/>
+	</form>
+
+	<?php if ($comments->count && $comments_config->comments_type != 'feedback'): ?>
+		<ul class="comment_list">
+			<?php foreach ($comments as $comment): ?>
+				<li>
+					<h4 class="request"><?= h($comment->author_name) ?></h4>
+					<blockquote><?= nl2br(h($comment->comment)) ?></blockquote>
+
+					<?php if ($comment->response): ?>
+						<h4 class="response">Администратор</h4>
+						<blockquote><?= nl2br(h($comment->response)) ?></blockquote>
+					<?php endif  ?>
+				</li>
+			<?php endforeach ?>
+		</ul>
+
+		<?php if ($comments_pagination): ?>
+			<?= Core_Html::pagination('Страница: ', Phpr::$request->getCurrentUri().'?cp=', $comments_pagination, true) ?>
+		<?php endif ?>
+	<?php endif ?>
+</div>
+<?php endif ?>

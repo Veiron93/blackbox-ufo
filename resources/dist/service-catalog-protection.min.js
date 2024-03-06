@@ -5,6 +5,7 @@ class Services {
 
 	serviceListWrapperNode = null
 	categoriesServicesNode = []
+	btnsDelService = null
 
 	idActiveCategoryServices = 'phone'
 
@@ -39,7 +40,7 @@ class Services {
 		this.initNodes()
 		this.onActiveCategoryServices()
 
-		this.initServiceCatalog()
+		this.initServicesCatalog()
 		this.changeServiceCatalog()
 
 		this.initUserDevices()
@@ -67,7 +68,7 @@ class Services {
 		)
 	}
 
-	initServiceCatalog() {
+	initServicesCatalog() {
 		this.serviceListWrapperNode = this.servicesCatalogBodyNode.querySelector(
 			'.list-services-wrapper'
 		)
@@ -78,6 +79,29 @@ class Services {
 		this.services = this.servicesCatalogBodyNode.querySelectorAll(
 			'.list-services select'
 		)
+
+		this.btnsDelService =
+			this.serviceListWrapperNode.querySelectorAll('.service_btn-del')
+
+		if (this.btnsDelService) {
+			this.btnsDelService.forEach((btn) =>
+				btn.addEventListener('click', () => {
+					let code = btn.getAttribute('data-code-service')
+
+					let selectService = Array.from(this.services).find(
+						(service) => service.getAttribute('name') == code
+					)
+
+					if (!selectService) {
+						return
+					}
+
+					selectService.selectedIndex = 0
+					cart.delService(this.getIdActiveDevice(), code)
+					this.stateBtnDelService(false, code)
+				})
+			)
+		}
 	}
 
 	addService(code) {
@@ -88,7 +112,6 @@ class Services {
 			id: this.selectUserDevices.value,
 		}
 
-		// service
 		let serviceSelect = Array.from(this.services).find(
 			(service) => service.getAttribute('name') == code
 		)
@@ -112,11 +135,15 @@ class Services {
 		}
 
 		cart.add(device, service)
+		this.stateBtnDelService(true, code)
 	}
 
 	resetServicesDevice(idDevice) {
 		if (idDevice == this.getIdActiveDevice()) {
-			this.services.forEach((service) => (service.selectedIndex = 0))
+			this.services.forEach((service) => {
+				this.stateBtnDelService(false, service.getAttribute('name'))
+				service.selectedIndex = 0
+			})
 		}
 	}
 
@@ -133,9 +160,24 @@ class Services {
 						this.getIdActiveDevice(),
 						service.getAttribute('name')
 					)
+
+					this.stateBtnDelService(false, service.getAttribute('name'))
 				}
 			})
 		})
+	}
+
+	stateBtnDelService(state, code) {
+		// service
+		let serviceSelect = Array.from(this.services).find(
+			(service) => service.getAttribute('name') == code
+		)
+
+		if (state) {
+			serviceSelect.classList.add('active')
+		} else {
+			serviceSelect.classList.remove('active')
+		}
 	}
 
 	stateListServiceCatalog() {
@@ -144,9 +186,6 @@ class Services {
 		let localStorageUserDevices = JSON.parse(
 			localStorage.getItem('userDevicesProtected')
 		)
-
-		//console.log(this.idActiveCategoryServices)
-		//console.log(localStorageUserDevices)
 
 		if (localStorageUserDevices.length > 0) {
 			let devices = localStorageUserDevices.filter(
@@ -326,7 +365,10 @@ class Services {
 		let cartLocalStorage = cart.getCartLocalStorage()
 		let deviceCode = this.selectUserDevices.value
 
-		this.services.forEach((service) => (service.selectedIndex = 0))
+		this.services.forEach((service) => {
+			service.selectedIndex = 0
+			service.classList.remove('active')
+		})
 
 		if (!cartLocalStorage || !deviceCode) {
 			return null
@@ -334,19 +376,9 @@ class Services {
 
 		let deviceAddedCart = cartLocalStorage[deviceCode]
 
-		// это id
-		console.log(deviceCode)
-		console.log(this.selectedTablet)
-
 		if (!deviceAddedCart) {
 			return null
 		}
-
-		// if (deviceCode != this.selectedTablet) {
-		// 	console.log('разные устройства')
-		// } else {
-		// 	console.log('одинаковые устройства')
-		// }
 
 		deviceAddedCart.services.forEach((service) => {
 			let selectService = Array.from(this.services).find(
@@ -368,6 +400,7 @@ class Services {
 			}
 
 			selectService.selectedIndex = optionIndex
+			selectService.classList.add('active')
 		})
 	}
 
@@ -425,15 +458,7 @@ class Services {
 	}
 
 	setSelectedDevice() {
-		//let index = this.selectUserDevices.selectedIndex
 		let id = this.selectUserDevices.value
-
-		// let devices = this.selectUserDevices.querySelectorAll('option')
-
-		// let currentDevice = devices[index]
-
-		//console.log(currentDevice.getAttribute('data-type'))
-		//console.log(this.idActiveCategoryServices)
 
 		if (this.idActiveCategoryServices == 'phone') {
 			this.selectedPhone = id
@@ -477,9 +502,16 @@ class Services {
 
 		devices.forEach((divice) => divice.removeAttribute('selected'))
 		devices[indexCurrentDevice].selected = true
+	}
 
-		//this.userDevices[1].selected = true
-		//console.log(this.userDevices[1])
+	initTypeDevices() {
+		let types = this.selectTypeUserDevices.querySelectorAll('option')
+
+		if (!types) return null
+
+		types.forEach((type) => {
+			type.selected = type.value == this.idActiveCategoryServices ? true : false
+		})
 	}
 
 	onActiveCategoryServices() {
@@ -510,8 +542,9 @@ class Services {
 				this.stateUserDevices()
 				this.stateListServiceCatalog()
 
-				this.initDeviceServices()
 				this.initSelectedDevice()
+				this.initDeviceServices()
+				this.initTypeDevices()
 			})
 		)
 	}

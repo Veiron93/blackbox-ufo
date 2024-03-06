@@ -1,76 +1,168 @@
 {
-    "name": "rinamika/ufo",
-    "description": "Site template",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "Viktor Suprun",
-            "email": "popsul1993@gmail.com"
-        }
-    ],
-    "require": {
-        "rinamika/phproad": "~2.0",
-        "rinamika/scripts": "~1.0",
-        "rinamika/pkmenu": "~1.0",
-        "rinamika/banners": "~2.0",
-        "rinamika/admin": "~2.0",
-        "rinamika/catalog": "~2.0",
-        "rinamika/payment": "~2.0",
-        "rinamika/shop": "dev-master"
-    },
-    "repositories": [
-	    {"type": "git", "url": "https://gitlab.rin.am/utils/installers.git/"},
-	    {"type": "git", "url": "https://gitlab.rin.am/modules/admin.git/"},
-	    {"type": "git", "url": "https://gitlab.rin.am/modules/base.git/"},
-        {"type": "git", "url": "https://gitlab.rin.am/modules/pkmenu"},
-        {"type": "git", "url": "https://gitlab.rin.am/modules/banners.git/"},
-        {"type": "git", "url": "https://gitlab.rin.am/altmodules/catalog.git/"},
-        {"type": "git", "url": "https://gitlab.rin.am/modules/payment.git/"},
-        {"type": "git", "url": "https://gitlab.rin.am/modules/shop.git/"},
-	    {"type": "git", "url": "https://gitlab.rin.am/modules/scripts.git/"}
-    ],
-    "extra": {
-        "rinamika/auth": "~2.0",
-        "rinamika/banners": "~2.0",
-        "rinamika/blog": "~2.0",
-        "rinamika/catalog": "~2.0",
-        "rinamika/comments": "~2.0",
-        "rinamika/events": "~2.0",
-        "rinamika/feedback": "~2.0",
-        "rinamika/filemanager": "~1.0",
-        "rinamika/globalcomments": "~2.0",
-        "rinamika/importer": "~1.0",
-        "rinamika/news": "~2.0",
-        "rinamika/payment": "~2.0",
-        "rinamika/photoalbum": "~1.0",
-        "rinamika/photos": "~1.0",
-        "rinamika/tags": "~1.0",
-        "rinamika/textblocks": "~2.0",
-        "rinamika/video": "~3.0",
-        "rinamika/voting": "~2.0",
-        "rinamika/shop": "dev-master",
-        "rinamika/image": "~1.0",
+	"name": "rinamika/ufo",
+	"description": "Site template",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "Viktor Suprun",
+			"email": "popsul1993@gmail.com"
+		}
+	],
+	"require": {
+		"rinamika/phproad": "~2.0",
+		"rinamika/scripts": "~1.0",
+		"rinamika/pkmenu": "~1.0",
+		"rinamika/banners": "~2.0",
+		"rinamika/admin": "~2.0",
+		"rinamika/catalog": "~2.0",
+		"rinamika/payment": "~2.0",
+		"rinamika/globalcomments": "~2.0",
+		"rinamika/shop": "dev-master"
+	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/utils/installers.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/admin.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/base.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/pkmenu"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/banners.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/altmodules/catalog.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/payment.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/shop.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/globalcomments.git/"
+		},
+		{
+			"type": "git",
+			"url": "https://gitlab.rin.am/modules/scripts.git/"
+		}
+	],
+	"extra": {
+		"rinamika/auth": "~2.0",
+		"rinamika/banners": "~2.0",
+		"rinamika/blog": "~2.0",
+		"rinamika/catalog": "~2.0",
+		"rinamika/comments": "~2.0",
+		"rinamika/events": "~2.0",
+		"rinamika/feedback": "~2.0",
+		"rinamika/filemanager": "~1.0",
+		"rinamika/globalcomments": "~2.0",
+		"rinamika/importer": "~1.0",
+		"rinamika/news": "~2.0",
+		"rinamika/payment": "~2.0",
+		"rinamika/photoalbum": "~1.0",
+		"rinamika/photos": "~1.0",
+		"rinamika/tags": "~1.0",
+		"rinamika/textblocks": "~2.0",
+		"rinamika/video": "~3.0",
+		"rinamika/voting": "~2.0",
+		"rinamika/shop": "dev-master",
+		"rinamika/image": "~1.0",
 		"extrarepos": [
-			{"type": "git", "url": "https://gitlab.rin.am/modules/auth.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/banners.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/blog.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/catalog.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/comments.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/feedback.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/filemanager.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/globalcomments.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/importer.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/news.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/payment.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/photoalbum.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/photos.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/events.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/tags.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/textblocks.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/video.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/voting.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/shop.git/"},
-			{"type": "git", "url": "https://gitlab.rin.am/modules/image.git/"}
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/auth.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/banners.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/blog.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/catalog.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/comments.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/feedback.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/filemanager.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/globalcomments.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/importer.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/news.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/payment.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/photoalbum.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/photos.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/events.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/tags.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/textblocks.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/video.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/voting.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/shop.git/"
+			},
+			{
+				"type": "git",
+				"url": "https://gitlab.rin.am/modules/image.git/"
+			}
 		]
-    }
+	}
 }

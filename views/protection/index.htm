@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="add-device-informer">
-                    <p>Для просмотра услуг, добавьте устройство данного типа в список Ваших устройств</p>
+                    <p>Для просмотра услуг, добавьте устройство данного типа в список Ваших устройств 🙂</p>
                 </div>
 
                 <div class="list-services-wrapper hidden">
@@ -71,6 +71,8 @@
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </select>
+
+                                            <button class="service_btn-del" data-code-service="<?= $service->code ?>">-</button>
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
@@ -106,12 +108,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="service-catalog_footer">
-                <p>Цены указаны на примере техники Apple. В зависимости от вашего устройства, итоговая стоимость может незначительно отличаться. Точную стоимость сообщит менеджер после записи.</p>
-            </div> -->
         </div>
-
 
         <div class="cart">
             <div class="cart_header">
@@ -119,54 +116,28 @@
             </div>
 
             <div class="cart_services">
-                <div class="cart_services-list-devices">
-                    <!-- <div class="device">
-                        <div class="device-header">
-                            <div class="device-name">iPhone 14 Pro Max</div>
-                            <div class="device-btn-del"></div>
-                        </div>
-
-                        <div class="device-services">
-                            <div class="service">
-                                <div class="service-name">
-                                    <span>Плёнка на экран</span>
-                                    <span>💎 Премиум - глянец</span>
-                                </div>
-                                <div class="service-price">≈ 1200 руб.</div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-
+                <div class="cart_services-list-devices"></div>
                 <div class="cart_services-total-price">
-                    Итого ≈<span>0</span> руб.
+                    <span></span> руб.
                 </div>
             </div>
 
             <div class="cart_form-order">
                 <form>
                     <fieldset>
-                        <label for="">Телефон</label>
                         <input type="text" name="phone" placeholder="Номер телефона">
                     </fieldset>
 
                     <fieldset>
-                        <label for="">Имя</label>
-                        <input type="text" name="name" placeholder="Номер телефона">
-                    </fieldset>
-
-                    <!-- <fieldset>
-                    <label for="">Устройства</label>
-                    <textarea name="" id="" placeholder="Укажите модели ваших устройств которые будут в работе"></textarea>
-                </fieldset> -->
-
-                    <fieldset>
-                        <label for="">Выберите дату записи</label>
-                        <input type="date" name="" id="">
+                        <input type="text" name="name" placeholder="Имя">
                     </fieldset>
 
                     <fieldset>
-                        <button>Записаться</button>
+                        <input type="date" name="date">
+                    </fieldset>
+
+                    <fieldset>
+                        <button id="send-order-protection" type="button">Записаться</button>
                     </fieldset>
                 </form>
             </div>

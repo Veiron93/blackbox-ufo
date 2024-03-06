@@ -267,6 +267,9 @@ footer {
 				}
 
 				.service {
+					display: flex;
+					flex-wrap: wrap;
+
 					&:not(:last-child) {
 						margin-bottom: 1.4rem;
 					}
@@ -285,6 +288,25 @@ footer {
 						color: #000;
 						font-size: 1.6rem;
 						border-radius: $brs;
+
+						&.active {
+							width: calc(100% - 5rem);
+							+ .service_btn-del {
+								display: flex;
+							}
+						}
+					}
+
+					&_btn-del {
+						background: $color4;
+						font-size: 1.8rem;
+						height: 4rem;
+						width: 4rem;
+						margin-left: 1rem;
+						display: none;
+						align-items: center;
+						justify-content: center;
+						flex: none;
 					}
 				}
 			}
@@ -298,13 +320,8 @@ footer {
 		padding: 2rem 4rem 3rem;
 
 		.user-devices {
-			&_header {
-			}
-
 			&_body {
 				margin-top: 1rem;
-				// display: flex;
-				// column-gap: 2rem;
 
 				.user-devices_list,
 				.user-devices_add {
@@ -314,30 +331,20 @@ footer {
 
 				select,
 				input {
-					height: 3.6rem;
+					height: 4rem;
 				}
 
 				button {
 					flex: none;
 					background: $color4;
 					font-size: 1.8rem;
+					height: 4rem;
+					width: 4rem;
 				}
 
 				.user-devices_list {
 					width: 100%;
 					margin-bottom: 2rem;
-				}
-
-				.btn-del-device {
-					height: 3.6rem;
-					width: 3.6rem;
-					//background: #ea4141;
-				}
-
-				.btn-add-device {
-					height: 3.6rem;
-					width: 3.6rem;
-					//background: #5cb45c;
 				}
 			}
 		}
@@ -391,7 +398,6 @@ fieldset {
 
 button {
 	height: 4rem;
-	//min-width: 10rem;
 	border-radius: $brs;
 	border: none;
 	font-size: 1.4rem;
@@ -425,8 +431,8 @@ button {
 		&-list-devices {
 			&:empty {
 				&:before {
-					content: 'Вы пока не выбрали ни одной услуги, надеемся вы исправите данное недоразумение 🙂';
-					font-size: 1.4rem;
+					content: 'Вы не добавили ни одной услуги, надеемся Вы исправите данное недоразумение 🧐';
+					font-size: 1.6rem;
 				}
 
 				+ .cart_services-total-price {

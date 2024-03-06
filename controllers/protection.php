@@ -6,6 +6,10 @@ class Protection extends App_Controller
     public static $types = null;
     public static $defaultActiveCategory = null;
 
+    protected $globalHandlers = [
+        "onOrderProtection"
+    ];
+
 
     public function __construct()
     {
@@ -50,12 +54,92 @@ class Protection extends App_Controller
         $this->viewData['brands'] = ['Sunshine', 'Hoco', 'Mietubl'];
     }
 
+
+    protected function onOrderProtection()
+    {
+        try {
+            // $keys = array('phone', 'name', 'date');
+            // $values = array_intersect_key($_POST, array_fill_keys($keys, 1));
+
+            $inputJSON = file_get_contents('php://input');
+
+            $data = json_decode($inputJSON, TRUE);
+
+            $data_order = $data['data'];
+            $cart = $data['cart'];
+
+            $values['phone'] = $data_order['phone'];
+            $values['author_name'] = $data_order['name'];
+            $values['author_email'] = "noreplay@bb65.ru";
+
+            $values['comment'] = self::initListServices($cart);
+
+
+            // traceLog($values['comment']);
+
+            if (!$this->validation->validate($values)) {
+                $this->validation->throwException();
+            }
+
+            $message = GlobalComments_Comment::create($values);
+            $message->save($values);
+
+            $response['success'] = "Спасибо за обращение!";
+
+            $this->ajaxResponse($response);
+        } catch (Exception $ex) {
+            $this->ajaxError($ex);
+        }
+    }
+
+    private static function initListServices($cart)
+    {
+        $list = "";
+
+        $data = self::getCalculatorData();
+        $services = [];
+        $totalPrice = 0;
+
+        foreach ($data as $item) {
+            foreach ($item->services as $service) {
+                $services[$service->code] = $service;
+            }
+        }
+
+        foreach ($cart as $cartItem) {
+            $device = $cartItem['deviceName'];
+            $deviceServices = "";
+
+            if (isset($cartItem['services']) && $cartItem['services']) {
+                foreach ($cartItem['services'] as $key => $service) {
+                    $serviceData = explode('~', $service['code']);
+
+                    $code = $serviceData[0];
+                    $segment = $serviceData[1];
+                    $index = $serviceData[2];
+
+                    $nameService = $services[$code]->name;
+                    $nameSegment = $services[$code]->segments[$segment]->prices[$index]->name;
+                    $price = $services[$code]->segments[$segment]->prices[$index]->price;
+
+                    $totalPrice += $price;
+
+                    $segmentService = self::$types[$segment]->name . ' - ' . $nameSegment . ' - ' . $price . 'руб.';
+
+                    $deviceServices .= $key . '. ' . $nameService . PHP_EOL . $segmentService . PHP_EOL . PHP_EOL;
+                }
+            }
+
+            $list .= ">>> " . $device . " <<<" . PHP_EOL . $deviceServices . PHP_EOL;
+        }
+
+        return $list . "Итоговая стоимость: " . $totalPrice;
+    }
+
     public static function prefixService($type)
     {
         return self::$types[$type]->icon . ' ' . self::$types[$type]->name . ' - ';
     }
-
-
 
     private static function getCalculatorData()
     {
