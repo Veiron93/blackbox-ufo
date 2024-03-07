@@ -3,14 +3,14 @@ class Cart {
 	cartNode = null
 	listDevices = null
 
-	cart = null
-
 	totalPriceNode = null
 	totalPriceValue = 0
 
 	// form
 	form = null
 	btnSend = null
+	errorSectionNode = null
+	errorText = null
 
 	phone = null
 	name = null
@@ -20,6 +20,7 @@ class Cart {
 		this.initNodes()
 		this.renderCart()
 		this.recalculationTotalPrice()
+		this.initUser()
 	}
 
 	initNodes() {
@@ -43,6 +44,8 @@ class Cart {
 		if (this.btnSend) {
 			this.btnSend.addEventListener('click', () => this.send())
 		}
+
+		this.errorSectionNode = this.form.querySelector('.error-section')
 	}
 
 	getCartLocalStorage() {
@@ -74,9 +77,11 @@ class Cart {
 				cart[device.id].services[index] = service
 			}
 		} else {
-			cart[device.id] = {
-				deviceName: device.name,
-				services: [service],
+			cart = {
+				[device.id]: {
+					deviceName: device.name,
+					services: [service],
+				},
 			}
 		}
 
@@ -213,9 +218,52 @@ class Cart {
 		this.totalPriceNode.textContent = total
 	}
 
+	validationForm() {
+		this.errorText = null
+
+		let cart = this.getCartLocalStorage()
+
+		if (!Object.keys(cart).length) {
+			this.errorText = 'Добавьте услуги'
+			return
+		}
+
+		this.phone.value = this.phone.value.trim()
+
+		if (this.phone.value.length < 6) {
+			this.errorText = 'Введите номер телефона'
+			return
+		}
+
+		this.name.value = this.name.value.trim()
+
+		if (this.name.value.length < 3) {
+			this.errorText = 'Введите Имя'
+			return
+		}
+
+		if (!this.date.value) {
+			this.errorText = 'Выберите дату записи'
+			return
+		}
+	}
+
+	setUserDataLocalStorage() {}
+
 	// отправка формы
 	send() {
+		this.validationForm()
+
+		if (this.errorText) {
+			this.errorSectionNode.textContent = this.errorText
+			return null
+		}
+
+		this.errorSectionNode.textContent = ''
+
 		let cart = this.getCartLocalStorage()
+
+		this.saveUserData()
 
 		fetch('/protection/', {
 			method: 'POST',
@@ -234,10 +282,41 @@ class Cart {
 		})
 			.then((response) => response.json())
 			.then((response) => {
-				console.log(response)
+				this.cartNode.classList.add('success')
+				this.date.value = ''
+
+				localStorage.removeItem('cartProtection')
+				this.renderCart()
+				this.recalculationTotalPrice()
+				services.initDeviceServices()
+
+				setTimeout(() => {
+					this.cartNode.classList.remove('success')
+				}, 7000)
 			})
 			.catch((error) => {
-				console.log(error)
+				//console.log(error)
 			})
+	}
+
+	saveUserData() {
+		let data = {
+			phone: this.phone.value,
+			name: this.name.value,
+		}
+
+		localStorage.setItem('user-data-bb-protection', JSON.stringify(data))
+	}
+
+	initUser() {
+		let data = JSON.parse(localStorage.getItem('user-data-bb-protection'))
+
+		if (data.phone) {
+			this.phone.value = data.phone
+		}
+
+		if (data.name) {
+			this.name.value = data.name
+		}
 	}
 }

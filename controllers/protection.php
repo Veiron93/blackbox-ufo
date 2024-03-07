@@ -124,16 +124,16 @@ class Protection extends App_Controller
 
                     $totalPrice += $price;
 
-                    $segmentService = self::$types[$segment]->name . ' - ' . $nameSegment . ' - ' . $price . 'руб.';
+                    $segmentService = self::$types[$segment]->name . ' - ' . $nameSegment . ' - ' . $price . ' руб.';
 
-                    $deviceServices .= $key . '. ' . $nameService . PHP_EOL . $segmentService . PHP_EOL . PHP_EOL;
+                    $deviceServices .= ($key + 1) . '. ' . $nameService . PHP_EOL . $segmentService . PHP_EOL . PHP_EOL;
                 }
             }
 
             $list .= ">>> " . $device . " <<<" . PHP_EOL . $deviceServices . PHP_EOL;
         }
 
-        return $list . "Итоговая стоимость: " . $totalPrice;
+        return $list . "Итоговая стоимость: " . $totalPrice . ' руб.';;
     }
 
     public static function prefixService($type)

@@ -412,6 +412,43 @@ button {
 	background: #fff;
 	padding: 2.5rem 3rem;
 
+	&.success {
+		overflow: hidden;
+
+		.form-success {
+			display: flex;
+		}
+	}
+
+	.form-success {
+		display: none;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #fff;
+		padding: 1rem;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		span {
+			font-size: 8rem;
+		}
+
+		h2 {
+			font-weight: bold;
+			font-size: 2.3rem;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			text-align: center;
+			font-size: 1.4rem;
+		}
+	}
+
 	* {
 		color: $color2;
 	}
@@ -547,8 +584,9 @@ button {
 				width: calc(50% - 0.5rem);
 			}
 
-			input {
-				//width: 100%;
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
 			}
 
 			label {
@@ -559,6 +597,25 @@ button {
 				background: $color4;
 				color: #fff;
 				width: 100%;
+
+				&[disabled] {
+					opacity: 0.4;
+					pointer-events: none;
+				}
+			}
+
+			.error-section {
+				width: 100%;
+				margin-top: 1rem;
+				color: #fff;
+				font-size: 1.6rem;
+				background: #cb2828;
+				border-radius: $brs;
+				padding: 1rem 1.5rem;
+
+				&:empty {
+					display: none;
+				}
 			}
 		}
 	}
