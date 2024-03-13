@@ -39,6 +39,14 @@ class Cart {
 		this.name = this.form.querySelector('input[name="name"]')
 		this.date = this.form.querySelector('input[name="date"]')
 
+		this.date.addEventListener('change', () => {
+			if (this.date.value) {
+				this.date.classList.add('active')
+			} else {
+				this.date.classList.remove('active')
+			}
+		})
+
 		this.btnSend = document.getElementById('send-order-protection')
 
 		if (this.btnSend) {
@@ -223,7 +231,7 @@ class Cart {
 
 		let cart = this.getCartLocalStorage()
 
-		if (!Object.keys(cart).length) {
+		if (!cart || !Object.keys(cart).length) {
 			this.errorText = 'Добавьте услуги'
 			return
 		}
@@ -310,6 +318,10 @@ class Cart {
 
 	initUser() {
 		let data = JSON.parse(localStorage.getItem('user-data-bb-protection'))
+
+		if (!data) {
+			return null
+		}
 
 		if (data.phone) {
 			this.phone.value = data.phone

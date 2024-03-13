@@ -629,18 +629,31 @@ footer {
 
 .index-navigation {
 	margin-top: 30px;
-	margin-bottom: -10px;
 	display: flex;
-	gap: 20px;
-	flex-wrap: wrap;
+	justify-content: space-between;
 
 	.item {
 		background: #fff;
-		@include style-block;
-		width: calc(20% - 16px);
-		border-radius: 70px;
+		border-radius: $brs;
+		box-shadow: 0 0 20px 2px rgba(#000, 0.1);
 
-		box-shadow: 0 10px 20px 0 rgba(#000, 0.1);
+		&:nth-child(1) {
+			width: 39%;
+			box-shadow: 0 0 20px 2px rgba(#1caff0, 0.5);
+			background: #1caff0;
+
+			a {
+				color: #fff;
+			}
+		}
+
+		&:nth-child(2) {
+			width: 29%;
+		}
+
+		&:nth-child(3) {
+			width: 29%;
+		}
 
 		a {
 			display: flex;
@@ -657,9 +670,16 @@ footer {
 				flex: none;
 			}
 
-			span {
-				font-weight: 500;
-				font-size: 16px;
+			.text {
+				.title {
+					font-size: 18px;
+					font-weight: 500;
+				}
+
+				.description {
+					margin-top: 3px;
+					font-size: 14px;
+				}
 			}
 		}
 	}
@@ -667,57 +687,115 @@ footer {
 	@include screen_lg {
 		.item {
 			a {
+				padding: 12px 10px;
 				column-gap: 10px;
-				padding: 10px;
 
 				img {
-					height: 44px;
-					width: 44px;
+					height: 40px;
+					width: 40px;
 				}
 
-				span {
-					font-size: 14px;
+				.text {
+					.title {
+						font-size: 16px;
+						font-weight: 500;
+					}
+
+					.description {
+						font-size: 12px;
+					}
 				}
 			}
 		}
 	}
 
 	@include screen_md {
-		.item {
-			width: calc(33.3333333333% - 14px);
-		}
-	}
-
-	@include screen_sm_down {
-		margin-top: 15px;
-		gap: 16px 10px;
+		flex-wrap: wrap;
 
 		.item {
-			width: calc(50% - 5px);
-			box-shadow: 0 8px 8px 0 rgba(#000, 0.1);
+			&:nth-child(1) {
+				width: 100%;
+				margin-bottom: 25px;
+
+				a {
+					img {
+						height: 60px;
+						width: 60px;
+					}
+
+					.text {
+						.title {
+							font-size: 22px;
+						}
+
+						.description {
+							font-size: 16px;
+						}
+					}
+				}
+			}
+
+			&:nth-child(2),
+			&:nth-child(3) {
+				width: 49%;
+			}
 
 			a {
-				column-gap: 12px;
-				padding: 10px;
-
 				img {
-					height: 36px;
-					width: 36px;
+					height: 55px;
+					width: 55px;
 				}
 
-				span {
-					font-size: 14px;
+				.text {
+					.title {
+						font-size: 20px;
+					}
+
+					.description {
+						font-size: 16px;
+					}
 				}
 			}
 		}
 	}
 
-	@include screen_xs {
+	@include screen_sm_down {
+		display: block;
+		margin-top: 20px;
+
 		.item {
-			a {
-				span {
-					font-size: 12px;
+			background: #fff;
+			border-radius: $brs;
+			box-shadow: 0 0 10px 2px rgba(#000, 0.1);
+
+			&:not(:last-child) {
+				margin-bottom: 10px;
+			}
+
+			&:nth-child(1),
+			&:nth-child(2),
+			&:nth-child(3) {
+				width: 100%;
+			}
+
+			&:nth-child(1) {
+				box-shadow: 0 0 10px 2px rgba(#1caff0, 0.5);
+
+				a {
+					.text {
+						.title {
+							font-size: 15px;
+						}
+
+						.description {
+							font-size: 13px;
+						}
+					}
 				}
+			}
+
+			a {
+				padding: 10px;
 			}
 		}
 	}

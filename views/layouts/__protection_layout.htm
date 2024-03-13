@@ -2,7 +2,79 @@
 <html lang="ru">
 
 <head>
-    <?php $this->renderLayout('_head_protection') ?>
+    <?php
+    $title = "БЛЭКБОКС | Защита для гаджетов г. Южно-Сахалинск";
+    $description = "Установка и продажа защитных стёкол и гидрогелевых плёнок на смартфоны, смарт-часы и планшеты в г. Южно-Сахалинск. Лучшие цены! Гарантия на услуги!";
+    ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="application-name" content="БЛЭКБОКС" />
+    <meta name="currency" content="ruble" />
+
+    <title><?= $title ?></title>
+    <meta name="description" content="<?= $description ?>" />
+    <meta name="keywords" content="Защита для смартфонов, защитные стёкла, плёнки на экран, стекло на камеру, гидрогелевые плёнки, стёкла антишпион" />
+
+    <meta property="og:title" content="<?= $title ?>" />
+    <meta property="og:description" content="<?= $description ?>" />
+    <meta property="og:image" content="https://bb65.ru/resources/images/logo.svg" />
+    <meta property="og:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="bb65.ru/protection/" />
+
+    <meta name="twitter:title" content="<?= $title ?>" />
+    <meta name="twitter:description" content="<?= $description ?>" />
+    <meta name="twitter:image" content="https://bb65.ru/resources/images/logo.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="<?= Phpr::$request->getRootUrl() ?><?= Phpr::$request->getCurrentUri() ?>" />
+
+    <link rel="shortcut icon" type="image/ico" href="/resources/images/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" href="/resources/images/favicon/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/resources/images/favicon/favicon.svg" />
+
+    <link rel="sitemap" href="/sitemap-protection.xml" type="application/xml" />
+
+
+    <script src="/resources/dist/swiper-bundle.min.js" defer></script>
+    <link media="screen" rel="stylesheet" href="/resources/dist/swiper-bundle.min.css">
+
+    <?= Core_Html::css($this->getAsset('dist/protection.css')) ?>
+
+    <?= Core_Html::js(
+        $this->getAsset('dist/service-catalog-protection.min.js'),
+        $this->getAsset('dist/cart-protection.min.js'),
+        $this->getAsset('dist/common-protection.min.js')
+    ) ?>
+
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(96687658, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/96687658" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>

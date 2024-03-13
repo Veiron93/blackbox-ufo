@@ -1,11 +1,23 @@
 <header>
-    <p class="header-phone">Защита для ваших устройств в г. Южно-Сахалинск</p>
+    <h1 class="header-title"><span>БЛЭКБОКС</span> Защита для гаджетов г. Южно-Сахалинск</h1>
+
+    <div class="socials">
+        <a href="https://t.me/blackbox65/" target="_blank" title="Telegram" rel="nofollow">
+            <img src="/resources/protection/img/icons/telegram.svg" alt="Telegram" title="Telegram">
+        </a>
+
+        <a href="https://chat.whatsapp.com/E6zx2Dkgr0S5GU80AJWa6A" target="_blank" title="WhatsApp" rel="nofollow">
+            <img src="/resources/protection/img/icons/whatsapp.svg" alt="WhatsApp" title="WhatsApp">
+        </a>
+    </div>
+
     <a class="header-phone" href="tel:89624192078">8 962 419 20 78</a>
 </header>
 
 <div class="video">
     <div class="video-text">
-        <a href="#catalog">Рассчитать стоимость</a>
+        <p>Удобная система <br> предварительной записи</p>
+        <a href="#catalog" class="btn">Рассчитать и записаться</a>
     </div>
 
     <video playsinline autoplay muted loop>
@@ -15,9 +27,9 @@
 
 
 <div class="container">
-    <div class="main-text">
+    <h2 class="main-text">
         Защитите свои устройства от царапин, потертостей и повреждений!
-    </div>
+    </h2>
 
     <div id="catalog" class="service-catalog-wrapper">
 
@@ -59,15 +71,14 @@
                                                     <?php if (!isset($segment->hidden) || !$segment->hidden) : ?>
                                                         <?php foreach ($segment->prices as $price_key => $price) : ?>
                                                             <?php if (!isset($price->hidden) || !$price->hidden) : ?>
-
                                                                 <?php
                                                                 $name = $this->prefixService($segment_key) . $price->name;
                                                                 $code = $service->code . '~' . $segment_key . '~' . $price_key;
                                                                 ?>
-
                                                                 <option value="<?= $code ?>"><?= $name ?> ≈ <?= $price->price ?> руб.</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
+
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </select>
@@ -133,7 +144,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <input type="date" name="date">
+                        <input type="date" name="date" placeholder="Дата записи">
                     </fieldset>
 
                     <fieldset>
@@ -152,16 +163,58 @@
         </div>
     </div>
 
+    <h2 class="guarantee">💎 Гарантия на наши услуги 💎 <br> <span>60 дней</span></h2>
+</div>
 
-    <div class="guarantee">
-        <h2 class="heading">Гарантия</h2>
 
-        <div class="guarantee-text">
-            <?= $this->menuItems->getTextBlock('guarantee_text_protected', 'Гарантия', Admin_TextBlock::TYPE_WYSIWYG, '', 'Защита устройств')->content; ?>
+<div class="products">
+    <div class="container">
+        <h2 class="heading">А так же у нас можете приобрести</h2>
+        <div class="products-list">
+            <a class="item" href="/catalog/24/">
+                <div class="photo">
+                    <img src="/resources/protection/img/shop/1.png" alt="">
+                </div>
+
+                <span>Защитные чехлы</span>
+            </a>
+
+            <a class="item" href="/catalog/11/">
+                <div class="photo">
+                    <img src="/resources/protection/img/shop/2.png" alt="">
+                </div>
+                <span>Зарядные устройства</span>
+            </a>
+
+            <a class="item" href="/catalog/7/">
+                <div class="photo">
+                    <img src="/resources/protection/img/shop/3.png" alt="">
+                </div>
+                <span>Наушники</span>
+            </a>
+
+            <a class="item" href="/catalog/36/">
+                <div class="photo">
+                    <img src="/resources/protection/img/shop/4.png" alt="">
+                </div>
+                <span>Переходники</span>
+            </a>
+
+            <a class="item" href="/">
+                <div class="photo">
+                    <img src="/resources/protection/img/shop/5.png" alt="">
+                </div>
+                <span>и много другое</span>
+            </a>
         </div>
     </div>
+</div>
 
+<div class="container">
     <div class="contacts">
+        <div class="contacts-description">
+            Удобное расположение в центре города
+        </div>
         <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/blekboks/78924383125/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Блэкбокс</a><a href="https://yandex.ru/maps/80/yuzhno-sakhalinsk/category/items_for_mobile_phones/52984923455/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Товары для мобильных телефонов в Южно‑Сахалинске</a><a href="https://yandex.ru/maps/80/yuzhno-sakhalinsk/category/electronics_store/184107835/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Магазин электроники в Южно‑Сахалинске</a><iframe src="https://yandex.ru/map-widget/v1/?ll=142.730306%2C46.957007&mode=search&oid=78924383125&ol=biz&sctx=ZAAAAAgBEAAaKAoSCTNTWn9L12FAEWfUfJV8ekdAEhIJ1nPS%2B8bXbj8RW3wKgPEMWj8iBgABAgMEBSgKOABAUEgBYiFtaWRkbGVfcG9zdGZpbHRlcl90aHJlc2hjaGFpbj0wLjViH21pZGRsZV9wb3N0ZmlsdGVyX3RocmVzaF9rej0wLjViHG1pZGRsZV9wb3N0ZmlsdGVyX3RocmVzaD0wLjViLnJlbGV2X3JhbmtpbmdfbXNlX2Zvcm11bGE9MS4wOm1zZV9kYzM4Nzc4NF9leHBiKXJlbGV2X2lycmVsX2ZpbHRlcj0xLjA6aXJyZWxfZGMzODE1MjVfZXhwYlByZWFycj1zY2hlbWVfTG9jYWwvR2VvL0J1c0dlb0Nob29zZS9UYWtlUnVicmljRmlyc3RTYW1lQnlSZXN1bHRzTXNlVGhyZXNob2xkPTAuNWI1cmVhcnI9c2NoZW1lX0xvY2FsL0dlby9Qb3N0ZmlsdGVyL0lycmVsVGhyZXNob2xkPTAuMTVqAnJ1nQHNzEw9oAEAqAEAvQF95svHwgEGlYeKgqYCggI30YPQu9C40YbQsCDQmtCw0YDQu9CwINCc0LDRgNC60YHQsCwgNTEg0LHQu9GN0LrQsdC%2B0LrRgYoCAJICAjgwmgIMZGVza3RvcC1tYXBz&sll=142.730306%2C46.957007&sspn=0.005706%2C0.002410&text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%2C%2051%20%D0%B1%D0%BB%D1%8D%D0%BA%D0%B1%D0%BE%D0%BA%D1%81&z=18.43&theme=dark&scroll=false" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe></div>
     </div>
 

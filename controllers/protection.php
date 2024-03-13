@@ -36,8 +36,10 @@ class Protection extends App_Controller
             ],
             'base' => (object)[
                 'name' => 'Базовый',
-                'icon' => '🟢'
+                'icon' => '☘️'
             ]
+
+
         ];
 
 
@@ -58,9 +60,6 @@ class Protection extends App_Controller
     protected function onOrderProtection()
     {
         try {
-            // $keys = array('phone', 'name', 'date');
-            // $values = array_intersect_key($_POST, array_fill_keys($keys, 1));
-
             $inputJSON = file_get_contents('php://input');
 
             $data = json_decode($inputJSON, TRUE);
@@ -71,11 +70,16 @@ class Protection extends App_Controller
             $values['phone'] = $data_order['phone'];
             $values['author_name'] = $data_order['name'];
             $values['author_email'] = "noreplay@bb65.ru";
-
+            $values['date'] = $data_order['date'];
             $values['comment'] = self::initListServices($cart);
 
+            $dateOrderArr = explode('-', $values['date']);
 
-            // traceLog($values['comment']);
+            if ($dateOrderArr) {
+                $date = new Phpr_DateTime();
+                $date->setDate(abs($dateOrderArr[0]), abs($dateOrderArr[1]), abs($dateOrderArr[2]));
+                $values['comment'] .= PHP_EOL  . "Дата записи: " . $date->format('%e %B %Y');
+            }
 
             if (!$this->validation->validate($values)) {
                 $this->validation->throwException();
@@ -84,7 +88,7 @@ class Protection extends App_Controller
             $message = GlobalComments_Comment::create($values);
             $message->save($values);
 
-            $response['success'] = "Спасибо за обращение!";
+            $response['success'] = "Успех";
 
             $this->ajaxResponse($response);
         } catch (Exception $ex) {
@@ -133,7 +137,7 @@ class Protection extends App_Controller
             $list .= ">>> " . $device . " <<<" . PHP_EOL . $deviceServices . PHP_EOL;
         }
 
-        return $list . "Итоговая стоимость: " . $totalPrice . ' руб.';;
+        return $list . "Итоговая стоимость: " . $totalPrice . ' руб.';
     }
 
     public static function prefixService($type)
@@ -146,56 +150,56 @@ class Protection extends App_Controller
         ////////////////////////// СМАРТФОН
         // >>> ПЛЁНКИ
         // premium
-        $pricePhoneFilmHDPremium = (object)['name' => 'глянцевая', 'price' => 2000];
-        $pricePhoneFilmMattePremium = (object)['name' => 'матовая', 'price' => 2000];
-        $pricePhoneFilmPrivacyHDPremium = (object)['name' => 'антишпион-глянцевая', 'price' => 2900];
-        $pricePhoneFilmPrivacyMattePremium = (object)['name' => 'антишпион-матовая', 'price' => 2900];
+        $pricePhoneFilmHDPremium = (object)['name' => 'глянцевая', 'price' => 1500];
+        $pricePhoneFilmMattePremium = (object)['name' => 'матовая', 'price' => 1500];
+        $pricePhoneFilmPrivacyHDPremium = (object)['name' => 'антишпион-глянцевая', 'price' => 2000];
+        $pricePhoneFilmPrivacyMattePremium = (object)['name' => 'антишпион-матовая', 'price' => 2000];
 
         // standart
-        $pricePhoneFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1200];
-        $pricePhoneFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1200];
-        $pricePhoneFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1900];
-        $pricePhoneFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1900];
+        $pricePhoneFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1000];
+        $pricePhoneFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1000];
+        $pricePhoneFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1400, 'hidden' => true];
+        $pricePhoneFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1400, 'hidden' => true];
 
         // base
-        $pricePhoneFilmHDBase = (object)['name' => 'глянцевая', 'price' => 650];
-        $pricePhoneFilmMatteBase = (object)['name' => 'матовая', 'price' => 650];
-        $pricePhoneFilmPrivacyHDBase = (object)['name' => 'антишпион-глянцевая', 'price' => 1200];
-        $pricePhoneFilmPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 1200];
+        $pricePhoneFilmHDBase = (object)['name' => 'глянцевая', 'price' => 600];
+        $pricePhoneFilmMatteBase = (object)['name' => 'матовая', 'price' => 600];
+        $pricePhoneFilmPrivacyHDBase = (object)['name' => 'антишпион-глянцевая', 'price' => 900, 'hidden' => true];
+        $pricePhoneFilmPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 900, 'hidden' => true];
 
 
         // >>> СТЁКЛА ЭКРАН
         // premium
-        $pricePhoneGlassHDPremium = (object)['name' => 'глянцевое', 'price' => 1500];
-        $pricePhoneGlassMattePremium = (object)['name' => 'матовое', 'price' => 1500];
-        $pricePhoneGlassPrivacyHDPremium = (object)['name' => 'антишпион-глянцевое', 'price' => 2000];
-        $pricePhoneGlassPrivacyMattePremium = (object)['name' => 'антишпион-матовое', 'price' => 2000];
+        $pricePhoneGlassHDPremium = (object)['name' => 'глянцевое', 'price' => 1300];
+        $pricePhoneGlassMattePremium = (object)['name' => 'матовое', 'price' => 1400, 'hidden' => true];
+        $pricePhoneGlassPrivacyHDPremium = (object)['name' => 'антишпион-глянцевое', 'price' => 1600];
+        $pricePhoneGlassPrivacyMattePremium = (object)['name' => 'антишпион-матовое', 'price' => 1500, 'hidden' => true];
 
         // standart
-        $pricePhoneGlassHDStandart = (object)['name' => 'глянцевое', 'price' => 700];
-        $pricePhoneGlassMatteStandart = (object)['name' => 'матовое', 'price' => 700];
-        $pricePhoneGlassPrivacyHDStandart = (object)['name' => 'антишпион-глянцевое', 'price' => 2900];
-        $pricePhoneGlassPrivacyMatteStandart = (object)['name' => 'антишпион-матовое', 'price' => 2900];
+        $pricePhoneGlassHDStandart = (object)['name' => 'глянцевое', 'price' => 900];
+        $pricePhoneGlassMatteStandart = (object)['name' => 'матовое', 'price' => 900, 'hidden' => true];
+        $pricePhoneGlassPrivacyHDStandart = (object)['name' => 'антишпион-глянцевое', 'price' => 1100, 'hidden' => true];
+        $pricePhoneGlassPrivacyMatteStandart = (object)['name' => 'антишпион-матовое', 'price' => 1100, 'hidden' => true];
 
         // base
-        $pricePhoneGlassHDBase = (object)['name' => 'глянцевая', 'price' => 450];
-        $pricePhoneGlassMatteBase = (object)['name' => 'матовая', 'price' => 450];
-        $pricePhoneGlassPrivacyHDBase = (object)['name' => 'антишпион-глянцевая', 'price' => 1200];
-        $pricePhoneGlassPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 1200];
+        $pricePhoneGlassHDBase = (object)['name' => 'глянцевое', 'price' => 550];
+        $pricePhoneGlassMatteBase = (object)['name' => 'матовое', 'price' => 550, 'hidden' => true];
+        $pricePhoneGlassPrivacyHDBase = (object)['name' => 'антишпион-глянцевое', 'price' => 800, 'hidden' => true];
+        $pricePhoneGlassPrivacyMatteBase = (object)['name' => 'антишпион-матовое', 'price' => 800, 'hidden' => true];
 
 
         // >>> СТЁКЛА НА КАМЕРУ
         // premium
-        $pricePhoneGlassCameraFullPremium = (object)['name' => 'Полная защита', 'price' => 1000];
-        $pricePhoneGlassCameraLensesPremium = (object)['name' => 'Защита линз', 'price' => 1000];
+        $pricePhoneGlassCameraFullPremium = (object)['name' => 'полная защита', 'price' => 1000, 'hidden' => true];
+        $pricePhoneGlassCameraLensesPremium = (object)['name' => 'защита линз', 'price' => 1000, 'hidden' => true];
 
         // standart
-        $pricePhoneGlassCameraFullStandart = (object)['name' => 'Полная защита', 'price' => 450];
-        $pricePhoneGlassCameraLensesStandart = (object)['name' => 'Защита линз', 'price' => 450];
+        $pricePhoneGlassCameraFullStandart = (object)['name' => 'полная защита', 'price' => 450, 'hidden' => true];
+        $pricePhoneGlassCameraLensesStandart = (object)['name' => 'защита линз', 'price' => 450, 'hidden' => true];
 
         // base
-        $pricePhoneGlassCameraFullBase = (object)['name' => 'Полная защита', 'price' => 300];
-        $pricePhoneGlassCameraLensesBase = (object)['name' => 'Защита линз', 'price' => 300];
+        $pricePhoneGlassCameraFullBase = (object)['name' => 'полная защита', 'price' => 250];
+        $pricePhoneGlassCameraLensesBase = (object)['name' => 'защита линз', 'price' => 300];
 
 
         ////////////////////////// ПЛАНШЕТ
@@ -207,10 +211,10 @@ class Protection extends App_Controller
         $priceTabletFilmPrivacyMattePremium = (object)['name' => 'антишпион-матовая', 'price' => 2900];
 
         // standart
-        $priceTabletFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1200];
-        $priceTabletFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1200];
-        $priceTabletFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1900];
-        $priceTabletFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1900];
+        $priceTabletFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1100];
+        $priceTabletFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1100, 'hidden' => true];
+        $priceTabletFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1900, 'hidden' => true];
+        $priceTabletFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1900, 'hidden' => true];
 
         // base
         $priceTabletFilmHDBase = (object)['name' => 'глянцевая', 'price' => 650];
@@ -219,10 +223,31 @@ class Protection extends App_Controller
         $priceTabletFilmPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 1200];
 
 
+        ////////////////////////// СМАРТ-ЧАСЫ
+        // >>> ПЛЁНКИ
+        // premium
+        $priceWatchFilmHDPremium = (object)['name' => 'глянцевая', 'price' => 1300];
+        $priceWatchFilmMattePremium = (object)['name' => 'матовая', 'price' => 1300];
+        $priceWatchFilmPrivacyHDPremium = (object)['name' => 'антишпион-глянцевая', 'price' => 2900];
+        $priceWatchFilmPrivacyMattePremium = (object)['name' => 'антишпион-матовая', 'price' => 2900];
+
+        // standart
+        $priceWatchFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1000];
+        $priceWatchFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1000];
+        $priceWatchFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1900, 'hidden' => true];
+        $priceWatchFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1900, 'hidden' => true];
+
+        // base
+        $priceWatchFilmHDBase = (object)['name' => 'глянцевая', 'price' => 500];
+        $priceWatchFilmMatteBase = (object)['name' => 'матовая', 'price' => 500, 'hidden' => true];
+        $priceWatchFilmPrivacyHDBase = (object)['name' => 'антишпион-глянцевая', 'price' => 1200, 'hidden' => true];
+        $priceWatchFilmPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 1200, 'hidden' => true];
+
+
         // СЕГМЕНТЫ - СМАРТФОН
         $phoneFilmSegments = [
             'premium' => (object)[
-                'hidden' => false,
+                'hidden' => true,
                 'prices' => [$pricePhoneFilmHDPremium, $pricePhoneFilmMattePremium, $pricePhoneFilmPrivacyHDPremium, $pricePhoneFilmPrivacyMattePremium]
             ],
             'standart' => (object)[
@@ -272,18 +297,33 @@ class Protection extends App_Controller
         // СЕГМЕНТЫ - ПЛАНШЕТ
         $tabletFilmSegments = [
             'premium' => (object)[
-                'hidden' => false,
+                'hidden' => true,
                 'prices' => [$priceTabletFilmHDPremium, $priceTabletFilmMattePremium, $priceTabletFilmPrivacyHDPremium, $priceTabletFilmPrivacyMattePremium]
             ],
-            // 'standart' => (object)[
-            //     'hidden' => false,
-            //     'prices' => [$pricePhoneFilmHDStandart, $pricePhoneFilmMatteStandart, $pricePhoneFilmPrivacyHDStandart, $pricePhoneFilmPrivacyMatteStandart]
-
-            // ],
+            'standart' => (object)[
+                'hidden' => false,
+                'prices' => [$priceTabletFilmHDStandart, $priceTabletFilmMatteStandart, $priceTabletFilmPrivacyHDStandart, $priceTabletFilmPrivacyMatteStandart]
+            ],
             // 'base' => (object)[
             //     'hidden' => false,
             //     'prices' => [$pricePhoneFilmHDBase, $pricePhoneFilmMatteBase, $pricePhoneFilmPrivacyHDBase, $pricePhoneFilmPrivacyMatteBase]
             // ],
+        ];
+
+        // СЕГМЕНТЫ - СМАРТ-ЧАСЫ
+        $watchFilmSegments = [
+            'premium' => (object)[
+                'hidden' => true,
+                'prices' => [$priceWatchFilmHDPremium, $priceWatchFilmMattePremium, $priceWatchFilmPrivacyHDPremium, $priceWatchFilmPrivacyMattePremium]
+            ],
+            'standart' => (object)[
+                'hidden' => false,
+                'prices' => [$priceWatchFilmHDStandart, $priceWatchFilmMatteStandart, $priceWatchFilmPrivacyHDStandart, $priceWatchFilmPrivacyMatteStandart]
+            ],
+            'base' => (object)[
+                'hidden' => false,
+                'prices' => [$priceWatchFilmHDBase, $priceWatchFilmMatteBase, $priceWatchFilmPrivacyHDBase, $priceWatchFilmPrivacyMatteBase]
+            ],
         ];
 
 
@@ -349,6 +389,38 @@ class Protection extends App_Controller
             ],
         ];
 
-        return [$phone, $tablet];
+
+        // ДАННЫЕ - СМАРТ-ЧАСЫ
+        $watch = (object)[
+            'id' => 'watch',
+            'services' => [
+                (object)[
+                    'name' => 'Плёнка на экран',
+                    'code' => 'film-glass-watch',
+                    'hidden' => false,
+                    'segments' => $watchFilmSegments
+                ],
+                // (object)[
+                //     'name' => 'Плёнка на заднюю панель',
+                //     'code' => 'film-back-table',
+                //     'hidden' => false,
+                //     'segments' => $tableFilmSegments
+                // ],
+                // (object)[
+                //     'name' => 'Стекло на экран',
+                //     'code' => 'glass-table',
+                //     'hidden' => false,
+                //     'segments' => $tableGlassSegments
+                // ],
+                // (object)[
+                //     'name' => 'Стекло на камеру',
+                //     'code' => 'glass-camera-table',
+                //     'hidden' => false,
+                //     'segments' => $tableGlassCameraSegments
+                // ],
+            ],
+        ];
+
+        return [$phone, $tablet, $watch];
     }
 }

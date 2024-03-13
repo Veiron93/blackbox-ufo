@@ -5,8 +5,6 @@
 
 		<?php if (isset($catalogRootCategories) && count($catalogRootCategories)) : ?>
 			<div class="catalog-menu">
-				<?php $this->renderPartial($this->getViewsDir() . "layouts/components/discount-telegram.htm", ['style_class' => 'discount-telegram--index']); ?>
-
 				<ul>
 					<?php foreach ($catalogRootCategories as $category) : ?>
 						<li>
@@ -90,17 +88,30 @@
 
 
 	<div class="index-navigation">
-		<div class="item">
+
+
+		<!-- <div class="item">
 			<a href="/catalog/">
 				<img src="/resources/images/icons/index-navigation/more.svg" alt="Все категории">
 				<span>Все категории</span>
 			</a>
-		</div>
+		</div> -->
 
-		<div class="item">
+		<!-- <div class="item">
 			<a href="/catalog/all-products/">
 				<img src="/resources/images/icons/index-navigation/devices.svg" alt="Все товары">
 				<span>Все товары</span>
+			</a>
+		</div> -->
+
+		<div class="item">
+			<a href="https://t.me/blackbox65/" rel="nofollow" target="_blank">
+				<img src="/resources/images/icons/social/telegram-white.svg" alt="Скидка за подписку на Telegram">
+
+				<div class="text">
+					<div class="title">Скидка 5% за подписку на Telegram</div>
+					<div class="description">Новинки товаров, розыгрыши, скидки</div>
+				</div>
 			</a>
 		</div>
 
@@ -108,7 +119,11 @@
 			<div class="item">
 				<a href="/sale/">
 					<img src="/resources/images/icons/index-navigation/discount.svg" alt="товары со скидкой">
-					<span><?= $countProductsDiscount; ?> <?= Core_String::word_form($countProductsDiscount, ["товар", "товара", "товаров"]) ?> со скидкой</span>
+
+					<div class="text">
+						<div class="title"><?= $countProductsDiscount; ?> <?= Core_String::word_form($countProductsDiscount, ["товар", "товара", "товаров"]) ?> со скидкой</div>
+						<div class="description">Успей купить по выгодной цене</div>
+					</div>
 				</a>
 			</div>
 		<?php endif; ?>
@@ -120,10 +135,16 @@
 			</a>
 		</div> -->
 
+
+
 		<div class="item">
 			<a href="/cashback100/">
 				<img src="/resources/images/icons/index-navigation/money.svg" alt="Кешбэк за отзыв">
-				<span>Кешбэк за отзыв</span>
+
+				<div class="text">
+					<div class="title">Кешбэк за отзыв</div>
+					<div class="description">Оцените качество сервиса</div>
+				</div>
 			</a>
 		</div>
 	</div>
