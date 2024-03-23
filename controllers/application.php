@@ -7,11 +7,14 @@ class Application extends App_Controller
 
 	public function index()
 	{
+
+		// БЛОКИ С ТОВАРАМИ
+
 		// Б/У товары
-		$this->viewData['usededProducts'] = $this->catalog::getProducts("cp.is_useded_device is not null && cp.show_block_useded_device", 6);
+		$usededProducts = $this->catalog::getProducts("cp.is_useded_device is not null && cp.show_block_useded_device", 6);
 
 		// Товары со скидкой
-		$this->viewData['productSale'] = $this->catalog::getProducts("cp.is_sale is not null", 6);
+		$productSale = $this->catalog::getProducts("cp.is_sale is not null", 6);
 
 		$this->viewData['countProductsDiscount'] = Db_DbHelper::scalar(
 			"SELECT COUNT(id)
@@ -24,13 +27,66 @@ class Application extends App_Controller
 		);
 
 		// Хиты продаж
-		$this->viewData['productBestsellers'] = $this->catalog::getProducts("cp.best_seller is not null", 6);
+		$productBestsellers = $this->catalog::getProducts("cp.best_seller is not null", 6);
 
 		// Новинки
-		$this->viewData['productNew'] = $this->catalog::getProducts("cp.is_new is not null", 12, null, "cp.id desc");
+		$productNew = $this->catalog::getProducts("cp.is_new is not null", 12, null, "cp.id desc");
 
 		// бесконечный список товаров
-		$this->viewData['infinitiListProducts'] = App_Catalog::getProducts(null, 30, null, 'RAND()');
+		$infinitiListProducts = App_Catalog::getProducts(null, 30, null, 'RAND()');
+
+
+		$this->viewData['blocks'] = [
+			'newProducts' => [
+				'show' => true,
+				'type' => 'product_slider',
+				'products' => $productNew ?? [],
+				'params' => [
+					'title' => 'Новинки',
+					'view_type' => 'list'
+				]
+			],
+			'usededProducts' => [
+				'show' => true,
+				'type' => 'product_grid',
+				'products' => $usededProducts ?? [],
+				'params' => [
+					'title' => 'Б/У товары',
+					'view_type' => 'list'
+				]
+			],
+			'saleProducts' => [
+				'show' => true,
+				'type' => 'product_grid',
+				'products' => $productSale ?? [],
+				'params' => [
+					'title' => 'Скидки',
+					'link' => '/sale/'
+				]
+			],
+			'bestsellersProducts' => [
+				'show' => true,
+				'type' => 'product_grid',
+				'products' => $productBestsellers ?? [],
+				'params' => [
+					'title' => 'Топ продаж 🔥',
+					'view_type' => 'list'
+				]
+			],
+
+			'productsInfinity' => [
+				'show' => true,
+				'type' => 'infinity_products_list',
+				'products' => $infinitiListProducts ?? [],
+				'params' => [
+					'title' => 'И ещё немного товаров',
+					'view_type' => 'list'
+				]
+			],
+		];
+
+
+		$this->viewData['pathBlocks'] = $this->getViewsDir() . "/catalog/blocks/";
 	}
 
 

@@ -97,7 +97,7 @@ class App_Catalog
 	}
 
 
-	private static function getHotCategories($idCategory, $limit = 2)
+	private static function getHotCategories($idCategory, $limit = 10)
 	{
 		return Db_DbHelper::objectArray("SELECT id, name
 				FROM catalog_categories

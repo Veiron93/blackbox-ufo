@@ -1,52 +1,14 @@
 <!-- prettier-ignore -->
 
-<div class="container">
-	<div class="index-top-section">
+<?php
+$mainSlider = App_Helper::getBanners('main_slider');
+$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
+?>
 
-		<?php if (isset($catalogRootCategories) && count($catalogRootCategories)) : ?>
-			<div class="catalog-menu">
-				<ul>
-					<?php foreach ($catalogRootCategories as $category) : ?>
-						<li>
-							<a href="/catalog/<?= $category->id ?>/">
-								<?php
-								if (isset($category->image_id) && isset($category->image_path)) {
-									$image = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
-								} else {
-									$image = "/resources/images/icons/no-image.svg";
-								}
-								?>
-
-								<img src="<?= $image ?>" alt="Категория каталога <?= $category->name ?>" />
-								<span><?= $category->name ?></span>
-							</a>
-
-							<?php if (isset($category->hot_categories) && count($category->hot_categories)) : ?>
-								<div class="hot-categories">
-									<?php foreach ($category->hot_categories as $hotCategory) : ?>
-										<a href="/catalog/<?= $hotCategory->id ?>"><?= $hotCategory->name ?></a>
-									<?php endforeach ?>
-								</div>
-							<?php endif ?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-		<?php endif; ?>
-
-		<?php
-		$mainSlider = App_Helper::getBanners('main_slider');
-		$mainSliderMobile = App_Helper::getBanners('main_slider_mobile');
-		?>
-
-		<?php if (isset($mainSlider) && count($mainSlider)) : ?>
-			<div class="main-slider swiper">
-
-				<?php if (count($mainSlider) > 1) : ?>
-					<div class="button-prev"></div>
-					<div class="button-next"></div>
-				<?php endif; ?>
-
+<?php if (isset($mainSlider) && count($mainSlider)) : ?>
+	<div class="main-slider">
+		<div class="container">
+			<div class="main-slider-wrapper swiper">
 				<div class="swiper-wrapper">
 					<?php foreach ($mainSlider as $banner) : ?>
 
@@ -62,47 +24,101 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
-		<?php endif; ?>
-
-		<?php if (isset($mainSliderMobile) && count($mainSliderMobile)) : ?>
-			<div class="main-slider-mobile swiper">
-				<div class="swiper-wrapper">
-					<?php foreach ($mainSliderMobile as $bannerMobile) : ?>
-
-						<?php $imgBanner = $bannerMobile->image->getPath(); ?>
-
-						<?php if ($imgBanner) : ?>
-							<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>)" title="<?= $bannerMobile->name ?>">
-								<?php if ($bannerMobile->link_type !== 'no_link') : ?>
-									<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link ?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>></a>
-								<?php endif; ?>
-							</div>
-						<?php endif; ?>
-					<?php endforeach; ?>
-				</div>
-			</div>
-
-			<div class="main-slider-mobile-pagination"></div>
-		<?php endif; ?>
+		</div>
 	</div>
+<?php endif; ?>
+
+<?php if (isset($mainSliderMobile) && count($mainSliderMobile)) : ?>
+	<div class="main-slider-mobile swiper">
+		<div class="swiper-wrapper">
+			<?php foreach ($mainSliderMobile as $bannerMobile) : ?>
+
+				<?php $imgBanner = $bannerMobile->image->getPath(); ?>
+
+				<?php if ($imgBanner) : ?>
+					<div class="swiper-slide" style="background-image:url(<?= $imgBanner ?>)" title="<?= $bannerMobile->name ?>">
+						<?php if ($bannerMobile->link_type !== 'no_link') : ?>
+							<a href="<?= ($bannerMobile->link_type == 'page') ? $bannerMobile->page_code : $bannerMobile->link ?>" <?= $bannerMobile->open_in_new_window ? ' target="_blank"' : "" ?>></a>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</div>
+	</div>
+<?php endif; ?>
+
+
+
+
+<div class="container">
+
+	<h1 class="index-about">
+		<span>Аксeссуары</span>
+		<span>для гаджетов, компьютеров, автомобилей и дома</span>
+	</h1>
+
+
+	<?php if (isset($catalogRootCategories) && count($catalogRootCategories)) : ?>
+		<ul class="index-catalog-menu">
+			<?php foreach ($catalogRootCategories as $category) : ?>
+				<li>
+					<a href="/catalog/<?= $category->id ?>/">
+						<?php
+						if (isset($category->image_id) && isset($category->image_path)) {
+							$image = (new LWImageManipulator($category->image_id, $category->image_path))->getPath();
+						} else {
+							$image = "/resources/images/icons/no-image.svg";
+						}
+						?>
+
+						<img src="<?= $image ?>" alt="Категория каталога <?= $category->name ?>" />
+						<span><?= $category->name ?></span>
+					</a>
+
+					<?php if (isset($category->hot_categories) && count($category->hot_categories)) : ?>
+						<div class="hot-categories">
+							<?php foreach ($category->hot_categories as $hotCategory) : ?>
+								<a href="/catalog/<?= $hotCategory->id ?>"><?= $hotCategory->name ?></a>
+							<?php endforeach ?>
+						</div>
+					<?php endif ?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+
+	<!-- <div class="index-top-section">
+
+
+
+
+	</div> -->
 
 
 	<div class="index-navigation">
 
-
-		<!-- <div class="item">
+		<?/*
+		<div class="item">
 			<a href="/catalog/">
 				<img src="/resources/images/icons/index-navigation/more.svg" alt="Все категории">
 				<span>Все категории</span>
 			</a>
-		</div> -->
+		</div>
 
-		<!-- <div class="item">
+		<div class="item">
 			<a href="/catalog/all-products/">
 				<img src="/resources/images/icons/index-navigation/devices.svg" alt="Все товары">
 				<span>Все товары</span>
 			</a>
-		</div> -->
+		</div>
+
+		<div class="item">
+			<a href="/cashback100/">
+				<img src="/resources/images/icons/index-navigation/smartphone.svg" alt="Техника на реализацию">
+				<span>Техника на реализацию</span>
+			</a>
+		</div>
+	*/ ?>
 
 		<div class="item">
 			<a href="https://t.me/blackbox65/" rel="nofollow" target="_blank">
@@ -128,15 +144,6 @@
 			</div>
 		<?php endif; ?>
 
-		<!-- <div class="item">
-			<a href="/cashback100/">
-				<img src="/resources/images/icons/index-navigation/smartphone.svg" alt="Техника на реализацию">
-				<span>Техника на реализацию</span>
-			</a>
-		</div> -->
-
-
-
 		<div class="item">
 			<a href="/cashback100/">
 				<img src="/resources/images/icons/index-navigation/money.svg" alt="Кешбэк за отзыв">
@@ -149,64 +156,76 @@
 		</div>
 	</div>
 
-
 	<?php
+	// СКИДКИ
+	$blockSaleProducts = $blocks['saleProducts'];
 
-	$pathBlocks = $this->getViewsDir() . "/catalog/blocks/";
-
-	$blocks = [
-		[
-			'show' => true,
-			'name' => 'product_slider',
-			'products' => $productNew ?? [],
-			'params' => [
-				'title' => 'Новинки',
-				'view_type' => 'list'
-			]
-		],
-		[
-			'show' => true,
-			'name' => 'product_grid',
-			'products' => $usededProducts ?? [],
-			'params' => [
-				'title' => 'Б/У товары',
-				'view_type' => 'list'
-			]
-		],
-		[
-			'show' => true,
-			'name' => 'product_grid',
-			'products' => $productSale ?? [],
-			'params' => [
-				'title' => 'Скидки',
-				'link' => '/sale/'
-			]
-		],
-		[
-			'show' => true,
-			'name' => 'product_grid',
-			'products' => $productBestsellers ?? [],
-			'params' => [
-				'title' => 'Топ продаж 🔥',
-				'view_type' => 'list'
-			]
-		],
-
-		[
-			'show' => true,
-			'name' => '_infinity_products_list',
-			'products' => $infinitiListProducts ?? [],
-			'params' => [
-				'title' => 'И ещё немного товаров',
-				'view_type' => 'list'
-			]
-		],
-	];
-
-	foreach ($blocks as $block) {
-		if ($block['show']) {
-			$this->renderPartial($pathBlocks . $block['name'] . ".htm", array_merge(['products' => $block['products']], $block['params']));
-		}
+	if ($blockSaleProducts['show']) {
+		$this->renderPartial($pathBlocks . $blockSaleProducts['type'] . ".htm", array_merge(['products' => $blockSaleProducts['products']], $blockSaleProducts['params']));
 	}
 	?>
+
+
+
+	<div class="protection">
+		<div class="protection-header">
+			<h2>У нас можно установить защитные стекла и плёнки!</h2>
+			<p>Защитите свои устройства от царапин, потертостей и повреждений</p>
+		</div>
+
+		<div class="protection-body">
+			<a href="/protection" class="btn">
+				<img src="/resources/images/icons/calculator.svg" alt="">
+				<span>Рассчитать стоимость <br> и записаться</span>
+			</a>
+
+			<div class="information">
+				<div class="item">
+					<div class="icon">💎</div>
+					<span>Качественные <br> материалы</span>
+				</div>
+
+				<div class="item">
+					<div class="icon">🛠️</div>
+					<span>Установка <br> 10~20 минут</span>
+				</div>
+
+				<div class="item">
+					<div class="icon">🔄</div>
+					<span>Гарантия <br> 60 дней</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+	// НОВИНКИ
+	$blockNewProducts = $blocks['newProducts'];
+	if ($blockNewProducts['show']) {
+		$this->renderPartial($pathBlocks . $blockNewProducts['type'] . ".htm", array_merge(['products' => $blockNewProducts['products']], $blockNewProducts['params']));
+	}
+	?>
+
+	<?php
+	// ТОП ПРОДАЖ
+	$blockBestsellersProducts = $blocks['bestsellersProducts'];
+
+	if ($blockBestsellersProducts['show']) {
+		$this->renderPartial($pathBlocks . $blockBestsellersProducts['type'] . ".htm", array_merge(['products' => $blockBestsellersProducts['products']], $blockBestsellersProducts['params']));
+	}
+	?>
+
+	<?php
+	// ТОП ПРОДАЖ
+	$blockInfinityProducts = $blocks['productsInfinity'];
+
+	if ($blockInfinityProducts['show']) {
+		$this->renderPartial($pathBlocks . $blockInfinityProducts['type'] . ".htm", array_merge(['products' => $blockInfinityProducts['products']], $blockInfinityProducts['params']));
+	}
+	?>
+
+
+	<!-- <div class="index-map">
+		<iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=78924383125" width="100%" height="500" frameborder="0"></iframe>
+	</div> -->
 </div>

@@ -18,7 +18,7 @@ body.search-active {
 
 .widget-search {
 	// desktop
-	@include screen_lg_up {
+	@include screen_md_up {
 		width: 100%;
 		position: relative;
 
@@ -71,7 +71,7 @@ body.search-active {
 						}
 
 						&:after {
-							content: "";
+							content: '';
 							display: block;
 							height: 14px;
 							width: 1px;
@@ -167,7 +167,7 @@ body.search-active {
 								margin-left: 6px;
 
 								&:before {
-									content: "/";
+									content: '/';
 									margin-right: 5px;
 								}
 							}
@@ -282,7 +282,7 @@ body.search-active {
 	}
 
 	// mobile
-	@include screen_md_down {
+	@include screen_sm_down {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -512,7 +512,8 @@ body.search-active {
 				user-select: none;
 				transition: background 0.2s;
 
-				&:hover, &:active {
+				&:hover,
+				&:active {
 					background-color: rgba($color, 0.2);
 				}
 

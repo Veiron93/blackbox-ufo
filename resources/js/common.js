@@ -3,16 +3,12 @@
 document.addEventListener('DOMContentLoaded', function () {
 	// SLIDERS
 	// главный слайдер
-	new Swiper('.main-slider', {
+	new Swiper('.main-slider-wrapper', {
 		loop: true,
 		effect: 'fade',
 		autoplay: {
 			delay: 5000,
 			disableOnInteraction: false,
-		},
-		navigation: {
-			nextEl: '.main-slider .button-next',
-			prevEl: '.main-slider .button-prev',
 		},
 	})
 
@@ -24,33 +20,30 @@ document.addEventListener('DOMContentLoaded', function () {
 			delay: 5000,
 			disableOnInteraction: false,
 		},
-		pagination: {
-			el: document.querySelector('.main-slider-mobile-pagination'),
-		},
 	})
 
 	// КНОПКА ВВЕРХ
-	{
-		function trackScroll() {
-			let scrolled = window.pageYOffset,
-				coords = document.documentElement.clientHeight
+	// {
+	// 	function trackScroll() {
+	// 		let scrolled = window.pageYOffset,
+	// 			coords = document.documentElement.clientHeight
 
-			if (scrolled > coords) {
-				btns.forEach((btn) => btn.classList.add('active'))
-			} else {
-				btns.forEach((btn) => btn.classList.remove('active'))
-			}
-		}
+	// 		if (scrolled > coords) {
+	// 			btns.forEach((btn) => btn.classList.add('active'))
+	// 		} else {
+	// 			btns.forEach((btn) => btn.classList.remove('active'))
+	// 		}
+	// 	}
 
-		function backToTop() {
-			if (window.pageYOffset > 0) window.scrollBy(0, -window.pageYOffset)
-		}
+	// 	function backToTop() {
+	// 		if (window.pageYOffset > 0) window.scrollBy(0, -window.pageYOffset)
+	// 	}
 
-		window.addEventListener('scroll', trackScroll)
+	// 	window.addEventListener('scroll', trackScroll)
 
-		let btns = document.querySelectorAll('.btn-up-page')
-		btns.forEach((btn) => btn.addEventListener('click', backToTop))
-	}
+	// 	let btns = document.querySelectorAll('.btn-up-page')
+	// 	btns.forEach((btn) => btn.addEventListener('click', backToTop))
+	// }
 
 	// товары
 	function productsSliders() {
