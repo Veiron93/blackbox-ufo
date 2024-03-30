@@ -184,6 +184,8 @@ footer {
 	height: calc(100vh - 7rem);
 	position: relative;
 
+	display: none;
+
 	&:before {
 		content: '';
 		display: block;
