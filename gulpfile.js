@@ -234,6 +234,7 @@ gulp.task('build', () => {
 		'resources/scss/**',
 		'resources/js/**',
 		'resources/fonts/**',
+		'resources/protection/video/**',
 		'temp/**',
 		'uploaded/**',
 		'.gitignore',
