@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-	window.cart = new Cart()
-	window.services = new Services()
-
 	new Swiper('.portfolio-slider-wrapper', {
 		loop: true,
 
@@ -45,4 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			},
 		},
 	})
+
+	window.cart = new Cart()
+	window.services = new Services()
 })
