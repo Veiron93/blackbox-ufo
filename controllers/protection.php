@@ -156,14 +156,14 @@ class Protection extends App_Controller
         $pricePhoneFilmPrivacyMattePremium = (object)['name' => 'антишпион-матовая', 'price' => 2000];
 
         // standart
-        $pricePhoneFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1000];
-        $pricePhoneFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1000];
+        $pricePhoneFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1300];
+        $pricePhoneFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1500];
         $pricePhoneFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1400, 'hidden' => true];
         $pricePhoneFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1400, 'hidden' => true];
 
         // base
-        $pricePhoneFilmHDBase = (object)['name' => 'глянцевая', 'price' => 600];
-        $pricePhoneFilmMatteBase = (object)['name' => 'матовая', 'price' => 600];
+        $pricePhoneFilmHDBase = (object)['name' => 'глянцевая', 'price' => 700];
+        $pricePhoneFilmMatteBase = (object)['name' => 'матовая', 'price' => 800];
         $pricePhoneFilmPrivacyHDBase = (object)['name' => 'антишпион-глянцевая', 'price' => 900, 'hidden' => true];
         $pricePhoneFilmPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 900, 'hidden' => true];
 
@@ -232,14 +232,14 @@ class Protection extends App_Controller
         $priceWatchFilmPrivacyMattePremium = (object)['name' => 'антишпион-матовая', 'price' => 2900];
 
         // standart
-        $priceWatchFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1000];
-        $priceWatchFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1000];
+        $priceWatchFilmHDStandart = (object)['name' => 'глянцевая', 'price' => 1300];
+        $priceWatchFilmMatteStandart = (object)['name' => 'матовая', 'price' => 1500];
         $priceWatchFilmPrivacyHDStandart = (object)['name' => 'антишпион-глянцевая', 'price' => 1900, 'hidden' => true];
         $priceWatchFilmPrivacyMatteStandart = (object)['name' => 'антишпион-матовая', 'price' => 1900, 'hidden' => true];
 
         // base
-        $priceWatchFilmHDBase = (object)['name' => 'глянцевая', 'price' => 500];
-        $priceWatchFilmMatteBase = (object)['name' => 'матовая', 'price' => 500, 'hidden' => true];
+        $priceWatchFilmHDBase = (object)['name' => 'глянцевая', 'price' => 700];
+        $priceWatchFilmMatteBase = (object)['name' => 'матовая', 'price' => 800, 'hidden' => true];
         $priceWatchFilmPrivacyHDBase = (object)['name' => 'антишпион-глянцевая', 'price' => 1200, 'hidden' => true];
         $priceWatchFilmPrivacyMatteBase = (object)['name' => 'антишпион-матовая', 'price' => 1200, 'hidden' => true];
 

@@ -3,9 +3,8 @@
 
 // color
 $color: #524398;
-$color2: #333c46;
-$color3: #0c3441;
-$color4: #ed850b;
+$color2: #1b1b1f;
+$color3: #e6530a;
 
 // other
 $brs: 0.8rem;
@@ -54,7 +53,7 @@ body {
 	align-items: center;
 	justify-content: center;
 
-	background: $color4;
+	background: $color3;
 	padding: 1rem 2rem;
 	border-radius: $brs;
 	height: 100%;
@@ -123,12 +122,12 @@ header {
 
 	.header-phone {
 		font-size: 2.6rem;
-		color: $color4;
+		color: $color3;
 		font-weight: bold;
 	}
 
 	@include screen_sm_down {
-		height: auto;
+		height: 12rem;
 		padding: 1rem 1.5rem;
 		flex-wrap: wrap;
 		column-gap: 2rem;
@@ -180,11 +179,8 @@ footer {
 }
 
 .video {
-	//border: 1px solid red;
 	height: calc(100vh - 7rem);
 	position: relative;
-
-	display: none;
 
 	&:before {
 		content: '';
@@ -230,7 +226,9 @@ footer {
 	}
 
 	@include screen_sm_down {
-		height: 30rem;
+		//height: 60rem;
+
+		height: calc(100dvh - 12rem);
 
 		&-text {
 			display: none;
@@ -295,11 +293,13 @@ footer {
 	width: 55%;
 	flex: none;
 
-	background: linear-gradient(
-		135deg,
-		rgba(111, 97, 173, 1) 0%,
-		rgba(45, 27, 125, 1) 100%
-	);
+	// background: linear-gradient(
+	// 	135deg,
+	// 	rgba(111, 97, 173, 1) 0%,
+	// 	rgba(45, 27, 125, 1) 100%
+	// );
+
+	background: #335b85;
 
 	border-radius: 2rem;
 	padding: 2.5rem 3rem 0;
@@ -324,7 +324,6 @@ footer {
 
 	&_header {
 		* {
-			color: $color3;
 			color: #fff;
 		}
 
@@ -360,8 +359,7 @@ footer {
 				cursor: pointer;
 
 				background: #fff;
-				color: $color3;
-				color: #493894;
+				color: $color2;
 
 				font-size: 1.5rem;
 				box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
@@ -370,7 +368,7 @@ footer {
 
 				&.active {
 					box-shadow: none;
-					background: $color4;
+					background: $color3;
 					color: #fff;
 				}
 			}
@@ -426,7 +424,7 @@ footer {
 					}
 
 					&_btn-del {
-						background: $color4;
+						background: $color3;
 						font-size: 1.8rem;
 						height: 4rem;
 						width: 4rem;
@@ -442,8 +440,7 @@ footer {
 	}
 
 	&_footer {
-		background: $color3;
-		background: #2d3233;
+		background: $color2;
 		margin: -1rem -2rem 1rem;
 		padding: 2rem;
 		border-radius: 2rem;
@@ -465,7 +462,7 @@ footer {
 
 				button {
 					flex: none;
-					background: $color4;
+					background: $color3;
 					font-size: 1.8rem;
 					height: 4rem;
 					width: 4rem;
@@ -673,7 +670,7 @@ button {
 		&-list-devices {
 			&:empty {
 				&:before {
-					content: 'Вы не добавили ни одной услуги, надеемся Вы исправите данное недоразумение 🧐';
+					content: 'Добавьте услуги для записи 🧐';
 					font-size: 1.6rem;
 				}
 
@@ -788,7 +785,7 @@ button {
 			}
 
 			button {
-				background: $color4;
+				background: $color3;
 				color: #fff;
 				width: 100%;
 
@@ -919,10 +916,6 @@ button {
 
 .products {
 	margin-top: 6rem;
-	background: $color;
-	padding-top: 3rem;
-	padding-bottom: 3rem;
-
 	&-list {
 		margin-top: 2.4rem;
 
@@ -957,8 +950,12 @@ button {
 	}
 
 	@include screen_sm_down {
-		padding-top: 3rem;
-		padding-bottom: 3rem;
+		margin-top: 3rem;
+
+		.heading {
+			font-size: 18px;
+			text-align: center;
+		}
 
 		&-list {
 			margin-top: 2.4rem;
