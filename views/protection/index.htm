@@ -176,7 +176,7 @@ $portfolioSlider = App_Helper::getBanners('protection_portfolio');
             <div class="swiper-wrapper">
                 <?php foreach ($portfolioSlider as $slide) : ?>
 
-                    <?php $imgSlide = $slide->image->getPath(); ?>
+                    <?php $imgSlide = $slide->image->getThumb(1000, 1000); ?>
 
                     <?php if ($imgSlide) : ?>
                         <div class="slide swiper-slide">
