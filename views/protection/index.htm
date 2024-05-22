@@ -166,6 +166,37 @@
     <h2 class="guarantee">💎 Гарантия на наши услуги 💎 <br> <span>60 дней</span></h2>
 </div>
 
+<?php
+$portfolioSlider = App_Helper::getBanners('protection_portfolio');
+?>
+
+<?php if (isset($portfolioSlider) && count($portfolioSlider)) : ?>
+    <div class="portfolio-slider container">
+        <div class="portfolio-slider-wrapper swiper">
+            <div class="swiper-wrapper">
+                <?php foreach ($portfolioSlider as $slide) : ?>
+
+                    <?php $imgSlide = $slide->image->getPath(); ?>
+
+                    <?php if ($imgSlide) : ?>
+                        <div class="slide swiper-slide">
+                            <div class="photo">
+                                <img src="<?= $imgSlide ?>" alt="">
+                            </div>
+
+                            <div class="description">
+                                <h3 class="title"><?= $slide->name ?></h3>
+                                <div class="text"><?= $slide->description ?></div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 
 <div class="products">
     <div class="container">
