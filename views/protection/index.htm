@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="add-device-informer">
-                    <p>Для просмотра услуг, добавьте устройство данного типа в список Ваших устройств 🙂</p>
+                    <p>Добавьте устройство и выберите услугу 🙂</p>
                 </div>
 
                 <div class="list-services-wrapper hidden">
@@ -65,7 +65,7 @@
                                             </div>
 
                                             <select name="<?= $service->code ?>">
-                                                <option value="">Выберите сегмент</option>
+                                                <option value="">Не выбрано</option>
 
                                                 <?php foreach ($service->segments as $segment_key => $segment) : ?>
                                                     <?php if (!isset($segment->hidden) || !$segment->hidden) : ?>
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="user-devices_add">
-                            <input type="text" name="add-device" placeholder="Новое устройство">
+                            <input type="text" name="add-device" placeholder="Название устройства">
                             <select name="type-device">
                                 <option value="phone">Смартфон</option>
                                 <option value="tablet">Планшет</option>

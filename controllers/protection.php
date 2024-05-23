@@ -53,7 +53,7 @@ class Protection extends App_Controller
     {
         $this->layout = "__protection_layout";
 
-        $this->viewData['brands'] = ['Sunshine', 'Hoco', 'Mietubl'];
+        $this->viewData['brands'] = ['Sunshine', 'Hoco', 'Mietubl', 'Remax', 'Baseus'];
     }
 
 

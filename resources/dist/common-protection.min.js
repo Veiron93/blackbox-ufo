@@ -27,13 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		loop: true,
 
 		autoplay: {
-			delay: 5000,
+			delay: 3000,
 			disableOnInteraction: false,
 		},
 
 		breakpoints: {
 			0: {
-				slidesPerView: 1.5,
+				slidesPerView: 1,
 				spaceBetween: 10,
 			},
 			991: {
