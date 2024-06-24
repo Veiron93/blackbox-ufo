@@ -2,28 +2,18 @@
 
 class Blackbox_Module extends Core_ModuleBase
 {
-
     protected function createModuleInfo()
     {
         return new Core_ModuleInfo('Blackbox', "Ринамика", "Blackbox модуль");
     }
-
-
 
     const tabs = [
         'usedProducts' => 'Товар Б/У',
         'seo' => 'SEO'
     ];
 
-
     public function subscribeEvents()
     {
-
-        // Phpr::$events->addEvent(Catalog_Events::onExtendTabs, function (Admin_Tab $tab) {
-        //     $tab->contentTab('seo', 'Настройки SEO', url("catalog/seo"));
-        // });
-
-
         Phpr::$events->addEvent(Db_Events::onModelDefineColumns, function (Db_ActiveRecord $model) {
             if ($model instanceof Catalog_Category) {
                 $model->defineColumn("hot", "Популярная категория");
@@ -96,6 +86,11 @@ class Blackbox_Module extends Core_ModuleBase
                 $tabSEO = self::tabs['seo'];
                 $model->addFormField("seo_title_add_postfix", "left")->tab($tabSEO);
                 $model->addFormField("seo_description_add_postfix", "left")->tab($tabSEO);
+
+                // Артикулы
+                if ($model->type) {
+                    $model->addFormPartial("modules/blackbox/controllers/partials/_update_list_skus.htm")->tab('Артикулы');
+                }
             }
 
             if ($model instanceof Shop_Order) {

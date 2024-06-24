@@ -1286,7 +1286,6 @@ footer {
 					.name {
 						width: 100%;
 						margin-right: 25px;
-						//border: 1px solid red;
 
 						a {
 							font-size: 15px;
@@ -1299,18 +1298,18 @@ footer {
 								display: block;
 								font-weight: normal;
 								line-height: 1em;
+								color: $color;
 							}
 						}
 
 						.product-other-info {
 							margin-top: 7px;
 							display: flex;
-							column-gap: 25px;
+							column-gap: 15px;
 
 							p {
-								font-size: 14px;
+								font-size: 13px;
 								color: #808080;
-								width: 100px;
 								white-space: nowrap;
 							}
 						}

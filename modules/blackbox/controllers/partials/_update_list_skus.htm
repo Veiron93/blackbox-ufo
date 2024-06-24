@@ -1,0 +1,103 @@
+<?php
+
+$skus = null;
+
+if ($form_model->type) {
+    $productType = strtoupper($form_model->type->name);
+
+    if ($productType) {
+        $skus = Phpr::$config->get($productType);
+    }
+}
+
+if (!$skus) {
+    return null;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $headers = getallheaders();
+
+    if (isset($headers['X-Function-Name']) && $headers['X-Function-Name'] === 'onUpdateListSkus') {
+        onUpdateListSkus($skus, $form_model->id);
+    }
+}
+
+function onUpdateListSkus($skus, $productId)
+{
+    $productSkus = Db_DbHelper::objectArray("SELECT * FROM catalog_skus WHERE product_id = $productId");
+    $productSkusIsCodeAssoc = [];
+    $newSkus = [];
+    $updateSkus = [];
+
+    if ($productSkus) {
+        foreach ($productSkus as $productSku) {
+            if ($productSku->sku) {
+                $productSkusIsCodeAssoc[$productSku->sku] = $productSku;
+            }
+        }
+
+        foreach ($skus as $skuKey => $sku) {
+            if (!isset($productSkusIsCodeAssoc[$skuKey])) {
+                $newSkus[$skuKey] = $sku;
+            }
+
+            if (isset($productSkusIsCodeAssoc[$skuKey]) && $productSkusIsCodeAssoc[$skuKey]->name !== $sku) {
+                $updateSkus[$skuKey] = $productSkusIsCodeAssoc[$skuKey]->name = $sku;
+            }
+        }
+    } else {
+        $newSkus = $skus;
+    }
+
+
+    // обновление имени
+    if ($updateSkus) {
+        foreach ($updateSkus as $key => $value) {
+            Db_DbHelper::query("UPDATE catalog_skus SET name = ? WHERE sku = ?", [$value, $key]);
+        }
+    }
+
+    // + модели
+    if ($newSkus) {
+        $sqlValues = "";
+
+        $i = 0;
+        foreach ($newSkus as $newSkuKey => $newSku) {
+            $sqlValues .= "('$productId', '$newSkuKey', '$newSku', $i),";
+            $i++;
+        }
+
+        $sqlValues = substr($sqlValues, 0, -1);
+
+        Db_DbHelper::query("INSERT INTO catalog_skus (product_id, sku, name, sort_order) VALUES $sqlValues");
+    }
+}
+?>
+
+<button type="button" class="btn btn-primary btn-update">Обновить список</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('.btn-update');
+
+        if (!btn) {
+            return null;
+        }
+
+        btn.addEventListener('click', () => {
+            fetch(location.pathname, {
+                method: 'POST',
+                headers: {
+                    'X-Function-Name': "onUpdateListSkus"
+                }
+            })
+        })
+    })
+</script>
+
+<style>
+    .btn-update {
+        margin-top: 20px;
+    }
+</style>
