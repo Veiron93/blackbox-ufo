@@ -1,22 +1,22 @@
-"use strict";
+'use strict'
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
 	// ФОТО ТОВАРА
-	let params = null;
+	let params = null
 
-	if(window.innerWidth <= 768){
+	if (window.innerWidth <= 768) {
 		params = {
 			pagination: {
-				el: ".swiper-pagination",
-				type: "fraction",
+				el: '.swiper-pagination',
+				type: 'fraction',
 			},
 		}
-	}else{
-		let sliderThumbs = new Swiper(".catalog-product .product-gallery_thumbs", {
+	} else {
+		let sliderThumbs = new Swiper('.catalog-product .product-gallery_thumbs', {
 			direction: 'vertical',
 			slidesPerView: 6,
 			spaceBetween: 10,
-		});
+		})
 
 		params = {
 			thumbs: {
@@ -25,60 +25,111 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
-	new Swiper(".catalog-product .product-gallery_big", {
+	new Swiper('.catalog-product .product-gallery_big', {
 		loop: true,
 		//effect: "fade",
 		// navigation: {
 		// 	nextEl: ".button-next",
 		// 	prevEl: ".button-prev",
 		// },
-		...params
-	});
+		...params,
+	})
+
+	function protectiveGlassInstallation() {
+		const modal = document.querySelector('#modal-protective-glass-installation')
+
+		if (!modal) {
+			return
+		}
+
+		const productName = modal.querySelector('.product-name span')
+		const priceProduct = modal.querySelector('.price-product')
+		const priceService = modal.querySelector('.price-service')
+		const priceTotal = modal.querySelector('.price-total')
+
+		Fancybox.bind('.btn_protective-glass-installation', {
+			src: '.test',
+			zoom: false,
+			type: 'inline',
+			scrolling: 'no',
+			dragToClose: false,
+
+			on: {
+				init: () => {
+					if (document.querySelector('.skus-list')) {
+						productName.textContent = document.querySelector(
+							'.skus-list input:checked + label'
+						).textContent
+					}
+
+					priceProduct.textContent = document.querySelector(
+						'.product-price_actual'
+					).textContent
+
+					priceTotal.textContent =
+						Number(priceProduct.textContent) + Number(priceService.textContent)
+				},
+			},
+		})
+	}
+
+	protectiveGlassInstallation()
 
 	// ВЫБОР АРТИКУЛА
 	function selectSku() {
-		let productPage = document.querySelector(".catalog-product");
+		let productPage = document.querySelector('.catalog-product')
 
-		if(!productPage){
-			return false;
+		if (!productPage) {
+			return false
 		}
 
-		const skus = productPage.querySelectorAll("input[name='product-sku']");
-		const btnsAddToCart = productPage.querySelectorAll(".btn-add-cart");
-		const sectionsActualPriceProduct = productPage.querySelectorAll(".product-price .product-price_actual");
+		const skus = productPage.querySelectorAll("input[name='product-sku']")
+		const btnsAddToCart = productPage.querySelectorAll('.btn-add-cart')
+		const sectionsActualPriceProduct = productPage.querySelectorAll(
+			'.product-price .product-price_actual'
+		)
 
-		const sectionsProductCode = productPage.querySelectorAll(".product-code");
-		const sectionsProductAmount = productPage.querySelectorAll(".product-amount");
+		const sectionsProductCode = productPage.querySelectorAll('.product-code')
+		const sectionsProductAmount =
+			productPage.querySelectorAll('.product-amount')
 
 		function setDataIdSku(sku) {
-			btnsAddToCart.forEach(btn => btn.setAttribute("data-id-sku", sku.value));
+			btnsAddToCart.forEach((btn) => btn.setAttribute('data-id-sku', sku.value))
 		}
 
 		function price(sku) {
-			let price = sku.getAttribute("data-price");
-			sectionsActualPriceProduct.forEach(priceProduct => priceProduct.textContent = price);
+			let price = sku.getAttribute('data-price')
+			sectionsActualPriceProduct.forEach(
+				(priceProduct) => (priceProduct.textContent = price)
+			)
 		}
 
 		function productsOtherInfo(sku) {
-			let leftover = sku.getAttribute("data-leftover");
-			let skuId = sku.value;
+			let leftover = sku.getAttribute('data-leftover')
+			let skuId = sku.value
 
-			sectionsProductCode.forEach(productCode => productCode.querySelector(".product-code_sku").textContent = skuId);
-			sectionsProductAmount.forEach(productAmount => productAmount.querySelector("span").textContent = leftover);
+			sectionsProductCode.forEach(
+				(productCode) =>
+					(productCode.querySelector('.product-code_sku').textContent = skuId)
+			)
+			sectionsProductAmount.forEach(
+				(productAmount) =>
+					(productAmount.querySelector('span').textContent = leftover)
+			)
 		}
-		
+
 		if (skus) {
 			skus.forEach((sku) =>
-				sku.addEventListener("change", (ev) => {
-					let sku = ev.target;
+				sku.addEventListener('change', (ev) => {
+					let sku = ev.target
 
-					setDataIdSku(sku);
-					price(sku);
-					productsOtherInfo(sku);
+					setDataIdSku(sku)
+					price(sku)
+					productsOtherInfo(sku)
 				})
-			);
+			)
 		}
 	}
 
-	selectSku();
-});
+	selectSku()
+})
