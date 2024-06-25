@@ -153,7 +153,7 @@ class App_Catalog
 				cp.complect_useded_device, cp.complect_non_elements_useded_device, cp.added_acsessuares_useded_device,
 				cp.seo_title_add_postfix, cp.seo_description_add_postfix,
 
-				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, IF(cs.leftover is null, 0, cs.leftover), cs.price) SEPARATOR '----') 
+				(SELECT GROUP_CONCAT(CONCAT_WS('---', cs.id, cs.name, IF(cs.leftover is null, 0, cs.leftover), cs.price) ORDER BY cs.sort_order desc SEPARATOR '----') 
 					FROM catalog_skus cs 
 					WHERE cs.product_id = cp.id) as skus,		
 

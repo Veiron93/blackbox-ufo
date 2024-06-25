@@ -153,8 +153,6 @@ function checkActualProductsCart()
 	$products_id = [];
 	$skus_id = [];
 
-
-
 	foreach ($product_cart_items as $product_cart) {
 		array_push($products_id, $product_cart->productId);
 
@@ -188,8 +186,6 @@ function checkActualProductsCart()
 			}
 		}
 	}
-
-
 
 	if (count($products_id)) {
 
@@ -242,33 +238,6 @@ function getProductsAddedCart()
 	return $products_cart_id;
 }
 
-
-// function skus($product_skus)
-// {
-// 	$skus = [];
-
-// 	foreach ($product_skus as $s) {
-
-// 		if($s->leftover){
-
-// 			$sku["id"] = $s->id;
-// 			$sku["product_id"] = $s->product_id;
-// 			$sku["name"] = $s->name;
-// 			$sku["price"] = $s->price;
-// 			$sku["leftover"] = $s->leftover;
-
-// 			array_push($skus, $sku);
-// 		}
-// 	}
-
-// 	usort($skus, function ($a, $b) {
-// 		return strcmp($a["name"], $b["name"]);
-// 	});
-
-// 	return $skus;
-// }
-
-
 // стоимость товара в корзине
 function cartProductPrice($product, $total_price = false)
 {
@@ -297,10 +266,4 @@ function cartTotalPrice($products)
 	}
 
 	return $total_price;
-}
-
-// проверка на мобильное устройство
-function isMobile()
-{
-	return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
