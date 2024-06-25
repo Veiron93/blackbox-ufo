@@ -54,7 +54,12 @@
 		$selected_sku = null;
 
 		if (isset($product->skus)) {
-			$selected_sku = $product->skus[0];
+			for ($i = 0; $i <= count($product->skus) - 1; $i++) {
+				if ($product->skus[$i]->leftover > 0) {
+					$selected_sku = $product->skus[$i];
+					break;
+				}
+			}
 		}
 		?>
 
