@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $headers = getallheaders();
 
-    if (isset($headers['X-Function-Name']) && $headers['X-Function-Name'] === 'onUpdateListSkus') {
+    if ((isset($headers['X-Function-Name']) && $headers['X-Function-Name'] === 'onUpdateListSkus') || (isset($headers['x-function-name']) && $headers['x-function-name'] === 'onUpdateListSkus')) {
         onUpdateListSkus($skus, $form_model->id);
     }
 }
