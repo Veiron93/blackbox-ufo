@@ -30,6 +30,7 @@ class Blackbox_Module extends Core_ModuleBase
                 $model->defineColumn("individual_price", "Индивидуальная цена");
                 $model->defineColumn("title_sku", "Заголовок у артикулов")->invisible();
                 $model->defineColumn("is_sale", "Добавить в блок - Товары со скидкой")->invisible();
+                $model->defineColumn("service_install", "Услуга установки")->invisible();
 
                 // Б/У товаровы
                 $model->defineColumn("is_useded_device", "Товар Б/У")->invisible();
@@ -63,11 +64,10 @@ class Blackbox_Module extends Core_ModuleBase
             if ($model instanceof Catalog_Product) {
                 $model->addFormField("regular_photo", "left")->sortOrder(10)->tab('Фотографии');
                 $model->addFormField("title_sku", "left")->sortOrder(90)->tab("Дополнительно");
-
+                $model->addFormField("service_install", "left")->sortOrder(50)->tab(Catalog_Product::$generalTabTitle);
                 $model->addFormField("individual_price", "left")->sortOrder(50)->comment('На стоимость товара не повлияют другие факторы. Например: общая скидка, красивая цена', 'above')->tab(Catalog_Product::$generalTabTitle);
                 $model->addFormField("is_sale", "left")->sortOrder(70)->tab(Catalog_Product::$generalTabTitle);
                 $model->addFormField("sales")->sortOrder(110)->tab(Catalog_Product::$generalTabTitle);
-
 
                 // Б/У товары
                 $tabUsedDevice = self::tabs['usedProducts'];

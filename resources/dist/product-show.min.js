@@ -75,6 +75,87 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	protectiveGlassInstallation()
 
+	function onGlassInstallation() {
+		const modal = document.querySelector('#modal-protective-glass-installation')
+
+		if (!modal) {
+			return
+		}
+
+		const formWrapper = modal.querySelector(
+			'.protective-glass-installation-wrapper'
+		)
+		const success = modal.querySelector('.success')
+
+		const glassName = modal.querySelector('.product-name')
+		const glassLink = location.href
+
+		const priceProduct = modal.querySelector('.price-product')
+		const priceService = modal.querySelector('.price-service')
+		const priceTotal = modal.querySelector('.price-total')
+
+		const phone = modal.querySelector(
+			'input[name="protective-glass-installation-phone"]'
+		)
+		const date = modal.querySelector(
+			'input[name="protective-glass-installation-date"]'
+		)
+		const time = modal.querySelector(
+			'input[name="protective-glass-installation-time"]'
+		)
+		const btn = modal.querySelector('.protective-glass-installation-btn')
+
+		btn.addEventListener('click', () => {
+			if (!phone.value || !date.value || !time.value) {
+				if (!phone.value) {
+					phone.classList.add('error')
+				}
+
+				if (!date.value) {
+					date.classList.add('error')
+				}
+
+				if (!time.value) {
+					time.classList.add('error')
+				}
+
+				return
+			}
+
+			fetch('/', {
+				method: 'POST',
+				headers: {
+					'UFO-AJAX-HANDLER': 'ev{onOrderGlassInstallation}',
+					'UFO-REQUEST': 1,
+				},
+				body: JSON.stringify({
+					phone: phone.value,
+					date: date.value,
+					time: time.value,
+					glassName: glassName.textContent,
+					glassLink: glassLink,
+					priceProduct: priceProduct.textContent.trim(),
+					priceService: priceService.textContent.trim(),
+					priceTotal: priceTotal.textContent.trim(),
+				}),
+			})
+				.then((response) => response.json())
+				.then((response) => {
+					phone.value = ''
+					date.value = ''
+					time.value = ''
+
+					formWrapper.classList.add('hidden')
+					success.classList.add('active')
+				})
+				.catch((error) => {
+					//console.log(error)
+				})
+		})
+	}
+
+	onGlassInstallation()
+
 	// ВЫБОР АРТИКУЛА
 	function selectSku() {
 		let productPage = document.querySelector('.catalog-product')

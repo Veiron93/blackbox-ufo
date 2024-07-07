@@ -2,7 +2,8 @@
 class Application extends App_Controller
 {
 	protected $globalHandlers = [
-		"onGetRandomProducts"
+		"onGetRandomProducts",
+		"onOrderGlassInstallation",
 	];
 
 	public function index()
@@ -112,5 +113,51 @@ class Application extends App_Controller
 		$products_partial = Phpr_View::block($block);
 
 		$this->ajaxResponse(['newProducts' => $products_partial, 'newProductsIds' => $new_products_ids]);
+	}
+
+
+	protected function onOrderGlassInstallation()
+	{
+		try {
+			$inputJSON = file_get_contents('php://input');
+			$data = json_decode($inputJSON, TRUE);
+
+			$values['phone'] = $data['phone'];
+			$values['author_name'] = "Клиент";
+			$values['author_email'] = "noreplay@bb65.ru";
+			$values['date'] = $data['date'];
+			$values['time'] = $data['time'];
+			$values['glassName'] = $data['glassName'];
+			$values['glassLink'] = $data['glassLink'];
+			$values['priceProduct'] = $data['priceProduct'];
+			$values['priceService'] = $data['priceService'];
+			$values['priceTotal'] = $data['priceTotal'];
+			$values['comment'] = "";
+
+			if (!$this->validation->validate($values)) {
+				$this->validation->throwException();
+			}
+
+			$dateOrderArr = explode('-', $values['date']);
+
+			if ($dateOrderArr) {
+				$date = new Phpr_DateTime();
+				$date->setDate(abs($dateOrderArr[0]), abs($dateOrderArr[1]), abs($dateOrderArr[2]));
+				$values['comment'] .= PHP_EOL  . "Дата записи: " . $date->format('%e %B %Y') . PHP_EOL . "Время записи: " . $values['time'] . PHP_EOL;
+			}
+
+			$values['comment'] .= $values['glassName'] . PHP_EOL;
+			$values['comment'] .= "Ссылка на товар: " . $values['glassLink'] . PHP_EOL;
+			$values['comment'] .= "Цена: " . $values['priceProduct'] . " (товар) + " . $values['priceService'] . " (услуга) = " . $values['priceTotal'] . " руб." . PHP_EOL;
+
+			$message = GlobalComments_Comment::create($values);
+			$message->save($values);
+
+			$response['success'] = "Успех";
+
+			$this->ajaxResponse($response);
+		} catch (Exception $ex) {
+			$this->ajaxError($ex);
+		}
 	}
 }

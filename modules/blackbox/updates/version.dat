@@ -9,3 +9,4 @@
 #9 add column show_block_useded_device in product
 #10 add column seo_title_add_postfix && seo_description_add_postfix in catalog_category, catalog_products
 #11 add individual_price in catalog_products
+#12 add service_install in catalog_products

@@ -1,0 +1,36 @@
+<div class="protective-glass-installation">
+    <button data-src="#modal-protective-glass-installation" class="btn_protective-glass-installation">Записаться на установку</button>
+    <span>время установки <br> 10-15 минут</span>
+</div>
+
+<div id="modal-protective-glass-installation" style="display:none;">
+    <div class="protective-glass-installation-wrapper">
+        <h3>Запись на установку</h3>
+        <div class="product-name"><?= $product->name ?> <span></span></div>
+
+        <form>
+            <div class="form-section">
+                <label>Номер телефона</label>
+                <input type="text" name="protective-glass-installation-phone">
+            </div>
+
+            <div class="form-section form-section_date">
+                <input type="date" name="protective-glass-installation-date">
+                <input type="time" name="protective-glass-installation-time">
+            </div>
+
+            <div class="time">Предварительно доступный диапазон времени с 10:30 до 18:30</div>
+
+            <div class="price">
+                Итого: <span class="price-product"></span> (товар) + <span class="price-service">200</span> (услуга) = <span class="price-total"></span> руб.
+            </div>
+
+            <button type="button" class="protective-glass-installation-btn">Записаться</button>
+        </form>
+    </div>
+    <div class="success">
+        <span>❤️</span>
+        <h2>Спасибо, что выбрали нас</h2>
+        <p>Ожидайте сообщения от менеджера</p>
+    </div>
+</div>
