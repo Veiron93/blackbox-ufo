@@ -2,6 +2,31 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 	// SLIDERS
+
+	// главный слайдер
+	new Swiper('.main-slider', {
+		loop: true,
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true,
+		},
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false,
+		},
+	})
+
+	// новинки
+	new Swiper('.new-products .products-slider', {
+		loop: true,
+		slidesPerView: 4,
+		spaceBetween: 30,
+		// autoplay: {
+		// 	delay: 5000,
+		// 	disableOnInteraction: false,
+		// },
+	})
+
 	// главный слайдер
 	new Swiper('.main-slider-wrapper', {
 		loop: true,

@@ -1,0 +1,11 @@
+<div class="product-flags">
+	<?php if (isset($product->old_price) && $product->old_price) : ?>
+		<div class="discount" title="На товар действует скидка">
+			- <?= App_Helper::getDiscountPercentage($product->old_price, $product->price); ?>%
+		</div>
+	<?php endif ?>
+
+	<?php if (isset($product->best_seller) && $product->best_seller) : ?>
+		<div class="bestseller" title="Топ продаж">Топ</div>
+	<?php endif ?>
+</div>

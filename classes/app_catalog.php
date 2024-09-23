@@ -22,7 +22,7 @@ class App_Catalog
 
 		$categories = Db_DbHelper::objectArray("SELECT 
 				cc.id, cc.name, cc.hot, cc.title_sku, cc.level, cc.parent_id, cc.path, cc.title_sku,
-				cc.seo_title_add_postfix, cc.seo_description_add_postfix,
+				cc.seo_title_add_postfix, cc.seo_description_add_postfix, cc.parent_title,
 				f.id as image_id, f.disk_name as image_path
                 FROM catalog_categories cc
 				LEFT JOIN db_files f ON f.master_object_id = cc.id and f.master_object_class ='Catalog_Category'

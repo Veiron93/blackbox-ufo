@@ -62,7 +62,7 @@
 			<?/* --- ТОВАРЫ --- */ ?>
 
 			<div class="heading-page">
-				<h1><?= $category->name ?></h1>
+				<h1><?= $category->parent_title ? App_Catalog::getCategory($category->parent_id)->name . " " . $category->name : $category->name ?></h1>
 			</div>
 
 			<div class="catalog-products_wrapper">

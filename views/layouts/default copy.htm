@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<? $this->renderLayout('_head') ?>
+</head>
+
+<body>
+	<div class='wrapper'>
+		<?php $this->renderLayout('_top_banner') ?>
+
+		<?php $this->renderLayout('_header') ?>
+
+		<?php $this->renderLayout('_mobile_bottom_navigation') ?>
+		<?php $this->renderLayout('_mobile_menu') ?>
+		<?php $this->renderLayout('_dynamic_menu_catalog_mobile') ?>
+
+		<div class="content">
+			<?= Phpr_View::block('view') ?>
+		</div>
+
+		<?php $this->renderLayout('_footer') ?>
+	</div>
+
+	<?php $this->renderLayout("_footer_scripts") ?>
+</body>
+
+</html>

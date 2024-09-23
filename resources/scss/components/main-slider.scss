@@ -1,0 +1,26 @@
+.main-slider {
+	height: 100%;
+	width: 25rem;
+	flex: none;
+	margin: 0;
+
+	.slide {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			max-height: 36rem;
+			max-width: 25rem;
+		}
+	}
+
+	.swiper-slide-active {
+		opacity: 0.5 !important;
+		transition: opacity 0.5s !important;
+
+		&:hover {
+			opacity: 0.8 !important;
+		}
+	}
+}

@@ -1,0 +1,31 @@
+<?php
+$mainSlider = App_Helper::getBanners('main_slider');
+shuffle($mainSlider);
+?>
+
+<?php if (isset($mainSlider) && count($mainSlider)) : ?>
+    <div class="main-slider swiper">
+        <div class="swiper-wrapper">
+            <?php foreach ($mainSlider as $banner) : ?>
+                <?php
+                $imgBanner = $banner->image->getPath();
+                $isLink = $banner->link_type !== 'no_link' ? true : false;
+                ?>
+
+                <?php if ($imgBanner) : ?>
+                    <div class="slide swiper-slide">
+                        <?php if ($isLink) : ?>
+                            <a href="<?= ($banner->link_type == 'page') ? $banner->page_code : $banner->link ?>" <?= $banner->open_in_new_window ? ' target="_blank"' : "" ?>>
+                            <?php endif; ?>
+
+                            <img src="<?= $imgBanner ?>" alt="<?= $banner->name ?>">
+
+                            <?php if ($isLink) : ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>

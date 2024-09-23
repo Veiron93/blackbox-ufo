@@ -1,16 +1,8 @@
-<?
-
-/** @var string $idPrefix */
-/** @var bool $withQuantity */
-?>
-
-<?php
-$extra = ["id" => $item->id, "type" => $type];
-$quantity = 1;
-
-if ($type == "sku") {
-	$extra["id_sku"] = $id_sku;
-}
-?>
-
-<div class="btn-add-cart <?= isset($size) ? $size : null ?>" data-id="<?= $extra['id'] ?>" data-type="<?= $type ?>" data-quantity="<?= $quantity ?>" <?= $type == "sku" ? "data-id-sku='$id_sku'" : "" ?>></div>
+<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+<div class="btn-add-to-cart"
+	data-id="<?= $product->id ?>"
+	data-type="<?= $type ?>"
+	data-quantity="1" <?= $type === "sku" ? "data-id-sku='$skuId'" : "" ?>>
+	Добавить
+</div>
+<? Phpr_Form::closeTag(); ?>

@@ -61,7 +61,9 @@ let gulp = require('gulp'),
 	zip = require('gulp-zip')
 
 let customFilePath = './custom-gulpfile.js' // путь к файлу индивидуальной настройки
-let styleFiles = ['styles', 'tinymce', 'protection'] // файлы стилей для препроцессора для отдельной сборки
+let styleFiles = ['styles', 'tinymce'] // файлы стилей для препроцессора для отдельной сборки
+//let styleFiles = ['styles', 'tinymce', 'protection'] // файлы стилей для препроцессора для отдельной сборки
+
 let scriptFiles = [
 	'cart',
 	'product-show',

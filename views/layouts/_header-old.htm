@@ -1,0 +1,64 @@
+<header class="header">
+    <div class="header-wrapper">
+        <?php $this->renderLayout('_logo') ?>
+
+        <div class="navigation">
+            <a href="<?= u('catalog_index', []) ?>" class="btn-catalog">
+                Каталог <br> товаров
+            </a>
+
+            <a href="/protection/" class="btn-protection">
+                Защита <br> устройств
+            </a>
+
+            <div class="btn-about" data-btn-modal="modal-about">
+                О <br> магазине
+            </div>
+        </div>
+
+        <div class="btn-state-search">
+            <img src="/resources/images/icons/search-white.svg" alt="Поиск">
+            <span>Поиск</span>
+        </div>
+
+        <?php $this->renderLayout($this->getViewsDir() . "search/widget.htm") ?>
+        <?php Shop_Helper::renderMiniCart($this) ?>
+    </div>
+</header>
+
+<?php
+$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+?>
+
+<div id="modal-about" class="modal">
+    <div class="modal-wrapper">
+        <div class="btn-close"></div>
+        <div class="modal-header">
+            <div class="modal-title">О магазине</div>
+        </div>
+
+        <div class="modal-content">
+            <address class="phone">
+                <a href="tel:<?= $phone ?>"><?= $phone ?></a>
+            </address>
+
+            <nav>
+                <?php $this->renderLayout('_dynamic_menu') ?>
+            </nav>
+
+            <?php if ($address) : ?>
+                <address class="address">
+                    <a href="<?= $address_link ?>" target="_blank" rel="nofollow noopener noreferrer">
+                        <?= nl2br($address) ?>
+                    </a>
+                </address>
+            <?php endif; ?>
+
+            <div class="map">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=142.730306%2C46.957007&mode=search&oid=78924383125&ol=biz&sctx=ZAAAAAgBEAAaKAoSCTNTWn9L12FAEWfUfJV8ekdAEhIJ1nPS%2B8bXbj8RW3wKgPEMWj8iBgABAgMEBSgKOABAUEgBYiFtaWRkbGVfcG9zdGZpbHRlcl90aHJlc2hjaGFpbj0wLjViH21pZGRsZV9wb3N0ZmlsdGVyX3RocmVzaF9rej0wLjViHG1pZGRsZV9wb3N0ZmlsdGVyX3RocmVzaD0wLjViLnJlbGV2X3JhbmtpbmdfbXNlX2Zvcm11bGE9MS4wOm1zZV9kYzM4Nzc4NF9leHBiKXJlbGV2X2lycmVsX2ZpbHRlcj0xLjA6aXJyZWxfZGMzODE1MjVfZXhwYlByZWFycj1zY2hlbWVfTG9jYWwvR2VvL0J1c0dlb0Nob29zZS9UYWtlUnVicmljRmlyc3RTYW1lQnlSZXN1bHRzTXNlVGhyZXNob2xkPTAuNWI1cmVhcnI9c2NoZW1lX0xvY2FsL0dlby9Qb3N0ZmlsdGVyL0lycmVsVGhyZXNob2xkPTAuMTVqAnJ1nQHNzEw9oAEAqAEAvQF95svHwgEGlYeKgqYCggI30YPQu9C40YbQsCDQmtCw0YDQu9CwINCc0LDRgNC60YHQsCwgNTEg0LHQu9GN0LrQsdC%2B0LrRgYoCAJICAjgwmgIMZGVza3RvcC1tYXBz&sll=142.730306%2C46.957007&sspn=0.005706%2C0.002410&text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%2C%2051%20%D0%B1%D0%BB%D1%8D%D0%BA%D0%B1%D0%BE%D0%BA%D1%81&z=18.43&theme=dark&scroll=false" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

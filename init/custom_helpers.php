@@ -267,3 +267,22 @@ function cartTotalPrice($products)
 
 	return $total_price;
 }
+
+
+// возвращает стоимость товара, с учётом sku
+function minProductPrice($product)
+{
+	if ($product->skus) {
+		$prices = [];
+
+		foreach ($product->skus as $sku) {
+			if ($sku->leftover) {
+				array_push($prices, $sku->price == 0 ? $product->price : $sku->price);
+			}
+		}
+
+		return min($prices);
+	} else {
+		return $product->price;
+	}
+}

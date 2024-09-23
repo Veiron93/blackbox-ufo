@@ -1,92 +1,45 @@
 <?php
-// проверка добавлен ли товар в корзину
-if (in_array($product->id, $idsProductsCart)) $added = true;
+$isAddedToCart = in_array($product->id, $idsProductsCart) ? true : false;
+$isSkus = isset($product->skus);
 ?>
 
-<div class="product-card <?= (isset($added) && $added) ? 'added' : '' ?>" data-id="<?= $product->id ?>">
-	<div class="product-card_photo <?= $product->regular_photo ? 'product-card_photo--regular' : 'product-card_photo--normal' ?>">
-
+<div class="product-card" data-added="<?= $isAddedToCart ?>">
+	<div class="product-card_photo">
 		<a href="<?= u("catalog_product", $product->id); ?>">
 			<?php $image = $this->catalog->imageProduct($product->images); ?>
 			<img src="<?= $image ?>" alt="<?= $product->name ?>" loading="lazy" />
 		</a>
 
-		<?php $this->renderPartial($this->getViewsDir() . "/catalog/_flags_product.htm", [
-			'discount' => $product->old_price ? [$product->old_price, $product->price] : null,
-			'bestseller' => $product->best_seller
-		]); ?>
+		<?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_flags.htm", ['product' => $product]); ?>
 	</div>
 
-	<div class="product-card_info">
+	<div class="product-card_name">
+		<a href="<?= u("catalog_product", $product->id); ?>">
+			<?= $product->name ?>
+		</a>
+	</div>
 
-		<div class="product-card_info-name">
-			<a href="<?= u("catalog_product", $product->id); ?>" title="<?= $product->name ?>"><?= $product->name ?></a>
-		</div>
+	<div class="product-card_buy">
+		<?php $price = Phpr::$lang->num(minProductPrice($product)); ?>
 
-		<?php if ($product->is_useded_device) : ?>
-			<div class="product-card_info-state" title="Состояние товара" style="background: <?= App_Catalog::colorStateProduct($product->state_device_useded_device) ?>">
-				<span>Состояние</span> <?= $product->state_device_useded_device ?> из 10
-			</div>
-		<?php endif; ?>
-
-		<div class="product-card_info-buy">
-			<?php if (isset($product->skus)) : ?>
-
-				<?php
-				$prices = [];
-
-				foreach ($product->skus as $sku) {
-					if ($sku->leftover) {
-						$price = $sku->price == 0 ? $product->price : $sku->price;
-						array_push($prices, round($price));
-					}
-				}
-				?>
-
-				<div class="price">
-					<div class="price-actual">
-						<?php if (count($prices) > 1) : ?>
-							<?php foreach ($prices as $price) : ?>
-								<?php if ($price != $product->price) : ?>
-									<span>от</span>
-									<?php break; ?>
-								<?php endif; ?>
-							<?php endforeach; ?>
-						<?php endif ?>
-
-						<?= Phpr::$lang->num(min($prices)) ?>
-					</div>
-				</div>
-
-			<?php else : ?>
-
-				<?php if ($product->price) : ?>
-					<div class="price">
-						<?php if ($product->old_price) : ?>
-							<div class="price-old"><?= Phpr::$lang->num($product->old_price) ?></div>
-						<?php endif ?>
-
-						<div class="price-actual"><?= Phpr::$lang->num($product->price) ?></div>
-					</div>
+		<div class="prices">
+			<div class="actual-price">
+				<?php if ($isSkus): ?>
+					<span>от </span>
 				<?php endif; ?>
 
-				<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+				<span><?= $price ?> ₽</span>
+			</div>
 
-				<?php
-				$viewData = [
-					'withQuantity' => true,
-					'initialQuantity' => 1,
-					'item' => $product,
-					'type' => 'product',
-					'idPrefix' => "atc-product-{$product->id}",
-					'idsProductsCart' => $idsProductsCart,
-					'size' => 'small'
-				];
-				?>
-
-				<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", $viewData); ?>
-				<? Phpr_Form::closeTag(); ?>
-			<?php endif; ?>
+			<?php if ($product->old_price) : ?>
+				<div class="old-price">
+					<?= Phpr::$lang->num($product->old_price) ?> ₽
+				</div>
+			<?php endif ?>
 		</div>
+
+		<?php if (!$isSkus): ?>
+			<?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", ["product" => $product, 'type' => 'product']); ?>
+		<?php endif; ?>
 	</div>
 </div>

@@ -31,7 +31,7 @@ class Application extends App_Controller
 		$productBestsellers = $this->catalog::getProducts("cp.best_seller is not null", 6);
 
 		// Новинки
-		$productNew = $this->catalog::getProducts("cp.is_new is not null", 12, null, "cp.id desc");
+		$this->viewData['newProducts'] = $newProduct = $this->catalog::getProducts("cp.is_new is not null", 12, null, "cp.id desc");
 
 		// бесконечный список товаров
 		$infinitiListProducts = App_Catalog::getProducts(null, 30, null, 'RAND()');
@@ -41,7 +41,7 @@ class Application extends App_Controller
 			'newProducts' => [
 				'show' => true,
 				'type' => 'product_slider',
-				'products' => $productNew ?? [],
+				'products' => $newProduct ?? [],
 				'params' => [
 					'title' => 'Новинки',
 					'view_type' => 'list'

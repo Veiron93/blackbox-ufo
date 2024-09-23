@@ -1,0 +1,16 @@
+<?
+
+/** @var string $idPrefix */
+/** @var bool $withQuantity */
+?>
+
+<?php
+$extra = ["id" => $item->id, "type" => $type];
+$quantity = 1;
+
+if ($type == "sku") {
+	$extra["id_sku"] = $id_sku;
+}
+?>
+
+<div class="btn-add-cart <?= isset($size) ? $size : null ?>" data-id="<?= $extra['id'] ?>" data-type="<?= $type ?>" data-quantity="<?= $quantity ?>" <?= $type == "sku" ? "data-id-sku='$id_sku'" : "" ?>></div>
