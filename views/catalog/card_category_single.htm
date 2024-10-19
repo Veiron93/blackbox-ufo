@@ -1,0 +1,15 @@
+<a class="card-catalog-category-single" href="<?= u("catalog_category", $category->id) ?>">
+	<?php
+	$image = "/resources/images/icons/no-image.svg";
+
+	if (isset($category->image_id) && isset($category->image_path)) {
+		$image = (new LWImageManipulator($category->image_id, $category->image_path))->getThumb(240, 150, Phpr_ImageManipulator::fit);
+	}
+	?>
+
+	<div class="photo">
+		<img src="<?= $image ?>" alt="<?= $category->name ?>" />
+	</div>
+
+	<span><?= $category->name ?></span>
+</a>

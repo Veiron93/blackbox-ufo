@@ -1,0 +1,11 @@
+<?php
+if (!isset($cart) || !$cart) {
+	$cart = Shop_Cart::getCart();
+}
+
+$countProducts = $cart->getItemsCount();
+?>
+
+<div class="count">
+	<?= $countProducts ?>
+</div>

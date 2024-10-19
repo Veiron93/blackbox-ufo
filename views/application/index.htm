@@ -1,18 +1,25 @@
-<div class="presentation">
+<?php Phpr_View::beginBlock("head") ?>
+<script src="/resources/dist/dayjs/dayjs.min.js" defer></script>
+<script src="/resources/dist/dayjs/ru.js" defer></script>
+<script src="/resources/dist/dayjs/duration.js" defer></script>
+<script src="/resources/dist/discount-products.min.js" defer></script>
+<?php Phpr_View::endBlock() ?>
+
+<section class="presentation">
 	<div class="presentation-about">
 		<h2>Качественные <br> товары и услуги</h2>
 		<nav>
-			<a href="dwd">
-				<img src="/resources/images/icons/search-white.svg" alt="">
+			<a href="/catalog/1/">
+				<img src="/resources/images/icons/catalog-categories/phone-white.svg" alt="гаджеты и аксессуары для мобильных устройств">
 			</a>
-			<a href="dwd">
-				<img src="/resources/images/icons/search-white.svg" alt="">
+			<a href="/catalog/3/">
+				<img src="/resources/images/icons/catalog-categories/car-white.svg" alt="гаджеты и аксессуары для автомобилей">
 			</a>
-			<a href="dwd">
-				<img src="/resources/images/icons/search-white.svg" alt="">
+			<a href="/catalog/2/">
+				<img src="/resources/images/icons/catalog-categories/computer-white.svg" alt="гаджеты и аксессуары для компьютеров">
 			</a>
-			<a href="dwd">
-				<img src="/resources/images/icons/search-white.svg" alt="">
+			<a href="/catalog/4/">
+				<img src="/resources/images/icons/catalog-categories/home-white.svg" alt="гаджеты и аксессуары для дома">
 			</a>
 		</nav>
 
@@ -22,12 +29,86 @@
 	</div>
 
 	<?php $this->renderLayout('_main_slider'); ?>
-</div>
-
+</section>
 
 <?php if (isset($newProducts) && $newProducts): ?>
-	<div class="new-products">
+	<section class="new-products">
 		<h3 class="heading-3">Новинки</h3>
 		<?php $this->renderPartial($this->getViewsDir() .  "/catalog/blocks/products_slider.htm", ['products' => $newProducts]); ?>
-	</div>
+	</section>
 <?php endif; ?>
+
+<div class="telegram-discount">
+	<div>
+		<span>за подписку на наш Телеграм</span>
+		<span>5% СКИДКА</span>
+	</div>
+</div>
+
+<?php if (isset($discountProducts) && $discountProducts): ?>
+	<section class="discount-products">
+		<div class="discount-products_header">
+			<h3>Товары недели</h3>
+			<span class="discount-products_time"></span>
+		</div>
+		<?php $this->renderPartial($this->getViewsDir() .  "/catalog/blocks/products_slider.htm", ['products' => $discountProducts]); ?>
+	</section>
+<?php endif; ?>
+
+<div class="index-links-catalog">
+	<a href="/sale/" class="btn-all-products-discount">Все товары со скидкой</a>
+	<a href="/catalog/" class="btn-all-products-discount">Все категории</a>
+	<a href="/catalog/all-products/" class="btn-all-products-discount">Все товары</a>
+</div>
+
+<section class="index-services">
+	<h3 class="heading-2">Услуги</h3>
+
+	<div class="index-services_list">
+		<div class="service-card">
+			<div class="service-card_name">
+				<span>Установка защитных плёнок и стёкол</span> на смартфоны, планшеты, смарт часы
+			</div>
+			<div class="service-card_footer">
+				<span>от 450 рублей</span>
+				<span>Время установки: ~10-20 минут</span>
+				<a href="/protection/" target="_blank">Записаться</a>
+			</div>
+		</div>
+
+		<div class="service-card">
+			<div class="service-card_name">
+				<span>Установка защитных плёнок и стёкол</span> на смартфоны, планшеты, смарт часы
+			</div>
+			<div class="service-card_footer">
+				<span>от 450 рублей</span>
+				<span>Время установки: ~10-20 минут</span>
+				<a href="/protection/" target="_blank">Записаться</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<?php
+$phone = $this->menuItems->getTextBlock('phone', 'Телефон', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address = $this->menuItems->getTextBlock('address', 'Адрес', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+$address_link = $this->menuItems->getTextBlock('address_link', 'Адрес - ссылка', Admin_TextBlock::TYPE_PLAIN, '', 'Контакты')->content;
+?>
+
+<address class="index-about">
+	<div class="index-about_address">
+		<img src="/resources/images/icons/map-white.svg">
+		<a href="<?= $address_link ?>" target="_blank"><?= nl2br($address) ?></a>
+	</div>
+
+	<div class="index-about_list">
+		<a class="index-about_route" href="https://yandex.ru/maps/?rtext=~46.956890,142.727331" target="_blank" rel="nofollow noopener noreferrer">
+			<img src="/resources/images/icons/test.svg" alt="">
+			Проложить маршрут
+		</a>
+
+		<a href="https://t.me/blackbox65/" rel="nofollow">Телеграм</a>
+		<a href="whatsapp://send?phone=79624192078">ВатсАпп</a>
+		<a href="tel:<?= $phone ?>"><?= $phone ?></a>
+	</div>
+</address>

@@ -1,6 +1,6 @@
 <?php
-$seo_title = "Каталог товаров | Большой выбор, низкие цены, доставка по Южно-Сахалинску | БЛЭКБОКС";
-$seo_description = "Магазин электроники и аксессуаров для 📱 гаджетов, 🖥 компьютеров, 🚘 автомобилей, 🏠 дома | БЛЭКБОКС | Южно-Сахалинск | Зарядки, кабели, наушники, чехлы, автосканеры и многое др.";
+$seo_title = "Каталог товаров | БЛЭКБОКС | Южно-Сахалинск";
+$seo_description = "Магазин гаджетов и аксессуаров для 📱 мобильных устройств, 🚘 авто, 🖥 компьютеров, 🏠 дома";
 ?>
 
 <?php Phpr_View::beginBlock("meta") ?>
@@ -39,16 +39,14 @@ $seo_description = "Магазин электроники и аксессуар�
 </script>
 <?php Phpr_View::endBlock(true) ?>
 
-<div class="catalog-categories-index container">
+<section class="catalog-index">
+	<h1 class="heading-1">Каталог товаров</h1>
+
 	<?php if ($catalogRootCategories) : ?>
-		<!-- <h1 class="catalog-categories-index_title">Каталог товаров </h1> -->
-
-		<!-- БЛЭКБОКС -->
-
-		<div class="catalog-categories-index_list">
+		<div class="catalog-index_list">
 			<?php foreach ($catalogRootCategories as $category) : ?>
-				<?php $this->renderPartial($this->getViewsDir() . "/catalog/item_catalog_category_multi.htm", ['category' => $category]); ?>
+				<?php $this->renderPartial($this->getViewsDir() . "/catalog/card_category_multi.htm", ['category' => $category]); ?>
 			<?php endforeach; ?>
 		</div>
 	<?php endif ?>
-</div>
+</section>

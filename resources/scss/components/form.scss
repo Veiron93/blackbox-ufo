@@ -1,0 +1,130 @@
+form {
+	.form-section {
+		margin-bottom: 1.2rem;
+
+		&-title {
+			font-weight: 500;
+			margin-bottom: 1.5rem;
+			text-transform: uppercase;
+			font-size: 2rem;
+		}
+
+		label {
+			margin-bottom: 0.5rem;
+			display: block;
+			font-size: 1.4rem;
+
+			.require {
+				color: #ff0202;
+			}
+		}
+
+		input[type='text'],
+		input[type='tel'],
+		input[type='email'],
+		select,
+		textarea {
+			width: 100%;
+			border-radius: $brsSmall;
+			padding: 1rem;
+			outline: none;
+			background: #343434;
+			color: #fff;
+			transition: border-color 0.2s;
+			font-size: 1.3rem;
+			line-height: 1.2em;
+			border: none;
+
+			&:hover,
+			&:focus {
+				border-color: rgba($accentHover, 0.6);
+			}
+
+			&::placeholder {
+				color: #777;
+				color: #c3c3c3;
+				font-size: 1.3rem;
+				line-height: 1.2em;
+			}
+		}
+
+		input[type='text'],
+		input[type='tel'],
+		input[type='email'],
+		select {
+			height: 3.5rem;
+		}
+
+		textarea {
+			min-height: 7rem;
+			resize: vertical;
+		}
+
+		.form-item-radio {
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: 1rem;
+
+			label {
+				width: calc(100% - 2.4rem);
+				cursor: pointer;
+				margin-bottom: 0;
+				order: 2;
+				line-height: 1.35em;
+				font-size: 1.4rem;
+
+				span {
+					font-size: 1.4rem;
+					font-weight: 500;
+				}
+			}
+
+			input {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex: none;
+
+				margin-top: 0.2rem;
+				margin-right: 0.7rem;
+
+				border: 0.2rem solid #fff;
+				width: 1.4rem;
+				height: 1.4rem;
+
+				border-radius: 50%;
+				appearance: none;
+				outline: none;
+				cursor: pointer;
+
+				&:checked {
+					background-color: $accent;
+				}
+
+				&:checked + .form-item-radio-description {
+					display: block;
+				}
+			}
+
+			&-description {
+				display: none;
+				width: 100%;
+				order: 3;
+				border-radius: $brs;
+				background: $accentThird;
+				padding: 0.5rem 1rem;
+				margin: 0.5rem 0 1rem 2rem;
+				font-size: 1.3rem;
+				line-height: 1.7em;
+
+				* {
+					font-size: 1.3rem;
+				}
+
+				a {
+					color: $accentSecond;
+				}
+			}
+		}
+	}
+}

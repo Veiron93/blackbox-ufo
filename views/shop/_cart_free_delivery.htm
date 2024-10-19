@@ -1,0 +1,11 @@
+<?php
+$cartItems = $cart->getItems();
+$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content;
+$cartTotalPrice = cartTotalPrice($cartItems, true);
+?>
+
+<?php if ($freeDelivery && $freeDelivery > $cartTotalPrice) : ?>
+    <div class="cart-free-delivery">
+        <?= Core_Number::formatNumber($freeDelivery - $cartTotalPrice) ?> &#8381; до бесплатной доставки по городу
+    </div>
+<?php endif; ?>

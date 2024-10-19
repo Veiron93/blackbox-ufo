@@ -3,7 +3,7 @@ $isAddedToCart = in_array($product->id, $idsProductsCart) ? true : false;
 $isSkus = isset($product->skus);
 ?>
 
-<div class="product-card" data-added="<?= $isAddedToCart ?>">
+<div class="product-card" data-added="<?= $isAddedToCart ?>" data-id="<?= $product->id ?>">
 	<div class="product-card_photo">
 		<a href="<?= u("catalog_product", $product->id); ?>">
 			<?php $image = $this->catalog->imageProduct($product->images); ?>

@@ -27,6 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		// },
 	})
 
+	// скидки
+	new Swiper('.discount-products .products-slider', {
+		loop: true,
+		slidesPerView: 4,
+		spaceBetween: 30,
+		// autoplay: {
+		// 	delay: 5000,
+		// 	disableOnInteraction: false,
+		// },
+	})
+
 	// главный слайдер
 	new Swiper('.main-slider-wrapper', {
 		loop: true,
@@ -303,151 +314,79 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	viewProductList()
 
-	// ДОБАВИТЬ В КОРЗИНУ
-	function productAddToCart() {
-		const url = location.pathname
-		const page = url.split('/')[2] == 'product' ? 'product' : 'catalog'
-
-		let btns = document.querySelectorAll('.btn-add-cart')
-		let products = []
-
-		if (page == 'product') {
-			let product = document.querySelector('.catalog-product')
-			products.push(product)
-		} else {
-			products = document.querySelectorAll('.product-card')
-		}
-
-		let config = {
-			headers: {
-				'UFO-AJAX-HANDLER': 'ev{onAddToCart}',
-				'UFO-REQUEST': 1,
-			},
-		}
-
-		let miniCartWrapper = document.getElementById('mini-cart'),
-			miniCartMobileWrapper = document.getElementById('mini-cart-mobile')
-
-		if (btns && products) {
-			btns.forEach((btn) => {
-				btn.addEventListener('click', function () {
-					let id = this.getAttribute('data-id'),
-						type = this.getAttribute('data-type'),
-						quantity = this.getAttribute('data-quantity'),
-						id_sku = this.getAttribute('data-id-sku')
-
-					axios
-						.post(
-							'/shop/',
-							{
-								id: id,
-								type: type,
-								quantity: quantity,
-								id_sku: id_sku,
-							},
-							config
-						)
-						.then((response) => {
-							let updatedMiniCart = response.data.response['#mini-cart']
-							let updatedMiniCartMobile =
-								response.data.response['#mini-cart-mobile']
-
-							if (updatedMiniCart && updatedMiniCartMobile) {
-								if (miniCartWrapper) {
-									miniCartWrapper.innerHTML = updatedMiniCart
-								}
-
-								if (miniCartMobileWrapper) {
-									miniCartMobileWrapper.innerHTML = updatedMiniCartMobile
-								}
-
-								products.forEach((product) => {
-									if (product.getAttribute('data-id') == id) {
-										product.classList.add('added')
-									}
-								})
-							}
-						})
-				})
-			})
-		}
-	}
-
-	productAddToCart()
-
 	// БЛОК БЕСКОНЕЧНЫЙ СПИСОК ТОВАРОВ
-	function onInfinityProductsList() {
-		let infinityProductsList = document.querySelector('.infinity-products-list')
+	// function onInfinityProductsList() {
+	// 	let infinityProductsList = document.querySelector('.infinity-products-list')
 
-		if (!infinityProductsList) {
-			return
-		}
+	// 	if (!infinityProductsList) {
+	// 		return
+	// 	}
 
-		let btnMore = infinityProductsList.querySelector('.btn-more-products')
-		let wrapperProductsList =
-			infinityProductsList.querySelector('.wrapper-products')
+	// 	let btnMore = infinityProductsList.querySelector('.btn-more-products')
+	// 	let wrapperProductsList =
+	// 		infinityProductsList.querySelector('.wrapper-products')
 
-		let config = {
-			headers: {
-				'UFO-AJAX-HANDLER': 'ev{onGetRandomProducts}',
-				'UFO-REQUEST': 1,
-			},
-		}
+	// 	let config = {
+	// 		headers: {
+	// 			'UFO-AJAX-HANDLER': 'ev{onGetRandomProducts}',
+	// 			'UFO-REQUEST': 1,
+	// 		},
+	// 	}
 
-		let products = wrapperProductsList.querySelectorAll('.product-card')
-		let ids = []
+	// 	let products = wrapperProductsList.querySelectorAll('.product-card')
+	// 	let ids = []
 
-		if (products) {
-			products.forEach((product) => ids.push(product.getAttribute('data-id')))
-		}
+	// 	if (products) {
+	// 		products.forEach((product) => ids.push(product.getAttribute('data-id')))
+	// 	}
 
-		btnMore.addEventListener('click', () => {
-			axios
-				.post(
-					'/',
-					{
-						ids: ids,
-					},
-					config
-				)
-				.then((response) => {
-					if (!response.data.response) {
-						return
-					}
+	// 	btnMore.addEventListener('click', () => {
+	// 		axios
+	// 			.post(
+	// 				'/',
+	// 				{
+	// 					ids: ids,
+	// 				},
+	// 				config
+	// 			)
+	// 			.then((response) => {
+	// 				if (!response.data.response) {
+	// 					return
+	// 				}
 
-					let newProductsIds = response.data.response.newProductsIds,
-						newProducts = response.data.response.newProducts
+	// 				let newProductsIds = response.data.response.newProductsIds,
+	// 					newProducts = response.data.response.newProducts
 
-					wrapperProductsList.insertAdjacentHTML('beforeend', newProducts)
-					newProductsIds.forEach((id) => ids.push(id))
+	// 				wrapperProductsList.insertAdjacentHTML('beforeend', newProducts)
+	// 				newProductsIds.forEach((id) => ids.push(id))
 
-					productAddToCart()
-				})
-		})
-	}
+	// 				productAddToCart()
+	// 			})
+	// 	})
+	// }
 
-	onInfinityProductsList()
+	//onInfinityProductsList()
 
-	function stateTopSectionHeader() {
-		const btn = document.querySelector('.btn-state-top-section')
+	// function stateTopSectionHeader() {
+	// 	const btn = document.querySelector('.btn-state-top-section')
 
-		if (!btn) {
-			return false
-		}
+	// 	if (!btn) {
+	// 		return false
+	// 	}
 
-		const topSection = document.querySelector('.header-section-top')
+	// 	const topSection = document.querySelector('.header-section-top')
 
-		btn.addEventListener('click', () => {
-			topSection.classList.toggle('active')
-			btn.classList.toggle('active')
-			btn.setAttribute(
-				'title',
-				btn.classList.contains('active')
-					? 'Скрыть'
-					: 'Показать больше информации'
-			)
-		})
-	}
+	// 	btn.addEventListener('click', () => {
+	// 		topSection.classList.toggle('active')
+	// 		btn.classList.toggle('active')
+	// 		btn.setAttribute(
+	// 			'title',
+	// 			btn.classList.contains('active')
+	// 				? 'Скрыть'
+	// 				: 'Показать больше информации'
+	// 		)
+	// 	})
+	// }
 
-	stateTopSectionHeader()
+	// stateTopSectionHeader()
 })

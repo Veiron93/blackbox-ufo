@@ -15,7 +15,7 @@ class Application extends App_Controller
 		$usededProducts = $this->catalog::getProducts("cp.is_useded_device is not null && cp.show_block_useded_device", 6);
 
 		// Товары со скидкой
-		$productSale = $this->catalog::getProducts("cp.is_sale is not null", 6);
+		$this->viewData['discountProducts'] = $discountProducts = $this->catalog::getProducts("cp.is_sale is not null", 4);
 
 		$this->viewData['countProductsDiscount'] = Db_DbHelper::scalar(
 			"SELECT COUNT(id)

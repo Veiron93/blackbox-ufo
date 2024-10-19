@@ -1,0 +1,31 @@
+<?php $categories_level_2 = $this->catalog->getChildCategories($category); ?>
+
+<div class="card-catalog-category-multi">
+	<a class="card-catalog-category-multi_name" href="<?= u("catalog_category", $category->id) ?>"><?= $category->name ?></a>
+
+	<div class="categories-list-level-2">
+		<?php foreach ($categories_level_2 as $category_level_2): ?>
+
+			<?php $categories_level_3 = $this->catalog->getChildCategories($category_level_2); ?>
+
+			<?php if (count($categories_level_3)): ?>
+				<div class="category-level-2">
+					<a class="category-level-2_name" href="<?= u("catalog_category", $category_level_2->id) ?>"><?= $category_level_2->name ?></a>
+
+					<div class="categories-list-level-3">
+						<?php foreach ($categories_level_3 as $category_level_3): ?>
+							<a href="<?= u("catalog_category", $category_level_3->id) ?>">
+								<?php if ($category_level_3->hot): ?>
+									<img src="/resources/images/icons/star.svg" alt="Популярная категория" title="Популярная категория">
+								<?php endif; ?>
+								<?= $category_level_3->name ?>
+							</a>
+						<?php endforeach ?>
+					</div>
+				</div>
+			<?php else: ?>
+				<?php $this->renderPartial($this->getViewsDir() . "/catalog/card_category_single.htm", ['category' => $category_level_2]); ?>
+			<?php endif; ?>
+		<?php endforeach ?>
+	</div>
+</div>

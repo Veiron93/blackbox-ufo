@@ -1,7 +1,7 @@
 <div class="products-slider swiper">
     <div class="swiper-wrapper">
         <?php foreach ($products as $product) : ?>
-            <div class="swiper-slide">
+            <div class="slide swiper-slide">
                 <?php $this->renderPartial($this->getViewsDir() . "/catalog/_product_card.htm", ['product' => $product]); ?>
             </div>
         <?php endforeach ?>

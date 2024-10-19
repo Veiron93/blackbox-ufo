@@ -2,7 +2,6 @@
 
 class Shop extends App_Controller
 {
-
     const COOKIE_DATA = 'blackbox_catalog_user_cookie';
 
     public function __construct()
@@ -18,21 +17,11 @@ class Shop extends App_Controller
         $this->globalHandlers[] = 'onDeleteProductCart';
     }
 
-    public function index()
-    {
-    }
-
-    public function cart_print()
-    {
-        $this->layout = 'cart_print';
-        $this->viewData['cart'] = Shop_Cart::getCart();
-        $this->setTitle("Корзина");
-    }
+    public function index() {}
 
     public function cart()
     {
         $this->viewData['cart'] = Shop_Cart::getCart();
-        $this->setTitle("Корзина");
     }
 
     public function checkout()
@@ -47,10 +36,8 @@ class Shop extends App_Controller
     protected function onAddToCart()
     {
         try {
-
             $inputJSON = file_get_contents('php://input');
             $data = json_decode($inputJSON, TRUE);
-
 
             $id = $data['id'];
             $quantity = $data['quantity'];
@@ -86,7 +73,6 @@ class Shop extends App_Controller
                 //$id_sku = post('id_sku');
                 $id_sku = $data['id_sku'];
 
-
                 /** @var Catalog_Sku $sku */
                 $sku = Catalog_Sku::create()->find($id_sku);
 
@@ -107,8 +93,7 @@ class Shop extends App_Controller
             }
 
             $this->renderMultiple([
-                "#mini-cart" => "@_mini_cart",
-                "#mini-cart-mobile" => "@_mini_cart_mobile",
+                "mini-cart-info" => "@_mini_cart_info",
             ]);
         } catch (\Exception $ex) {
             $this->ajaxError($ex);
@@ -233,7 +218,6 @@ class Shop extends App_Controller
     protected function onRecalculationCart()
     {
         try {
-
             if (App_Controller::$statusUpdateCart) {
                 throw new Phpr_ApplicationException("Упс... Обновите корзину, у некоторых товаров изменилась цена или количество в наличии меньше чем Вы выбрали");
             } else {
@@ -255,7 +239,7 @@ class Shop extends App_Controller
 
             $delivery = Phpr::$config->get('DELIVERY')[$_POST['delivery'] ? $_POST['delivery'] : 0];
 
-            $this->validation->add("name", "Имя")->required("Укажите имя");
+            $this->validation->add("name", "Имя")->required("Укажите своё имя");
             $this->validation->add("phone", "Телефон")->required("Укажите свой номер телефон");
             $this->validation->add("comment", "Комментарий")->fn("trim");
 
@@ -273,8 +257,6 @@ class Shop extends App_Controller
                 $deliveryDescription = "Самовывоз";
             }
 
-            $this->validation->add("customer-email", "Эл. почта")->email(false, "Укажите корректный адрес эл. почты");
-
             if (!$this->validation->validate($_POST)) {
                 $this->validation->throwException();
             }
@@ -284,15 +266,14 @@ class Shop extends App_Controller
             $order = Shop_Order::create();
             $order->customer_name = $values['name'];
             $order->customer_phone = $values['phone'];
-            $order->customer_email = $values['customer-email'];
+            $order->customer_email = "no-replay@bb65.ru";
+            $order->comment = $values['comment'];
+            $order->customer_address = $deliveryDescription;
 
             if ($delivery['code'] != 'pickup') {
-                $order->customer_address = $deliveryDescription . PHP_EOL . "Адрес: " . $values['customer-address'];
-            } else {
-                $order->customer_address = $deliveryDescription;
+                $order->customer_address .= PHP_EOL . "Адрес: " . $values['customer-address'];
             }
 
-            $order->comment = $values['comment'];
             $order->cart_id = $cart->cart_id;
             $order->save();
 
@@ -348,12 +329,7 @@ class Shop extends App_Controller
         }
     }
 
-
-
-
-    public function success()
-    {
-    }
+    public function success() {}
 
     public function payment($orderId, $hash)
     {

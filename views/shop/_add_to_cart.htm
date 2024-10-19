@@ -2,7 +2,8 @@
 <div class="btn-add-to-cart"
 	data-id="<?= $product->id ?>"
 	data-type="<?= $type ?>"
-	data-quantity="1" <?= $type === "sku" ? "data-id-sku='$skuId'" : "" ?>>
+	data-quantity="1"
+	data-id-sku="<?= $type === "sku" ? $skuId : '' ?>">
 	Добавить
 </div>
 <? Phpr_Form::closeTag(); ?>

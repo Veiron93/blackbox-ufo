@@ -1,14 +1,76 @@
+.breadcrumbs {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	padding: 0;
+	margin: 1.5rem 0;
+	column-gap: 0.8rem;
+
+	li {
+		display: flex;
+		align-items: center;
+		column-gap: 0.8rem;
+
+		> a {
+		}
+
+		> span {
+			color: $gray;
+		}
+
+		&:not(:first-child, :last-child) {
+			&:after {
+				content: '';
+				display: block;
+				flex: none;
+				height: 1rem;
+				width: 1rem;
+				margin-top: 0.2rem;
+				background: url(/resources/images/icons/arrow-right-white.svg) no-repeat;
+				background-size: 1.2rem;
+				background-position: center;
+			}
+		}
+
+		&:first-child {
+			a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				border-radius: 0.5rem;
+				background-color: $accent;
+				width: 2rem;
+				aspect-ratio: 1/1;
+				flex: none;
+				margin-right: 0.3rem;
+
+				img {
+					height: 1.7rem;
+				}
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
 .products-slider {
-	//border: 1px solid red;
+	.slide {
+		height: auto;
+	}
 }
 
 .product-card {
-	&[data-added='true'] {
+	&[data-added='1'] {
 		.product-card_photo {
+			box-shadow: 0 0 0.3rem 0.3rem rgba(#000, 0.3);
+
 			&:before {
 				content: '';
 				z-index: -1;
-				background-color: $accent;
+				background-color: $accentSecond;
 				position: absolute;
 				width: 90%;
 				height: 10rem;
@@ -23,17 +85,18 @@
 
 	&_photo {
 		position: relative;
+		border-radius: 3rem;
 
 		a {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 
-			border-radius: 3rem;
 			overflow: hidden;
 			aspect-ratio: 1/1;
 			height: 100%;
 			padding: 1rem;
+			border-radius: 3rem;
 
 			background-color: #fff;
 
@@ -65,6 +128,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
+		height: 3rem;
 
 		.prices {
 			display: flex;
@@ -81,7 +145,6 @@
 
 			.old-price {
 				font-size: 0.8rem;
-				line-height: 1em;
 				color: #8e8e8e;
 				position: relative;
 
@@ -127,6 +190,141 @@
 	background-color: $accent;
 	font-size: 1.2rem;
 	cursor: pointer;
+}
+
+// ГЛАВНАЯ КАТАЛОГ
+.catalog-index {
+	&_list {
+		margin-top: 2rem;
+		> div {
+			&:not(:last-child) {
+				margin-bottom: 6rem;
+			}
+		}
+	}
+}
+
+.catalog-category {
+	.catalog-categories-list {
+		margin-top: 5rem;
+	}
+}
+
+.catalog-categories-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4rem;
+
+	> a {
+		width: calc(25% - 3rem);
+	}
+	> * {
+		&:not(:last-child) {
+			margin-bottom: 2rem;
+		}
+	}
+}
+
+.card-catalog-category-multi {
+	width: 100%;
+
+	&_name {
+		font-size: 4rem;
+	}
+
+	.categories-list-level-2 {
+		margin-top: 2rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4rem;
+
+		> * {
+			width: calc(25% - 3rem);
+		}
+
+		.category-level-2 {
+			&_name {
+				font-weight: bold;
+				font-size: 2rem;
+				background-color: $accent;
+
+				transition: background-color 0.2s, color 0.2s;
+
+				@media (hover: hover) {
+					&:hover {
+						background-color: $accentSecond;
+						color: #000;
+					}
+				}
+			}
+
+			.categories-list-level-3 {
+				display: flex;
+				flex-direction: column;
+				margin-top: 2rem;
+				row-gap: 1rem;
+
+				a {
+					font-size: 1.4rem;
+					transition: color 0.2s;
+					display: flex;
+					align-items: center;
+					position: relative;
+
+					img {
+						height: 1.7rem;
+						position: absolute;
+						top: -0.1rem;
+						left: -2rem;
+					}
+
+					@media (hover: hover) {
+						&:hover {
+							color: $accentSecond;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.card-catalog-category-single {
+	display: block;
+	text-align: center;
+
+	.photo {
+		background-color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		border-radius: 3rem;
+		aspect-ratio: 1/1;
+		margin-bottom: 2rem;
+
+		img {
+			height: 100%;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+
+	span {
+		font-weight: bold;
+		font-size: 2rem;
+		background-color: $accent;
+		transition: background-color 0.2s, color 0.2s;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			span {
+				background-color: $accentSecond;
+				color: #000;
+			}
+		}
+	}
 }
 
 // // todo: delete

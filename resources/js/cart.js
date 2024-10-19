@@ -1,128 +1,121 @@
 'use strict'
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
+	// КОЛИЧЕСТВО
+	function quantityCart() {
+		function quantityMinus(quantityNum) {
+			if (quantityNum.value > 1) {
+				quantityNum.value = +quantityNum.value - 1
+			}
+		}
 
-    // КОЛИЧЕСТВО
-    function quantityCart() {
+		function quantityPlus(quantityNum) {
+			quantityNum.value = +quantityNum.value + 1
+		}
 
-        function quantityMinus(quantityNum) {
-            if (quantityNum.value > 1) {
-                quantityNum.value = +quantityNum.value - 1;
-            }
-        }
+		let cart = document.querySelector('.cart-wrapper')
 
-        function quantityPlus(quantityNum) {
-            quantityNum.value = +quantityNum.value + 1;
-        }
+		if (cart) {
+			let quantityBtns = cart.querySelectorAll('.btn-quantity-cart'),
+				quantityNums = cart.querySelectorAll('.quantity-num')
 
-        let cart = document.querySelector('.cart-wrapper');
+			quantityBtns.forEach(function (e) {
+				e.addEventListener('click', function () {
+					let quantityNum = e.parentElement.querySelector('.quantity-num')
 
-        if (cart) {
-            let quantityBtns = cart.querySelectorAll('.btn-quantity-cart'),
-                quantityNums = cart.querySelectorAll('.quantity-num');
+					if (
+						e.classList.contains('btn-quantity-minus') ||
+						quantityNum.value < quantityNum.getAttribute('max')
+					) {
+						if (e.classList.contains('btn-quantity-minus')) {
+							quantityMinus(quantityNum)
+						} else {
+							quantityPlus(quantityNum)
+						}
 
-            quantityBtns.forEach(function (e) {
+						$('#cart-form').sendForm('onUpdateQuantity', {})
+					}
+				})
+			})
 
-                e.addEventListener('click', function () {
-                    let quantityNum = e.parentElement.querySelector('.quantity-num');
+			quantityNums.forEach(function (e) {
+				e.addEventListener('change', function () {
+					e.value = e.value >= 1 ? e.value : 1
+					$('#cart-form').sendForm('onUpdateQuantity', {})
+				})
+			})
+		}
+	}
 
-                    if (e.classList.contains('btn-quantity-minus') || quantityNum.value < quantityNum.getAttribute("max")) {
-                        if (e.classList.contains('btn-quantity-minus')) {
-                            quantityMinus(quantityNum);
-                        } else {
-                            quantityPlus(quantityNum);
-                        }
+	quantityCart()
 
-                        $('#cart-form').sendForm('onUpdateQuantity', {});
-                    }
-                })
-            })
+	// ДОСТАВКА
+	function cartDelivery() {
+		const cart = document.querySelector('.cart')
 
-            quantityNums.forEach(function (e) {
-                e.addEventListener('change', function () {
-                    e.value = e.value >= 1 ? e.value : 1;
-                    $('#cart-form').sendForm('onUpdateQuantity', {});
-                })
-            })
-        }
-    }
+		if (!cart) {
+			return null
+		}
 
-    quantityCart();
+		// стоимость доставки
+		function setTotalPriceDelivery(deliveryItem) {
+			const deviveryPriceBlock = cart
+				.querySelector('.devivery-price')
+				.querySelector('span')
 
+			const deliveryPrice = deliveryItem.getAttribute('data-price')
+			const deliveryCode = deliveryItem.getAttribute('data-code')
 
-    // ДОСТАВКА
-    function cartDelivery() {
+			if (deliveryPrice == 0) {
+				let text = null
 
-        let cart = document.querySelector('.cart-wrapper');
+				switch (deliveryCode) {
+					case 'pickup':
+						text = 'Самовывоз'
+						break
+					case 'tk':
+						text = 'Бесплатно до ТК'
+						break
+					default:
+						text = 'Бесплатно'
+				}
 
-        if (cart) {
+				deviveryPriceBlock.textContent = text
+			} else {
+				deviveryPriceBlock.textContent = deliveryPrice + ' ₽'
+			}
+		}
 
-            // стоимость доставки
-            function setTotalPriceDelivery(deliveryItem) {
+		// общая сумма заказа
+		function setTotalPrice(deliveryItem) {
+			const totalPriceBlock = cart
+				.querySelector('.total-price')
+				.querySelector('span')
 
-                let deviveryPriceBlock = cart.querySelector('.devivery-price').querySelector('span'),
-                    deliveryPrice = deliveryItem.getAttribute('data-price'),
-                    deliveryCode = deliveryItem.getAttribute('data-code');
+			const goodsPrice = cart
+				.querySelector('.goods-price')
+				.querySelector('span')
 
-                if (deliveryPrice == 0) {
+			totalPriceBlock.textContent =
+				Number(deliveryItem.getAttribute('data-price')) +
+				Number(goodsPrice.getAttribute('data-summ'))
+		}
 
-                    let text = null;
+		const deliveryItems = cart.querySelectorAll('input[name="delivery"]')
 
-                    switch (deliveryCode) {
-                        case 'pickup':
-                            text = 'Самовывоз';
-                            break;
-                        case 'tk':
-                            text = 'Бесплатно до ТК';
-                            break;
-                        default:
-                            text = 'Бесплатно';
-                    }
+		deliveryItems.forEach(function (deliveryItem) {
+			if (deliveryItem.hasAttribute('checked')) {
+				setTotalPriceDelivery(deliveryItem)
+				setTotalPrice(deliveryItem)
+			}
 
-                    deviveryPriceBlock.textContent = text;
-                } else {
-                    deviveryPriceBlock.textContent = deliveryPrice + ' ₽';
-                }
-            }
+			// изменение способа доставки
+			deliveryItem.addEventListener('change', function () {
+				setTotalPriceDelivery(deliveryItem)
+				setTotalPrice(deliveryItem)
+			})
+		})
+	}
 
-            // общая сумма заказа
-            function setTotalPrice(deliveryItem) {
-                let totalPriceBlock = cart.querySelector('.total-price').querySelector('span'),
-                    goodsPrice = cart.querySelector('.goods-price').querySelector('span');
-
-                totalPriceBlock.textContent = Number(deliveryItem.getAttribute('data-price')) + Number(goodsPrice.getAttribute('data-summ'));
-            }
-
-            function statusSectionAddress(deliveryItem) {
-                let address = cart.querySelector('.section-address');
-
-                if (deliveryItem.getAttribute('data-code') != 'pickup' && !address.classList.contains('active')) {
-                    address.classList.add('active')
-                } else if (deliveryItem.getAttribute('data-code') == 'pickup') {
-                    address.classList.remove('active')
-                }
-            }
-
-            let deliveryItems = cart.querySelectorAll('input[name="delivery"]');
-
-            deliveryItems.forEach(function (deliveryItem) {
-
-                if (deliveryItem.hasAttribute('checked')) {
-                    setTotalPriceDelivery(deliveryItem);
-                    setTotalPrice(deliveryItem);
-                    statusSectionAddress(deliveryItem);
-                }
-
-                // изменение способа доставки
-                deliveryItem.addEventListener('change', function () {
-                    setTotalPriceDelivery(deliveryItem);
-                    setTotalPrice(deliveryItem);
-                    statusSectionAddress(deliveryItem);
-                })
-            })
-        }
-    }
-
-    cartDelivery();
-
-});
+	cartDelivery()
+})

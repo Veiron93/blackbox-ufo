@@ -6,18 +6,30 @@
 </head>
 
 <body>
-	<div class='wrapper'>
-		<?php $this->renderLayout('_header') ?>
+	<div class='app'>
+		<?php
+		$hiddenHeader = ['/shop/cart/', '/shop/success/'];
+		$hiddenFooter = ['/shop/cart/', '/shop/success/'];
+		$hiddenFixedMenu = ['/shop/success/'];
+		?>
 
-		<main class="content container">
+		<?php if (!in_array(Phpr::$request->getCurrentUri(), $hiddenHeader)): ?>
+			<?php $this->renderLayout('_header') ?>
+		<?php endif; ?>
+
+		<main class="app-content container">
 			<?= Phpr_View::block('view') ?>
 		</main>
 
-		<?php //$this->renderLayout('_footer') 
-		?>
+		<?php if (!in_array(Phpr::$request->getCurrentUri(), $hiddenFooter)): ?>
+			<?php $this->renderLayout('_footer') ?>
+		<?php endif; ?>
 	</div>
 
-	<?php $this->renderLayout("_fixed_menu") ?>
+	<?php if (!in_array(Phpr::$request->getCurrentUri(), $hiddenFixedMenu)): ?>
+		<?php $this->renderLayout("_fixed_menu") ?>
+	<?php endif; ?>
+
 	<?php $this->renderLayout("_footer_scripts") ?>
 </body>
 

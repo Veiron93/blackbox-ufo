@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>9025885_shopping_cart_icon (1)</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9025885_shopping_cart_icon-(1)">
+            <rect id="Rectangle" x="0" y="0" width="256" height="256"></rect>
+            <path d="M184,184 L69.8,184 L41.9,30.6 C41.2265218,26.8099163 37.9492789,24.0368646 34.1,24 L16,24" id="Path" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="204" r="20"></circle>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" cx="184" cy="204" r="20"></circle>
+            <path d="M62.5,144.000075 L188.1,144.000075 C195.819508,144.023532 202.440619,138.498911 203.8,130.9 L216,64 L48,64" id="Path" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

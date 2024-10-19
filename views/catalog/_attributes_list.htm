@@ -1,37 +1,37 @@
 <div class="attributes-wrapper">
-	<? if ($product && $product->type && $product->type->attributes): ?>
+	<?php if ($product && $product->type && $product->type->attributes): ?>
 		<h4 class="title">Общие характеристики</h4>
 		<table class="attributes-table">
-			<? foreach ($product->type->attributes as $attribute): ?>
-				<? if ($value = $product->getAttributeValue($attribute)) : ?>
+			<?php foreach ($product->type->attributes as $attribute): ?>
+				<?php if ($value = $product->getAttributeValue($attribute)) : ?>
 					<tr>
-					<? $nameArr = explode('#', $attribute->name); ?>
+					<?php $nameArr = explode('#', $attribute->name); ?>
 					<td data-attr-id="<?= $attribute->id ?>"><?= $nameArr[count($nameArr) - 1] ?></td>
 					<td>
-						<? if ($attribute->data_type == Catalog_Attribute::typeBool): ?>
+						<?php if ($attribute->data_type == Catalog_Attribute::typeBool): ?>
 							<?= $value ? "Да" : "Нет" ?>
-						<? else: ?>
-							<? if ($attribute->data_type == Catalog_Attribute::typeCheckboxList): ?>
-								<? $field = "attr_{$attribute->id}";
+						<?php else: ?>
+							<?php if ($attribute->data_type == Catalog_Attribute::typeCheckboxList): ?>
+								<?php $field = "attr_{$attribute->id}";
 									$values = $product->getCheckboxAttributeValue($field);
 								?>
-								<? foreach ($values as $val): ?>
+								<?php foreach ($values as $val): ?>
 									<a href=# class="set" data-attr-value="<?= $val ?>">
 										<?= $attribute->prefix ?>
 										<?= $val ?>
 										<?= $attribute->suffix ?>
 									</a>
-								<? endforeach; ?>
-							<? endif; ?>
+								<?php endforeach; ?>
+							<?php endif; ?>
 							<?= $attribute->prefix ?>
 							<?= $value ?>
 							<?= $attribute->suffix ?>
-						<? endif; ?>
+						<?php endif; ?>
 					</td>
-				<? endif; ?>
+				<?php endif; ?>
 				</tr>
 
-			<? endforeach; ?>
+			<?php endforeach; ?>
 		</table>
-	<? endif; ?>
+	<?php endif; ?>
 </div>

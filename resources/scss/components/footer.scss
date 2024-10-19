@@ -1,0 +1,21 @@
+footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 10rem;
+	margin-top: 3rem;
+	flex: 0 0 auto;
+
+	span {
+		&:nth-child(1) {
+			font-weight: 500;
+			letter-spacing: 0.1rem;
+		}
+
+		&:nth-child(2) {
+			margin-top: 0.4rem;
+			font-size: 0.8rem;
+		}
+	}
+}

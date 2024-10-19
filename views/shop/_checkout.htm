@@ -1,0 +1,99 @@
+<?php $cart_total_price = cartTotalPrice($cart->getItems()) ?>
+
+<?= Phpr_Form::openTag(["id" => "checkout-form", "class" => "cart-checkout"]) ?>
+
+<div class="cart-checkout_section">
+	<div class="form-section-title">1. Контакты</div>
+
+	<div class="form-section">
+		<label for="name">Имя <span class="require">*</span></label>
+		<input type="text" name="name" id="name" value="<?= h(post('name')) ?>">
+	</div>
+
+	<div class="form-section">
+		<label for="phone">Телефон <span class="require">*</span></label>
+		<input type="tel" name="phone" id="phone" value="<?= h(post('phone')) ?>">
+	</div>
+
+	<div class="form-section">
+		<label for="customer-address">Адрес, комментарий</label>
+		<textarea name="customer-address" id="customer-address" placeholder="Укажите адрес при доставке"></textarea>
+	</div>
+</div>
+
+<div class="cart-checkout_section">
+	<div class="form-section">
+		<div class="form-section-title">2. Способ получения</div>
+
+		<?php
+		$freeDelivery = $this->menuItems->getTextBlock('free_delivery', 'Бесплатная доставка', Admin_TextBlock::TYPE_PLAIN)->content;
+		$pickup_description = $this->menuItems->getTextBlock('pickup_description', 'Самовывоз', Admin_TextBlock::TYPE_WYSIWYG, '', 'Способы доставки - описание')->content;
+		?>
+
+		<?php foreach (Phpr::$config->get('DELIVERY') as $id => $value) : ?>
+
+			<?php
+			if ($freeDelivery && $value['code'] === 'ys' && $freeDelivery <= $cart_total_price) {
+				$value['price'] = 0;
+			}
+			?>
+
+			<div class="form-item-radio">
+				<label for="cart-form-input-<?= $id ?>">
+					<?= $value['name'] ?>
+
+					<?php
+					$postfix = null;
+					if ($value['code'] == "tk") $postfix = " до ТК";
+					?>
+
+					- <span><?= $value['price'] == 0 ? 'бесплатно' . ((isset($postfix)) ? $postfix : '') : $value['price'] ?></span>
+				</label>
+
+				<input type="radio" name="delivery" value="<?= $id ?>" id="cart-form-input-<?= $id ?>" <?= isset($value['checked']) ? 'checked' : '' ?> data-price="<?= $value['price'] ?>" data-code="<?= $value['code'] ?>">
+
+				<?php if (isset(${$value['code'] . '_description'})) : ?>
+					<div class="form-item-radio-description">
+						<?= ${$value['code'] . '_description'} ?>
+					</div>
+				<?php endif; ?>
+			</div>
+		<?php endforeach ?>
+	</div>
+</div>
+
+<div class="cart-checkout_section">
+	<div class="form-section">
+		<div class="form-section-title">3. Способ оплаты</div>
+		<?php $this->renderPartial($this->getViewsDir() . 'payment/_payment_backends.htm', null, true, true) ?>
+	</div>
+
+	<div class="total">
+		<div class="form-section-title">4. Итого</div>
+
+		<div class="devivery-price">
+			<div>Доставка:</div>
+			<div>
+				<span></span>
+			</div>
+		</div>
+
+		<div class="goods-price">
+			<div>Товары:</div>
+			<div>
+				<span data-summ="<?= $cart_total_price ?>"><?= Core_Number::formatNumber($cart_total_price) ?></span> &#8381;
+			</div>
+		</div>
+
+		<div class="formFlash"></div>
+
+		<div class="btn" data-handler="onRecalculationCart">
+			<div>Купить</div>
+			<div class="total-price">Всего к оплате: <span>17 400</span> &#8381;</div>
+		</div>
+	</div>
+
+	<?php //$this->renderPartial($this->getViewsDir() . "layouts/components/discount-telegram.htm"); 
+	?>
+</div>
+<?php Phpr_Form::closeTag() ?>

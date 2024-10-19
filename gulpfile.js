@@ -70,6 +70,7 @@ let scriptFiles = [
 	'service-catalog-protection',
 	'cart-protection',
 	'common-protection',
+	'discount-products',
 ] // файлы js для отдельной сборки
 
 if (fs.existsSync(customFilePath)) {
