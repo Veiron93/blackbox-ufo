@@ -11,11 +11,31 @@
 		align-items: center;
 		column-gap: 0.8rem;
 
+		> a,
+		span {
+			font-size: 1.4rem;
+		}
+
 		> a {
+			span {
+				transition: all 0.2s;
+			}
 		}
 
 		> span {
-			color: $gray;
+			color: $color_4;
+		}
+
+		&:not(:first-child) {
+			a {
+				@media (hover: hover) {
+					span {
+						&:hover {
+							color: $color_4;
+						}
+					}
+				}
+			}
 		}
 
 		&:not(:first-child, :last-child) {
@@ -37,18 +57,20 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-
-				border-radius: 0.5rem;
-				background-color: $accent;
-				width: 2rem;
-				aspect-ratio: 1/1;
 				flex: none;
-				margin-right: 0.3rem;
 
-				img {
-					height: 1.7rem;
-				}
+				padding: 0.5rem 1rem;
+
+				border-radius: 2rem;
+				background-color: $color_1;
+
+				margin-right: 1rem;
+
 				span {
+					font-size: 1.2rem;
+				}
+
+				div {
 					display: none;
 				}
 			}
@@ -70,7 +92,7 @@
 			&:before {
 				content: '';
 				z-index: -1;
-				background-color: $accentSecond;
+				background-color: $color_2;
 				position: absolute;
 				width: 90%;
 				height: 10rem;
@@ -179,7 +201,7 @@
 		}
 
 		&.discount {
-			background-color: $accentSecond;
+			background-color: $color_2;
 		}
 	}
 }
@@ -187,7 +209,7 @@
 .btn-add-to-cart {
 	padding: 0.6rem 1.2rem;
 	border-radius: 2rem;
-	background-color: $accent;
+	background-color: $color_1;
 	font-size: 1.2rem;
 	cursor: pointer;
 }
@@ -246,13 +268,13 @@
 			&_name {
 				font-weight: bold;
 				font-size: 2rem;
-				background-color: $accent;
+				background-color: $color_1;
 
 				transition: background-color 0.2s, color 0.2s;
 
 				@media (hover: hover) {
 					&:hover {
-						background-color: $accentSecond;
+						background-color: $color_2;
 						color: #000;
 					}
 				}
@@ -280,7 +302,7 @@
 
 					@media (hover: hover) {
 						&:hover {
-							color: $accentSecond;
+							color: $color_2;
 						}
 					}
 				}
@@ -313,19 +335,295 @@
 	span {
 		font-weight: bold;
 		font-size: 2rem;
-		background-color: $accent;
+		background-color: $color_1;
 		transition: background-color 0.2s, color 0.2s;
 	}
 
 	@media (hover: hover) {
 		&:hover {
 			span {
-				background-color: $accentSecond;
+				background-color: $color_2;
 				color: #000;
 			}
 		}
 	}
 }
+
+.sorting-products {
+	display: flex;
+	column-gap: 1rem;
+	margin-top: 0.8rem;
+
+	&_title {
+		font-size: 1.3rem;
+	}
+
+	&_list {
+		display: flex;
+		column-gap: 1rem;
+
+		a {
+			font-size: 1.3rem;
+			&.active {
+				color: $color_2;
+			}
+		}
+	}
+}
+
+.catalog-products {
+	margin-top: 1.5rem;
+
+	&_list {
+		margin-top: 3rem;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+
+		gap: 3rem 2rem;
+
+		> * {
+			width: 100%;
+			//width: 100;
+		}
+	}
+}
+
+.pagination {
+	margin-top: 3rem;
+	display: flex;
+	justify-content: center;
+
+	a {
+		height: 3rem;
+		border-bottom: 2px solid $color_1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+
+		&.current {
+			border-color: $color_3;
+		}
+
+		&:first-child {
+			padding-left: 0.3rem;
+		}
+
+		&:last-child {
+			padding-right: 0.3rem;
+		}
+	}
+}
+
+.product {
+	display: flex;
+	flex-wrap: wrap;
+
+	&_name {
+		font-size: 3rem;
+		margin-bottom: 2rem;
+		width: 100%;
+	}
+
+	&_photo {
+		margin-right: 4rem;
+	}
+
+	&_details {
+		width: calc(100% - 44rem);
+	}
+}
+
+// PRODUCT COMPONENTS
+.product_gallery {
+	border: 1px solid red;
+	width: 10rem;
+}
+
+.product_photo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 40rem;
+	height: 40rem;
+	padding: 2rem;
+	border-radius: 7rem;
+	background-color: #fff;
+
+	img {
+		display: block;
+		max-height: 100%;
+		max-width: 100%;
+	}
+}
+
+.product_skus {
+	&-title {
+		font-weight: 500;
+		font-size: 1.9rem;
+		color: $color_2;
+	}
+
+	&-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.2rem 0.8rem;
+		margin-top: 1rem;
+
+		.item {
+			input {
+				display: none;
+
+				&:checked + label {
+					background: $color_3;
+					border-color: #fff;
+				}
+			}
+
+			label {
+				height: 3.4rem;
+				min-width: 6rem;
+
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				padding: 0 1.2rem;
+				border-radius: 3rem;
+				font-size: 1.2rem;
+				user-select: none;
+
+				border: 0.2rem solid $color_4;
+				transition: all 0.2s;
+
+				&:not(&.sku-none) {
+					cursor: pointer;
+					transition: background 0.2s;
+
+					@media (hover: hover) {
+						&:hover {
+							background: $color_3;
+						}
+					}
+				}
+
+				&.sku-none {
+					border-color: $color_4;
+					opacity: 0.2;
+				}
+			}
+		}
+	}
+}
+
+.product_buy {
+	display: flex;
+	align-items: center;
+	column-gap: 1rem;
+	margin-top: 3rem;
+	background-color: $color_3;
+	border-radius: 3rem;
+	padding: 1rem 3rem 1rem 1rem;
+
+	.btn-add-to-cart {
+		padding: 1rem 2rem;
+		margin-right: 0.5rem;
+		font-size: 1.7rem;
+	}
+
+	&-data {
+		margin-left: auto;
+		display: flex;
+		column-gap: 1.5rem;
+
+		> div,
+		> div span {
+			font-size: 1.3rem;
+			color: $gray;
+		}
+	}
+}
+
+.protective-glass-installation {
+	display: flex;
+	align-items: center;
+
+	column-gap: 2rem;
+
+	background-color: $color_3;
+	border-radius: 3rem;
+	padding: 1rem;
+
+	margin-bottom: 5rem;
+
+	.btn_protective-glass-installation {
+	}
+
+	span {
+		font-size: 1.5rem;
+		br {
+			display: none;
+		}
+	}
+}
+
+// 				.product_skus {
+// 					margin-bottom: 25px;
+
+// 					.skus-title {
+// 						margin-bottom: 10px;
+// 						font-weight: 500;
+// 						font-size: 16px;
+// 					}
+
+// 					.skus-list {
+// 						display: flex;
+// 						flex-wrap: wrap;
+// 						gap: 10px;
+
+// 						.item {
+// 							input {
+// 								display: none;
+
+// 								&:checked + label {
+// 									background: $color_2;
+// 								}
+// 							}
+
+// 							label {
+// 								height: 34px;
+// 								min-width: 60px;
+
+// 								display: flex;
+// 								align-items: center;
+// 								justify-content: center;
+
+// 								padding: 0 10px;
+// 								border-radius: $brs;
+
+// 								font-size: 14px;
+// 								user-select: none;
+
+// 								&:not(&.sku-none) {
+// 									cursor: pointer;
+// 									transition: background 0.2s;
+// 									border: 1px solid $color_2;
+
+// 									&:hover {
+// 										background: $color_2;
+// 									}
+// 								}
+
+// 								&.sku-none {
+// 									background: $color_2;
+// 									border: 1px solid $color_2;
+// 									opacity: 0.5;
+// 								}
+// 							}
+// 						}
+// 					}
+// 				}
 
 // // todo: delete
 

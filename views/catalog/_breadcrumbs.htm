@@ -15,8 +15,8 @@ $linkBack = isset($parentCategory) ? u("catalog_category", $parentCategory->id) 
 <ul class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
 	<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
 		<a itemprop="item" href="<?= $linkBack ?>">
-			<img src="/resources/images/icons/arrow-left-white.svg" alt="Назад">
-			<span itemprop="name"><?= isset($parentCategory) ? $parentCategory->name : "Каталог" ?></span>
+			<span>Назад</span>
+			<div itemprop="name"><?= isset($parentCategory) ? $parentCategory->name : "Каталог" ?></div>
 			<meta itemprop="position" content="<?= isset($parentCategory) ? $parentCategory->level + 1 : 1 ?>" />
 		</a>
 	</li>

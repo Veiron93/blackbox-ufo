@@ -1,0 +1,43 @@
+<?php $type = (isset($product->skus)) ? 'sku' : 'product'; ?>
+
+<div class="product_buy">
+    <?php $this->renderPartial($this->getViewsDir() . "/shop/_add_to_cart.htm", ["product" => $product, "type" => $type, "skuId" => $type === "sku" ? $selected_sku->id : null]); ?>
+    <?php $this->renderPartial($this->getViewsDir() . "/catalog/components/product/price.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
+
+    <div class="product_buy-data">
+        <div class="product_buy-amount">
+            В наличии:
+            <span><?= isset($selected_sku) ? $selected_sku->leftover : $product->leftover ?></span>
+        </div>
+
+        <div class="product_buy-code">
+            Код:
+            <span>
+                <?php if (isset($selected_sku)) : ?>
+                    <?= $product->id ?>-<span class="product-code_sku"><?= $selected_sku->id ?></span>
+                <?php else : ?>
+                    <?= $product->id ?>
+                <?php endif; ?>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<?/*
+<?= Phpr_Form::openTag(array("action" => u("shop_cart", []), "id" => "form-{$product->id}")) ?>
+	<?php
+    $viewData = [
+        'withQuantity' => true,
+        'initialQuantity' => 1,
+        'item' => $product,
+        'type' => (isset($product->skus)) ? 'sku' : 'product',
+        'idPrefix' => "atc-product-{$product->id}"
+    ];
+
+    if (isset($product->skus)) {
+        $viewData["id_sku"] = $selected_sku->id;
+    }
+    ?>
+<?php Phpr_Form::closeTag(); ?>
+*/ ?>

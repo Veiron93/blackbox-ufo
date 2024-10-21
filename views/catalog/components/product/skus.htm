@@ -7,11 +7,10 @@
         if ($product->title_sku) $title_sku = $product->title_sku;
         ?>
 
-        <div class="skus-title"><?= $title_sku ?></div>
+        <div class="product_skus-title"><?= $title_sku ?></div>
 
-        <div class="skus-list">
+        <div class="product_skus-list">
             <?php foreach ($product->skus as $sku) : ?>
-
                 <div class="item">
                     <?php if ($sku->leftover) : ?>
                         <input type="radio" id="sku-<?= $sku->id ?>" name="product-sku" <?= $selected_sku->id == $sku->id ? "checked" : "" ?> data-price="<?= Phpr::$lang->num($sku->price) ?>" data-leftover="<?= $sku->leftover ?>" value="<?= $sku->id ?>">

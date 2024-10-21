@@ -19,7 +19,10 @@
 class Catalog extends App_Controller
 {
 
-	const productsPerPage = 40;
+	//const productsPerPage = 40;
+	const productsPerPage = 10;
+
+
 
 	public function index()
 	{
@@ -224,7 +227,8 @@ class Catalog extends App_Controller
 	}
 
 
-	private static function get_category_filters($category_id){
+	private static function get_category_filters($category_id)
+	{
 
 		$attributes = [];
 
@@ -232,27 +236,25 @@ class Catalog extends App_Controller
 			FROM catalog_category_filters
 			WHERE category_id = ?", [$category_id]);
 
-		if($ids_attributes){
+		if ($ids_attributes) {
 			$attributes = Db_DbHelper::objectArray("SELECT * 
 				FROM catalog_attributes
 				WHERE id IN (?)", [$ids_attributes]);
 		}
 
-		if(!isset($attributes) && !$attributes){
+		if (!isset($attributes) && !$attributes) {
 			return $attributes;
 		}
 
-		foreach($attributes as $attribute){
+		foreach ($attributes as $attribute) {
 			$values = explode("\n", $attribute->value_template);
-			$attribute->values = $values;			
+			$attribute->values = $values;
 		}
 
 		return $attributes;
 	}
 
-	private static function filters(){
-
-	}
+	private static function filters() {}
 
 
 	// private function filters($filters)

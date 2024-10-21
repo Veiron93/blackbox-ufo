@@ -1,6 +1,5 @@
 <?php if (isset($product->images) && count($product->images) > 1) : ?>
-    <div class="product-gallery">
-
+    <div class="product_gallery">
         <div class="product-gallery_thumbs swiper">
             <div class="swiper-wrapper">
                 <?php foreach ($product->images as $image) : ?>
@@ -26,9 +25,7 @@
         </div>
     </div>
 <?php else : ?>
-    <div class="product-photo">
-        <a href="<?= $image ?>" data-fancybox>
-            <img src="<?= $image ?>" alt="<?= $product->name ?>">
-        </a>
-    </div>
+    <a class="product_photo" href="<?= $image ?>" data-fancybox>
+        <img src="<?= $image ?>" alt="<?= $product->name ?>">
+    </a>
 <?php endif; ?>

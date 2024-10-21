@@ -2,37 +2,24 @@
 	<?php $get_params = isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) ? "?" . $_SERVER['QUERY_STRING'] : null; ?>
 
 	<div class="pagination">
-
 		<?php for ($i = 1; $i <= $pagination->count_pages; $i++) : ?>
-			<?php if($i == $pagination->number_current_page): ?>
-				<span><?=$i?></span>
-			<?php else: ?>
-				
-				<?php 
-					switch($route){
-						case "catalog_category":
-							$params = [$category->id, $i];
-							break;
-						case "catalog_all_products":
-							$params = $i;
-							break;
-						default:
-							$params = null;
-					}
-				?>
-				<a href="<?= u($route, $params) . $get_params ?>"><?=$i?></a>
-			<?php endif; ?>
+
+			<?php
+			$is_current =  $i == $pagination->number_current_page ? true : false;
+
+			switch ($route) {
+				case "catalog_category":
+					$params = [$category->id, $i];
+					break;
+				case "catalog_all_products":
+					$params = $i;
+					break;
+				default:
+					$params = null;
+			}
+			?>
+
+			<a href="<?= u($route, $params) . $get_params ?>" <?= $is_current ? "class='current'" : "" ?>><?= $i ?></a>
 		<?php endfor; ?>
-
-		<?/*
-			<a href="<?= u("catalog_category", $category->id, 1) . $get_params ?>" class="pagination-prew">
-				<img src="/resources/images/icons/arrow-left.svg" alt="">
-			</a>
-
-			<a href="<?= u("catalog_category", $category->id, $pagination->count_pages) . $get_params ?>" class="pagination-next">
-				<img src="/resources/images/icons/arrow-right.svg" alt="">
-			</a>
-		*/?>
-		
 	</div>
 <?php endif; ?>

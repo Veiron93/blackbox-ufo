@@ -30,7 +30,6 @@
 	<?= Core_Html::js($this->getAsset('dist/product-show.min.js')) ?>
 
 	<?php Phpr_View::endBlock(true) ?>
-
 <?php else : ?>
 	<?php Phpr_View::beginBlock("meta") ?>
 	<title>БЛЭКБОКС | Аксессуары для гаджетов, компьютеров, автомобилей и дома | Южно-Сахалинск</title>
@@ -41,14 +40,12 @@
 
 
 <?php Phpr_View::beginBlock("view") ?>
-<div class="catalog-product container">
-
+<section class="product">
 	<?php if (isset($product) && $product) : ?>
+		<?php $this->renderPartial('breadcrumbs', ['current_category' => $category, 'current_category_show' => true]) ?>
 
 		<?/* путь до компонентов */ ?>
-		<?php $path_components = $this->getViewsDir() . "/catalog/components/product_show/"; ?>
-
-		<?php $this->renderPartial('breadcrumbs', ['current_category' => $category, 'current_category_show' => true]) ?>
+		<?php $path_components = $this->getViewsDir() . "/catalog/components/product/"; ?>
 
 		<?php
 		$selected_sku = null;
@@ -63,77 +60,58 @@
 		}
 		?>
 
-		<h1 class="catalog-product_name"><?= $product->name ?></h1>
+		<h1 class="product_name"><?= $product->name ?></h1>
 
-		<div class="catalog-product_info">
-			<div class="details">
-				<?/* фото */ ?>
-				<?php $this->renderPartial($path_components . "photos.htm", ["product" => $product, "image" => $image]); ?>
+		<?/* фото */ ?>
+		<?php $this->renderPartial($path_components . "photos.htm", ["product" => $product, "image" => $image]); ?>
 
-				<div class="product-main-info">
-					<?/* артикулы */ ?>
-					<?php $this->renderPartial($path_components . "skus.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
+		<div class="product_details">
+			<?/* счётчики */ ?>
+			<?php //$this->renderPartial($path_components . "counters.htm", ["product" => $product, "selected_sku" => $selected_sku]); 
+			?>
 
-					<?/* записаться на установку */ ?>
-					<?php if ($product->service_install) : ?>
-						<?php $this->renderPartial($path_components . "protective_glass_installation.htm", ["product" => $product]); ?>
-					<?php endif ?>
-
-					<?/* показывается в мобильной версии */ ?>
-					<div class="buy-section-mobile">
-						<?/* цена */ ?>
-						<?php $this->renderPartial($path_components . "price.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
-
-						<?/* кнопка купить */ ?>
-						<?php $this->renderPartial($path_components . "btn_add_cart.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
-
-						<?/* счётчики */ ?>
-						<?php $this->renderPartial($path_components . "counters.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
-					</div>
-
-					<?/* поддержанное устройство */ ?>
-					<?php $this->renderPartial($path_components . "usesed_device.htm", $product); ?>
-
-					<?/* краткое описание */ ?>
-					<?php $short_description = $product->short_description; ?>
-
-					<?php if ($short_description) : ?>
-						<div class="product_short-description">
-							<?= nl2br($short_description) ?>
-						</div>
-					<?php endif; ?>
-				</div>
-			</div>
-
-			<?/* описание товара */ ?>
-			<?php $description = $product->description; ?>
-
-			<?php if ($description) : ?>
-				<div class="description">
-					<h2>Подробнее о товаре</h2>
-
-					<div data-formatted-text>
-						<?= $description ?>
-					</div>
-				</div>
-			<?php endif; ?>
-		</div>
-
-		<div class="catalog-product_other">
-			<?/* цена */ ?>
-			<?php $this->renderPartial($path_components . "price.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
+			<?/* артикулы */ ?>
+			<?php $this->renderPartial($path_components . "skus.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
 
 			<?/* кнопка купить */ ?>
-			<?php $this->renderPartial($path_components . "btn_add_cart.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
-
-			<?/* счётчики */ ?>
-			<?php $this->renderPartial($path_components . "counters.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
-
-			<?/* задать вопрос */ ?>
-			<?php $this->renderPartial($path_components . "ask_question.htm", $product); ?>
+			<?php $this->renderPartial($path_components . "buy.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
 		</div>
+
+
+
+		<?/* записаться на установку */ ?>
+		<?php if ($product->service_install) : ?>
+			<?php $this->renderPartial($path_components . "protective_glass_installation.htm", ["product" => $product]); ?>
+		<?php endif ?>
+
+		<?/* задать вопрос */ ?>
+		<?php $this->renderPartial($path_components . "ask_question.htm", $product); ?>
+
+		<?/* краткое описание */ ?>
+		<?php $short_description = $product->short_description; ?>
+
+		<?php if ($short_description) : ?>
+			<div class="product_short-description">
+				<?= nl2br($short_description) ?>
+			</div>
+		<?php endif; ?>
+
+
+		<?/* описание товара */ ?>
+		<?php $description = $product->description; ?>
+
+
+		<?php if ($description) : ?>
+			<div class="product_description">
+				<h2>Подробнее о товаре</h2>
+
+				<div data-formatted-text>
+					<?= $description ?>
+				</div>
+			</div>
+		<?php endif; ?>
 	<?php else : ?>
-		<h2>Товар не найден</h2>
+		<div>Товар не найден</div>
 	<?php endif; ?>
-</div>
+</section>
 <? Phpr_View::endBlock() ?>

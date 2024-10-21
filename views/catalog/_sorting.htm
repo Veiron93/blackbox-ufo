@@ -1,47 +1,35 @@
-<div class="catalog-products-sorting">
-	<div class="sorting-mode">
-		<div class="sorting-mode_title">Сортировать:</div>
+<?php
+$sorting = null;
+$partsURI = parse_url($_SERVER['REQUEST_URI']);
 
-		<?php
-		$sorting = null;
-		$partsURI = parse_url($_SERVER['REQUEST_URI']);
+$items = [
+	["code" => null, "title" => "По популярности"],
+	["code" => "name", "title" => "По наименованию"],
+	["code" => "new", "title" => "Сначала новые"],
+	["code" => "price", "title" => "По возрастанию цены"],
+	["code" => "-price", "title" => "По убыванию цены"],
+];
 
-		if (isset($partsURI['query'])) {
-			parse_str($partsURI['query'], $query);
+if (isset($partsURI['query'])) {
+	parse_str($partsURI['query'], $query);
 
-			if (isset($query['order'])) {
-				if ($query['order'] == 'new' || $query['order'] == 'price' || $query['order'] == '-price') {
-					$sorting = $query['order'];
-				}
+	if (isset($query['order'])) {
+		foreach ($items as $item) {
+			if ($item['code'] === $query['order']) {
+				$sorting = $query['order'];
+				continue;
 			}
 		}
-		?>
+	}
+}
+?>
 
-		<div class="sorting-mode_list">
-			<div class="item <?= !$sorting ? 'active' : '' ?>">
-				<a href="/<?= $url ?>">По популярности</a>
-			</div>
-			<div class="item <?= $sorting == 'name' ? 'active' : '' ?>">
-				<a href="/<?= $url ?>/?order=name">По наименованию</a>
-			</div>
-			<div class="item <?= $sorting == 'new' ? 'active' : '' ?>">
-				<a href="/<?= $url ?>/?order=new">Сначала новые</a>
-			</div>
-			<div class="item <?= $sorting == 'price' ? 'active' : '' ?>">
-				<a href="/<?= $url ?>/?order=price">По возрастанию цены</a>
-			</div>
-			<div class="item <?= $sorting == '-price' ? 'active' : '' ?>">
-				<a href="/<?= $url ?>/?order=-price">По убыванию цены</a>
-			</div>
-		</div>
-	</div>
+<div class="sorting-products">
+	<div class="sorting-products_title">Сортировать:</div>
 
-	<div class="view-mode">
-		<div class="item <?= $viewModeProductsList == 'grid' ? 'active' : '' ?>" data-type="grid">
-			<img src="/resources/images/icons/grid.svg" alt="Сетка" />
-		</div>
-		<div class="item <?= $viewModeProductsList == 'list' ? 'active' : '' ?>" data-type="list">
-			<img src="/resources/images/icons/listing.svg" alt="Список" />
-		</div>
+	<div class="sorting-products_list">
+		<?php foreach ($items as $item) : ?>
+			<a <?= $sorting === $item['code'] ? 'class="active"' : '' ?> href="/<?= $url ?>/<?= $item['code'] ? '?order=' . $item['code']  : '' ?>" rel="nofollow noreferrer noopener"><?= $item['title'] ?></a>
+		<?php endforeach; ?>
 	</div>
 </div>

@@ -1,11 +1,11 @@
-<div class="product-price <?= $product->old_price ? 'sale' : '' ?>">
-    <div class="product-price_actual">
+<div class="product_price <?= $product->old_price ? 'sale' : '' ?>">
+    <div class="product_price-actual">
         <?php $actualPrice = isset($selected_sku) && $selected_sku->price ? $selected_sku->price : $product->price; ?>
-        <?= Phpr::$lang->num($actualPrice) ?>
+        <?= Phpr::$lang->num($actualPrice) ?> &#8381;
     </div>
 
     <?php if ($product->old_price && !isset($selected_sku) && !$selected_sku) : ?>
-        <div class="product-price_old">
+        <div class="product_price-old">
             <div class="summ"><?= Phpr::$lang->num($product->old_price) ?></div>
             <div class="text">скидка <?= Phpr::$lang->num($product->old_price - $actualPrice) ?></div>
         </div>

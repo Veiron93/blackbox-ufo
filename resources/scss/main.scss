@@ -14,7 +14,6 @@
 
 html,
 body {
-	height: 100%;
 	min-height: 100vh;
 }
 
@@ -36,6 +35,7 @@ body {
 	font-family: $main;
 	overflow-x: hidden;
 	background-color: #000;
+	padding-bottom: 12rem;
 }
 
 a {
@@ -69,17 +69,18 @@ a {
 }
 
 .btn {
-	background-color: $accent;
+	background-color: $color_1;
 	padding: 1rem 2rem;
 	border-radius: 2rem;
 	display: inline-block;
 	user-select: none;
 	cursor: pointer;
 	transition: all 0.2s ease-out;
+	border: none;
 
 	@media (hover: hover) {
 		&:hover {
-			background-color: darken($accent, 5%);
+			background-color: darken($color_1, 5%);
 		}
 	}
 }
@@ -226,7 +227,7 @@ a {
 		column-gap: 6rem;
 		margin: 2rem -3rem 5rem;
 		padding: 1rem 2rem;
-		background-color: $accentSecond;
+		background-color: $color_2;
 		background: linear-gradient(
 			to right,
 			rgba(111, 205, 4, 1) 0%,
@@ -256,7 +257,7 @@ a {
 	a {
 		font-size: 2.5rem;
 		font-weight: bold;
-		background-color: $accentSecond;
+		background-color: $color_2;
 		color: #000;
 		//border-bottom: 0.2rem solid $accentSecond;
 	}
@@ -292,7 +293,7 @@ a {
 	border-radius: 2rem;
 
 	&_name span {
-		color: $accentSecond;
+		color: $color_2;
 	}
 
 	&_footer {
@@ -307,7 +308,7 @@ a {
 
 		a {
 			text-decoration: underline;
-			color: $accentSecond;
+			color: $color_2;
 		}
 	}
 }
@@ -334,7 +335,7 @@ a {
 		top: 0;
 		left: 3rem;
 		display: block;
-		background: $accent;
+		background: $color_1;
 		border-radius: 8rem;
 		z-index: -1;
 		transform: rotate(-5deg);
@@ -373,7 +374,7 @@ a {
 			}
 
 			&.index-about_route {
-				background-color: rgba($accent, 0.2);
+				background-color: rgba($color_1, 0.2);
 				border-radius: 2rem;
 				padding: 1rem 2rem;
 

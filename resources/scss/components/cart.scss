@@ -79,12 +79,12 @@
 		margin-left: auto;
 		overflow: hidden;
 		border-radius: 2rem;
-		border: 0.2rem solid $accentThird;
+		border: 0.2rem solid $color_3;
 		transition: all 0.2s;
 
 		@media (hover: hover) {
 			&:hover {
-				border-color: #432c50;
+				border-color: #603b76;
 			}
 		}
 
@@ -157,7 +157,7 @@
 .cart-free-delivery {
 	text-align: center;
 	margin-top: 8rem;
-	color: $accentSecond;
+	color: $color_2;
 	font-weight: bold;
 	font-size: 3rem;
 	text-transform: uppercase;
@@ -167,7 +167,6 @@
 	display: flex;
 	justify-content: space-between;
 	margin-top: 8rem;
-	margin-bottom: 12rem;
 
 	&_section {
 		flex: none;
@@ -201,7 +200,7 @@
 		margin-top: 3rem;
 
 		.form-section-title {
-			color: $accentSecond;
+			color: $color_2;
 		}
 
 		> div {
