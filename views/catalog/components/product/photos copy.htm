@@ -1,0 +1,31 @@
+<?php if (isset($product->images) && count($product->images) > 1) : ?>
+    <div class="product_gallery">
+        <div class="product-gallery_thumbs swiper">
+            <div class="swiper-wrapper">
+                <?php foreach ($product->images as $image) : ?>
+                    <div class="swiper-slide">
+                        <img src="<?= $image->getThumb(50, 50, Phpr_ImageManipulator::fitAndCrop) ?>" alt="<?= $product->name ?>" />
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div class="product-gallery_big swiper">
+            <div class="swiper-wrapper">
+                <?php foreach ($product->images as $image) : ?>
+                    <div class="swiper-slide">
+                        <a data-fancybox="product-photos" href="<?= $image->getThumb(1000, 800, Phpr_ImageManipulator::fit) ?>">
+                            <img src="<?= $image->getThumb(400, 400, Phpr_ImageManipulator::keepRatio) ?>" alt="<?= $product->name ?>" />
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+<?php else : ?>
+    <a class="product_photo" href="<?= $image ?>" data-fancybox>
+        <img src="<?= $image ?>" alt="<?= $product->name ?>">
+    </a>
+<?php endif; ?>

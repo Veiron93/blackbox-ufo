@@ -27,7 +27,7 @@
 	<link media="screen" rel="stylesheet" href="/resources/dist/fancybox.css">
 	<script type="text/javascript" src="/resources/dist/fancybox.umd.js" defer></script>
 
-	<?= Core_Html::js($this->getAsset('dist/product-show.min.js')) ?>
+	<?= Core_Html::js($this->getAsset('dist/product.min.js')) ?>
 
 	<?php Phpr_View::endBlock(true) ?>
 <?php else : ?>
@@ -63,43 +63,37 @@
 		<h1 class="product_name"><?= $product->name ?></h1>
 
 		<?/* фото */ ?>
-		<?php $this->renderPartial($path_components . "photos.htm", ["product" => $product, "image" => $image]); ?>
+		<?php $this->renderPartial($path_components . "photos.htm", ["product" => $product]); ?>
 
 		<div class="product_details">
-			<?/* счётчики */ ?>
-			<?php //$this->renderPartial($path_components . "counters.htm", ["product" => $product, "selected_sku" => $selected_sku]); 
-			?>
-
 			<?/* артикулы */ ?>
 			<?php $this->renderPartial($path_components . "skus.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
 
-			<?/* кнопка купить */ ?>
+			<?/* купить */ ?>
 			<?php $this->renderPartial($path_components . "buy.htm", ["product" => $product, "selected_sku" => $selected_sku]); ?>
+
+			<?/* записаться на установку */ ?>
+			<?php if ($product->service_install) : ?>
+				<?php $this->renderPartial($path_components . "protective_glass_installation.htm", ["product" => $product]); ?>
+			<?php endif ?>
+
+			<?/* краткое описание */ ?>
+			<?php $short_description = $product->short_description; ?>
+
+			<?php if ($short_description) : ?>
+				<div class="product_short-description">
+					<?= nl2br($short_description) ?>
+				</div>
+			<?php endif; ?>
+
+			<?/* задать вопрос */ ?>
+			<?php $this->renderPartial($path_components . "ask_question.htm", $product); ?>
+
+
 		</div>
-
-
-
-		<?/* записаться на установку */ ?>
-		<?php if ($product->service_install) : ?>
-			<?php $this->renderPartial($path_components . "protective_glass_installation.htm", ["product" => $product]); ?>
-		<?php endif ?>
-
-		<?/* задать вопрос */ ?>
-		<?php $this->renderPartial($path_components . "ask_question.htm", $product); ?>
-
-		<?/* краткое описание */ ?>
-		<?php $short_description = $product->short_description; ?>
-
-		<?php if ($short_description) : ?>
-			<div class="product_short-description">
-				<?= nl2br($short_description) ?>
-			</div>
-		<?php endif; ?>
-
 
 		<?/* описание товара */ ?>
 		<?php $description = $product->description; ?>
-
 
 		<?php if ($description) : ?>
 			<div class="product_description">

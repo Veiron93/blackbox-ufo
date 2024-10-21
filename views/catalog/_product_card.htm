@@ -4,7 +4,7 @@ $isSkus = isset($product->skus);
 ?>
 
 <div class="product-card" data-added="<?= $isAddedToCart ?>" data-id="<?= $product->id ?>">
-	<div class="product-card_photo">
+	<div class="product-card_photo" data-type="<?= $product->regular_photo ? "regular" : "normal" ?>">
 		<a href="<?= u("catalog_product", $product->id); ?>">
 			<?php $image = $this->catalog->imageProduct($product->images); ?>
 			<img src="<?= $image ?>" alt="<?= $product->name ?>" loading="lazy" />

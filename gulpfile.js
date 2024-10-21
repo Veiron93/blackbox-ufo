@@ -66,7 +66,7 @@ let styleFiles = ['styles', 'tinymce'] // файлы стилей для пре�
 
 let scriptFiles = [
 	'cart',
-	'product-show',
+	'product',
 	'service-catalog-protection',
 	'cart-protection',
 	'common-protection',
